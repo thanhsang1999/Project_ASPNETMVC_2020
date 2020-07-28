@@ -1,4 +1,4 @@
-namespace Project_ASPNETMVC_2020.Model
+namespace Project_ASPNETMVC_2020.Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +6,19 @@ namespace Project_ASPNETMVC_2020.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.ct_group_product")]
-    public partial class ct_group_product
+    [Table("project_2019.detail_order")]
+    public partial class detail_order
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(255)]
-        public string ID_GROUP { get; set; }
+        [StringLength(10)]
+        public string ID_ORDER { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(255)]
+        [StringLength(10)]
         public string ID_PRODUCT { get; set; }
+
+        public decimal? AMOUNT { get; set; }
     }
 }

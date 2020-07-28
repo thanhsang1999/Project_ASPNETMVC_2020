@@ -1,4 +1,4 @@
-namespace Project_ASPNETMVC_2020.Model
+namespace Project_ASPNETMVC_2020.Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,25 +6,26 @@ namespace Project_ASPNETMVC_2020.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.ct_account")]
-    public partial class ct_account
+    [Table("project_2019.account")]
+    public partial class account
     {
         [Key]
         [StringLength(255)]
         public string ID_ACCOUNT { get; set; }
 
         [StringLength(255)]
-        public string EMAIL { get; set; }
+        public string USERNAME { get; set; }
 
         [StringLength(255)]
-        public string SDT { get; set; }
+        public string PASSWORD { get; set; }
 
         [StringLength(255)]
-        public string DIA_CHI { get; set; }
+        public string HO_TEN { get; set; }
 
-        public int? GIOI_TINH { get; set; }
+        [StringLength(255)]
+        public string LEVEL { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime? NGAY_SINH { get; set; }
+        [StringLength(255)]
+        public string ACTIVE { get; set; }
     }
 }

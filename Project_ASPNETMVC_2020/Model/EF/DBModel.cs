@@ -1,14 +1,14 @@
-namespace Project_ASPNETMVC_2020.Model
+namespace Project_ASPNETMVC_2020.Model.EF
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class DBModel : DbContext
     {
-        public Model1()
-            : base("name=Model1")
+        public DBModel()
+            : base("name=DBModel")
         {
         }
 

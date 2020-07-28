@@ -1,4 +1,4 @@
-namespace Project_ASPNETMVC_2020.Model
+namespace Project_ASPNETMVC_2020.Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,15 +6,17 @@ namespace Project_ASPNETMVC_2020.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.brand")]
-    public partial class brand
+    [Table("project_2019.yeuthich")]
+    public partial class yeuthich
     {
         [Key]
         [StringLength(255)]
-        public string ID_BRAND { get; set; }
+        public string ID_YEUTHICH { get; set; }
 
-        [Column("BRAND")]
         [StringLength(255)]
-        public string BRAND1 { get; set; }
+        public string ID_PRODUCT { get; set; }
+
+        [StringLength(255)]
+        public string ID_ACCOUNT { get; set; }
     }
 }
