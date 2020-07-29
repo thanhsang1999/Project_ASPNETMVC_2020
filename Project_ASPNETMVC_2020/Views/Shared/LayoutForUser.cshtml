@@ -19,10 +19,12 @@
     <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/style.css">
     <link rel="shortcut icon" href="~/Assets/web/images/logo-blue.png">
     <link href="~/Assets/web/styles/blue_dangnhap.css" rel="stylesheet">
+    @Styles.Render("~/Assets/web/styles/shop_styles.css")
+    @Styles.Render("~/Assets/web/styles/shop_responsive.css")
 </head>
 
 <body>
-   
+
     <!-- The Modal -->
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -183,8 +185,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Main Navigation -->
-               @Html.Action("MainNavigation","Header")
+            <nav class="main_nav">
+                @Html.Action("MainNavigation","Header")
+            </nav>
             <!-- Menu -->
         </header>
         @RenderBody()
