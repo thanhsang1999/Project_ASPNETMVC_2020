@@ -130,10 +130,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\EF\account.cs" />
     <Compile Include="Model\EF\bill.cs" />
     <Compile Include="Model\EF\binhluan.cs" />
@@ -144,9 +147,11 @@
     <Compile Include="Model\EF\danhgia.cs" />
     <Compile Include="Model\EF\detail_order.cs" />
     <Compile Include="Model\EF\group_product.cs" />
-    <Compile Include="Model\EF\informationproduct.cs" />
+    <Compile Include="Model\EF\hedieuhanh.cs" />
     <Compile Include="Model\EF\mailpassword.cs" />
+    <Compile Include="Model\EF\memory.cs" />
     <Compile Include="Model\EF\DBModel.cs" />
+    <Compile Include="Model\EF\o.cs" />
     <Compile Include="Model\EF\order.cs" />
     <Compile Include="Model\EF\product.cs" />
     <Compile Include="Model\EF\ram.cs" />
@@ -1066,13 +1071,14 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Header\MainNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Assets\admin\" />
-    <Folder Include="Model\DAO\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

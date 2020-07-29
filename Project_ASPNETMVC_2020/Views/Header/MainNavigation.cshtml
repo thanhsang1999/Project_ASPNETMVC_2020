@@ -1,0 +1,88 @@
+﻿@{
+    Project_ASPNETMVC_2020.Model.EF.DBModel db = new Project_ASPNETMVC_2020.Model.EF.DBModel();
+    List<Project_ASPNETMVC_2020.Model.EF.brand> listBrand = db.brands.ToList();
+    List<Project_ASPNETMVC_2020.Model.EF.ram> listRams = db.rams.ToList();
+    List<Project_ASPNETMVC_2020.Model.EF.memory> listMemory = db.memories.ToList();
+    List<Project_ASPNETMVC_2020.Model.EF.hedieuhanh> listHeDieuHanh = db.hedieuhanhs.ToList();
+}
+<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="main_nav_content d-flex flex-row">
+                    <!-- Categories Menu -->
+                    <div class="cat_menu_container">
+                        <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                            <div class="cat_burger"><span></span><span></span><span></span></div>
+                            <div class="cat_menu_text">Danh Mục Sản Phẩm</div>
+                        </div>
+                        <ul class="cat_menu">
+                            <li class="hassubs">
+                                <a href="#">Thương hiệu điện thoại<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    @foreach (Project_ASPNETMVC_2020.Model.EF.brand brand in listBrand)
+                                    {
+                                        <li><a href="@Url.Action("getBrand","Brand",new { id =brand.ID_BRAND.ToString()})">@brand.BRAND1.ToString()<i class="fas fa-chevron-right"></i></a></li>
+                                    }
+
+
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#">Bộ nhớ điện thoại<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    @foreach (Project_ASPNETMVC_2020.Model.EF.memory memory in listMemory)
+                                    {
+                                        <li><a href="@Url.Action("getMemory","Memory",new { id=memory.MEMORY1.ToString()})">@memory.MEMORY1.ToString()  GB<i class="fas fa-chevron-right"></i></a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#">Hệ điều hành<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    @foreach (Project_ASPNETMVC_2020.Model.EF.hedieuhanh hedieuhanh in listHeDieuHanh)
+                                    {
+                                        <li><a href="@Url.Action("getHDH","HeDieuHanh",new { id=hedieuhanh.OS.ToString()})">@hedieuhanh.OS.ToString()<i class="fas fa-chevron-right"></i></a></li>
+
+                                    }
+
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#">RAM điện thoại<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    @foreach (Project_ASPNETMVC_2020.Model.EF.ram ram in listRams)
+                                    {
+                                        <li><a href="@Url.Action("getRam","Ram",new { id=ram.RAM1.ToString()})">@ram.RAM1.ToString() GB<i class="fas fa-chevron-right"></i></a></li>
+                                    }
+
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#">Khoảng giá điện thoại<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Dưới 5 triệu<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5 đến 10 triệu<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">10 đến 15 triệu<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">15 đến 20 triệu<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Trên 20 triệu<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Menu Trigger -->
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -6,14 +6,12 @@ namespace Project_ASPNETMVC_2020.Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.informationproduct")]
-    public partial class informationproduct
+    [Table("project_2019.memory")]
+    public partial class memory
     {
         [Key]
-        [StringLength(255)]
-        public string ID_PRODUCT { get; set; }
-
-        [StringLength(255)]
-        public string MANHINH { get; set; }
+        [Column("MEMORY")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MEMORY1 { get; set; }
     }
 }

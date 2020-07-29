@@ -22,9 +22,11 @@ namespace Project_ASPNETMVC_2020.Model.EF
         public virtual DbSet<danhgia> danhgias { get; set; }
         public virtual DbSet<detail_order> detail_order { get; set; }
         public virtual DbSet<group_product> group_product { get; set; }
-        public virtual DbSet<informationproduct> informationproducts { get; set; }
+        public virtual DbSet<hedieuhanh> hedieuhanhs { get; set; }
         public virtual DbSet<mailpassword> mailpasswords { get; set; }
+        public virtual DbSet<memory> memories { get; set; }
         public virtual DbSet<order> orders { get; set; }
+        public virtual DbSet<o> os { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<ram> rams { get; set; }
         public virtual DbSet<recently_viewed> recently_viewed { get; set; }
@@ -55,6 +57,10 @@ namespace Project_ASPNETMVC_2020.Model.EF
             modelBuilder.Entity<order>()
                 .Property(e => e.PRICE)
                 .HasPrecision(10, 0);
+
+            modelBuilder.Entity<o>()
+                .Property(e => e.NUMBER)
+                .HasPrecision(38, 0);
 
             modelBuilder.Entity<product>()
                 .Property(e => e.DATE_SUBMITTED)
