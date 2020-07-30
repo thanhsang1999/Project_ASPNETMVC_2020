@@ -13,8 +13,8 @@ namespace Project_ASPNETMVC_2020.Controllers
         DBModel dbmodel = new DBModel();
         public ActionResult MainNavigation()
         {
-            List<brand> listbrand = dbmodel.brands.ToList();
-            return PartialView(listbrand);
+           
+            return PartialView();
         }
         
     }

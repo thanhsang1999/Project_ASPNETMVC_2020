@@ -65,7 +65,11 @@
     height: 18px;
     background-color: #2196F3;
 }
-
+.show-view-star-right .bar-0 {
+    width: 0% !important;
+    height: 18px;
+    background-color: #2196F3;
+}
 .show-view-star-right .side {
     float: left;
     width: 15%;
@@ -236,4 +240,7 @@
 
 .form-binh-luan {
     border-top: 1px solid black;
+}
+.binh-luan  > li {
+	font-size: 17px !important;
 }

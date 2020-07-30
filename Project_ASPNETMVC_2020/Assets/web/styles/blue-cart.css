@@ -126,3 +126,57 @@
     font-size: 18px;
     color: #2c3e50;
 }
+
+.phai-1 {
+    background-color: #3498db;
+    height: 45px;
+}
+
+.phai-content {
+    margin-top: 20px;
+}
+
+.phai {}
+
+.title-phai {
+    font-size: 18px;
+    color: #2c3e50;
+    line-height: 38px;
+}
+
+.phai-2 {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    border: 1px solid #bdc3c7;
+}
+
+.khoang-cach-phai {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.title-header-right {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 43px;
+}
+
+.khoang-cach-lon-phai {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#chinh-sua {
+    color: #3498db;
+    cursor: pointer;
+}
+
+#chinh-sua:hover {
+    color: #2980b9;
+}
+
+#chinh-sua::selection {}
+#ten:disabled,#dia-chi:disabled,#sdt:disabled {
+    background-color: #e9ecef !important;
+}
