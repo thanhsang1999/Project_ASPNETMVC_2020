@@ -1,13 +1,10 @@
 ﻿@using System.Data.Entity
 @using Project_ASPNETMVC_2020.Model.EF
 @using Project_ASPNETMVC_2020.ClassToConfig;
-@model List<product>
 @{
     ViewBag.Title = "ShowListProduct";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
     String urlAssetsImg = "/Assets/web/images/sanpham/";
-    DBModel dBModel = new DBModel();
-    List<brand> brands = dBModel.brands.ToList();
 }
 @section styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css",true)">
@@ -52,10 +49,14 @@
                     <div class="sidebar_section">
                         <div class="sidebar_subtitle brands_subtitle">Brands</div>
                         <ul class="brands_list">
-                            @foreach (brand brand in brands)
-                            {
-                                <li class="brand"><a href="@Link.linkForListProduct("brand",brand.ID_BRAND)">@brand.BRAND1</a></li>
-                            }
+                            <li class="brand"><a href="#">Apple</a></li>
+                            <li class="brand"><a href="#">Beoplay</a></li>
+                            <li class="brand"><a href="#">Google</a></li>
+                            <li class="brand"><a href="#">Meizu</a></li>
+                            <li class="brand"><a href="#">OnePlus</a></li>
+                            <li class="brand"><a href="#">Samsung</a></li>
+                            <li class="brand"><a href="#">Sony</a></li>
+                            <li class="brand"><a href="#">Xiaomi</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,9 +88,10 @@
                     <div class="product_grid">
                         <div class="product_grid_border"></div>
                         @{
-                           
+                            DBModel dBModel = new DBModel();
+                            DbSet<product> products = dBModel.products;
                         }
-                        @foreach (product item in Model)
+                        @foreach (product item in products)
                         {
                             <div class="product_item is_new" style="float:left">
                                 <div class="product_border"></div>

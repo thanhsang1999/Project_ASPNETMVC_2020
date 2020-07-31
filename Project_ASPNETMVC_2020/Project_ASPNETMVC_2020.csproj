@@ -139,6 +139,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\DAO\BrandDAO.cs" />
+    <Compile Include="Model\DAO\ProductDAO.cs" />
     <Compile Include="Model\EF\account.cs" />
     <Compile Include="Model\EF\bill.cs" />
     <Compile Include="Model\EF\binhluan.cs" />
@@ -1524,14 +1525,15 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
-    <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\ShowListProduct.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Assets\admin\" />
+    <Folder Include="Model\Other\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

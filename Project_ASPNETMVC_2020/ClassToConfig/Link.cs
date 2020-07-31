@@ -7,20 +7,27 @@ namespace Project_ASPNETMVC_2020.ClassToConfig
 {
     public class Link
     {
-        
+
         public Link()
         {
 
         }
-        public string correctUrlImg(string url)
+        public static string correctUrlImg(string url)
         {
             url = url.Substring(0, url.Length - 3);
             url += "jpg";
             return url;
         }
-            
-        
-      
+        //thay doi localhost cho giong
+        public static string linkForListProduct(string catogery, string id)
+        {
+            String rs = "";
+            rs += "https://localhost:44360/Product/ShowListProduct?catogery=" + catogery + "&id=" + id;
+            return rs;
+        }
+
+
+
 
     }
 }

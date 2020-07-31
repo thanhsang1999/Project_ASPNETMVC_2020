@@ -1,4 +1,4 @@
-﻿
+﻿@using Project_ASPNETMVC_2020.ClassToConfig;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="OneTech shop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/bootstrap4/bootstrap.min.css">
-    <link href="~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/bootstrap4/bootstrap.min.css",true)">
+    <link href="@Url.Content("~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css",true)" rel="stylesheet" type="text/css">
     @RenderSection("styles", required: false)
-
-
-
-
+    <link href="@Url.Content("~/Assets/web/styles/blue_dangnhap.css",true)" rel="stylesheet">
 </head>
 
 <body>
@@ -313,7 +310,7 @@
                 </div>
             </div>
         </div>
-      
+
     </div>
     @Scripts.Render("~/Assets/web/js/jquery-3.3.1.min.js")
     @Scripts.Render("~/Assets/web/styles/bootstrap4/popper.js")
