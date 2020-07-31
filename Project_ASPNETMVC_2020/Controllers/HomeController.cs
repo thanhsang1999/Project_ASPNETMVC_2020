@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_ASPNETMVC_2020.Model.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,11 @@ namespace Project_ASPNETMVC_2020.Controllers
 {
     public class HomeController : Controller
     {
+        DBModel dbmodel = new DBModel();
         public ActionResult Index()
         {
             return View();
+
         }
 
         public ActionResult About()
