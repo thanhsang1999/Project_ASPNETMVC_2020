@@ -18,6 +18,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         {
             var product = new ProductDAO().productDetail(id);
             ViewBag.Title = product.NAME;
+
             var model = product;
             return View(model);
         }
@@ -32,22 +33,22 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                 pageIndex = Convert.ToInt32(page);
+                pageIndex = Convert.ToInt32(page);
             }
-            ViewBag.pageIndex = pageIndex;
-            
+
+
             List<product> listProduct = null;
             try
             {
                 if (id == null || catogery == null)
                 {
                     totalRecord = dbmodel.products.Count();
-                    listProduct = dbmodel.products.ToList();
+                    listProduct = new ProductDAO().productAll(pageIndex, itemInOnePage);
                 }
                 else if (catogery.Equals("brand"))
                 {
                     totalRecord = new ProductDAO().totalRecordByBrand(id);
-                    listProduct = new ProductDAO().productByBrand(id,pageIndex, itemInOnePage);
+                    listProduct = new ProductDAO().productByBrand(id, pageIndex, itemInOnePage);
                 }
                 else if (catogery.Equals("memory"))
                 {
@@ -75,7 +76,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 else
                 {
                     totalRecord = dbmodel.products.Count();
-                    listProduct = dbmodel.products.ToList();
+                    listProduct = new ProductDAO().productAll(pageIndex, itemInOnePage);
                 }
             }
             catch (Exception e)
@@ -86,7 +87,18 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 return RedirectToAction("Home", "Index");
             }
+            ViewBag.pageIndex = pageIndex;
             ViewBag.totalRecord = totalRecord;
+            ViewBag.maxPage = 10;
+            int totalPage = 0;
+            totalPage= (int)Math.Ceiling(((double)totalRecord / itemInOnePage));
+            ViewBag.totalPage = totalPage;
+            ViewBag.Frist = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = pageIndex == totalPage ? -1 : pageIndex + 1;
+            ViewBag.Previous = pageIndex == 1 ? -1 : pageIndex - 1;
+            ViewBag.Catogery = catogery==null?"":catogery;
+            ViewBag.ID = id == null ? "" : id;
             return View(listProduct);
         }
 

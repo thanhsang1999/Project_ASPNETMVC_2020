@@ -25,6 +25,20 @@ namespace Project_ASPNETMVC_2020.ClassToConfig
             rs += "https://localhost:44360/Product/ShowListProduct?catogery=" + catogery + "&id=" + id;
             return rs;
         }
+        public static string linkForListProductWithPage(string catogery, string id, int page)
+        {
+            String rs = "";
+            if(catogery.Equals("") || id.Equals(""))
+            {
+                rs += "https://localhost:44360/Product/ShowListProduct?"+"page=" + page;
+
+            }
+            else
+            {
+                rs += "https://localhost:44360/Product/ShowListProduct?catogery=" + catogery + "&id=" + id + "&page=" + page;
+            }
+            return rs;
+        }
 
 
 
