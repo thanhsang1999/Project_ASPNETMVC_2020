@@ -12,67 +12,90 @@
     <link href="~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
     @RenderSection("styles", required: false)
 
-
-
-
 </head>
 
 <body>
 
     <!-- The Modal -->
-    <div class="modal" id="myModal">
+    @RenderPage("~/Views/Home/Login.cshtml")
+    <div class="modal" id="myModalDK">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="container">
-                    <a class="hiddenanchor" id="signup"></a>
-                    <a class="hiddenanchor" id="signin"></a>
-                    <div class="login_wrapper">
-                        <div class="animate form login_form">
-                            <section class="login_content">
-                                <form>
-                                    <div class="container-fluid dang-nhap">
-                                        <div class="row">
-                                            <div class="col-sm-2"></div>
-                                            <div class="col-sm-8">
-                                                <div id="title"><span>Đăng Nhập</span></div>
-                                            </div>
-                                            <div class="col-sm-2"></div>
-                                        </div>
-                                        <div class="user-pass">
-                                            <div class="user khoang-cach">
-                                                <input type="text" name="uname" id="user" placeholder="Tài Khoản" />
-                                            </div>
-                                            <div class="pass khoang-cach">
-                                                <input type="password" name="pass" id="pass" placeholder="Mật Khẩu" />
-                                            </div>
-                                        </div>
-                                        <div class="sign-in">
-                                            <button type="submit" id="submit"><span>Đăng Nhập</span></button>
-                                        </div>
-                                        <div class="row dang-nhap-phan-2">
-                                            <div class="col-sm-1"></div>
-                                            <div class="col-sm-5">
-                                                <div class="dang-ki">
-                                                    <span><a href="#"><i class="fas fa-user"></i> Đăng Kí</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class="dang-ki">
-                                                    <span>
-                                                        <a href="#">
-                                                            <i class="fas fa-question"></i> Quên Mật
-                                                            Khẩu
-                                                        </a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-1"></div>
-
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
+                    <div class="row">
+                        <div class="col-sm-12 dk-phan-1">
+                            <span class="title-dang-ki">Đăng Kí</span>
+                            <br>
+                            <span class="duoi-title-dang-ki">
+                                Đăng kí tài khoản để trải nghiệm được tốt nhất
+                            </span>
                         </div>
+                    </div>
+                    <div class="row dk-phan-2">
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Tài Khoản :</span>
+                                    <input type="text" class="form-control" id="input-tk" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Tên :</span>
+                                    <input type="text" class="form-control" id="input-name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Email :</span>
+                                    <input type="text" class="form-control" id="input-email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Mật Khẩu :</span>
+                                    <input type="password" class="form-control" id="input-mk" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Nhập Lại Mật Khẩu :</span>
+                                    <input type="password" class="form-control" id="input-mk-2" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div class="row dk-phan-3 col-sm-12">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary btn-block">Đăng Kí</button>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                    <div class="row dk-phan-4 col-sm-12">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <span class="title-tieu-de-dang-ki"><i class="fas fa-shopping-bag"></i> Blue </span>
+                        </div>
+                        <div class="col-sm-4"></div>
                     </div>
                 </div>
             </div>
@@ -87,18 +110,26 @@
                     <div class="row">
                         <div class="col d-flex flex-row">
                             <div class="top_bar_contact_item">
-                                <div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+84 37509 4399
+                                <div class="top_bar_icon"><img src="~/Assets/web/images/phone.png" alt=""></div>+84 37509 4399
                             </div>
                             <div class="top_bar_contact_item">
-                                <div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">17130190@st.hcmuaf.edu.vn</a>
+                                <div class="top_bar_icon"><img src="~/Assets/web/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">17130190@st.hcmuaf.edu.vn</a>
                             </div>
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_menu"></div>
                             </div>
                             <div class="top_bar_user">
-                                <div class="user_icon"><img src="images/user.svg" alt=""></div>
-                                <div><a href="#">Đăng Kí</a></div>
-                                <div><a href="#" data-toggle="modal" data-target="#myModal">Đăng Nhập</a></div>
+                                <div class="user_icon"><img src="~/Assets/web/images/user.svg" alt=""></div>
+                                @if (Session["UserName"] != null)
+                                {
+
+                                    <div><a>@Session["UserName"].ToString()</a></div>
+                                }
+                                else
+                                {
+                                    <div><a href="#" data-toggle="modal" data-target="#myModalDK">Đăng Kí</a></div>
+                                    <div><a href="#" data-toggle="modal" data-target="#myModal">Đăng Nhập</a></div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -155,7 +186,7 @@
                         <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                    <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+                                    <div class="wishlist_icon"><img src="~/Assets/web/images/heart.png" alt=""></div>
                                     <div class="wishlist_content">
                                         <div class="wishlist_text"><a href="#">Yêu Thích</a></div>
                                         <div class="wishlist_count">115</div>
@@ -165,7 +196,7 @@
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
-                                            <img src="images/cart.png" alt="">
+                                            <img src="~/Assets/web/images/cart.png" alt="">
                                             <div class="cart_count"><span>10</span></div>
                                         </div>
                                         <div class="cart_content">
@@ -192,7 +223,7 @@
                     <div class="col">
                         <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                             <div class="newsletter_title_container">
-                                <div class="newsletter_icon"><img src="images/send.png" alt=""></div>
+                                <div class="newsletter_icon"><img src="~/Assets/web/images/send.png" alt=""></div>
                                 <div class="newsletter_title">Đăng Nhập Ngay</div>
                                 <div class="newsletter_text">
                                     <p>...hoàn lại 20% giá trị đơn hàng đầu tiên.</p>
@@ -302,10 +333,10 @@
                             </div>
                             <div class="logos ml-sm-auto">
                                 <ul class="logos_list">
-                                    <li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_1.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_2.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_3.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_4.png" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -313,9 +344,8 @@
                 </div>
             </div>
         </div>
-      
+
     </div>
-    @Scripts.Render("~/Assets/web/js/jquery-3.3.1.min.js")
     @Scripts.Render("~/Assets/web/styles/bootstrap4/popper.js")
     <script src="~/Assets/web/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="~/Assets/web/plugins/greensock/TweenMax.min.js"></script>
