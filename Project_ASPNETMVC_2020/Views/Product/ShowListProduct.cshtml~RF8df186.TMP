@@ -10,19 +10,6 @@
     <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/shop_responsive.css">
 
 }
-@section styles{
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/shop_styles.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/shop_responsive.css">
-    <link rel="shortcut icon" href="~/Assets/web/images/logo-blue.png">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/style.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/shop_styles.css">
-    <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/shop_responsive.css">
-
-}
 
 <div class="shop">
     <div class="container">
@@ -93,7 +80,7 @@
                         <div class="product_grid_border"></div>
                         @{
                             DBModel dBModel = new DBModel();
-                            DbSet<product> products = dBModel.products;
+                            List<product> products = dBModel.products.SqlQuery("select top 10 .* from product").ToList();
                         }
                         @foreach (product item in products)
                         {
