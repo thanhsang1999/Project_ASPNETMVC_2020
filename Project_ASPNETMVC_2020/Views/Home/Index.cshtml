@@ -1,7 +1,22 @@
-﻿@{
+﻿
+@using Project_ASPNETMVC_2020.ClassToConfig;
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
 
+
+
+}
+@section styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.theme.default.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/animate.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/slick-1.8.0/slick.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/main_styles.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/responsive.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/style.css")">
+    <link rel="shortcut icon" href="@Url.Content("~/Assets/web/images/logo-blue.png")">
+    <link href="@Url.Content("~/Assets/web/styles/blue_dangnhap.css)")" rel="stylesheet">
 }
 
 <!-- Banner -->
@@ -3017,8 +3032,8 @@
     </div>
 </div>
 <script>
-            $("").click(function (e) {
-                e.preventDefault();
-                $().show
-            });
+    $("").click(function (e) {
+        e.preventDefault();
+        $().show
+    });
 </script>
