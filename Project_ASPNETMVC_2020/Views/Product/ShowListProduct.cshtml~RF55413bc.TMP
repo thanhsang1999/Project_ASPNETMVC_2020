@@ -1,17 +1,10 @@
 ﻿@using System.Data.Entity
 @using Project_ASPNETMVC_2020.Model.EF
 @using Project_ASPNETMVC_2020.ClassToConfig;
-@model List<product>
 @{
     ViewBag.Title = "ShowListProduct";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
     String urlAssetsImg = "/Assets/web/images/sanpham/";
-    DBModel dBModel = new DBModel();
-    List<brand> brands = dBModel.brands.ToList();
-    int records = ViewBag.totalRecord;
-    string catogery = (string)ViewBag.Catogery;
-    string id = (string)ViewBag.ID;
-
 }
 @section styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css",true)">
@@ -56,10 +49,14 @@
                     <div class="sidebar_section">
                         <div class="sidebar_subtitle brands_subtitle">Brands</div>
                         <ul class="brands_list">
-                            @foreach (brand brand in brands)
-                            {
-                                <li class="brand"><a href="@Link.linkForListProduct("brand",brand.ID_BRAND)">@brand.BRAND1</a></li>
-                            }
+                            <li class="brand"><a href="#">Apple</a></li>
+                            <li class="brand"><a href="#">Beoplay</a></li>
+                            <li class="brand"><a href="#">Google</a></li>
+                            <li class="brand"><a href="#">Meizu</a></li>
+                            <li class="brand"><a href="#">OnePlus</a></li>
+                            <li class="brand"><a href="#">Samsung</a></li>
+                            <li class="brand"><a href="#">Sony</a></li>
+                            <li class="brand"><a href="#">Xiaomi</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,7 +69,7 @@
 
                 <div class="shop_content">
                     <div class="shop_bar clearfix">
-                        <div class="shop_product_count"><span>@records.ToString()</span> products found</div>
+                        <div class="shop_product_count"><span>186</span> products found</div>
                         <div class="shop_sorting">
                             <span>Sort by:</span>
                             <ul>
@@ -91,9 +88,10 @@
                     <div class="product_grid">
                         <div class="product_grid_border"></div>
                         @{
-
+                            DBModel dBModel = new DBModel();
+                            DbSet<product> products = dBModel.products;
                         }
-                        @foreach (product item in Model)
+                        @foreach (product item in products)
                         {
                             <div class="product_item is_new" style="float:left">
                                 <div class="product_border"></div>
@@ -116,44 +114,18 @@
                     </div>
 
                     <!-- Shop Page Navigation -->
-                    @if (ViewBag.totalPage > 1)
-                    {
-                        int pageDisplay = (int)(ViewBag.maxPage);
-                        int totalPage = (int)(ViewBag.totalPage);
-                        int curPage = (int)(ViewBag.pageIndex);
-                        int startPageIndex = Math.Max(1, curPage - pageDisplay / 2);
-                        int endPageIndex = Math.Min(totalPage, curPage + pageDisplay / 2);
 
-                        <div class="shop_page_nav d-flex flex-row">
-                            @if (ViewBag.Previous != -1)
-                            {
-
-                                <a href="@Link.linkForListProductWithPage(catogery,id,(int)ViewBag.Previous)"> <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div></a>
-                            }
-                            <ul class="page_nav d-flex flex-row">
-                                @for (int i = startPageIndex; i <= endPageIndex; i++)
-                                {
-                                    if (curPage == i)
-                                    {
-                                        <a href="@Link.linkForListProductWithPage(catogery,id,i)">
-                                            <li class="page-item">@i</li>
-                                        </a>
-
-                                    }
-                                    else
-                                    {
-                                        <a href="@Link.linkForListProductWithPage(catogery,id,i)"><li>@i</li></a>
-
-                                    }
-                                }
-
-                            </ul>
-                            @if (ViewBag.Next != -1)
-                            {
-                                <a href="@Link.linkForListProductWithPage(catogery,id,(int)ViewBag.Next)"> <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div></a>
-                            }
-                        </div>
-                    }
+                    <div class="shop_page_nav d-flex flex-row">
+                        <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
+                        <ul class="page_nav d-flex flex-row">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">...</a></li>
+                            <li><a href="#">21</a></li>
+                        </ul>
+                        <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
+                    </div>
 
                 </div>
 

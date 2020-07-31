@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="~/Assets/web/styles/bootstrap4/bootstrap.min.css">
     <link href="~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
     @RenderSection("styles", required: false)
+
 </head>
 
 <body>
@@ -121,7 +122,7 @@
                                 <div class="user_icon"><img src="~/Assets/web/images/user.svg" alt=""></div>
                                 @if (Session["UserName"] != null)
                                 {
-                                    
+
                                     <div><a>@Session["UserName"].ToString()</a></div>
                                 }
                                 else
@@ -130,7 +131,7 @@
                                     <div><a href="#" data-toggle="modal" data-target="#myModal">Đăng Nhập</a></div>
                                 }
                             </div>
-                                </div>
+                        </div>
                     </div>
                 </div>
             </div>

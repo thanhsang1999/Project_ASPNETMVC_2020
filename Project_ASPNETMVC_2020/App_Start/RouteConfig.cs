@@ -9,6 +9,8 @@ namespace Project_ASPNETMVC_2020
 {
     public class RouteConfig
     {
+        
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -16,9 +18,11 @@ namespace Project_ASPNETMVC_2020
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Home", action = "Index",  id = UrlParameter.Optional, },
                 new[] { "Project_ASPNETMVC_2020.Controllers" }
             );
+      
+
         }
     }
 }

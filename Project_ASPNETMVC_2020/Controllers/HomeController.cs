@@ -14,7 +14,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         DBModel dbmodel = new DBModel();
         public ActionResult Index()
         {
-                return View();
+            return View();
         }
         [HttpPost]
         public ActionResult Login(UserLogin user)
@@ -23,20 +23,20 @@ namespace Project_ASPNETMVC_2020.Controllers
             string Password = user.PASS;
             using (dbmodel)
             {
-            string status;
+                string status;
                 var tmp = dbmodel.accounts.Count(a => a.USERNAME.Equals(user.UNAME) && a.PASSWORD.Equals(user.PASS));
-                    if (tmp == 1)
-                    {
-                        Session["UserName"] = UserName;
-                        status = "1";
-                    }
-                    else
-                    {
-                        status = "0";
-                    }
+                if (tmp == 1)
+                {
+                    Session["UserName"] = UserName;
+                    status = "1";
+                }
+                else
+                {
+                    status = "0";
+                }
                 return new JsonResult { Data = new { status = status } };
             }
-                
+
         }
     }
 }
