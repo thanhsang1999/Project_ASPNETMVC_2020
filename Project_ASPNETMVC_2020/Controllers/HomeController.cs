@@ -20,6 +20,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             return View();
 
         }
+       
         [HttpPost]
         public ActionResult Login(UserLogin user)
         {
@@ -49,7 +50,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
-            return PartialView("Header",new DBModel());
+            return PartialView("Header", new DBModel());
         }
     }
 }

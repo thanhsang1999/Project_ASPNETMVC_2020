@@ -311,13 +311,10 @@
         </div>
     </div>
 </div>
-<script src="~/Assets/web/plugins/greensock/TweenMax.min.js"></script>
-<script src="~/Assets/web/plugins/greensock/TimelineMax.min.js"></script>
-<script src="~/Assets/web/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="~/Assets/web/plugins/greensock/animation.gsap.min.js"></script>
-<script src="~/Assets/web/plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="~/Assets/web/plugins/easing/easing.js"></script>
-<script src="~/Assets/web/plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="~/Assets/web/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script src="~/Assets/web/plugins/parallax-js-master/parallax.min.js"></script>
+@section scripts {
+    <script src="@Url.ContentAssetWeb("plugins/Isotope/isotope.pkgd.min.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("plugins/jquery-ui-1.12.1.custom/jquery-ui.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("plugins/parallax-js-master/parallax.min.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/shop_custom.js",true)"></script>
+}
+

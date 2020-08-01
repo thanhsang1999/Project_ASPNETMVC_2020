@@ -107,7 +107,7 @@
     <div class="super_container">
         <!-- Header -->
         <header id="header_real" class="header">
-        @RenderPage("Header.cshtml")
+            @RenderPage("Header.cshtml")
         </header>
         @RenderBody()
         <!-- Newsletter -->
@@ -238,9 +238,10 @@
                 </div>
             </div>
         </div>
-
+            
     </div>
-    @Scripts.Render("~/Assets/web/styles/bootstrap4/popper.js")
+    <script src="@Url.Content("~/Assets/web/js/jquery-3.3.1.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/styles/bootstrap4/popper.js",true)"></script>
     <script src="@Url.Content("~/Assets/web/styles/bootstrap4/bootstrap.min.js",true)"></script>
     <script src="@Url.Content("~/Assets/web/plugins/greensock/TweenMax.min.js",true)"></script>
     <script src="@Url.Content("~/Assets/web/plugins/greensock/TimelineMax.min.js",true)"></script>

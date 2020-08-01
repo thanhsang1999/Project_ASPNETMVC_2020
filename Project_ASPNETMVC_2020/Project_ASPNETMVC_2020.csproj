@@ -132,6 +132,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="ClassToConfig\UrlExtensions.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -161,6 +162,8 @@
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
+    <Compile Include="Model\ModelOfSession\Cart.cs" />
+    <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
     <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1530,6 +1533,7 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
