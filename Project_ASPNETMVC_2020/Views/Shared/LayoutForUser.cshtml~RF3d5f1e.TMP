@@ -203,6 +203,11 @@
                                         <a href="#">Đơn Hàng</a>
                                         <a href="@Url.Content("~/Home/Logout",true)">Đăng Xuất</a>
                                     </div>
+
+                                @if (Session["UserName"] != null)
+                                {
+
+                                    <div><a>@Session["UserName"].ToString()</a></div>
                                 }
                                 else
                                 {

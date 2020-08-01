@@ -1,4 +1,5 @@
-﻿using Project_ASPNETMVC_2020.Model.EF;
+﻿using Project_ASPNETMVC_2020.Model;
+using Project_ASPNETMVC_2020.Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
-
+using System.Web.UI.WebControls;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
@@ -19,7 +20,7 @@ namespace Project_ASPNETMVC_2020.Controllers
 
         }
         [HttpPost]
-        public JsonResult Login(UserLogin user)
+        public ActionResult Login(UserLogin user)
         {
             string UserName = user.UNAME;
             string Password = user.PASS;
@@ -44,7 +45,10 @@ namespace Project_ASPNETMVC_2020.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+
         }
+        
+        
 
 
     }
