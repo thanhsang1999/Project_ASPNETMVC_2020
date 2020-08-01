@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
+    <Compile Include="Model\DAO\UserDAO.cs" />
     <Compile Include="Model\EF\account.cs" />
     <Compile Include="Model\EF\bill.cs" />
     <Compile Include="Model\EF\binhluan.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\UserLogin.cs" />
+    <Compile Include="Model\EF\UserViewModel.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
