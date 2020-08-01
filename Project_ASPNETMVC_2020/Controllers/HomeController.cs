@@ -47,20 +47,9 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            Session.Abandon();
-            return RedirectToAction("Index", "Home");
-
-        }
-        public ActionResult LogOutVer2()
-        {
-            FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
             return PartialView("Header",new DBModel());
         }
-        
-        
-
-
     }
 }
