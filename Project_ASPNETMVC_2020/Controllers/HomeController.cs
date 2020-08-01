@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace Project_ASPNETMVC_2020.Controllers
@@ -28,7 +29,9 @@ namespace Project_ASPNETMVC_2020.Controllers
                 var tmp = dbmodel.accounts.Count(a => a.USERNAME.Equals(user.UNAME) && a.PASSWORD.Equals(user.PASS));
                 if (tmp == 1)
                 {
-                    Session["UserName"] = UserName;
+                    UserDAO userDAO = new UserDAO();
+                    UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
+                    HttpContext.Session.Add("User", userVM);
                     status = "1";
                 }
                 else
@@ -38,6 +41,12 @@ namespace Project_ASPNETMVC_2020.Controllers
                 return new JsonResult { Data = new { status = status } };
             }
 
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon(); 
+            return RedirectToAction("Index", "Home");
         }
     }
 }

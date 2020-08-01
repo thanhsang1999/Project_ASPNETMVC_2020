@@ -1523,7 +1523,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\LayoutForUser.cshtml" />
+    <Content Include="Views\Shared\_LayoutForUser.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
     <Content Include="Views\Product\ShowListProduct.cshtml" />

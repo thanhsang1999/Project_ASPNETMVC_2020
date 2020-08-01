@@ -4,7 +4,7 @@
 @model List<product>
 @{
     ViewBag.Title = "ShowListProduct";
-    Layout = "~/Views/Shared/LayoutForUser.cshtml";
+    Layout = "~/Views/Shared/_LayoutForUser.cshtml";
     String urlAssetsImg = "/Assets/web/images/sanpham/";
     DBModel dBModel = new DBModel();
     List<brand> brands = dBModel.brands.ToList();
