@@ -22,12 +22,18 @@
                     @if (Session["User"] != null)
                     {
 
-        <div><a>@user.HO_TEN</a></div>
+                        <div><a>@user.HO_TEN</a></div>
                         <div class="bang-thong-tin-tai-khoan">
                             <a href="#">Thông Tin Tài Khoản</a>
                             <a href="#">Yêu Thích</a>
                             <a href="#">Đơn Hàng</a>
-                            <a href="@Url.Content("~/Home/Logout",true)">Đăng Xuất</a>
+                            @Ajax.ActionLink("Đăng Xuất", "LogOut", new AjaxOptions()
+                                        {
+                                            HttpMethod = "GET",
+                                            UpdateTargetId = "header_real",
+                                            InsertionMode = InsertionMode.Replace
+                                        }
+                                                 )
                         </div> }
                     else
                     {

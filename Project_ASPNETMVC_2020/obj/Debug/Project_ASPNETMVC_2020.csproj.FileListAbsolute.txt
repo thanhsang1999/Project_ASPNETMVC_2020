@@ -246,3 +246,4 @@ F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020
 F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.csproj.CopyComplete
 F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.dll
 F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.pdb
+C:\Project_2020\C#\Project_ASPNETMVC_2020_Hieu\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.csprojAssemblyReference.cache
