@@ -18,6 +18,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         {
             var product = new ProductDAO().productDetail(id);
             ViewBag.Title = product.NAME;
+
             var model = product;
             return View(model);
         }

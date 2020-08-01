@@ -138,6 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
     <Compile Include="Model\DAO\UserDAO.cs" />
@@ -160,9 +161,10 @@
     <Compile Include="Model\EF\product.cs" />
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
-    <Compile Include="Model\EF\UserLogin.cs" />
-    <Compile Include="Model\EF\UserViewModel.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
+    <Compile Include="Model\ModelOfSession\FormSignup.cs" />
+    <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
+    <Compile Include="Model\ModelOfSession\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1523,12 +1525,14 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LayoutForUser.cshtml" />
+    <Content Include="Views\Shared\LayoutForUser.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
     <Content Include="Views\Product\ShowListProduct.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
