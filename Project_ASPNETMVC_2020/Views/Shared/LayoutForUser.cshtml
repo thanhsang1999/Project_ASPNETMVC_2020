@@ -12,7 +12,7 @@
     <meta name="description" content="OneTech shop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/bootstrap4/bootstrap.min.css",true)">
-    <link href="@Url.Content("~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" ,true)"rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" ,true)" rel="stylesheet" type="text/css">
     @RenderSection("styles", required: false)
 
 </head>
@@ -106,7 +106,7 @@
     </div>
     <div class="super_container">
         <!-- Header -->
-        <header class="header">
+        <header id="header_real" class="header">
             <!-- Top Bar -->
             <div class="top_bar">
                 <div class="container">
@@ -125,13 +125,19 @@
                                 <div class="user_icon"><img src="~/Assets/web/images/user.svg" alt=""></div>
                                 @if (Session["User"] != null)
                                 {
-
                     <div><a>@user.HO_TEN</a></div>
                                     <div class="bang-thong-tin-tai-khoan">
                                         <a href="#">Thông Tin Tài Khoản</a>
                                         <a href="#">Yêu Thích</a>
                                         <a href="#">Đơn Hàng</a>
                                         <a href="@Url.Content("~/Home/Logout",true)">Đăng Xuất</a>
+                                        @Ajax.ActionLink("Đăng Xuất Ver2", "LogOutVer2", new AjaxOptions()
+                                        {
+                                            HttpMethod = "GET",
+                                            UpdateTargetId = "header_real",
+                                            InsertionMode = InsertionMode.Replace
+                                        }
+                                                 )
                                     </div> }
                                 else
                                 {
@@ -149,7 +155,7 @@
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo"><a href="#">B l u e</a></div>
+                                <div class="logo"><a href="@Url.Action("Index","Home")">B l u e</a></div>
                             </div>
                         </div>
                         <!-- Search -->
