@@ -78,6 +78,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
+                DBModel db1 = new DBModel();
                 account tmpAccount = new account();
                 tmpAccount.USERNAME = UserName;
                 tmpAccount.HO_TEN = Name;
@@ -85,8 +86,9 @@ namespace Project_ASPNETMVC_2020.Controllers
                 tmpAccount.PASSWORD = Password1;
                 tmpAccount.LEVEL = "5";
                 tmpAccount.ACTIVE = "1";
-                dbmodel.accounts.Add(tmpAccount);
-                dbmodel.SaveChangesAsync();
+                db1.accounts.Add(tmpAccount);
+                db1.SaveChangesAsync();
+                DBModel db2 = new DBModel();
                 ct_account tmpCTAccount = new ct_account();
                 tmpCTAccount.ID_ACCOUNT = tmpAccount.ID_ACCOUNT;
                 tmpCTAccount.EMAIL = Email;
@@ -94,8 +96,8 @@ namespace Project_ASPNETMVC_2020.Controllers
                 tmpCTAccount.DIA_CHI = null;
                 tmpCTAccount.GIOI_TINH = 1;
                 tmpCTAccount.NGAY_SINH = null;
-                dbmodel.ct_account.Add(tmpCTAccount);
-                dbmodel.SaveChangesAsync();
+                db2.ct_account.Add(tmpCTAccount);
+                db2.SaveChangesAsync();
                 UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
