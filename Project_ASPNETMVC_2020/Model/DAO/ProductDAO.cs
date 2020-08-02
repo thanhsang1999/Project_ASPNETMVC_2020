@@ -15,6 +15,10 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         {
             this.dBModel = new DBModel();
         }
+        public product findProductById(string id)
+        {
+            return dBModel.products.Where(x => x.ID_PRODUCT==id).SingleOrDefault();
+        }
          
         public List<product> productAll(int pageIndex, int pageSize)
         {
@@ -43,6 +47,17 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         }
         public product productDetail(string id)
         {
+            if (id == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (dBModel.products.Find(id) == null)
+                {
+                    return null;
+                }
+            }
             return dBModel.products.Find(id);
         }
         public List<product> productByBrand(string id, int pageIndex, int pageSize)

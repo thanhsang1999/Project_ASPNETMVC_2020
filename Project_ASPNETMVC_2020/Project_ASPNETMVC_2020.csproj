@@ -1537,6 +1537,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Shared\ContentCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,11 +36,10 @@
                     <th>Xóa</th>
                 </tr>
             </thead>
-            <tbody id="content_cart">
+            <tbody>
                 @foreach (ProductInCart item in Model.MapCart.Values)
                 {
                     string checkbox = "checkbox" + item.Product1.ID_PRODUCT.ToString();
-                    
                     <tr>
                         <td>
                             <div class="custom-control custom-checkbox">
@@ -57,24 +56,13 @@
                             <input type="number" value="@item.QuantityInCart" min="0" max="@item.Product1.AMOUNT.ToString()" step="1" />
                         </td>
                         <td class="thung-rac-tb">
-                            @Ajax.RawActionLink(string.Format("<i class='fas fa-trash-alt'></i>"), "deleteItemHeader", "Cart", new { idproduct = item.Product1.ID_PRODUCT }, new AjaxOptions
-                       {
-                           HttpMethod = "GET",
-                           UpdateTargetId = "header_real",
-                           InsertionMode = InsertionMode.Replace,
-                           OnComplete = "fnOnComplete(this)"
+                        @Ajax.RawActionLink(string.Format("<i class='fas fa-trash-alt'></i>"), "deleteItemHeader", "Cart", new { idproduct = item.Product1.ID_PRODUCT }, new AjaxOptions
+                   {
+                       HttpMethod = "GET",
+                       UpdateTargetId = "header_real",
+                       InsertionMode = InsertionMode.Replace
 
-                       }, new { @class = item.Product1.ID_PRODUCT })
-                            @using (Ajax.BeginForm("deleteItemContentCart", "Cart", new AjaxOptions
-                            {
-                                InsertionMode = InsertionMode.Replace,
-                                HttpMethod = "GET",
-                                UpdateTargetId = "content_cart",
-                            }, new { id = "FormDelete" + item.Product1.ID_PRODUCT
-                                }))
-                            {
-                                <input type="hidden" name="idproduct5" value="@item.Product1.ID_PRODUCT" />
-                            }
+                   }, new { @id = "fas fa - trash - alt" })
                         </td>
                     </tr>
 
@@ -161,26 +149,7 @@
     <script>
         $(document).ready(function () {
             $(".btn.btn-decrement.btn-outline-secondary").attr("type", "submit");
-
+            $("a[]")
         });
     </script>
-
-    <script>
-
-        function fnOnComplete(obj) {
-            var set = "#FormDelete" + obj.className;
-            $(set).submit(function (e) {
-                console.log("succcess");        
-                //$.ajax({
-                //    url: '/Cart/deleteItemContentCart',
-                //    type: 'GET',
-                //    data: { idproduct5: $(set).serialize() },
-                //    success: (function (response) {
-                //        $('#content_cart').html(response.result);
-                //    })
-                //});
-            });
-        };
-    </script>
-
 }

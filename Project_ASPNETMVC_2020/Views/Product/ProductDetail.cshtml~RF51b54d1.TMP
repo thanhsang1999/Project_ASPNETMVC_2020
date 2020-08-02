@@ -72,45 +72,38 @@
                     </span>
                     <br>
                     <br>
-                    @using (Ajax.BeginForm("AddCart", "Cart", new AjaxOptions
-                    {
-                        InsertionMode = InsertionMode.Replace,
-                        HttpMethod = "GET",
-                        UpdateTargetId = "header_real",
-                    }))
-                    {
-                <div class="form-group">
-                    <div class="row mua-hang-1">
-                        <div class="col-md-6">
-                            <label for=""><strong>Số Lượng :</strong></label>
-                            <input type="number" min="1" step="1" max="@Model.AMOUNT" class="form-control" name="quantity" id="">
-                            <input type="hidden" class="form-control" name="idproduct" value="@Model.ID_PRODUCT" />
+                    <div class="form-group">
+                        <div class="row mua-hang-1">
+                            <div class="col-md-6">
+                                <label for=""><strong>Số Lượng :</strong></label>
+                                <input type="number" class="form-control" name="" id="" placeholder="1">
+                            </div>
+                            <div class="col-md-6 chon-mau">
+                                <label for="select-"><strong>Chọn Màu</strong></label>
+                                <select class="form-control" name="select-color" id="select-color">
+                                    <option><span>Đen</span></option>
+                                    <option><span>Trắng</span></option>
+                                    <option><span>Xanh</span></option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-6 chon-mau">
-                            <label for="select-"><strong>Chọn Màu</strong></label>
-                            <select class="form-control" name="select-color" id="select-color">
-                                <option><span>Đen</span></option>
-                                <option><span>Trắng</span></option>
-                                <option><span>Xanh</span></option>
-                            </select>
-                        </div>
-                    </div>
-                   
-                    <div class="row mua-hang-2">
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary form-control btn-dat-hang">
-                                <i class="fas fa-shopping-cart"></i>Đặt Hàng
-                            </button>
-                        </div>
-                      
-                        <div class="col-md-6">
-                            <label for="yeu-thich"><strong>Yêu Thích :</strong></label>
-                            <div class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                        <div class="row mua-hang-2">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary form-control btn-dat-hang">
+                                    <i class="fas fa-shopping-cart"></i>@Ajax.ActionLink("Đặt Hàng","AddCart","Cart", new { id = Model.ID_PRODUCT, quantity = 1 },
+                                                                       new AjaxOptions {
+                                                                           HttpMethod = "GET",
+                                                                           UpdateTargetId = "header_real",
+                                                                           InsertionMode = InsertionMode.Replace
+                                                                       }) 
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="yeu-thich"><strong>Yêu Thích :</strong></label>
+                                <div class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                    }
-
                     <button type="button" class="viewparameterfull" data-toggle="modal"
                             data-target="#myModal2">
                         Xem thêm cấu hình chi
@@ -761,7 +754,7 @@
                     <!-- Brands Slider -->
 
                     <div class="owl-carousel owl-theme brands_slider">
-
+                    
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
                                 <img src="images/brands_1.jpg" alt="">

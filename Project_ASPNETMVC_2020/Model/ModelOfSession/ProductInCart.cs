@@ -14,8 +14,21 @@ namespace Project_ASPNETMVC_2020.Model.ModelOfSession
 
         public ProductInCart(product product, int quantityInCart)
         {
-            Product1 = product;
+            this.Product = product;
             this.QuantityInCart = quantityInCart;
+        }
+        public float realPrice()
+        {
+            float rs = 0;
+            if (Product1.SALE_RATE == 0)
+            {
+                rs +=(float) Product1.PRICE.Value * quantityInCart;
+            }
+            else
+            {
+                rs += (float)(Product1.PRICE.Value - (Product1.PRICE.Value * ((float)Product1.SALE_RATE.Value / 100)));
+            }
+            return rs;
         }
 
         public product Product1 { get => Product; set => Product = value; }

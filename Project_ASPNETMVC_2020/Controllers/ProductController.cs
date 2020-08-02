@@ -16,11 +16,21 @@ namespace Project_ASPNETMVC_2020.Controllers
 
         public ActionResult ProductDetail(string id)
         {
-            var product = new ProductDAO().productDetail(id);
-            ViewBag.Title = product.NAME;
 
-            var model = product;
-            return View(model);
+            product model=new product();
+            if ((model = new ProductDAO().productDetail(id)) != null || id != null)
+            {
+                model = new ProductDAO().productDetail(id);
+                ViewBag.Title = model.NAME;
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+
         }
         public ActionResult ShowListProduct(string id, string catogery, string page)
         {
@@ -81,23 +91,23 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             catch (Exception e)
             {
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
             }
             if (listProduct == null)
             {
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
             }
             ViewBag.pageIndex = pageIndex;
             ViewBag.totalRecord = totalRecord;
             ViewBag.maxPage = 10;
             int totalPage = 0;
-            totalPage= (int)Math.Ceiling(((double)totalRecord / itemInOnePage));
+            totalPage = (int)Math.Ceiling(((double)totalRecord / itemInOnePage));
             ViewBag.totalPage = totalPage;
             ViewBag.Frist = 1;
             ViewBag.Last = totalPage;
             ViewBag.Next = pageIndex == totalPage ? -1 : pageIndex + 1;
             ViewBag.Previous = pageIndex == 1 ? -1 : pageIndex - 1;
-            ViewBag.Catogery = catogery==null?"":catogery;
+            ViewBag.Catogery = catogery == null ? "" : catogery;
             ViewBag.ID = id == null ? "" : id;
             return View(listProduct);
         }
