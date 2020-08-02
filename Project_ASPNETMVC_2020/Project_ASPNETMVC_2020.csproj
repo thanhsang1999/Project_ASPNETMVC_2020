@@ -139,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
     <Compile Include="Model\DAO\UserDAO.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
     <Compile Include="Model\ModelOfSession\Cart.cs" />
+    <Compile Include="Model\ModelOfSession\FormSignup.cs" />
     <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
     <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
@@ -1534,6 +1536,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,6 +9,8 @@ using System.Web.Security;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System.Web.UI.WebControls;
 using Project_ASPNETMVC_2020.Model.DAO;
+using Project_ASPNETMVC_2020.Model.Code;
+
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
@@ -20,31 +22,91 @@ namespace Project_ASPNETMVC_2020.Controllers
             return View();
 
         }
-       
+
         [HttpPost]
         public ActionResult Login(UserLogin user)
         {
+            string status;
             string UserName = user.UNAME;
             string Password = user.PASS;
-            using (dbmodel)
+            UserDAO userDAO = new UserDAO();
+
+            if (UserName == "" || Password == "")
             {
-                string status;
-                var tmp = dbmodel.accounts.Count(a => a.USERNAME.Equals(user.UNAME) && a.PASSWORD.Equals(user.PASS));
-                if (tmp == 1)
-                {
-                    UserDAO userDAO = new UserDAO();
-                    UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
-                    HttpContext.Session.Add("User", userVM);
-                    status = "1";
-                }
-                else
-                {
-                    status = "0";
-                }
+                status = "emtpy";
                 return new JsonResult { Data = new { status = status } };
             }
-
+            else if (userDAO.checkAccount(UserName, Password) == false)
+            {
+                status = "fail";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else
+            {
+                UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
+                HttpContext.Session.Add("User", userVM);
+                status = "success";
+                return new JsonResult { Data = new { status = status } };
+            }
         }
+        [HttpPost]
+        public ActionResult Signup(FormSignup signup)
+        {
+            string status;
+            string UserName = signup.dkUserName;
+            string Email = signup.dkEmail;
+            string Name = signup.dkName;
+            string Password1 = signup.dkPass1;
+            string Password2 = signup.dkPass2;
+            UserDAO userDAO = new UserDAO();
+
+            if (UserName == "" || Email == "" || Name == "" || Password1 == "" || Password2 == "")
+            {
+                status = "empty";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else if (userDAO.checkUsered(UserName))
+            {
+                status = "user";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else if (!Tools.IsValidEmail(Email))
+            {
+                status = "email";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else if (!Password1.Equals(Password2))
+            {
+                status = "pass";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else
+            {
+                account tmpAccount = new account();
+                tmpAccount.USERNAME = UserName;
+                tmpAccount.HO_TEN = Name;
+                tmpAccount.ID_ACCOUNT = userDAO.generateIDAccount();
+                tmpAccount.PASSWORD = Password1;
+                tmpAccount.LEVEL = "5";
+                tmpAccount.ACTIVE = "1";
+                dbmodel.accounts.Add(tmpAccount);
+                dbmodel.SaveChangesAsync();
+                ct_account tmpCTAccount = new ct_account();
+                tmpCTAccount.ID_ACCOUNT = tmpAccount.ID_ACCOUNT;
+                tmpCTAccount.EMAIL = Email;
+                tmpCTAccount.SDT = null;
+                tmpCTAccount.DIA_CHI = null;
+                tmpCTAccount.GIOI_TINH = 1;
+                tmpCTAccount.NGAY_SINH = null;
+                dbmodel.ct_account.Add(tmpCTAccount);
+                dbmodel.SaveChangesAsync();
+                UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
+                HttpContext.Session.Add("User", userVM);
+                status = "success";
+                return new JsonResult { Data = new { status = status } };
+            }
+        }
+    
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
