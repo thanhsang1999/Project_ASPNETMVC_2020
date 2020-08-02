@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +166,8 @@
     <Compile Include="Model\ModelOfSession\FormSignup.cs" />
     <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
+    <Compile Include="Model\User\FormDataUser.cs" />
+    <Compile Include="Model\User\FormPass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1533,6 +1536,9 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\MenuLeftUser.cshtml" />
+    <Content Include="Views\User\DoiMK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

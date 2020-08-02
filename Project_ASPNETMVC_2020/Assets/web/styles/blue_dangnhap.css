@@ -101,10 +101,10 @@ input[type="text"]{
   background-color : white !important; 
 
 }
-#error-mess{
+#error-mess {
     text-align: center;
     font-size: 20px;
-    color: #2c3e50;
+    color: #e74c3c;
     margin-bottom: 50px;
 }
 .khoang-cach-qmk{

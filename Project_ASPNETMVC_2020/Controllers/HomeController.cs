@@ -1,9 +1,6 @@
 ﻿using Project_ASPNETMVC_2020.Model;
 using Project_ASPNETMVC_2020.Model.EF;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
@@ -33,7 +30,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 {
                     status = "emtpy";
                     return new JsonResult { Data = new { status = status } };
-                } else if (userDAO.checkAccount(UserName, Password) == false)
+                } else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
                 {
                     status = "fail";
                     return new JsonResult { Data = new { status = status } };
@@ -62,6 +59,11 @@ namespace Project_ASPNETMVC_2020.Controllers
                 status = "empty";
                 return new JsonResult { Data = new { status = status } };
             }
+            else if (UserName.Length<6)
+            {
+                status = "userlength";
+                return new JsonResult { Data = new { status = status } };
+            }
             else if (userDAO.checkUsered(UserName))
             {
                 status = "user";
@@ -69,6 +71,11 @@ namespace Project_ASPNETMVC_2020.Controllers
             }else if (!Tools.IsValidEmail(Email))
             {
                 status = "email";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else if (Password1.Length<8)
+            {
+                status = "passlength";
                 return new JsonResult { Data = new { status = status } };
             }
             else if (!Password1.Equals(Password2))
@@ -83,7 +90,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 tmpAccount.USERNAME = UserName;
                 tmpAccount.HO_TEN = Name;
                 tmpAccount.ID_ACCOUNT = userDAO.generateIDAccount();
-                tmpAccount.PASSWORD = Password1;
+                tmpAccount.PASSWORD = Tools.MD5(Password1);
                 tmpAccount.LEVEL = "5";
                 tmpAccount.ACTIVE = "1";
                 db1.accounts.Add(tmpAccount);
@@ -109,7 +116,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
-            return PartialView("Header",new DBModel());
+            return RedirectToAction("Index", "Home");
         }
     }
 }

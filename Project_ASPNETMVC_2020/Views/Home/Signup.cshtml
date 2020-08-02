@@ -121,10 +121,14 @@
                         window.location.href = '@Url.Action("Index","Home")';
                     } else if (status == "empty") {
                         $("#dk-error-mess").hide().html("Không Để Trống").fadeIn("slow");
-                    } else if (status == "user") {
+                    } else if (status == "userlength") {
+                        $("#dk-error-mess").hide().html("Tài Khoản Phải Dài Hơn 6 Kí Tự").fadeIn("slow");
+                    }else if (status == "user") {
                         $("#dk-error-mess").hide().html("Tài Khoản Tồn Tại").fadeIn("slow");
                     } else if (status == "email") {
                         $("#dk-error-mess").hide().html("Email Không Đúng").fadeIn("slow");
+                    } else if (status == "passlength") {
+                        $("#dk-error-mess").hide().html("Password Phải Dài Hơn 8 Kí Tự").fadeIn("slow");
                     } else if (status == "pass") {
                         $("#dk-error-mess").hide().html("Password Không Trùng Nhau").fadeIn("slow");
                     }

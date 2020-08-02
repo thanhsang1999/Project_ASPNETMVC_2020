@@ -1,6 +1,4 @@
-﻿@using Project_ASPNETMVC_2020.Model.EF
-@using Project_ASPNETMVC_2020.ClassToConfig
-@using Project_ASPNETMVC_2020.Model.ModelOfSession
+﻿@using Project_ASPNETMVC_2020.Model.ModelOfSession
 @{ var user = Session["User"] as UserViewModel; }
 
 <!-- Top Bar -->
@@ -24,10 +22,11 @@
 
                         <div><a>@user.HO_TEN</a></div>
                         <div class="bang-thong-tin-tai-khoan">
-                            <a href="#">Thông Tin Tài Khoản</a>
+                            <a href="@Url.Action("Index","User")">Thông Tin Tài Khoản</a>
                             <a href="#">Yêu Thích</a>
                             <a href="#">Đơn Hàng</a>
-                            @Ajax.ActionLink("Đăng Xuất", "LogOut", new AjaxOptions()
+                            <a href="@Url.Action("LogOut","Home")">Logout</a>
+                            @Ajax.ActionLink("Đăng Xuất", "LogOut","Home", new AjaxOptions()
                                         {
                                             HttpMethod = "GET",
                                             UpdateTargetId = "header_real",
