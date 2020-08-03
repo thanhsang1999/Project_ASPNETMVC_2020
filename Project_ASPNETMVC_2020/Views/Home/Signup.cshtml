@@ -108,14 +108,8 @@
                      $('#input-mk-2').addClass('has-error');
                      return false;
                  }
-<<<<<<< HEAD
                  
              var data = $("#dk-form").serialize();
-=======
-
-                 var data = $("#dk-form").serialize();
-                 
->>>>>>> origin/Hieu
             $.ajax({
                 type: 'POST',
                 url: '/Home/Signup',
@@ -125,7 +119,6 @@
                     status = data.status
                     if (status == "success") {
                         window.location.href = '@Url.Action("Index","Home")';
-<<<<<<< HEAD
                     } else if (status == "empty") {
                         $("#dk-error-mess").hide().html("Không Để Trống").fadeIn("slow");
                     } else if (status == "userlength") {
@@ -136,23 +129,10 @@
                         $("#dk-error-mess").hide().html("Email Không Đúng").fadeIn("slow");
                     } else if (status == "passlength") {
                         $("#dk-error-mess").hide().html("Password Phải Dài Hơn 8 Kí Tự").fadeIn("slow");
-=======
-                        console.log("success");
-                    } else if (status == "empty") {
-                        $("#dk-error-mess").hide().html("Không Để Trống").fadeIn("slow");
-                    } else if (status == "user") {
-                        $("#dk-error-mess").hide().html("Tài Khoản Tồn Tại").fadeIn("slow");
-                    } else if (status == "email") {
-                        $("#dk-error-mess").hide().html("Email Không Đúng").fadeIn("slow");
->>>>>>> origin/Hieu
                     } else if (status == "pass") {
                         $("#dk-error-mess").hide().html("Password Không Trùng Nhau").fadeIn("slow");
                     }
                 }
             });
         });
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> origin/Hieu
