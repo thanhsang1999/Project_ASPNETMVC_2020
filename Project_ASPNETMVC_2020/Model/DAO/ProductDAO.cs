@@ -14,13 +14,17 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public ProductDAO()
         {
             this.dBModel = new DBModel();
-            dBModel.products.Where(x => x.PRICE.Value < 5000000);
         }
+        public product findProductById(string id)
+        {
+            return dBModel.products.Where(x => x.ID_PRODUCT == id).SingleOrDefault();
+        }
+
         public List<product> productAll(int pageIndex, int pageSize)
         {
             return dBModel.products.OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
-       
+
         public int totalRecordByBrand(string id)
         {
             return dBModel.products.Where(x => x.ID_BRAND == id).Count();
@@ -43,6 +47,17 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         }
         public product productDetail(string id)
         {
+            if (id == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (dBModel.products.Find(id) == null)
+                {
+                    return null;
+                }
+            }
             return dBModel.products.Find(id);
         }
         public List<product> productByBrand(string id, int pageIndex, int pageSize)
