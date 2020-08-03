@@ -1,5 +1,18 @@
 ﻿@using Project_ASPNETMVC_2020.Model.ModelOfSession
 @{ var user = Session["User"] as UserViewModel; }
+﻿@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using System.Web
+@{
+    var user = Session["User"] as UserViewModel;
+    var cart = Session["Cart"] as Cart;
+    if (cart == null)
+    {
+        cart = new Cart();
+        Session.Add("Cart", cart);
+    }
+}
 
 <!-- Top Bar -->
 <div class="top_bar">
@@ -105,11 +118,11 @@
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                             <div class="cart_icon">
                                 <img src="~/Assets/web/images/cart.png" alt="">
-                                <div class="cart_count"><span>10</span></div>
+                                <div class="cart_count"><span>@cart.totalItemInCart().ToString()</span></div>
                             </div>
                             <div class="cart_content">
-                                <div class="cart_text"><a href="#">Giỏ Hàng</a></div>
-                                <div class="cart_price">8,500,000 đ</div>
+                                <div class="cart_text"><a href="@Url.Action("ViewCart","Cart")">Giỏ Hàng</a></div>
+                                <div class="cart_price">@cart.totalMoneyInCart().ToString("N0") đ</div>
                             </div>
                         </div>
                     </div>

@@ -136,6 +136,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,11 +164,19 @@
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
+<<<<<<< HEAD
     <Compile Include="Model\ModelOfSession\FormSignup.cs" />
     <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
     <Compile Include="Model\User\FormDataUser.cs" />
     <Compile Include="Model\User\FormPass.cs" />
+=======
+    <Compile Include="Model\ModelOfSession\Cart.cs" />
+    <Compile Include="Model\ModelOfSession\FormSignup.cs" />
+    <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
+    <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
+    <Compile Include="Model\ModelOfSession\UserLogin.cs" />
+>>>>>>> origin/Hieu
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1535,10 +1544,16 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\MenuLeftUser.cshtml" />
     <Content Include="Views\User\DoiMK.cshtml" />
+=======
+    <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Shared\ContentCart.cshtml" />
+>>>>>>> origin/Hieu
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

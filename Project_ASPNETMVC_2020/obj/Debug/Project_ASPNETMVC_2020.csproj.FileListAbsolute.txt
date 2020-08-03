@@ -247,6 +247,7 @@ F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020
 F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.dll
 F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.pdb
 C:\Project_2020\C#\Project_ASPNETMVC_2020_Hieu\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.csprojAssemblyReference.cache
+<<<<<<< HEAD
 C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\bin\Project_ASPNETMVC_2020.dll.config
 C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\bin\Project_ASPNETMVC_2020.dll
 C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\bin\Project_ASPNETMVC_2020.pdb
@@ -330,3 +331,5 @@ C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETM
 C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.csproj.CopyComplete
 C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.dll
 C:\Project_2020\C#\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.pdb
+=======
+>>>>>>> origin/Hieu

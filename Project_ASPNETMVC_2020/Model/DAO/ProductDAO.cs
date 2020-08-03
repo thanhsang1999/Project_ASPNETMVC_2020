@@ -14,8 +14,12 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public ProductDAO()
         {
             this.dBModel = new DBModel();
-            dBModel.products.Where(x => x.PRICE.Value < 5000000);
         }
+        public product findProductById(string id)
+        {
+            return dBModel.products.Where(x => x.ID_PRODUCT==id).SingleOrDefault();
+        }
+         
         public List<product> productAll(int pageIndex, int pageSize)
         {
             return dBModel.products.OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
@@ -43,6 +47,20 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         }
         public product productDetail(string id)
         {
+<<<<<<< HEAD
+=======
+            if (id == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (dBModel.products.Find(id) == null)
+                {
+                    return null;
+                }
+            }
+>>>>>>> origin/Hieu
             return dBModel.products.Find(id);
         }
         public List<product> productByBrand(string id, int pageIndex, int pageSize)
