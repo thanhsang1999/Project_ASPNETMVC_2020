@@ -74,9 +74,11 @@
                 dataType: 'JSON',
                 success: function (data) {
                     status = data.status
-                    if (status == 1) {
+                    if (status == "success") {
                         window.location.href = '@Url.Action("Index","Home")';
-                    } else if (status == 0) {
+                    } else if (status == "emtpy") {
+                        $("#error-mess").hide().html("Không Để Trống").fadeIn("slow");
+                    } else if (status == "fail") {
                         $("#error-mess").hide().html("Tài Khoản Hoặc Mật Khẩu Không Đúng").fadeIn("slow");
                     }
                 }
