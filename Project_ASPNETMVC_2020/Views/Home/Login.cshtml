@@ -1,0 +1,87 @@
+﻿<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="login_wrapper">
+                    <div class="animate form login_form">
+                        <section class="login_content">
+                            <form id="form-login" method="post">
+                                <div class="container-fluid dang-nhap">
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-8">
+                                            <div id="title"><span>Đăng Nhập</span></div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+                                    <div class="user-pass">
+                                        <div class="user khoang-cach">
+                                            <input type="text" name="UNAME" id="user" placeholder="Tài Khoản" />
+                                        </div>
+                                        <div class="pass khoang-cach">
+                                            <input type="password" name="PASS" id="pass" placeholder="Mật Khẩu" />
+                                        </div>
+                                    </div>
+                                    <div id="error-mess"></div>
+                                    <div class="sign-in">
+                                        <button type="button" id="loginBtn"><span>Đăng Nhập</span></button>
+                                    </div>
+                                    <div class="row dang-nhap-phan-2">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-5">
+                                            <div class="dang-ki">
+                                                <span><a href="#"><i class="fas fa-user"></i> Đăng Kí</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="dang-ki">
+                                                <span>
+                                                    <a href="#">
+                                                        <i class="fas fa-question"></i> Quên Mật
+                                                        Khẩu
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        var status = null;
+             $("#loginBtn").click(function (e) {
+            e.preventDefault();
+                 if ($('#user').val() == "") {
+                     $('#user').addClass('has-error');
+                return false;
+                 } else if ($('#pass').val() == "") {
+                     $('#pass').addClass('has-error');
+                return false;
+            }
+             var data = $("#form-login").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Login',
+                data: data,
+                dataType: 'JSON',
+                success: function (data) {
+                    status = data.status
+                    if (status == "success") {
+                        window.location.href = '@Url.Action("Index","Home")';
+                    } else if (status == "emtpy") {
+                        $("#error-mess").hide().html("Không Để Trống").fadeIn("slow");
+                    } else if (status == "fail") {
+                        $("#error-mess").hide().html("Tài Khoản Hoặc Mật Khẩu Không Đúng").fadeIn("slow");
+                    }
+                }
+            });
+        });
+</script>
