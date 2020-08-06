@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Project_ASPNETMVC_2020.Model.ModelOfSession
 {
-    public class UserViewModel
+    public class User
     {
         public string ID_ACCOUNT { get; set; }
         public string USERNAME { get; set; }

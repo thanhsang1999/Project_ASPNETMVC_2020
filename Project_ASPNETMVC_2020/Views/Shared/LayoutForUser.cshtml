@@ -1,7 +1,7 @@
 ﻿@using Project_ASPNETMVC_2020.Model.EF
 @using Project_ASPNETMVC_2020.ClassToConfig
 @using Project_ASPNETMVC_2020.Model.ModelOfSession
-@{ var user = Session["User"] as UserViewModel; }
+@{ var user = Session["User"] as User; }
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +27,7 @@
     <div class="super_container">
         <!-- Header -->
         <header id="header_real" class="header">
-        @RenderPage("Header.cshtml")
+        @Html.Action("Header","Header")
         </header>
         @RenderBody()
         <!-- Newsletter -->

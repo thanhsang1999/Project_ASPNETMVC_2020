@@ -9,7 +9,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
 {
     public static class CartDAO
     {
-        public static CartProduct loadCart(string idAccount)
+        public static List<CartProduct> LoadCart(string idAccount)
         {
             DBModel db = new DBModel();
             var tmp = from c in db.carts join p in db.products
@@ -25,12 +25,12 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                           IMG = p.IMG,
                           PRICE = p.PRICE
                       };
-            return tmp.ToList()[0];
+            return tmp.ToList();
         }
-        public static void addProductToCart(string idAccount,string idProduct,int amount)
+        public static void AddProductToCart(string idAccount,string idProduct,int amount)
         {
             DBModel db = new DBModel();
-            var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount)&&x.ID_ACCOUNT.Equals(idProduct)).FirstOrDefault();
+            var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount)&&x.ID_PRODUCT.Equals(idProduct)).FirstOrDefault();
             if(tmp==null)
             {
                 DBModel db1 = new DBModel();
@@ -45,12 +45,12 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             else
             {
                 DBModel db2 = new DBModel();
-                var tmp1 = db2.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount) && x.ID_ACCOUNT.Equals(idProduct)).FirstOrDefault();
-                tmp1.AMOUNT = amount;
+                var tmp1 = db2.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount) && x.ID_PRODUCT.Equals(idProduct)).FirstOrDefault();
+                tmp1.AMOUNT = tmp1.AMOUNT+amount;
                 db2.SaveChangesAsync();
             }
         }
-        public static bool delete(string idAccount, string idProduct)
+        public static bool DeleteProduct(string idAccount, string idProduct)
         {
             DBModel db = new DBModel();
             var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount) && x.ID_ACCOUNT.Equals(idProduct)).FirstOrDefault();
@@ -65,6 +65,12 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                 return false;
             }
             
+        }
+        public static int NumberOfProduct(string idAccount)
+        {
+            DBModel db = new DBModel();
+            var tmp = db.carts.Count(x => x.ID_ACCOUNT.Equals(idAccount));
+            return tmp;
         }
         
     }

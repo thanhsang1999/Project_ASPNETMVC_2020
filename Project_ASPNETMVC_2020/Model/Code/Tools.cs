@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -43,6 +44,11 @@ namespace Project_ASPNETMVC_2020.Model.Code
             int month = int.Parse(ngaySinh.Substring(3, 2));
             int year = int.Parse(ngaySinh.Substring(6, 4));
             return new DateTime(year,month,day);
+        }
+        public static String StringToVND (int? money)
+        {
+            CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+            return double.Parse(money.ToString()).ToString("#,###", cul.NumberFormat)+ " VNĐ";
         }
     }
 }

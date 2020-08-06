@@ -1,0 +1,161 @@
+﻿@using Project_ASPNETMVC_2020.ClassToConfig;
+@using Project_ASPNETMVC_2020.Model.Cart
+@using Project_ASPNETMVC_2020.Model.Code
+@model List<CartProduct>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/LayoutForUser.cshtml";
+}
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_styles.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css",true)">
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-cart.css",true)">
+}
+<!-- start-content -->
+		<div class="container sang content">
+			<div class="row phan-1">
+				<table class="table">
+					<thead class="mauXanh">
+						<tr>
+							<th>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="checkboxAll"
+										name="checkboxAll">
+									<label class="custom-control-label" for="checkboxAll"></label>
+								</div>
+							</th>
+							<th>Ảnh Sản Phẩm</th>
+							<th>Tên Sản Phẩm</th>
+							<th>Giá Tiền</th>
+							<th class="head-sl-tb">Số Lượng</th>
+							<th>Xóa</th>
+						</tr>
+					</thead>
+                    <tbody>
+                        @foreach (CartProduct item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="checkbox1" name="checkbox1">
+                                        <label class="custom-control-label" for="checkbox1"></label>
+                                    </div>
+                                </td>
+                                <td class="img-tb">
+                                    <img src="@Url.ContentAssetWeb("")" alt="" srcset="">
+                                </td>
+                                <td class="ten-sp-tb">@item.NAME</td>
+                                <td class="gia-tb">@Tools.StringToVND(item.PRICE)</td>
+                                <td>
+                                    <input type="number" value="@item.AMOUNT" min="0" max="1000" step="1" />
+                                </td>
+                                <td class="thung-rac-tb"><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+				</table>
+			</div>
+			<div class="row phan-2">
+				<div class="col-sm-6">
+					<span class="title-dia-chi">Địa Chỉ</span>
+					<br>
+					<i class="fas fa-map-marker-alt icon-location"></i>
+					<span class="dia-chi"> Hồ Chí Minh, Quận Thủ Đức, Phường Linh Trung</span>
+				</div>
+				<div class="col-sm-3">
+					<span class="title-tong-tien">Tổng Tiền : </span>
+					<br>
+					<span class="tong-tien"> 24.490.000 ₫</span>
+					<i class="fas fa-money-bill-wave green-money"></i>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<a href="sangnguyen" id="a-giohang"><button type="button" data-toggle="modal"
+							data-target="#myModal1" class="btn btn-primary btn-block btn-thanh-toan">Đặt
+							Hàng</button></a>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="myModal1">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body cart-content-modal">
+						<div class="row khoang-cach-bt">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<span class="title-dathang-thanhcong">Đặt Hàng Thành Công</span>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+						<div class="row khoang-cach-bt">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<img class="img-fluid" src="success.png" alt="" height="200px" width="200px">
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+						<div class="row khoang-cach-bt">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<span class="span-modal">Đơn hàng đã đặt thành công.</span>
+								<br>
+								<span class="span-modal">Hàng sẽ được giao đến tay bạn sớm nhất.</span>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+						<div class="row khoang-cach-l">
+							<div class="col-sm-5"></div>
+							<div class="col-sm-2">
+								<button type="button" name="" id="" class="btn btn-primary btn-block">Trang Chủ</button>
+							</div>
+							<div class="col-sm-5"></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- end-content -->
+@section scripts{
+    <script src="@Url.ContentAssetWeb("js/cart_custom.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btn.btn-decrement.btn-outline-secondary").attr("type", "submit");
+
+        });
+    </script>
+
+    <script>
+
+        function fnOnComplete(obj) {
+            var set = "#FormDelete" + obj.className;
+            $(set).submit(function (e) {
+                console.log("succcess");
+                //$.ajax({
+                //    url: '/Cart/deleteItemContentCart',
+                //    type: 'GET',
+                //    data: { idproduct5: $(set).serialize() },
+                //    success: (function (response) {
+                //        $('#content_cart').html(response.result);
+                //    })
+                //});
+            });
+        };
+    </script>
+
+}

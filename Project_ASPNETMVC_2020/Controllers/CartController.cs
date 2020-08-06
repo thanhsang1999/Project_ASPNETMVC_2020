@@ -1,4 +1,6 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Model.Cart;
+using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
@@ -14,31 +16,38 @@ namespace Project_ASPNETMVC_2020.Controllers
 
 
         // GET: Cart
-        public ActionResult ViewCart()
+        public ActionResult Index()
         {
-
-            if (Session["Cart"] as Cart == null)
+            User user = Session["User"] as User;
+            if (user != null)
             {
-                Session.Add("Cart", new Cart());
-            }
-            Cart model = Session["Cart"] as Cart;
+            List<CartProduct> model = CartDAO.LoadCart(user.ID_ACCOUNT);
             return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
-        public ActionResult AddCart(string idproduct, int quantity)
+        [HttpPost]
+        public ActionResult AddProductToCart(string idProduct, int amount)
         {
-            int setQuantity = Convert.ToInt32(quantity);
-            Cart cart = Session["Cart"] as Cart;
-            cart.addItemWithAmount(idproduct, setQuantity);
-            Session["Cart"] = cart;
-            return PartialView("Header", cart);
+            User user = Session["User"] as User;
+            if (user != null)
+            {
+                string status = "success";
+                CartDAO.AddProductToCart(user.ID_ACCOUNT, idProduct, amount);
+                return new JsonResult { Data = new { status = status } };
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         public ActionResult deleteItemHeader(string idproduct)
         {
-            Cart cart = Session["Cart"] as Cart;
-            cart.removeItem(idproduct);
-            Session["Cart"] = cart;
-
-            return PartialView("Header", cart);
+            return null;
+            /* return PartialView("Header", cart);*/
         }
         public ActionResult deleteItemContentCart(string idproduct5)
         {
