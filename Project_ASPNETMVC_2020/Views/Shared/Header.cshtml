@@ -33,7 +33,7 @@
                             <a href="#">Yêu Thích</a>
                             <a href="#">Đơn Hàng</a>
                             <a href="@Url.Action("LogOut","Home")">Logout</a>
-                            @Ajax.ActionLink("Đăng Xuất", "LogOut", "Home", new AjaxOptions()
+                            @Ajax.ActionLink("Đăng Xuất", "LogOutAjax", "Home", new AjaxOptions()
                                         {
                                             HttpMethod = "GET",
                                             UpdateTargetId = "header_real",

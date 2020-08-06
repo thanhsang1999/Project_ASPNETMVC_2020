@@ -16,6 +16,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         // GET: Cart
         public ActionResult ViewCart()
         {
+
             if (Session["Cart"] as Cart == null)
             {
                 Session.Add("Cart", new Cart());

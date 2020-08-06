@@ -54,7 +54,7 @@
                         <td class="ten-sp-tb">@item.Product1.NAME</td>
                         <td class="gia-tb">@item.realPrice().ToString("N0") ₫</td>
                         <td>
-                            <input type="number" value="@item.QuantityInCart" min="0" max="@item.Product1.AMOUNT.ToString()" step="1" />
+                            <input class="input-sl" type="number" value="@item.QuantityInCart" min="0" max="@item.Product1.AMOUNT.ToString()" step="1" />
                         </td>
                         <td class="thung-rac-tb">
                             @Ajax.RawActionLink(string.Format("<i class='fas fa-trash-alt'></i>"), "deleteItemHeader", "Cart", new { idproduct = item.Product1.ID_PRODUCT }, new AjaxOptions

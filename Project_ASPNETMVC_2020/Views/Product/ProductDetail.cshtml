@@ -83,23 +83,15 @@
                             <div class="row mua-hang-1">
                                 <div class="col-md-6">
                                     <label for=""><strong>Số Lượng :</strong></label>
-                                    <input type="number" min="1" step="1" max="@Model.AMOUNT" class="form-control" name="quantity" id="">
+                                    <input value="1" type="number" min="1" step="1" max="@Model.AMOUNT" class="form-control" name="quantity" id="">
                                     <input type="hidden" class="form-control" name="idproduct" value="@Model.ID_PRODUCT" />
-                                </div>
-                                <div class="col-md-6 chon-mau">
-                                    <label for="select-"><strong>Chọn Màu</strong></label>
-                                    <select class="form-control" name="select-color" id="select-color">
-                                        <option><span>Đen</span></option>
-                                        <option><span>Trắng</span></option>
-                                        <option><span>Xanh</span></option>
-                                    </select>
                                 </div>
                             </div>
 
                             <div class="row mua-hang-2">
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-primary form-control btn-dat-hang">
-                                        <i class="fas fa-shopping-cart"></i>Đặt Hàng
+                                        <i class="fas fa-shopping-cart"></i> Đặt Hàng
                                     </button>
                                 </div>
 

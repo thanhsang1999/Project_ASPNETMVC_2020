@@ -190,6 +190,7 @@ button {
 }
 .btn-dat-hang {
     color: white;
+    cursor:pointer;
 }
 .viewparameterfull {
     margin-top: 130px;

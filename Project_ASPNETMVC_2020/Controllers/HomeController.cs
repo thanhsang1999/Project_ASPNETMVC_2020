@@ -118,5 +118,13 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult LogOutAjax()
+        {
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            Session.Abandon();
+            return PartialView("Header", new DBModel());
+
+        }
     }
 }
