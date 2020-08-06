@@ -8,40 +8,51 @@
         Session.Add("Cart", c);
     }
 }
-<tbody id="content_cart">
-    @foreach (ProductInCart item in c.MapCart.Values)
-    {
-        string checkbox = "checkbox" + item.Product1.ID_PRODUCT.ToString();
-        <tr>
-            <td>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="@checkbox" name="@checkbox">
-                    <label class="custom-control-label" for="@checkbox"></label>
-                </div>
-            </td>
-            <td class="img-tb">
-                <img src="@Url.ContentAssetWeb("images/sanpham/" + item.Product1.IMG.ToString(), true)" alt="" srcset="">
-            </td>
-            <td class="ten-sp-tb">@item.Product1.NAME</td>
-            <td class="gia-tb">@item.realPrice().ToString("N0") ₫</td>
-            <td>
-                <input type="number" value="@item.QuantityInCart" min="0" max="@item.Product1.AMOUNT.ToString()" step="1" />
-            </td>
-            <td class="thung-rac-tb">
-                @Ajax.RawActionLink(string.Format("<i class='fas fa-trash-alt'></i>"), "deleteItemHeader", "Cart", new { idproduct = item.Product1.ID_PRODUCT }, new AjaxOptions
-           {
-               HttpMethod = "GET",
-               UpdateTargetId = "header_real",
-               InsertionMode = InsertionMode.Replace,
-               OnBegin = "onbeginrequest(" + item.Product1.ID_PRODUCT + ")"
 
-           }, new { @class = "null" })
-                @using (Ajax.BeginForm("CreateAjax", "Cart", new AjaxOptions { UpdateTargetId = "Productresult" }))
-                {
-                    <input >
-                }
-            </td>
-        </tr>
+@foreach (ProductInCart item in c.MapCart.Values)
+{
+    string checkbox = "checkbox" + item.Product1.ID_PRODUCT.ToString();
+    <tr>
+        <td>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="@checkbox" name="@checkbox">
+                <label class="custom-control-label" for="@checkbox"></label>
+            </div>
+        </td>
+        <td class="img-tb">
+            <img src="@Url.ContentAssetWeb("images/sanpham/" + item.Product1.IMG.ToString(), true)" alt="" srcset="">
+        </td>
+        <td class="ten-sp-tb">@item.Product1.NAME</td>
+        <td class="gia-tb">@item.realPrice().ToString("N0") ₫</td>
+        <td>
+            <input type="number" value="@item.QuantityInCart" min="0" max="@item.Product1.AMOUNT.ToString()" step="1" />
+        </td>
+        <td class="thung-rac-tb">
+            @Ajax.RawActionLink(string.Format("<i class='fas fa-trash-alt'></i>"), "deleteItemHeader", "Cart", new { idproduct = item.Product1.ID_PRODUCT }, new AjaxOptions
+                  {
+                      HttpMethod = "GET",
+                      UpdateTargetId = "header_real",
+                      InsertionMode = InsertionMode.Replace,
+                      OnComplete = "fnOnComplete(this)"
 
-    }
-</tbody>
+                  }, new { @class = item.Product1.ID_PRODUCT })
+            @using (Ajax.BeginForm("deleteItemContentCart", "Cart", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                UpdateTargetId = "content_cart",
+            }, new
+            {
+                id = "FormDelete" + item.Product1.ID_PRODUCT
+
+            }))
+            {
+                <input type="hidden" name="idproduct5" value="@item.Product1.ID_PRODUCT" />
+            }
+        </td>
+    </tr>
+
+}
+<script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
+
+

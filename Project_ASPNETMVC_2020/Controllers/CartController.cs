@@ -39,11 +39,11 @@ namespace Project_ASPNETMVC_2020.Controllers
           
             return PartialView("Header", cart);
         }
-        public ActionResult deleteItemContentCart(string idproduct5)
+        public JsonResult deleteItemContentCart(string idproduct5)
         {
             string html = PartialView("ContentCart").RenderToString();
 
-            return Json(new { result = html });
+            return Json(new { result = html }, JsonRequestBehavior.AllowGet);
 
         }
 

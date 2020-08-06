@@ -54,7 +54,7 @@
                         <td class="ten-sp-tb">@item.Product1.NAME</td>
                         <td class="gia-tb">@item.realPrice().ToString("N0") ₫</td>
                         <td>
-                            <input type="number" value="@item.QuantityInCart" min="0" max="@item.Product1.AMOUNT.ToString()" step="1" />
+                            <input type="number" value="@item.QuantityInCart" min="1" max="@item.Product1.AMOUNT.ToString()" step="1" />
                         </td>
                         <td class="thung-rac-tb">
                             @Ajax.RawActionLink(string.Format("<i class='fas fa-trash-alt'></i>"), "deleteItemHeader", "Cart", new { idproduct = item.Product1.ID_PRODUCT }, new AjaxOptions
@@ -71,7 +71,8 @@
                                 HttpMethod = "GET",
                                 UpdateTargetId = "content_cart",
                             }, new { id = "FormDelete" + item.Product1.ID_PRODUCT
-                                }))
+                                
+                            }))
                             {
                                 <input type="hidden" name="idproduct5" value="@item.Product1.ID_PRODUCT" />
                             }
@@ -166,21 +167,27 @@
     </script>
 
     <script>
-
         function fnOnComplete(obj) {
-            var set = "#FormDelete" + obj.className;
-            $(set).submit(function (e) {
-                console.log("succcess");        
-                //$.ajax({
-                //    url: '/Cart/deleteItemContentCart',
-                //    type: 'GET',
-                //    data: { idproduct5: $(set).serialize() },
-                //    success: (function (response) {
-                //        $('#content_cart').html(response.result);
-                //    })
-                //});
+            var set = "#FormDelete" + obj.className;       
+            $(set).submit(function (event) {
+                event.preventDefault();
+                var idproduct5 = $(set).serialize().split("=");
+                idproduct = idproduct5[1];
+                console.log(idproduct);
+                console.log("hello");
+                $.ajax({
+                    url: '/Cart/deleteItemContentCart',
+                    type: 'get',
+                    data: { idproduct5: idproduct },
+                    success: (function (response) {
+                        $('#content_cart').html(response.result);
+                    })
+                });
+
             });
+            $(set).submit();
         };
+
     </script>
 
 }

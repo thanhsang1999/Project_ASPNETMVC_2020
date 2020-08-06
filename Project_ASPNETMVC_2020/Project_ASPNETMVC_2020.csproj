@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="ClassToConfig\LevelLog.cs" />
     <Compile Include="ClassToConfig\UrlExtensions.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -137,14 +138,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserControllerController.cs" />
+    <Compile Include="Filter\AuthFilter.cs" />
+    <Compile Include="Filter\LogFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\BrandDAO.cs" />
+    <Compile Include="Model\DAO\LogDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
     <Compile Include="Model\DAO\UserDAO.cs" />
     <Compile Include="Model\EF\account.cs" />
+    <Compile Include="Model\EF\authentication.cs" />
     <Compile Include="Model\EF\bill.cs" />
     <Compile Include="Model\EF\binhluan.cs" />
     <Compile Include="Model\EF\brand.cs" />
@@ -155,6 +160,7 @@
     <Compile Include="Model\EF\detail_order.cs" />
     <Compile Include="Model\EF\group_product.cs" />
     <Compile Include="Model\EF\hedieuhanh.cs" />
+    <Compile Include="Model\EF\log.cs" />
     <Compile Include="Model\EF\mailpassword.cs" />
     <Compile Include="Model\EF\memory.cs" />
     <Compile Include="Model\EF\DBModel.cs" />

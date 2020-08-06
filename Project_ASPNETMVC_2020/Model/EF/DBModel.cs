@@ -13,6 +13,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
         }
 
         public virtual DbSet<account> accounts { get; set; }
+        public virtual DbSet<authentication> authentications { get; set; }
         public virtual DbSet<bill> bills { get; set; }
         public virtual DbSet<binhluan> binhluans { get; set; }
         public virtual DbSet<brand> brands { get; set; }
@@ -23,6 +24,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
         public virtual DbSet<detail_order> detail_order { get; set; }
         public virtual DbSet<group_product> group_product { get; set; }
         public virtual DbSet<hedieuhanh> hedieuhanhs { get; set; }
+        public virtual DbSet<log> logs { get; set; }
         public virtual DbSet<mailpassword> mailpasswords { get; set; }
         public virtual DbSet<memory> memories { get; set; }
         public virtual DbSet<order> orders { get; set; }
@@ -34,6 +36,14 @@ namespace Project_ASPNETMVC_2020.Model.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<authentication>()
+                .Property(e => e.CONTROLLER)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<authentication>()
+                .Property(e => e.ACTION)
+                .IsUnicode(false);
+
             modelBuilder.Entity<bill>()
                 .Property(e => e.AMOUNT)
                 .HasPrecision(5, 0);
@@ -53,6 +63,26 @@ namespace Project_ASPNETMVC_2020.Model.EF
             modelBuilder.Entity<detail_order>()
                 .Property(e => e.AMOUNT)
                 .HasPrecision(3, 0);
+
+            modelBuilder.Entity<log>()
+                .Property(e => e.CONTROLLER)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<log>()
+                .Property(e => e.ACTION)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<log>()
+                .Property(e => e.IDACCOUNT)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<log>()
+                .Property(e => e.IPADDRESS)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<log>()
+                .Property(e => e.LEVEL)
+                .IsUnicode(false);
 
             modelBuilder.Entity<order>()
                 .Property(e => e.PRICE)
