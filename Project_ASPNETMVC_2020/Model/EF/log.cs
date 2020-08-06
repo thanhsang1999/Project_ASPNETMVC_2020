@@ -28,5 +28,8 @@ namespace Project_ASPNETMVC_2020.Model.EF
         public string LEVEL { get; set; }
 
         public DateTime? CREATEAT { get; set; }
+
+        [StringLength(255)]
+        public string MESSAGE { get; set; }
     }
 }

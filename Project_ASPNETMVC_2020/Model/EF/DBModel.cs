@@ -84,6 +84,10 @@ namespace Project_ASPNETMVC_2020.Model.EF
                 .Property(e => e.LEVEL)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<log>()
+                .Property(e => e.MESSAGE)
+                .IsUnicode(false);
+
             modelBuilder.Entity<order>()
                 .Property(e => e.PRICE)
                 .HasPrecision(10, 0);

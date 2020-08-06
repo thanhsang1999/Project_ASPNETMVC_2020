@@ -12,12 +12,12 @@ namespace Project_ASPNETMVC_2020.Filter
 {
     public class LogFilter : ActionFilterAttribute
     {
-        public string param { get; set; }
-        
+        public string levellog { get; set; }
+        public string messagelog { get; set; }
+
         public override void OnActionExecuting(ActionExecutingContext Context)
         {
             HttpRequestBase request = Context.HttpContext.Request;
-
             string iduser = null;
             UserViewModel user = Context.HttpContext.Session["User"] as UserViewModel;
             if (user != null)
@@ -28,13 +28,23 @@ namespace Project_ASPNETMVC_2020.Filter
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;
-            if (param != null)
+            string message = "OnActionExecuting:  ";
+            if (levellog != null)
             {
-                 level = LevelLog.INFO;
+                message += messagelog;
             }
-          
-            new LogDAO().addLog(controller, action, iduser, ipaddress, level);
-            
+            else
+            {
+                message += "OK";
+            }
+             
+            if (levellog != null)
+            {
+                level = LevelLog.INFO;
+            }
+
+            new LogDAO().addLog(controller, action, iduser, ipaddress, level, message);
+
         }
         public override void OnActionExecuted(ActionExecutedContext Context)
         {
@@ -50,12 +60,22 @@ namespace Project_ASPNETMVC_2020.Filter
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;
+            string message = "OnActionExecuted:  ";
+        
+            if (Context.Controller.ViewBag.MessageLog != null)
+            {
+                message+= Context.Controller.ViewBag.MessageLog;
+            }
+            else
+            {
+                message += "OK";
+            }
             if (Context.Controller.ViewBag.LevelLog != null)
             {
                 level = Context.Controller.ViewBag.LevelLog;
             }
-             
-            new LogDAO().addLog(controller, action, iduser, ipaddress, level);
+
+            new LogDAO().addLog(controller, action, iduser, ipaddress, level, message);
         }
 
 

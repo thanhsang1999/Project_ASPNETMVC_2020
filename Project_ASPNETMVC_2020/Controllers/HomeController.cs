@@ -18,17 +18,18 @@ using Project_ASPNETMVC_2020.ClassToConfig;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter]
     public class HomeController : Controller
     {
         DBModel dbmodel = new DBModel();
-        [LogFilter(param =LevelLog.INFO)]
+        [LogFilter]
         public ActionResult Index()
         {
             return View();
 
         }
 
-        [LogFilter(param = LevelLog.INFO)]
+       
         [HttpPost]
         public ActionResult Login(UserLogin user)
         {
@@ -46,7 +47,10 @@ namespace Project_ASPNETMVC_2020.Controllers
             else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
             {
                 status = "fail";
+                // set giá trị level log cho Log nếu như ko có viewbag.levellog thì levellog là INFO
                 ViewBag.LevelLog = LevelLog.ALERT;
+                // set giá trị message log nếu như ko có thì viewbag.MessageLog thì message sẽ là OK 
+                ViewBag.MessageLog = "Login fail";
                 return new JsonResult { Data = new { status = status } };
             }
             else
@@ -55,9 +59,11 @@ namespace Project_ASPNETMVC_2020.Controllers
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
                 ViewBag.LevelLog = LevelLog.INFO;
+                ViewBag.MessageLog = "Login succcess";
                 return new JsonResult { Data = new { status = status } };
             }
         }
+        
         [HttpPost]
         public ActionResult Signup(FormSignup signup)
         {
@@ -124,7 +130,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
-                ViewBag.
+              
                 return new JsonResult { Data = new { status = status } };
             }
         }
@@ -188,7 +194,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
-            return PartialView("Heade   r", new DBModel());
+            return PartialView("Header", new DBModel());
         }
     }
 }
