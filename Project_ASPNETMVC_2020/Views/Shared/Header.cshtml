@@ -36,7 +36,7 @@
                             <a href="@Url.Action("Index","User")">Thông Tin Tài Khoản</a>
                             <a href="#">Yêu Thích</a>
                             <a href="#">Đơn Hàng</a>
-                            @Ajax.ActionLink("Đăng Xuất", "LogOut", new AjaxOptions()
+                            @Ajax.ActionLink("Đăng Xuất", "LogOut","Home", new AjaxOptions()
                                         {
                                             HttpMethod = "GET",
                                             UpdateTargetId = "header_real",

@@ -1,4 +1,5 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,10 @@ namespace Project_ASPNETMVC_2020.Controllers
 {
     public class CartController : Controller
     {
-       
+
 
         // GET: Cart
+        
         public ActionResult ViewCart()
         {
             if(Session["Cart"] as Cart == null)
@@ -42,7 +44,6 @@ namespace Project_ASPNETMVC_2020.Controllers
         public JsonResult deleteItemContentCart(string idproduct5)
         {
             string html = PartialView("ContentCart").RenderToString();
-
             return Json(new { result = html }, JsonRequestBehavior.AllowGet);
 
         }

@@ -17,14 +17,13 @@ namespace Project_ASPNETMVC_2020.Filter
 
         public override void OnActionExecuting(ActionExecutingContext Context)
         {
-            HttpRequestBase request = Context.HttpContext.Request;
             string iduser = null;
             UserViewModel user = Context.HttpContext.Session["User"] as UserViewModel;
             if (user != null)
             {
                 iduser = user.ID_ACCOUNT;
             }
-            string ipaddress = Context.HttpContext.Request.UserHostAddress;
+            string ipaddress = HttpContext.Current.Request.UserHostAddress;
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;
@@ -56,7 +55,7 @@ namespace Project_ASPNETMVC_2020.Filter
             {
                 iduser = user.ID_ACCOUNT;
             }
-            string ipaddress = Context.HttpContext.Request.UserHostAddress;
+            string ipaddress = HttpContext.Current.Request.UserHostAddress;
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;

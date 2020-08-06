@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
     <Compile Include="ClassToConfig\UrlExtensions.cs" />
     <Compile Include="ClassToConfig\Link.cs" />

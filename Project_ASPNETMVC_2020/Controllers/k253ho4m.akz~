@@ -15,6 +15,7 @@ namespace Project_ASPNETMVC_2020.Controllers
     {
         // GET: Product
         DBModel dbmodel = new DBModel();
+        [AuthFilter(role=LevelAuth.Admin,Order = 1)]
         public ActionResult ProductDetail(string id)
         {
 

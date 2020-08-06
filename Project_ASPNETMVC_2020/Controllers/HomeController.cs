@@ -21,8 +21,11 @@ namespace Project_ASPNETMVC_2020.Controllers
     [LogFilter]
     public class HomeController : Controller
     {
+
+       
         DBModel dbmodel = new DBModel();
-        [LogFilter]
+        
+        [LogFilter(Order =2)]
         public ActionResult Index()
         {
             return View();
