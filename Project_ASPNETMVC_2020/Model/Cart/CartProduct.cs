@@ -14,5 +14,6 @@ namespace Project_ASPNETMVC_2020.Model.Cart
         public string NAME { get; set; }
         public string IMG { get; set; }
         public int? PRICE { get; set; }
+        public int? SALE_RATE { get; set; }
     }
 }

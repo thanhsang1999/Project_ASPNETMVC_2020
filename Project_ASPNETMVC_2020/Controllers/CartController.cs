@@ -3,6 +3,7 @@ using Project_ASPNETMVC_2020.Model.Cart;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +22,9 @@ namespace Project_ASPNETMVC_2020.Controllers
             User user = Session["User"] as User;
             if (user != null)
             {
-            List<CartProduct> model = CartDAO.LoadCart(user.ID_ACCOUNT);
+            ArrayList model = new ArrayList();
+            List<CartProduct> listCartProduct = CartDAO.LoadCart(user.ID_ACCOUNT);
+            model.Add(listCartProduct);
             return View(model);
             }
             else
@@ -37,17 +40,19 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 string status = "success";
                 CartDAO.AddProductToCart(user.ID_ACCOUNT, idProduct, amount);
-                return new JsonResult { Data = new { status = status } };
+                int number = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
+                string price = CartDAO.TotalMoney(user.ID_ACCOUNT);
+                return new JsonResult { Data = new { status = status,number=number,price= price } };
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult deleteItemHeader(string idproduct)
+        public ActionResult deleteProduct(string idproduct)
         {
+
             return null;
-            /* return PartialView("Header", cart);*/
         }
         public ActionResult deleteItemContentCart(string idproduct5)
         {

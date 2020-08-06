@@ -811,8 +811,12 @@
                 data: {idProduct:'@Model.ID_PRODUCT',amount:amount},
                 dataType: 'JSON',
                 success: function (data) {
-                    status = data.status
+                    status = data.status;
+                    number = data.number;
+                    price = data.price;
                     if (status == "success") {
+                        $('#numberOfProductsInTheCart').text(number);
+                        $('.cart_price').text(price);
                         
                     }
                 }

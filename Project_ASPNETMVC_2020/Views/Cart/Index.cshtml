@@ -1,10 +1,13 @@
 ﻿@using Project_ASPNETMVC_2020.ClassToConfig;
 @using Project_ASPNETMVC_2020.Model.Cart
 @using Project_ASPNETMVC_2020.Model.Code
-@model List<CartProduct>
+@using System.Collections
+@model System.Collections.ArrayList
 @{
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
+    var ListCartProduct = Model[0] as List<CartProduct>;
+
 }
 @section styles{
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -38,24 +41,31 @@
 						</tr>
 					</thead>
                     <tbody>
-                        @foreach (CartProduct item in Model)
+                        @foreach (CartProduct item in ListCartProduct)
                         {
                             <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkbox1" name="checkbox1">
-                                        <label class="custom-control-label" for="checkbox1"></label>
+                                        @if (item.CHECKBOX == 1)
+                                        {
+                                            <input type="checkbox" class="custom-control-input" id="@("checkbox" +item.ID_PRODUCT)" name="@("checkbox" + item.ID_PRODUCT)" checked>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" class="custom-control-input" id="@("checkbox" +item.ID_PRODUCT)" name="@("checkbox" + item.ID_PRODUCT)">
+                                        }
+                                        <label class="custom-control-label" for="@("checkbox" + item.ID_PRODUCT)"></label>
                                     </div>
                                 </td>
                                 <td class="img-tb">
-                                    <img src="@Url.ContentAssetWeb("")" alt="" srcset="">
+                                    <img src="@Url.ContentAssetWeb("images/sanpham/")@item.IMG" alt="" srcset="">
                                 </td>
                                 <td class="ten-sp-tb">@item.NAME</td>
-                                <td class="gia-tb">@Tools.StringToVND(item.PRICE)</td>
+                                <td class="gia-tb">@Tools.StringToVND(((Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE)) * ((int) item.AMOUNT)).ToString())</td>
                                 <td>
                                     <input type="number" value="@item.AMOUNT" min="0" max="1000" step="1" />
                                 </td>
-                                <td class="thung-rac-tb"><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="thung-rac-tb"><a id="delete-product" href="#"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                         }
                     </tbody>
@@ -134,28 +144,12 @@
     <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
     <script>
-        $(document).ready(function () {
-            $(".btn.btn-decrement.btn-outline-secondary").attr("type", "submit");
+		$(document).ready(function () {
+			$('#delete-product').click(function (e) {
+				e.preventDefault();
+				$('#delete-product').parent().parent().remove();
+			});
 
         });
     </script>
-
-    <script>
-
-        function fnOnComplete(obj) {
-            var set = "#FormDelete" + obj.className;
-            $(set).submit(function (e) {
-                console.log("succcess");
-                //$.ajax({
-                //    url: '/Cart/deleteItemContentCart',
-                //    type: 'GET',
-                //    data: { idproduct5: $(set).serialize() },
-                //    success: (function (response) {
-                //        $('#content_cart').html(response.result);
-                //    })
-                //});
-            });
-        };
-    </script>
-
 }

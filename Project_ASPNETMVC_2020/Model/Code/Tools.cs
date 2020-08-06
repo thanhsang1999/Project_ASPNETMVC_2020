@@ -45,10 +45,14 @@ namespace Project_ASPNETMVC_2020.Model.Code
             int year = int.Parse(ngaySinh.Substring(6, 4));
             return new DateTime(year,month,day);
         }
-        public static String StringToVND (int? money)
+        public static String StringToVND (string money)
         {
             CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
             return double.Parse(money.ToString()).ToString("#,###", cul.NumberFormat)+ " VNĐ";
+        }
+        public static double PricesDecreased(double price, double discount)
+        {
+            return (price - (price * (discount / 100)));
         }
     }
 }
