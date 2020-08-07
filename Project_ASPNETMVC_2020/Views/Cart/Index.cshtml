@@ -32,7 +32,7 @@
 							<th>
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input" id="checkboxAll"
-										name="checkboxAll">
+										name="checkboxAll" value="1">
 									<label class="custom-control-label" for="checkboxAll"></label>
 								</div>
 							</th>
@@ -66,9 +66,9 @@
                                 <td class="ten-sp-tb">@item.NAME</td>
                                 <td class="gia-tb">@Tools.StringToVND(((Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE)) * ((int) item.AMOUNT)).ToString())</td>
                                 <td>
-                                    <input type="number" value="@item.AMOUNT" min="0" max="1000" step="1" />
+                                    <input class="class-amount" id="@("amount"+item.ID_PRODUCT)" type="number" value="@item.AMOUNT" min="0" max="1000" step="1" />
                                 </td>
-                                <td class="thung-rac-tb"><a class="delete-product" href="#"><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="thung-rac-tb"><a class="delete-product" id="@("id-delete-"+item.ID_PRODUCT)" href="#"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                         }
                     </tbody>
@@ -150,14 +150,33 @@
 		$(document).ready(function () {
 			$('.delete-product').click(function (e) {
 				e.preventDefault();
-				$(this).parent().parent().remove();
+				var name = $(this).attr("id");
+				var idProduct = name.substring(10);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/DeleteProductInCart',
+                    data: { idProduct: idProduct },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        number = data.number;
+                        totalMoneyHeader = data.totalMoneyHeader;
+                        totalMoneyCart = data.totalMoneyCart;
+                        if (status == "success") {
+							$("#"+name).parent().parent().remove();
+                            $('#numberOfProductsInTheCart').text(number);
+                            $('.cart_price').text(totalMoneyHeader);
+                            $('.tong-tien').text(totalMoneyCart);
+                        }
+                    }
+                });
 			});
 			$('.class-check').click(function () {
 				var name = $(this).attr("name");
-				var idProduct = name.substring(8, 12);
+				var idProduct = name.substring(8);
 				$.ajax({
 				type: 'POST',
-				url: '/Cart/checkProductCart',
+				url: '/Cart/CheckProductCart',
                 data: { idProduct: idProduct},
                 dataType: 'JSON',
                 success: function (data) {
@@ -169,6 +188,53 @@
                 }
             });
 			});
+			$('#checkboxAll').click(function () {
+				var number = $('#checkboxAll').val();
+				if (number == "1") {
+                    $('#checkboxAll').val("0");
+				} else {
+                    $('#checkboxAll').val("1");
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/CheckAllProductCart',
+                    data: { number: number },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        price = data.price;
+                        if (status == "success") {
+                            $('.tong-tien').text(price);
+                        }
+                    }
+                });
+            });
+            $('.class-amount').change(function (e) {
+				e.preventDefault();
+                var name = $(this).attr("id");
+                var idProduct = name.substring(6);
+                var amount = $(this).val();
+                $(this).prop("disabled", true);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/ChangeAmountProductInCart',
+                    data: { idProduct: idProduct, amount: amount },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        number = data.number;
+                        totalMoneyHeader = data.totalMoneyHeader;
+                        totalMoneyCart = data.totalMoneyCart;
+                        if (status == "success") {
+                            $("#"+name).prop("disabled", false);
+                            $('#numberOfProductsInTheCart').text(number);
+                            $('.cart_price').text(totalMoneyHeader);
+                            $('.tong-tien').text(totalMoneyCart);
+                        }
+                    }
+                });
+                
+            });
 		});
     </script>
 }
