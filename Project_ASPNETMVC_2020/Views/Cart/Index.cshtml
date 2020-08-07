@@ -89,55 +89,7 @@
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<a href="sangnguyen" id="a-giohang"><button type="button" data-toggle="modal"
-							data-target="#myModal1" class="btn btn-primary btn-block btn-thanh-toan">Đặt
-							Hàng</button></a>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="myModal1">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body cart-content-modal">
-						<div class="row khoang-cach-bt">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-8">
-								<span class="title-dathang-thanhcong">Đặt Hàng Thành Công</span>
-							</div>
-							<div class="col-sm-2"></div>
-						</div>
-						<div class="row khoang-cach-bt">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-8">
-								<img class="img-fluid" src="success.png" alt="" height="200px" width="200px">
-							</div>
-							<div class="col-sm-2"></div>
-						</div>
-						<div class="row khoang-cach-bt">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-8">
-								<span class="span-modal">Đơn hàng đã đặt thành công.</span>
-								<br>
-								<span class="span-modal">Hàng sẽ được giao đến tay bạn sớm nhất.</span>
-							</div>
-							<div class="col-sm-2"></div>
-						</div>
-						<div class="row khoang-cach-l">
-							<div class="col-sm-5"></div>
-							<div class="col-sm-2">
-								<button type="button" name="" id="" class="btn btn-primary btn-block">Trang Chủ</button>
-							</div>
-							<div class="col-sm-5"></div>
-						</div>
-					</div>
-
+					<a href="@Url.Action("Index","Pay")"><button type="button" data-toggle="modal" class="btn btn-primary btn-block btn-thanh-toan">Đặt Hàng</button></a>
 				</div>
 			</div>
 		</div>
@@ -235,6 +187,6 @@
                 });
                 
             });
-		});
+        });
     </script>
 }

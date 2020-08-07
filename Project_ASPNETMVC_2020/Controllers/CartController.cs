@@ -148,8 +148,5 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
 
         }
-
-
-
     }
 }
