@@ -36,14 +36,6 @@ namespace Project_ASPNETMVC_2020.Model.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<authentication>()
-                .Property(e => e.CONTROLLER)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<authentication>()
-                .Property(e => e.ACTION)
-                .IsUnicode(false);
-
             modelBuilder.Entity<bill>()
                 .Property(e => e.AMOUNT)
                 .HasPrecision(5, 0);
@@ -63,30 +55,6 @@ namespace Project_ASPNETMVC_2020.Model.EF
             modelBuilder.Entity<detail_order>()
                 .Property(e => e.AMOUNT)
                 .HasPrecision(3, 0);
-
-            modelBuilder.Entity<log>()
-                .Property(e => e.CONTROLLER)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<log>()
-                .Property(e => e.ACTION)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<log>()
-                .Property(e => e.IDACCOUNT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<log>()
-                .Property(e => e.IPADDRESS)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<log>()
-                .Property(e => e.LEVEL)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<log>()
-                .Property(e => e.MESSAGE)
-                .IsUnicode(false);
 
             modelBuilder.Entity<order>()
                 .Property(e => e.PRICE)

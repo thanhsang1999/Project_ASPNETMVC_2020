@@ -20,7 +20,9 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                 dBModel.recently_viewed.Add(rv);
                 dBModel.SaveChanges();
             }
-         
+            limitRecentlyView(iduser);
+
+
         }
         public bool checkRecentlyView(string iduser, string idproduct)
         {
@@ -40,7 +42,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         {
             DBModel dBModel = new DBModel();
             recently_viewed rv= null;
-            List<recently_viewed> listRV=dBModel.recently_viewed.Where(x => x.ID_ACCOUNT==iduser).OrderByDescending(x => x.DATE_VIEW).ToList();
+            List<recently_viewed> listRV = dBModel.recently_viewed.Where(x => x.ID_ACCOUNT == iduser).OrderByDescending(c => c.DATE_VIEW.Value).ToList();
             if (listRV.Count == 11)
             {
                  rv= listRV.ElementAt(listRV.Count-1);
@@ -55,7 +57,11 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public List<recently_viewed> getRvByIdUser(string iduser)
         {
             DBModel dBModel = new DBModel();
-            List<recently_viewed> listRV = dBModel.recently_viewed.Where(x => x.ID_ACCOUNT == iduser).OrderByDescending(x => x.DATE_VIEW).Take(10).ToList();
+            List<recently_viewed> listRV = dBModel.recently_viewed.Where(x => x.ID_ACCOUNT == iduser).OrderByDescending(c => c.DATE_VIEW.Value).ToList();
+            if (listRV == null)
+            {
+                listRV = new List<recently_viewed>();
+            }
             return listRV;
         }
     }

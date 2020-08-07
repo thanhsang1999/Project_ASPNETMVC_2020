@@ -15,6 +15,17 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         {
             this.dBModel = new DBModel();
         }
+        public List<product> listProductRecentlyView(string iduser)
+        {
+            List<product> listProduct = new List<product>();
+            List<recently_viewed> rv = new RecentlyViewDAO().getRvByIdUser(iduser);
+            foreach(recently_viewed item in rv)
+            {
+                product p = findProductById(item.ID_PRODUCT);
+                listProduct.Add(p);
+            }
+            return listProduct;
+        }
         public product findProductById(string id)
         {
             return dBModel.products.Where(x => x.ID_PRODUCT==id && x.AMOUNT > 0).SingleOrDefault();

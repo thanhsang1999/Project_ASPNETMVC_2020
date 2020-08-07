@@ -12,7 +12,8 @@ namespace Project_ASPNETMVC_2020.Model.EF
         [Key]
         public int ID_AUTH { get; set; }
 
-        public int? ROLE { get; set; }
+        [StringLength(255)]
+        public string ROLE { get; set; }
 
         [StringLength(255)]
         public string CONTROLLER { get; set; }
