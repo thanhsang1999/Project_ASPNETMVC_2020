@@ -2,6 +2,7 @@
 using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
+using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 model = new ProductDAO().productDetail(id);
                 ViewBag.Title = model.NAME;
+                UserViewModel user= Session["User"] as UserViewModel;
+                if (user != null)
+                {
+                    new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);
+                }
                 return View(model);
             }
             else

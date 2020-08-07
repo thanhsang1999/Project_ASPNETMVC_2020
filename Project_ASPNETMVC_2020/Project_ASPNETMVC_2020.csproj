@@ -146,6 +146,7 @@
     </Compile>
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\BrandDAO.cs" />
+    <Compile Include="Model\DAO\RecentlyViewDAO.cs" />
     <Compile Include="Model\DAO\LogDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
     <Compile Include="Model\DAO\UserDAO.cs" />
