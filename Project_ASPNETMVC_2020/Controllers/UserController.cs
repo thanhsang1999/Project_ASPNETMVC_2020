@@ -35,7 +35,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             string DiaChi = data.UDiaChi;
             string GioiTinh = data.Ugioitinh;
             string NgaySinh = data.date;
-            if (Name == ""|| Email == "" || SDT == "" || DiaChi == "" || GioiTinh == "" || NgaySinh == "")
+            if (Name == null|| Email == null || SDT == null || DiaChi == null || GioiTinh == null || NgaySinh == null)
             {
                 status = "empty";
                 return new JsonResult { Data = new { status = status } };

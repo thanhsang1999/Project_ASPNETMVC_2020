@@ -106,15 +106,33 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             var result = Tools.PricesDecreased((double)tmp.PRICE,(double)tmp.SALE_RATE) * (double)tmp.AMOUNT;
             return result;
         }
-        public static string TotalMoney(string idAccount)
+        public static string TotalMoney(string idAccount,bool check)
         {
             DBModel db = new DBModel();
             var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount));
             double result = 0;
-            foreach (cart item in tmp.ToList())
+            if (check == true)
             {
-                result += TotalMoneyOfProduct(item.ID_ACCOUNT, item.ID_PRODUCT);
+                foreach (cart item in tmp.ToList())
+                {
+                        if (item.CHECKBOX == 1)
+                    {
+                        result += TotalMoneyOfProduct(item.ID_ACCOUNT, item.ID_PRODUCT);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
             }
+            else
+            {
+                foreach (cart item in tmp.ToList())
+                {
+                    result += TotalMoneyOfProduct(item.ID_ACCOUNT, item.ID_PRODUCT);
+                }
+            }
+            
             return Tools.StringToVND(result.ToString());
         } 
         

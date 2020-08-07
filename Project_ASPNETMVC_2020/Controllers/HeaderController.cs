@@ -27,7 +27,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 var cart = CartDAO.LoadCart(user.ID_ACCOUNT);
                 var numberOfProductsInTheCart = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
-                var totalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT);
+                var totalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT,false);
                 ArrayList model = new ArrayList();
                 model.Add(cart);
                 model.Add(numberOfProductsInTheCart);
