@@ -1,11 +1,13 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
 using Project_ASPNETMVC_2020.Filter;
+<<<<<<< HEAD
 using Project_ASPNETMVC_2020.Model.Cart;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
+=======
+>>>>>>> parent of 7eb97ce... merge cart
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,11 +22,12 @@ namespace Project_ASPNETMVC_2020.Controllers
 
 
         // GET: Cart
-        public ActionResult Index()
+        
+        public ActionResult ViewCart()
         {
-            User user = Session["User"] as User;
-            if (user != null)
+            if(Session["Cart"] as Cart == null)
             {
+<<<<<<< HEAD
                 ArrayList model = new ArrayList();
                 List<CartProduct> listCartProduct = CartDAO.LoadCart(user.ID_ACCOUNT);
                 string TotalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
@@ -37,11 +40,16 @@ namespace Project_ASPNETMVC_2020.Controllers
                 ViewBag.LevelLog = LevelLog.ALERT;
                 ViewBag.Message = "User is not login";
                 return RedirectToAction("Index", "Home");
+=======
+                Session.Add("Cart", new Cart());
+>>>>>>> parent of 7eb97ce... merge cart
             }
+            Cart model =Session["Cart"] as Cart;
+            return View(model);
         }
-        [HttpPost]
-        public ActionResult AddProductToCart(string idProduct, int amount)
+        public ActionResult AddCart(string idproduct,int quantity)
         {
+<<<<<<< HEAD
             User user = Session["User"] as User;
             if (user != null)
             {
@@ -88,10 +96,25 @@ namespace Project_ASPNETMVC_2020.Controllers
                 ViewBag.MessageLog = "User is not login";
                 return RedirectToAction("Index", "Home");
             }
+=======
+            int setQuantity = Convert.ToInt32(quantity);
+            Cart cart= Session["Cart"] as Cart;
+            cart.addItemWithAmount(idproduct, setQuantity);
+            Session["Cart"] = cart;
+            return PartialView("Header",cart);
         }
-        [HttpPost]
-        public ActionResult DeleteProductInCart(string idProduct)
+        public ActionResult deleteItemHeader(string idproduct)
+        {       
+            Cart cart = Session["Cart"] as Cart;
+            cart.removeItem(idproduct);
+            Session["Cart"] = cart;
+          
+            return PartialView("Header", cart);
+>>>>>>> parent of 7eb97ce... merge cart
+        }
+        public JsonResult deleteItemContentCart(string idproduct5)
         {
+<<<<<<< HEAD
             User user = Session["User"] as User;
             if (user != null)
             {
@@ -111,18 +134,15 @@ namespace Project_ASPNETMVC_2020.Controllers
                 ViewBag.MessageLog = "User is not login";
                 return RedirectToAction("Index", "Home");
             }
+=======
+            string html = PartialView("ContentCart").RenderToString();
+            return Json(new { result = html }, JsonRequestBehavior.AllowGet);
+>>>>>>> parent of 7eb97ce... merge cart
 
         }
-        [HttpPost]
-        public ActionResult CheckAllProductCart(string number)
-        {
 
-            User user = Session["User"] as User;
-            if (user != null)
-            {
-                string status = "success";
-                DBModel db = new DBModel();
 
+<<<<<<< HEAD
                 var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT));
                 foreach (cart cart in tmp)
                 {
@@ -161,7 +181,9 @@ namespace Project_ASPNETMVC_2020.Controllers
                 ViewBag.MessageLog = "User is not login";
                 return RedirectToAction("Index", "Home");
             }
+=======
+>>>>>>> parent of 7eb97ce... merge cart
 
-        }
+
     }
 }

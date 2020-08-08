@@ -1,22 +1,38 @@
 ﻿using Project_ASPNETMVC_2020.Model;
 using Project_ASPNETMVC_2020.Model.EF;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System.Web.UI.WebControls;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.Code;
+using Microsoft.Ajax.Utilities;
+using System.Web.Helpers;
+using System.Web.Management;
+using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.ClassToConfig;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter]
     public class HomeController : Controller
     {
+
+       
         DBModel dbmodel = new DBModel();
+        
+        [LogFilter(Order =2)]
         public ActionResult Index()
         {
             return View();
+
         }
+
+       
         [HttpPost]
         public ActionResult Login(UserLogin user)
         {
@@ -28,21 +44,29 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (UserName == "" || Password == "")
             {
                 status = "emtpy";
+               
                 return new JsonResult { Data = new { status = status } };
             }
             else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
             {
                 status = "fail";
+                // set giá trị level log cho Log nếu như ko có viewbag.levellog thì levellog là INFO
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // set giá trị message log nếu như ko có thì viewbag.MessageLog thì message sẽ là OK 
+                ViewBag.MessageLog = "Login fail";
                 return new JsonResult { Data = new { status = status } };
             }
             else
             {
-                User userVM = userDAO.getUser(userDAO.getID(UserName));
+                UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
+                ViewBag.LevelLog = LevelLog.INFO;
+                ViewBag.MessageLog = "Login succcess";
                 return new JsonResult { Data = new { status = status } };
             }
         }
+        
         [HttpPost]
         public ActionResult Signup(FormSignup signup)
         {
@@ -106,18 +130,74 @@ namespace Project_ASPNETMVC_2020.Controllers
                 tmpCTAccount.NGAY_SINH = null;
                 db2.ct_account.Add(tmpCTAccount);
                 db2.SaveChangesAsync();
-                User userVM = userDAO.getUser(userDAO.getID(UserName));
+                UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
+              
                 return new JsonResult { Data = new { status = status } };
             }
         }
+        [HttpPost]
+        public JsonResult SignupVer2(FormSignup form)
+            
+        {
+            // get data
+            string statustemp;
+            string UserName = form.dkUserName;
+            string Email = form.dkEmail;
+            string Name = form.dkName;
+            string Password1 = form.dkPass1;
+            string Password2 = form.dkPass2;
+            UserDAO userDAO = new UserDAO();
+            // tra ve
+            string errUserName = form.checkUserName(UserName);
+            string errEmail = form.checkEmail(Email);
+            string errFullName = form.checkFullName(Name);
+            string errPass1 = form.checkPass1(Password1);
+            string errPass2 = form.checkPass2(Password1, Password2);
+
+            if(!errUserName.Equals("") || !errEmail.Equals("") || !errFullName.Equals("") || !errPass1.Equals("") || !errPass2.Equals(""))
+            {
+                statustemp = "fail";
+            }
+            else
+            {
+                statustemp = "success";
+            }
+            if(statustemp== "success")
+            {
+                DBModel db1 = new DBModel();
+                account tmpAccount = new account();
+                tmpAccount.USERNAME = UserName;
+                tmpAccount.HO_TEN = Name;
+                tmpAccount.ID_ACCOUNT = userDAO.generateIDAccount();
+                tmpAccount.PASSWORD = Password1;
+                tmpAccount.LEVEL = "5";
+                tmpAccount.ACTIVE = "1";
+                db1.accounts.Add(tmpAccount);
+                db1.SaveChangesAsync();
+                DBModel db2 = new DBModel();
+                ct_account tmpCTAccount = new ct_account();
+                tmpCTAccount.ID_ACCOUNT = tmpAccount.ID_ACCOUNT;
+                tmpCTAccount.EMAIL = Email;
+                tmpCTAccount.SDT = null;
+                tmpCTAccount.DIA_CHI = null;
+                tmpCTAccount.GIOI_TINH = 1;
+                tmpCTAccount.NGAY_SINH = null;
+                db2.ct_account.Add(tmpCTAccount);
+                db2.SaveChangesAsync();
+                UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
+                HttpContext.Session.Add("User", userVM);
+            }
+            return  Json(new { status= statustemp, errusername= errUserName, erremail= errEmail,errfullname= errFullName,errpass1= errPass1,errpass2=errPass2 }, JsonRequestBehavior.DenyGet);
+        }
+        [HttpGet]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
-            return RedirectToAction("Index", "Home");
+            return PartialView("Header", new DBModel());
         }
     }
 }
