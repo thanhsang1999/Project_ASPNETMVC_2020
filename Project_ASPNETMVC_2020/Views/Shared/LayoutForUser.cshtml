@@ -1,7 +1,7 @@
 ﻿@using Project_ASPNETMVC_2020.Model.EF
 @using Project_ASPNETMVC_2020.ClassToConfig
 @using Project_ASPNETMVC_2020.Model.ModelOfSession
-@{ var user = Session["User"] as UserViewModel; }
+@{ var user = Session["User"] as User; }
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +15,12 @@
     <link href="@Url.Content("~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" ,true)" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <link rel="shortcut icon" href="@Url.Content("~/Assets/web/images/logo-blue.png",true)">
+    <link href="@Url.Content("~/Assets/web/styles/blue_dangnhap.css",true)" rel="stylesheet">
+    <link href="@Url.Content("~/Assets/web/styles/css_dk.css",true)" rel="stylesheet">
+
     @RenderSection("styles", required: false)
+
 
 </head>
 
@@ -24,10 +29,11 @@
     <!-- The Modal -->
     @RenderPage("~/Views/Home/Login.cshtml")
     @RenderPage("~/Views/Home/Signup.cshtml")
+    @RenderPage("~/Views/Home/ForgotPassword.cshtml")
     <div class="super_container">
         <!-- Header -->
         <header id="header_real" class="header">
-            @RenderPage("Header.cshtml")
+            @Html.Action("Header", "Header")
         </header>
         @RenderBody()
         <!-- Newsletter -->

@@ -56,7 +56,7 @@ namespace Project_ASPNETMVC_2020.Filter
         //}
         public override void OnActionExecuting(ActionExecutingContext Context)
         {
-            UserViewModel user = Context.HttpContext.Session["User"] as UserViewModel;
+            User user = Context.HttpContext.Session["User"] as User;
             string roleOfUser = null;
             if (user != null)
             {

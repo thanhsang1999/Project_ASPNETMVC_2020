@@ -1,0 +1,192 @@
+﻿@using Project_ASPNETMVC_2020.ClassToConfig;
+@using Project_ASPNETMVC_2020.Model.Cart
+@using Project_ASPNETMVC_2020.Model.Code
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using System.Collections
+@model System.Collections.ArrayList
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/LayoutForUser.cshtml";
+    User user = Session["User"] as User;
+    var ListCartProduct = Model[0] as List<CartProduct>;
+    var TotalMoney = (string)Model[1];
+
+}
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_styles.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css",true)">
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-cart.css",true)">
+}
+<!-- start-content -->
+<div class="container sang content">
+    <div class="row phan-1">
+        <table class="table">
+            <thead class="mauXanh">
+                <tr>
+                    <th>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="checkboxAll"
+                                   name="checkboxAll" value="1">
+                            <label class="custom-control-label" for="checkboxAll"></label>
+                        </div>
+                    </th>
+                    <th>Ảnh Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá Tiền</th>
+                    <th class="head-sl-tb">Số Lượng</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (CartProduct item in ListCartProduct)
+                {
+                    <tr>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                @if (item.CHECKBOX == 1)
+                                {
+                                    <input type="checkbox" class="custom-control-input class-check" id="@("checkbox" +item.ID_PRODUCT)" name="@("checkbox" + item.ID_PRODUCT)" checked>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" class="custom-control-input class-check" id="@("checkbox" +item.ID_PRODUCT)" name="@("checkbox" + item.ID_PRODUCT)">
+                                }
+                                <label class="custom-control-label" for="@("checkbox" + item.ID_PRODUCT)"></label>
+                            </div>
+                        </td>
+                        <td class="img-tb">
+                            <img src="@Url.ContentAssetWeb("images/sanpham/")@item.IMG" alt="" srcset="">
+                        </td>
+                        <td class="ten-sp-tb">@item.NAME</td>
+                        <td class="gia-tb">@Tools.StringToVND(((Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE)) * ((int)item.AMOUNT)).ToString())</td>
+                        <td>
+                            <input class="class-amount" id="@("amount"+item.ID_PRODUCT)" type="number" value="@item.AMOUNT" min="0" max="1000" step="1" />
+                        </td>
+                        <td class="thung-rac-tb"><a class="delete-product" id="@("id-delete-"+item.ID_PRODUCT)" href="#"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row phan-2">
+        <div class="col-sm-6">
+            <span class="title-dia-chi">Địa Chỉ</span>
+            <br>
+            <i class="fas fa-map-marker-alt icon-location"></i>
+            <span class="dia-chi">@user.DIA_CHI</span>
+        </div>
+        <div class="col-sm-3">
+            <span class="title-tong-tien">Tổng Tiền : </span>
+            <br>
+            <span class="tong-tien">@TotalMoney</span>
+            <i class="fas fa-money-bill-wave green-money"></i>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+            <a href="@Url.Action("Index","Pay")"><button type="button" data-toggle="modal" class="btn btn-primary btn-block btn-thanh-toan">Đặt Hàng</button></a>
+        </div>
+    </div>
+</div>
+<!-- end-content -->
+@section scripts{
+    <script src="@Url.ContentAssetWeb("js/cart_custom.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
+    <script>
+		$(document).ready(function () {
+			$('.delete-product').click(function (e) {
+				e.preventDefault();
+				var name = $(this).attr("id");
+				var idProduct = name.substring(10);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/DeleteProductInCart',
+                    data: { idProduct: idProduct },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        number = data.number;
+                        totalMoneyHeader = data.totalMoneyHeader;
+                        totalMoneyCart = data.totalMoneyCart;
+                        if (status == "success") {
+							$("#"+name).parent().parent().remove();
+                            $('#numberOfProductsInTheCart').text(number);
+                            $('.cart_price').text(totalMoneyHeader);
+                            $('.tong-tien').text(totalMoneyCart);
+                        }
+                    }
+                });
+			});
+			$('.class-check').click(function () {
+				var name = $(this).attr("name");
+				var idProduct = name.substring(8);
+				$.ajax({
+				type: 'POST',
+				url: '/Cart/CheckProductCart',
+                data: { idProduct: idProduct},
+                dataType: 'JSON',
+                success: function (data) {
+					status = data.status;
+					price = data.price;
+					if (status == "success") {
+                        $('.tong-tien').text(price);
+                    }
+                }
+            });
+			});
+			$('#checkboxAll').click(function () {
+				var number = $('#checkboxAll').val();
+				if (number == "1") {
+                    $('#checkboxAll').val("0");
+				} else {
+                    $('#checkboxAll').val("1");
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/CheckAllProductCart',
+                    data: { number: number },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        price = data.price;
+                        if (status == "success") {
+                            $('.tong-tien').text(price);
+                        }
+                    }
+                });
+            });
+            $('.class-amount').change(function (e) {
+				e.preventDefault();
+                var name = $(this).attr("id");
+                var idProduct = name.substring(6);
+                var amount = $(this).val();
+                $(this).prop("disabled", true);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/ChangeAmountProductInCart',
+                    data: { idProduct: idProduct, amount: amount },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        number = data.number;
+                        totalMoneyHeader = data.totalMoneyHeader;
+                        totalMoneyCart = data.totalMoneyCart;
+                        if (status == "success") {
+                            $("#"+name).prop("disabled", false);
+                            $('#numberOfProductsInTheCart').text(number);
+                            $('.cart_price').text(totalMoneyHeader);
+                            $('.tong-tien').text(totalMoneyCart);
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+}

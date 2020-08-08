@@ -1,0 +1,160 @@
+﻿<div class="modal" id="myModalDK">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <form id="dk-form">
+                    <div class="row">
+                        <div class="col-sm-12 dk-phan-1">
+                            <span class="title-dang-ki">Đăng Kí</span>
+                            <br>
+                            <span class="duoi-title-dang-ki">
+                                Đăng kí tài khoản để trải nghiệm được tốt nhất
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row dk-phan-2">
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Tài Khoản :</span>
+                                    <input name="dkUserName" type="text" class="form-control" id="input-tk" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Tên :</span>
+                                    <input name="dkName" type="text" class="form-control" id="input-name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Email :</span>
+                                    <input name="dkEmail" type="text" class="form-control" id="input-email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Mật Khẩu :</span>
+                                    <input name="dkPass1" type="password" class="form-control" id="input-mk" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row col-sm-12 gian-cach">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 bg-form-right-content">
+                                <div class="input-group mb-3 gian-cach">
+                                    <span class="tieu-de-input">Nhập Lại Mật Khẩu :</span>
+                                    <input name="dkPass2" type="password" class="form-control" id="input-mk-2" required>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div id="dk-error-mess"></div>
+                    <div class="row dk-phan-3 col-sm-12">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button id="dk-btn" type="button" class="btn btn-primary btn-block">Đăng Kí</button>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                    <div class="row dk-phan-4 col-sm-12">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <span class="title-tieu-de-dang-ki"><i class="fas fa-shopping-bag"></i> Blue </span>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        var status = null;
+             $("#dk-btn").click(function (e) {
+            e.preventDefault();
+                 if ($('#input-tk').val() == "") {
+                     $('#input-tk').addClass('has-error');
+                     return false;
+                 }
+                 if ($('#input-name').val() == "") {
+                     $('#input-name').addClass('has-error');
+                     return false;
+                 }
+                 if ($('#input-email').val() == "") {
+                     $('#input-email').addClass('has-error');
+                     return false;
+                 }
+                 if ($('#input-mk').val() == "") {
+                     $('#input-mk').addClass('has-error');
+                     return false;
+                 }
+                 if ($('#input-mk-2').val() == "") {
+                     $('#input-mk-2').addClass('has-error');
+                     return false;
+                 }
+                 var data = $("#dk-form").serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Signup',
+                data: data,
+                dataType: 'JSON',
+                success: function (data) {
+                    status = data.status
+                    if (status == "success") {
+                        window.location.href = '@Url.Action("Index","Home")';
+                        console.log("success");
+                    } else if (status == "empty") {
+                        $("#dk-error-mess").hide().html("Không Để Trống").fadeIn("slow").css("color","red");
+                    } else if (status == "user") {
+                        $("#dk-error-mess").hide().html("Tài Khoản Tồn Tại").fadeIn("slow").css("color", "red");
+                    } else if (status == "email") {
+                        $("#dk-error-mess").hide().html("Email Không Đúng").fadeIn("slow").css("color", "red");
+                    } else if (status == "pass") {
+                        $("#dk-error-mess").hide().html("Password Không Trùng Nhau").fadeIn("slow").css("color", "red");
+                    }
+                }
+            });
+        });
+</script>
+@*<script>
+        $("#dk-btn").click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/Home/SignupVer2',
+                data: data,
+                dataType: 'JSON',
+                success: function (response) {
+                    var status = response.status;
+                    var errName = response.errusername;
+                    var erremail = response.erremail;
+                    var errfullname = response.errfullname;
+                    var errpass1 = response.errpass1;
+                    var errpass2 = response.errpass2;
+                    if (status === "success") {
+                        window.location.href = '@Url.Action("Index","Home")';
+                        console.log("success");
+                    } else {
+
+                    }
+                }
+            });
+        });
+    </script>*@

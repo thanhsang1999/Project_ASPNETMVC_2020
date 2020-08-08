@@ -132,23 +132,26 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
-    <Compile Include="ClassToConfig\UrlExtensions.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
+    <Compile Include="ClassToConfig\UrlExtensions.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\UserControllerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filter\AuthFilter.cs" />
     <Compile Include="Filter\LogFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Cart\CartProduct.cs" />
+    <Compile Include="Model\Code\Mail.cs" />
     <Compile Include="Model\Code\Tools.cs" />
-    <Compile Include="Model\DAO\BrandDAO.cs" />
-    <Compile Include="Model\DAO\RecentlyViewDAO.cs" />
+    <Compile Include="Model\DAO\CartDAO.cs" />
     <Compile Include="Model\DAO\LogDAO.cs" />
+    <Compile Include="Model\DAO\MailPasswordDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
+    <Compile Include="Model\DAO\RecentlyViewDAO.cs" />
     <Compile Include="Model\DAO\UserDAO.cs" />
     <Compile Include="Model\EF\account.cs" />
     <Compile Include="Model\EF\authentication.cs" />
@@ -172,12 +175,10 @@
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
-    <Compile Include="Model\ModelOfSession\Cart.cs" />
-    <Compile Include="Model\ModelOfSession\FormSignup.cs" />
-    <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
-    <Compile Include="Model\ModelOfSession\UserViewModel.cs" />
-    <Compile Include="Model\ModelOfSession\UserLogin.cs" />
     <Compile Include="Model\User\FormPass.cs" />
+    <Compile Include="Model\ModelOfSession\User.cs" />
+    <Compile Include="Model\ModelOfSession\FormSignup.cs" />
+    <Compile Include="Model\ModelOfSession\UserLogin.cs" />
     <Compile Include="Model\User\FormDataUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1488,7 +1489,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Assets\web\plugins\ckeditor\CHANGES.md" />
     <Content Include="Assets\web\plugins\ckeditor\LICENSE.md" />
     <Content Include="Assets\web\plugins\ckeditor\plugins\scayt\CHANGELOG.md" />
@@ -1519,6 +1519,7 @@
     <Content Include="Assets\web\plugins\slick-1.8.0\fonts\slick.eot" />
     <Content Include="Assets\web\plugins\slick-1.8.0\fonts\slick.ttf" />
     <Content Include="Assets\web\plugins\slick-1.8.0\fonts\slick.woff" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1541,17 +1542,20 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\LayoutForUser.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Header\MainNavigation.cshtml" />
-    <Content Include="Views\Product\ShowListProduct.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Views\Cart\ViewCart.cshtml" />
-    <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Shared\ContentCart.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\DoiMK.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Header\Header.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\ShowPassword.cshtml" />
+    <Content Include="Views\Product\ShowListProduct.cshtml" />
     <Content Include="Views\User\MenuLeftUser.cshtml" />
+    <Content Include="Views\Header\MainNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

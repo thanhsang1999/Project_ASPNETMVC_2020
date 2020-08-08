@@ -19,12 +19,12 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult ProductDetail(string id)
         {
 
-            product model=new product();
+            product model = new product();
             if ((model = new ProductDAO().productDetail(id)) != null || id != null)
             {
                 model = new ProductDAO().productDetail(id);
                 ViewBag.Title = model.NAME;
-                UserViewModel user= Session["User"] as UserViewModel;
+                User user = Session["User"] as User;
                 if (user != null)
                 {
                     new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);

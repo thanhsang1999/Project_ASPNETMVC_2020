@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "DoiMK";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
-    var user = Session["User"] as UserViewModel;
+    var user = Session["User"] as User;
 }
 @section styles{
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -90,8 +90,8 @@
                     status = data.status
                     if (status == "success") {
                         $("#form-mk")[0].reset();
-                        $("#mk-error-mess").css("color","#2ecc71")
-                         $("#mk-error-mess").hide().html("Đổi Mật Khẩu Thành Công").fadeIn("slow");
+                        $("#mk-error-mess").css("color", "#2ecc71")
+                        $("#mk-error-mess").hide().html("Đổi Mật Khẩu Thành Công").fadeIn("slow");
                     } else if (status == "empty") {
                         $("#mk-error-mess").hide().html("Không Để Trống").fadeIn("slow");
                     } else if (status == "oldpass") {
@@ -105,4 +105,4 @@
             });
         });
     </script>
-}
+} 
