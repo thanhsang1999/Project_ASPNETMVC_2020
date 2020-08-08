@@ -15,7 +15,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         // GET: User
         public ActionResult Index()
         {
-            var user = Session["User"] as UserViewModel;
+            var user = Session["User"] as User;
             if (user == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -35,7 +35,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             string DiaChi = data.UDiaChi;
             string GioiTinh = data.Ugioitinh;
             string NgaySinh = data.date;
-            if (Name == ""|| Email == "" || SDT == "" || DiaChi == "" || GioiTinh == "" || NgaySinh == "")
+            if (Name == null|| Email == null || SDT == null || DiaChi == null || GioiTinh == null || NgaySinh == null)
             {
                 status = "empty";
                 return new JsonResult { Data = new { status = status } };
@@ -52,7 +52,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                var user = Session["User"] as UserViewModel;
+                var user = Session["User"] as User;
                 DBModel db1 = new DBModel();
                 var TmpUser = db1.accounts.Where(x=>x.ID_ACCOUNT.Equals(user.ID_ACCOUNT)).FirstOrDefault();
                 TmpUser.HO_TEN = Name;
@@ -66,7 +66,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 TmpCTUser.NGAY_SINH = Tools.toDateTime(NgaySinh);
                 db2.SaveChangesAsync();
                 UserDAO userDAO = new UserDAO();
-                UserViewModel userVM = userDAO.getUser(user.ID_ACCOUNT);
+                User userVM = userDAO.getUser(user.ID_ACCOUNT);
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
                 return new JsonResult { Data = new { status = status } };
@@ -74,7 +74,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         }
         public ActionResult DoiMK()
         {
-            var user = Session["User"] as UserViewModel;
+            var user = Session["User"] as User;
             if (user == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -86,7 +86,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         }
         public ActionResult FormDoiMK(FormPass formPass)
         {
-            var user = Session["User"] as UserViewModel;
+            var user = Session["User"] as User;
             string status;
             string OldPassword = formPass.oldpass;
             string Password1 = formPass.pass1;
@@ -118,7 +118,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 TmpUser.PASSWORD = Tools.MD5(Password1);
                 db1.SaveChangesAsync();
                 UserDAO userDAO = new UserDAO();
-                UserViewModel userVM = userDAO.getUser(user.ID_ACCOUNT);
+                User userVM = userDAO.getUser(user.ID_ACCOUNT);
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
                 return new JsonResult { Data = new { status = status } };

@@ -16,7 +16,6 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult Index()
         {
             return View();
-
         }
         [HttpPost]
         public ActionResult Login(UserLogin user)
@@ -37,7 +36,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 }
                 else
                 {
-                    UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
+                    User userVM = userDAO.getUser(userDAO.getID(UserName));
                     HttpContext.Session.Add("User", userVM);
                     status = "success";
                     return new JsonResult { Data = new { status = status } };
@@ -105,7 +104,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 tmpCTAccount.NGAY_SINH = null;
                 db2.ct_account.Add(tmpCTAccount);
                 db2.SaveChangesAsync();
-                UserViewModel userVM = userDAO.getUser(userDAO.getID(UserName));
+                User userVM = userDAO.getUser(userDAO.getID(UserName));
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
                 return new JsonResult { Data = new { status = status } };
@@ -117,14 +116,6 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Clear();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
-        }
-        public ActionResult LogOutAjax()
-        {
-            FormsAuthentication.SignOut();
-            Session.Clear();
-            Session.Abandon();
-            return PartialView("Header", new DBModel());
-
         }
     }
 }

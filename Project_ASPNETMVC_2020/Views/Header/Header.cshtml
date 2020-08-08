@@ -1,12 +1,17 @@
 ﻿@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.Cart
+@model System.Collections.ArrayList
 @{
-    var user = Session["User"] as UserViewModel;
-    var cart = Session["Cart"] as Cart;
-    if (cart == null)
+    var user = Session["User"] as User;
+    var numberOfProductsInTheCart = 0;
+    var totalMoney = "0 VNĐ";
+    if (user != null)
     {
-        cart = new Cart();
-        Session.Add("Cart", cart);
+        var cart = Model[0] as CartProduct;
+        numberOfProductsInTheCart = (int)Model[1];
+        totalMoney = (string) Model[2];
     }
+
 }
 <!-- Top Bar -->
 <div class="top_bar">
@@ -33,12 +38,12 @@
                             <a href="#">Yêu Thích</a>
                             <a href="#">Đơn Hàng</a>
                             <a href="@Url.Action("LogOut","Home")">Logout</a>
-                            @Ajax.ActionLink("Đăng Xuất", "LogOutAjax", "Home", new AjaxOptions()
-                                        {
-                                            HttpMethod = "GET",
-                                            UpdateTargetId = "header_real",
-                                            InsertionMode = InsertionMode.Replace
-                                        }
+                            @Ajax.ActionLink("Đăng Xuất", "Header","Header", new { ok = "ok" }, new AjaxOptions()
+                       {
+                           HttpMethod = "POST",
+                           UpdateTargetId = "header_real",
+                           InsertionMode = InsertionMode.Replace
+                       }
                                                  )
                         </div> }
                     else
@@ -112,11 +117,11 @@
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                             <div class="cart_icon">
                                 <img src="~/Assets/web/images/cart.png" alt="">
-                                <div class="cart_count"><span>@cart.totalItemInCart().ToString()</span></div>
+                                <div class="cart_count"><span id="numberOfProductsInTheCart">@numberOfProductsInTheCart</span></div>
                             </div>
                             <div class="cart_content">
-                                <div class="cart_text"><a href="@Url.Action("ViewCart","Cart")">Giỏ Hàng</a></div>
-                                <div class="cart_price">@cart.totalMoneyInCart().ToString("N0") đ</div>
+                                <div class="cart_text"><a href="@Url.Action("Index","Cart")">Giỏ Hàng</a></div>
+                                <div class="cart_price">@totalMoney</div>
                             </div>
                         </div>
                     </div>
