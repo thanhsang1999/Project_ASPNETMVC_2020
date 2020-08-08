@@ -16,13 +16,13 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         {
             this.db = new DBModel();
         }
-        public UserViewModel getUser(string id)
+        public ModelOfSession.User getUser(string id)
         {
             var tmp = from a in db.accounts
                       join b in db.ct_account
   on a.ID_ACCOUNT equals b.ID_ACCOUNT
                       where a.ID_ACCOUNT == id
-                      select new UserViewModel
+                      select new ModelOfSession.User
                       {
                           ID_ACCOUNT = a.ID_ACCOUNT,
                           USERNAME = a.USERNAME,

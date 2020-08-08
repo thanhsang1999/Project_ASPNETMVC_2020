@@ -17,7 +17,7 @@
         price = (float)(Model.PRICE.Value - (Model.PRICE.Value * ((float)Model.SALE_RATE.Value / 100)));
 
     }
-    UserViewModel user = Session["User"] as UserViewModel;
+    User user = Session["User"] as User;
     List<product> listRV = new List<product>();
     if (user != null)
     {
@@ -38,8 +38,31 @@
     <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css")">
 }
 @section scripts{
-<script src="@Url.ContentAssetWeb("js/product_custom.js")"></script>
-<script src="@Url.ContentAssetWeb("js/product_comment.js")"></script>
+    <script src="@Url.ContentAssetWeb("js/product_custom.js")"></script>
+    <script src="@Url.ContentAssetWeb("js/product_comment.js")"></script>
+    <script>
+        var status = null;
+        $("#btn-dathang").click(function (e) {
+            e.preventDefault();
+            var amount = $('#idAmount').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Cart/AddProductToCart',
+                data: {idProduct:'@Model.ID_PRODUCT',amount:amount},
+                dataType: 'JSON',
+                success: function (data) {
+                    status = data.status;
+                    number = data.number;
+                    price = data.price;
+                    if (status == "success") {
+                        $('#numberOfProductsInTheCart').text(number);
+                        $('.cart_price').text(price);
+
+                    }
+                }
+            });
+        });
+    </script>
 }
 <!-- Single Product -->
 
@@ -84,44 +107,30 @@
                     </span>
                     <br>
                     <br>
-                    @using (Ajax.BeginForm("AddCart", "Cart", new AjaxOptions
-                    {
-                        InsertionMode = InsertionMode.Replace,
-                        HttpMethod = "GET",
-                        UpdateTargetId = "header_real",
-                    }))
-                    {
-                        <div class="form-group">
-                            <div class="row mua-hang-1">
-                                <div class="col-md-6">
-                                    <label for=""><strong>Số Lượng :</strong></label>
-                                    <input type="number" value="1" min="1" step="1" max="@Model.AMOUNT" class="form-control" name="quantity" id="">
-                                    <input type="hidden" class="form-control" name="idproduct" value="@Model.ID_PRODUCT" />
-                                </div>
-                                <div class="col-md-6 chon-mau">
-                                    <label for="select-"><strong>Chọn Màu</strong></label>
-                                    <select class="form-control" name="select-color" id="select-color">
-                                        <option><span>Đen</span></option>
-                                        <option><span>Trắng</span></option>
-                                        <option><span>Xanh</span></option>
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="row mua-hang-2">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary form-control btn-dat-hang">
-                                        <i class="fas fa-shopping-cart"></i>Đặt Hàng
-                                    </button>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="yeu-thich"><strong>Yêu Thích :</strong></label>
-                                    <div class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
-                                </div>
+                    <div class="form-group">
+                        <div class="row mua-hang-1">
+                            <div class="col-md-6">
+                                <label for=""><strong>Số Lượng :</strong></label>
+                                <input value="1" type="number" min="1" step="1" max="@Model.AMOUNT" class="form-control" name="quantity" id="idAmount">
+                                <input type="hidden" class="form-control" name="idproduct" value="@Model.ID_PRODUCT" />
                             </div>
                         </div>
-                    }
+
+                        <div class="row mua-hang-2">
+                            <div class="col-md-6">
+                                <button id="btn-dathang" type="button" class="btn btn-primary form-control btn-dat-hang">
+                                    <i class="fas fa-shopping-cart"></i> Đặt Hàng
+                                </button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="yeu-thich"><strong>Yêu Thích :</strong></label>
+                                <div class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <button type="button" class="viewparameterfull" data-toggle="modal"
                             data-target="#myModal2">
@@ -671,7 +680,7 @@
                                 float realprice = 0;
                                 if (item.SALE_RATE.Value != 0)
                                 {
-                                    realprice =(float) (item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
+                                    realprice = (float)(item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
                                 }
                                 <!-- Recently Viewed Item -->
                                 <div class="owl-item">
@@ -680,10 +689,10 @@
                                         <div class="viewed_content text-center">
                                             @if (realprice != 0)
                                             {
-                                            <div class="viewed_price">
-                                                @realprice.ToString("N0")
-                                                <span>@item.PRICE.Value.ToString("N0")</span>
-                                            </div>
+                                                <div class="viewed_price">
+                                                    @realprice.ToString("N0")
+                                                    <span>@item.PRICE.Value.ToString("N0")</span>
+                                                </div>
                                             }
                                             else
                                             {
@@ -694,8 +703,8 @@
                                             <div class="viewed_name">
                                                 <a href="@Url.Action("ProductDetail","Product",new
 { id= item.ID_PRODUCT})"> @item.NAME</a>
-                                        </div>
-                                        </div>
+</div>
+</div>
 <ul class="item_marks">
     <li class="item_mark item_discount">-@item.SALE_RATE%</li>
     <li class="item_mark item_new">new</li>

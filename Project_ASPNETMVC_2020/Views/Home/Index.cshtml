@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
-    UserViewModel user = Session["User"] as UserViewModel;
+    User user = Session["User"] as User;
     List<product> listRV = new List<product>();
     if (user != null)
     {
@@ -14,7 +14,6 @@
     }
 }
 @section styles{
-    <link rel="shortcut icon" href="@Url.Content("~/Assets/web/images/logo-blue.png",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.theme.default.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/animate.css",true)">
@@ -22,10 +21,7 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/main_styles.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/responsive.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/style.css",true)">
-    <link rel="shortcut icon" href="@Url.Content("~/Assets/web/images/logo-blue.png",true)">
-    <link href="@Url.Content("~/Assets/web/styles/blue_dangnhap.css",true)" rel="stylesheet">
-    <link href="@Url.Content("~/Assets/web/styles/css_dk.css",true)" rel="stylesheet">
-
+   
 }
 <!-- Banner -->
 <div class="banner">

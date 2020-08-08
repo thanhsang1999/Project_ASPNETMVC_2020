@@ -21,8 +21,6 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                 dBModel.SaveChanges();
             }
             limitRecentlyView(iduser);
-
-
         }
         public bool checkRecentlyView(string iduser, string idproduct)
         {

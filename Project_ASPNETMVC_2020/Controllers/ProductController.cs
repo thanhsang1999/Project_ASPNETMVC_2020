@@ -24,7 +24,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 model = new ProductDAO().productDetail(id);
                 ViewBag.Title = model.NAME;
-                UserViewModel user= Session["User"] as UserViewModel;
+                User user= Session["User"] as User;
                 if (user != null)
                 {
                     new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);

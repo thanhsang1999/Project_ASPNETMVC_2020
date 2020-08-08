@@ -18,7 +18,7 @@ namespace Project_ASPNETMVC_2020.Filter
         public override void OnActionExecuting(ActionExecutingContext Context)
         {
             string iduser = null;
-            UserViewModel user = Context.HttpContext.Session["User"] as UserViewModel;
+            User user = Context.HttpContext.Session["User"] as User;
             if (user != null)
             {
                 iduser = user.ID_ACCOUNT;
@@ -50,7 +50,7 @@ namespace Project_ASPNETMVC_2020.Filter
             HttpRequestBase request = Context.HttpContext.Request;
 
             string iduser = null;
-            UserViewModel user = Context.HttpContext.Session["User"] as UserViewModel;
+            User user = Context.HttpContext.Session["User"] as User;
             if (user != null)
             {
                 iduser = user.ID_ACCOUNT;
