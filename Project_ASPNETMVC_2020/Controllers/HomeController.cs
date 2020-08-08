@@ -7,9 +7,12 @@ using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System.Web.UI.WebControls;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.Code;
+using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.ClassToConfig;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter]
     public class HomeController : Controller
     {
         DBModel dbmodel = new DBModel();
@@ -28,11 +31,21 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (UserName == "" || Password == "")
             {
                 status = "emtpy";
+                // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // nếu ko có viewbag messagelog thì sẽ lưu xuống database là OK
+                ViewBag.MessageLog = "Login empty";
                 return new JsonResult { Data = new { status = status } };
             }
             else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
             {
                 status = "fail";
+                // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
+
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // nếu ko có viewbag messagelog thì sẽ lưu xuống database là OK
+
+                ViewBag.MessageLog = "Login fail";
                 return new JsonResult { Data = new { status = status } };
             }
             else
@@ -40,6 +53,9 @@ namespace Project_ASPNETMVC_2020.Controllers
                 User userVM = userDAO.getUser(userDAO.getID(UserName));
                 HttpContext.Session.Add("User", userVM);
                 status = "success";
+                // thành công thì có thể ko cần phải ghi LevelLog và MessageLog
+                ViewBag.LevelLog = LevelLog.INFO;
+                ViewBag.MessageLog = "Login OK";
                 return new JsonResult { Data = new { status = status } };
             }
         }
