@@ -1,9 +1,12 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
 using Project_ASPNETMVC_2020.Filter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Project_ASPNETMVC_2020.Model.Cart;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
+=======
+>>>>>>> parent of 7eb97ce... merge cart
 =======
 >>>>>>> parent of 7eb97ce... merge cart
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
@@ -28,6 +31,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             if(Session["Cart"] as Cart == null)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 ArrayList model = new ArrayList();
                 List<CartProduct> listCartProduct = CartDAO.LoadCart(user.ID_ACCOUNT);
                 string TotalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
@@ -43,12 +47,16 @@ namespace Project_ASPNETMVC_2020.Controllers
 =======
                 Session.Add("Cart", new Cart());
 >>>>>>> parent of 7eb97ce... merge cart
+=======
+                Session.Add("Cart", new Cart());
+>>>>>>> parent of 7eb97ce... merge cart
             }
             Cart model =Session["Cart"] as Cart;
             return View(model);
         }
         public ActionResult AddCart(string idproduct,int quantity)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
             User user = Session["User"] as User;
             if (user != null)
@@ -138,10 +146,31 @@ namespace Project_ASPNETMVC_2020.Controllers
             string html = PartialView("ContentCart").RenderToString();
             return Json(new { result = html }, JsonRequestBehavior.AllowGet);
 >>>>>>> parent of 7eb97ce... merge cart
+=======
+            int setQuantity = Convert.ToInt32(quantity);
+            Cart cart= Session["Cart"] as Cart;
+            cart.addItemWithAmount(idproduct, setQuantity);
+            Session["Cart"] = cart;
+            return PartialView("Header",cart);
+        }
+        public ActionResult deleteItemHeader(string idproduct)
+        {       
+            Cart cart = Session["Cart"] as Cart;
+            cart.removeItem(idproduct);
+            Session["Cart"] = cart;
+          
+            return PartialView("Header", cart);
+        }
+        public JsonResult deleteItemContentCart(string idproduct5)
+        {
+            string html = PartialView("ContentCart").RenderToString();
+            return Json(new { result = html }, JsonRequestBehavior.AllowGet);
+>>>>>>> parent of 7eb97ce... merge cart
 
         }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                 var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT));
                 foreach (cart cart in tmp)
@@ -185,5 +214,9 @@ namespace Project_ASPNETMVC_2020.Controllers
 >>>>>>> parent of 7eb97ce... merge cart
 
 
+=======
+
+
+>>>>>>> parent of 7eb97ce... merge cart
     }
 }
