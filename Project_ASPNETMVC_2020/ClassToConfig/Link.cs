@@ -43,6 +43,10 @@ namespace Project_ASPNETMVC_2020.ClassToConfig
             }
             return rs;
         }
+        public string linkShowPassword(string key)
+        {
+            return "https://localhost:44360/Home/ShowPassword?key=" + key;
+        }
 
 
 

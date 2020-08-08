@@ -9,6 +9,7 @@ using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.ClassToConfig;
+using Microsoft.Ajax.Utilities;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
@@ -134,6 +135,57 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Clear();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult ForgotPassWord(string username)
+        {
+            string rs = "";
+            string email;
+            if (new UserDAO().checkUsered(username) == false)
+            {
+                rs = "Tên tài khoản không tồn tại";
+            }
+            else if ((email = new UserDAO().getEmailOfUser(username)) != null)
+            {
+                string iduser = new UserDAO().getIdByUserName(username);
+                Mail mail = new Mail();
+                var key = mail.RandomPassword();
+               
+                MailPasswordDAO mpd = new MailPasswordDAO();
+                var check = mpd.addKey(iduser, key);
+                while (check == false)
+                {
+                    key = mail.RandomPassword();
+                    check = mpd.addKey(iduser, key);
+                }
+                new UserDAO().ChangePasswordById(iduser, key);
+                bool check2 = mail.sendMail(email, key);
+                if (check2==false)
+                {
+                    rs = "Gửi mail thất bại";
+                }
+                else
+                {
+                    rs = "gửi mail thành công";
+                }
+            }
+            else
+            {
+                rs = "Gửi mail thất bại";
+            }
+            return Json(new { result = rs });
+        }
+        public ActionResult ShowPassWord(string key)
+        {
+            if(new MailPasswordDAO().isExistsKey(key) == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+
+            {
+                ViewBag.Key = key;
+                return View();
+            }
         }
     }
 }
