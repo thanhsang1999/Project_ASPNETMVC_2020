@@ -119,6 +119,9 @@
                             $('#numberOfProductsInTheCart').text(number);
                             $('.cart_price').text(totalMoneyHeader);
                             $('.tong-tien').text(totalMoneyCart);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
                         }
                     }
                 });
@@ -136,6 +139,9 @@
 					price = data.price;
 					if (status == "success") {
                         $('.tong-tien').text(price);
+                    } else {
+                        url = data.url;
+                        window.location.href = url;
                     }
                 }
             });
@@ -157,6 +163,9 @@
                         price = data.price;
                         if (status == "success") {
                             $('.tong-tien').text(price);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
                         }
                     }
                 });
@@ -182,6 +191,9 @@
                             $('#numberOfProductsInTheCart').text(number);
                             $('.cart_price').text(totalMoneyHeader);
                             $('.tong-tien').text(totalMoneyCart);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
                         }
                     }
                 });

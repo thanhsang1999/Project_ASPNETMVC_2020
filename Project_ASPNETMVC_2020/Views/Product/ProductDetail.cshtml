@@ -817,7 +817,10 @@
                     if (status == "success") {
                         $('#numberOfProductsInTheCart').text(number);
                         $('.cart_price').text(price);
-                        
+
+                    } else {
+                        url = data.url;
+                        window.location.href = url;
                     }
                 }
             });

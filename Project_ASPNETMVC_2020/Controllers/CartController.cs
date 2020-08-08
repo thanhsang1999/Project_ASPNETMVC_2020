@@ -49,7 +49,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index","Home") } };
             }
         }
         [HttpPost]
@@ -77,7 +77,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
         }
         [HttpPost]
@@ -98,7 +98,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
 
         }
@@ -123,7 +123,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
         }
         [HttpPost]
@@ -144,7 +144,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
 
         }
