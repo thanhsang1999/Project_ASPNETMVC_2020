@@ -118,6 +118,31 @@ namespace Project_ASPNETMVC_2020.Controllers
             ViewBag.ID = id == null ? "" : id;
             return View(listProduct);
         }
+        public ActionResult addComment(string content,string nameofcm, string idproduct)
+        {
+            string rs = null;
+            string name = nameofcm;
+            string contentthis = content;
+            CommentDAO dao = new CommentDAO();
+            if (dao.checkNullContent(content) == false || dao.checkNullContent(nameofcm) == false)
+            {
+                rs = "fail";
+            }
+            else
+            {
+                dao.addComment(idproduct, name, contentthis);
+                List<binhluan> model = dao.getListBLForProduct(idproduct);
+                string html = PartialView("ContainComment", model).RenderToString();
+                rs = html;
+            }
+
+            return Json(new { result = rs });
+        }
+        public ActionResult loadComment(string idsp)
+        {
+            var model = idsp;
+            return PartialView("ContainComment", model);
+        }
 
 
     }

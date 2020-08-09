@@ -1,0 +1,22 @@
+﻿@using Project_ASPNETMVC_2020.ClassToConfig;
+@using Project_ASPNETMVC_2020.Model.EF
+@using System.Data.Entity
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.DAO
+@model List<binhluan>
+
+
+<ul class="binh-luan">
+    <span class="title-binh-luan">Bình Luận</span>
+    @if (Model.Count != 0)
+    {
+        foreach (binhluan bl in Model)
+        {
+            <li>
+                <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> @bl.TEN</span>
+                <br>
+                <span class="noi-dung-binh-luan">@bl.NOIDUNG</span>
+            </li>
+        }
+    }
+</ul>

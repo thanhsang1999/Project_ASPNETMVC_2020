@@ -99,11 +99,11 @@
     <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
     <script>
-		$(document).ready(function () {
-			$('.delete-product').click(function (e) {
-				e.preventDefault();
-				var name = $(this).attr("id");
-				var idProduct = name.substring(10);
+        $(document).ready(function () {
+            $('.delete-product').click(function (e) {
+                e.preventDefault();
+                var name = $(this).attr("id");
+                var idProduct = name.substring(10);
                 $.ajax({
                     type: 'POST',
                     url: '/Cart/DeleteProductInCart',
@@ -115,36 +115,42 @@
                         totalMoneyHeader = data.totalMoneyHeader;
                         totalMoneyCart = data.totalMoneyCart;
                         if (status == "success") {
-							$("#"+name).parent().parent().remove();
+                            $("#" + name).parent().parent().remove();
                             $('#numberOfProductsInTheCart').text(number);
                             $('.cart_price').text(totalMoneyHeader);
                             $('.tong-tien').text(totalMoneyCart);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
                         }
                     }
                 });
-			});
-			$('.class-check').click(function () {
-				var name = $(this).attr("name");
-				var idProduct = name.substring(8);
-				$.ajax({
-				type: 'POST',
-				url: '/Cart/CheckProductCart',
-                data: { idProduct: idProduct},
-                dataType: 'JSON',
-                success: function (data) {
-					status = data.status;
-					price = data.price;
-					if (status == "success") {
-                        $('.tong-tien').text(price);
-                    }
-                }
             });
-			});
-			$('#checkboxAll').click(function () {
-				var number = $('#checkboxAll').val();
-				if (number == "1") {
+            $('.class-check').click(function () {
+                var name = $(this).attr("name");
+                var idProduct = name.substring(8);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Cart/CheckProductCart',
+                    data: { idProduct: idProduct },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        price = data.price;
+                        if (status == "success") {
+                            $('.tong-tien').text(price);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
+                        }
+                    }
+                });
+            });
+            $('#checkboxAll').click(function () {
+                var number = $('#checkboxAll').val();
+                if (number == "1") {
                     $('#checkboxAll').val("0");
-				} else {
+                } else {
                     $('#checkboxAll').val("1");
                 }
                 $.ajax({
@@ -157,12 +163,15 @@
                         price = data.price;
                         if (status == "success") {
                             $('.tong-tien').text(price);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
                         }
                     }
                 });
             });
             $('.class-amount').change(function (e) {
-				e.preventDefault();
+                e.preventDefault();
                 var name = $(this).attr("id");
                 var idProduct = name.substring(6);
                 var amount = $(this).val();
@@ -174,14 +183,19 @@
                     dataType: 'JSON',
                     success: function (data) {
                         status = data.status;
-                        number = data.number;
-                        totalMoneyHeader = data.totalMoneyHeader;
-                        totalMoneyCart = data.totalMoneyCart;
                         if (status == "success") {
-                            $("#"+name).prop("disabled", false);
+                            number = data.number;
+                            totalMoneyHeader = data.totalMoneyHeader;
+                            totalMoneyCart = data.totalMoneyCart;
+                            moneyProduct = data.moneyProduct;
+                            $("#" + name).prop("disabled", false);
                             $('#numberOfProductsInTheCart').text(number);
                             $('.cart_price').text(totalMoneyHeader);
                             $('.tong-tien').text(totalMoneyCart);
+                            $('#MoneyOf-' + idProduct).text(moneyProduct);
+                        } else {
+                            url = data.url;
+                            window.location.href = url;
                         }
                     }
                 });

@@ -148,6 +148,7 @@
     <Compile Include="Model\Code\Mail.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\CommentDAO.cs" />
     <Compile Include="Model\DAO\LogDAO.cs" />
     <Compile Include="Model\DAO\MailPasswordDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
@@ -1556,6 +1557,7 @@
     <Content Include="Views\Product\ShowListProduct.cshtml" />
     <Content Include="Views\User\MenuLeftUser.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
+    <Content Include="Views\Shared\ContainComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

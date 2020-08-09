@@ -23,6 +23,8 @@
     {
         listRV = new ProductDAO().listProductRecentlyView(user.ID_ACCOUNT);
     }
+    List<binhluan> listBL = new CommentDAO().getListBLForProduct(Model.ID_PRODUCT);
+
 
 }
 @section styles {
@@ -57,11 +59,37 @@
                     if (status == "success") {
                         $('#numberOfProductsInTheCart').text(number);
                         $('.cart_price').text(price);
-
+                    } else {
+                        url = data.url;
+                        window.location.href = url;
                     }
                 }
             });
         });
+    </script>
+    <script>
+        $("#binhluan").submit(function (e) {
+            e.preventDefault();
+            var content = $('#input-binh-luan').val();
+            var nameofcm = $('#input-name-binh-luan').val();
+            console.log(content);
+            console.log(nameofcm);
+              $.ajax({
+                type: 'POST',
+                  url: '/Product/addComment',
+                  data: { content: content, nameofcm:nameofcm, idproduct: '@Model.ID_PRODUCT' },
+                  success: function (data) {
+                      var rs = data.result;
+                      if (rs === "fail") {
+                          alert("Bạn không được bỏ trống nội dung hoặc tên")
+                      } else {
+                          $('#load-binhluan').html(rs);
+                      }
+                }
+            });
+
+        });
+      
     </script>
 }
 <!-- Single Product -->
@@ -603,52 +631,48 @@
         </div>
         <div class="col-md-1"></div>
     </div>
-    <div class="row bg-binh-luan">
-        <div class="col-md-1"></div>
-        <div class="col-md-10 form-binh-luan">
-            <div class="row form-binh-luan-phan-2">
-                <div class="col-sm-7">
-                    <textarea class="form-control" rows="6" id="input-binh-luan"
-                              placeholder="Nhập nội dung bình luận của bạn."></textarea>
-                </div>
-                <div class="col-sm-4">
-                    <div class="row form-binh-luan-phan-2-right-1">
-                        <input type="text" class="form-control" name="name" id="input-name-binh-luan"
-                               placeholder="Nhập họ tên của bạn.">
+    <form method="post" id="binhluan">
+        <div class="row bg-binh-luan">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 form-binh-luan">
+                <div class="row form-binh-luan-phan-2">
+
+                    <div class="col-sm-7">
+                        <textarea name="content-comment" class="form-control" rows="6" id="input-binh-luan"
+                                  placeholder="Nhập nội dung bình luận của bạn."></textarea>
                     </div>
-                    <div class="row form-binh-luan-phan-2-right-2">
-                        <button type="submit" class="btn btn-primary btn-block">Gửi</button>
+                    <div class="col-sm-4">
+                        <div class="row form-binh-luan-phan-2-right-1">
+                            <input type="text" class="form-control" name="name" id="input-name-binh-luan"
+                                   placeholder="Nhập họ tên của bạn.">
+                        </div>
+                        <div class="row form-binh-luan-phan-2-right-2">
+                            <button id="test" type="submit" class="btn btn-primary btn-block">Gửi</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
+            <div class="col-md-1"></div>
         </div>
-        <div class="col-md-1"></div>
-    </div>
+    </form>
     <div class="row bg-cmt-binh-luan">
         <div class="col-md-1"></div>
-        <div class="col-md-10 cmt-binh-luan">
+        <div id="load-binhluan" class="col-md-10 cmt-binh-luan">
             <ul class="binh-luan">
                 <span class="title-binh-luan">Bình Luận</span>
-                <li>
-                    <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> Sang Nguyễn</span>
-                    <br>
-                    <span class="noi-dung-binh-luan">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> Sang Nguyễn</span>
-                    <br>
-                    <span class="noi-dung-binh-luan">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> Sang Nguyễn</span>
-                    <br>
-                    <span class="noi-dung-binh-luan">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> Sang Nguyễn</span>
-                    <br>
-                    <span class="noi-dung-binh-luan">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
+                @if (listBL.Count != 0)
+                {
+                    foreach (binhluan bl in listBL)
+                    {
+                        <li>
+                            <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> @bl.TEN</span>
+                            <br>
+                            <span class="noi-dung-binh-luan">@bl.NOIDUNG</span>
+                        </li>
+                    }
+                }
+
             </ul>
         </div>
         <div class="col-md-1"></div>

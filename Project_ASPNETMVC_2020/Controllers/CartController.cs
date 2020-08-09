@@ -1,5 +1,6 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
 using Project_ASPNETMVC_2020.Model.Cart;
+using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
@@ -49,7 +50,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
         }
         [HttpPost]
@@ -77,7 +78,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
         }
         [HttpPost]
@@ -98,7 +99,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
 
         }
@@ -123,7 +124,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
         }
         [HttpPost]
@@ -140,11 +141,12 @@ namespace Project_ASPNETMVC_2020.Controllers
                 int number = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
                 string totalMoneyHeader = CartDAO.TotalMoney(user.ID_ACCOUNT, false);
                 string totalMoneyCart = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
-                return new JsonResult { Data = new { status = status, number = number, totalMoneyHeader = totalMoneyHeader, totalMoneyCart = totalMoneyCart } };
+                string moneyProduct = Tools.StringToVND(CartDAO.TotalMoneyOfProduct(user.ID_ACCOUNT, idProduct).ToString());
+                return new JsonResult { Data = new { status = status, number = number, totalMoneyHeader = totalMoneyHeader, totalMoneyCart = totalMoneyCart, moneyProduct = moneyProduct } };
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
 
         }
