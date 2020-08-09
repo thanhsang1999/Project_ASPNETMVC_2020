@@ -145,6 +145,7 @@
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\PayDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
     <Compile Include="Model\DAO\UserDAO.cs" />
     <Compile Include="Model\EF\account.cs" />

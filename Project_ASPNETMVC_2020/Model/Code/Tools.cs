@@ -65,7 +65,14 @@ namespace Project_ASPNETMVC_2020.Model.Code
         public static String StringToVND (string money)
         {
             CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+            if (money == "0"||money==null||money=="")
+            {
+            return "0 VNĐ";
+            }
+            else
+            {
             return double.Parse(money.ToString()).ToString("#,###", cul.NumberFormat)+ " VNĐ";
+            }
         }
         public static double PricesDecreased(double price, double discount)
         {
