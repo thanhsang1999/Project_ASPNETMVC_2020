@@ -64,7 +64,7 @@
                                     <img src="@Url.ContentAssetWeb("images/sanpham/")@item.IMG" alt="" srcset="">
                                 </td>
                                 <td class="ten-sp-tb">@item.NAME</td>
-                                <td class="gia-tb">@Tools.StringToVND(((Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE)) * ((int) item.AMOUNT)).ToString())</td>
+                                <td id="@("MoneyOf-"+item.ID_PRODUCT)" class="gia-tb">@Tools.StringToVND(((Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE)) * ((int) item.AMOUNT)).ToString())</td>
                                 <td>
                                     <input class="class-amount" id="@("amount"+item.ID_PRODUCT)" type="number" value="@item.AMOUNT" min="0" max="1000" step="1" />
                                 </td>
@@ -183,14 +183,16 @@
                     dataType: 'JSON',
                     success: function (data) {
                         status = data.status;
+                        if (status == "success") {
                         number = data.number;
                         totalMoneyHeader = data.totalMoneyHeader;
                         totalMoneyCart = data.totalMoneyCart;
-                        if (status == "success") {
+                            moneyProduct = data.moneyProduct;
                             $("#"+name).prop("disabled", false);
                             $('#numberOfProductsInTheCart').text(number);
                             $('.cart_price').text(totalMoneyHeader);
                             $('.tong-tien').text(totalMoneyCart);
+                            $('#MoneyOf-' + idProduct).text(moneyProduct);
                         } else {
                             url = data.url;
                             window.location.href = url;
