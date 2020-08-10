@@ -29,13 +29,14 @@ namespace Project_ASPNETMVC_2020.Controllers
             string TotalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
             model.Add(listCartProduct);
             model.Add(TotalMoney);
-             return View(model);
+            return View(model);
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
             }
         }
+
         [HttpPost]
         public ActionResult AddProductToCart(string idProduct, int amount)
         {
@@ -148,7 +149,28 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
-
+        }
+        public ActionResult Pay()
+        {
+            User user = Session["User"] as User;
+            if (user != null)
+            {
+                DBModel db = new DBModel();
+                var tmp = db.carts.Count(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT) && x.CHECKBOX == 1);
+                if (tmp>=1)
+                {
+                HttpContext.Session.Add("btndh","true");
+                return RedirectToAction("Index","Pay");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Cart");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

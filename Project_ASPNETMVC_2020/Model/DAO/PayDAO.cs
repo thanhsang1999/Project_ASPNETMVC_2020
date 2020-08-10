@@ -20,6 +20,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                       join ct in db.ct_account
                       on c.ID_ACCOUNT equals ct.ID_ACCOUNT
                       where c.ID_ACCOUNT == idAccount
+                      where c.CHECKBOX == 1
                       select new CartProductUser
                       {
                           ID_ACCOUNT = idAccount,
@@ -52,10 +53,35 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                 db1.orders.Add(tmpOrder);
                 db1.SaveChangesAsync();
                 DBModel db2 = new DBModel();
-                detail_order detail_Order = new detail_order();
-            
-
-              //  var tmp1 = db1.orders.Add()
+                foreach(CartProductUser item in ListCartProductUser)
+                {
+                    detail_order dt_Order = new detail_order();
+                    dt_Order.ID_PRODUCT = item.ID_PRODUCT;
+                    dt_Order.ID_ORDER = tmpOrder.ID_ORDER;
+                    dt_Order.AMOUNT = item.AMOUNT;
+                    db2.detail_order.Add(dt_Order);
+                }
+                db2.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool deteleProductInCart(string idAccount)
+        {
+            DBModel db = new DBModel();
+            DBModel db1 = new DBModel();
+            var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(idAccount)&&x.CHECKBOX==1);
+            if (tmp != null)
+            {
+                foreach (cart item in tmp)
+                {
+                    db1.carts.Attach(item);
+                    db1.carts.Remove(item);
+                    db1.SaveChangesAsync();
+                }
                 return true;
             }
             else
