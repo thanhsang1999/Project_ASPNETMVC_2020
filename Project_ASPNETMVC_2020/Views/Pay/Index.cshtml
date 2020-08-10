@@ -1,0 +1,187 @@
+﻿@using Project_ASPNETMVC_2020.ClassToConfig
+@using System.Collections
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.Cart
+@using Project_ASPNETMVC_2020.Model.Code
+@model ArrayList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutForUser.cshtml";
+    User user = Session["User"] as User;
+    var ListCPU = Model[0] as List<CartProductUser>;
+    var userOder = ListCPU[0];
+    var totalMoney = (double)Model[1];
+}
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_styles.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css")">
+    <link rel="shortcut icon" href="@Url.ContentAssetWeb("images/logo-blue.png")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css")">
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-thanhtoan.css")">
+}
+<div class="container sang content">
+    <div class="row phan-1">
+        <div class="col-sm-12 col-md-8">
+            <table class="table">
+                <thead class="mauXanh">
+                    <tr>
+                        <th>Ảnh Sản Phẩm</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Giá Tiền</th>
+                        <th class="head-sl-tb">Số Lượng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CartProductUser item in ListCPU)
+                    {
+                        <tr>
+                            <td class="img-tb">
+                                <img src="@Url.ContentAssetWeb("/images/sanpham/"+item.IMG)" alt="" srcset="">
+                            </td>
+                            <td class="ten-sp-tb">@item.NAME</td>
+                            <td class="gia-tb">@Tools.StringToVND(Tools.PricesDecreased((double)item.PRICE * (double)item.AMOUNT, (double)item.SALE_RATE).ToString())</td>
+                            <td>
+                                <span>@item.AMOUNT</span>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-4 phai">
+            <form id="form-pay">
+                <div class="row phai-1">
+                    <div class="col-sm-8">
+                        <span class="title-header-right">Thông Tin Giỏ Hàng</span>
+                    </div>
+
+                </div>
+                <div class="row phai-2">
+                    <div class="col-sm-8">Tên</div>
+                    <div class="col-sm-4">
+                        <span id="chinh-sua">
+                            Chỉnh sửa <i class="far fa-edit"></i>
+                        </span>
+                    </div>
+                    <div class="col-sm-12 khoang-cach-phai">
+                        <input disabled="" type="text" name="HO_TEN" class="form-control" value="@userOder.HO_TEN" id="ten">
+                    </div>
+                    <div class="col-sm-8">Địa Chỉ</div>
+
+                    <div class="col-sm-12 khoang-cach-phai">
+                        <input disabled="" type="text" name="DIA_CHI" class="form-control" value="@userOder.DIA_CHI" id="dia-chi">
+                    </div>
+                    <div class="col-sm-8">Số Điện Thoại</div>
+
+                    <div class="col-sm-12 khoang-cach-phai">
+                        <input disabled="" type="text" name="SDT" class="form-control" value="@userOder.SDT" id="sdt">
+                    </div>
+                    <div class="col-sm-12 khoang-cach-phai error-pay"></div>
+                    <div class="col-sm-8"><span class="title-tong-tien">Tổng Tiền : </span></div>
+
+                    <div class="col-sm-12 khoang-cach-phai">
+                        <span class="tong-tien">@Tools.StringToVND(totalMoney.ToString())</span>
+                        <i class="fas fa-money-bill-wave green-money"></i>
+                    </div>
+                </div>
+                <div class="col-sm-12 khoang-cach-lon-phai"></div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-7"></div>
+                    <div class="col-sm-12 col-lg-5">
+                        <button type="button" class="btn btn-primary btn-block" id="btn-thanhtoan" type="button">Thanh Toán</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalPay">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body cart-content-modal">
+                <div class="row khoang-cach-bt">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <span class="title-dathang-thanhcong">Đặt Hàng Thành Công</span>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="row khoang-cach-bt">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <img class="img-fluid" src="@Url.ContentAssetWeb("/images/Success.png")" alt="" height="200px" width="200px">
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="row khoang-cach-bt">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <span class="span-modal">Đơn hàng đã đặt thành công.</span>
+                        <br>
+                        <span class="span-modal">Hàng sẽ được giao đến tay bạn sớm nhất.</span>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="row khoang-cach-l">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-2">
+                        <a href="@Url.Action("Index","Home")"><button type="button" name="" id="" class="btn btn-primary btn-block">Trang Chủ</button></a>
+                    </div>
+                    <div class="col-sm-5"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="@Url.ContentAssetWeb("web/js/cart_custom.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btn-thanhtoan').click(function (e) {
+                e.preventDefault();
+                var data = { HO_TEN: $('#ten').val(), DIA_CHI: $('#dia-chi').val(), SDT: $('#sdt').val() };
+                $.ajax({
+                    type: 'POST',
+                    url: '/Pay/LoadDataIntoCart',
+                    data: data,
+                    dataType: 'JSON',
+                    success: function (data) {
+                        status = data.status;
+                        if (status == "success") {
+                            $('#myModalPay').modal({
+                                show: true,
+                                keyboard: false,
+                                backdrop: 'static'
+                            });
+                            $('#btn-thanhtoan').prop("disabled", true);
+                        } else if (status == "fail") {
+                            mess = data.mess;
+                            $(".error-pay").text(mess);
+                        } else if (status == "home") {
+                            url = data.url;
+                            window.location.href = url;
+                        }
+                    }
+                });
+            });
+            
+        });
+    </script>
+}
+

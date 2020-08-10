@@ -142,6 +142,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\Cart\CartProduct.cs" />
+    <Compile Include="Model\Cart\CartProductUser.cs" />
+    <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
@@ -1448,6 +1450,7 @@
     <Content Include="Assets\web\styles\blog_single_styles.css" />
     <Content Include="Assets\web\styles\blog_styles.css" />
     <Content Include="Assets\web\styles\blue-cart.css" />
+    <Content Include="Assets\web\styles\blue-thanhtoan.css" />
     <Content Include="Assets\web\styles\blue_dangnhap.css" />
     <Content Include="Assets\web\styles\bootstrap4\bootstrap.min.css" />
     <Content Include="Assets\web\styles\bootstrap4\bootstrap.min.js" />
@@ -1547,13 +1550,13 @@
     <Content Include="Views\Shared\ContentCart.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Header\Header.cshtml" />
+    <Content Include="Views\Pay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Assets\admin\" />
-    <Folder Include="Views\Pay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
