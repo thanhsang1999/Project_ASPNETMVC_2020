@@ -80,8 +80,8 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                 {
                     db1.carts.Attach(item);
                     db1.carts.Remove(item);
-                    db1.SaveChangesAsync();
                 }
+                    db1.SaveChangesAsync();
                 return true;
             }
             else
