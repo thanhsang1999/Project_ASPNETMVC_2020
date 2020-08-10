@@ -120,5 +120,11 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             var user = dBModel.accounts.Where(x => x.USERNAME == username).SingleOrDefault();
             return user.ID_ACCOUNT;
         }
+        public account getUserById(string iduser)
+        {
+            DBModel dBModel = new DBModel();
+            var user = dBModel.accounts.Where(x => x.ID_ACCOUNT == iduser).SingleOrDefault();
+            return user;
+        }
     }
 }

@@ -1,0 +1,30 @@
+﻿@using Project_ASPNETMVC_2020.ClassToConfig;
+@using Project_ASPNETMVC_2020.Model.EF
+@using System.Data.Entity
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.DAO
+@model List<danhgia>
+
+<ul class="danh-gia">
+    <span class="title-danh-gia">Đánh Giá</span>
+    @foreach (danhgia item in Model)
+    {
+        int count = Convert.ToInt32(item.SAO);
+        <li>
+            <span class="ten-danh-gia">
+                <i class="fas fa-user coloruser"></i> @item.TEN_USER <i class="fas fa-check-circle green"></i>
+            </span>
+            <br>
+            <span class="tieu-de-danh-gia">@item.TIEUDE</span>
+            <span class="value-rating-star">
+                <ul>
+                    @for (int i = 0; i < count; i++)
+                    {
+                        <li><i class="fas fa-star star"></i></li>
+                    }
+                </ul>
+            </span>
+            <span class="noi-dung-danh-gia">@item.NOIDUNG</span>
+        </li>
+    }
+</ul>

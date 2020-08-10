@@ -148,6 +148,7 @@
     <Compile Include="Model\Code\Mail.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\EvaluationDAO.cs" />
     <Compile Include="Model\DAO\CommentDAO.cs" />
     <Compile Include="Model\DAO\LogDAO.cs" />
     <Compile Include="Model\DAO\MailPasswordDAO.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
+    <Compile Include="Model\Evaluation\FormEval.cs" />
     <Compile Include="Model\User\FormPass.cs" />
     <Compile Include="Model\ModelOfSession\User.cs" />
     <Compile Include="Model\ModelOfSession\FormSignup.cs" />
@@ -1558,6 +1560,7 @@
     <Content Include="Views\User\MenuLeftUser.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
     <Content Include="Views\Shared\ContainComment.cshtml" />
+    <Content Include="Views\Shared\ContainEvaluation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

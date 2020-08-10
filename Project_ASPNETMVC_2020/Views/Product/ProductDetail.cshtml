@@ -24,6 +24,7 @@
         listRV = new ProductDAO().listProductRecentlyView(user.ID_ACCOUNT);
     }
     List<binhluan> listBL = new CommentDAO().getListBLForProduct(Model.ID_PRODUCT);
+    List<danhgia> listEV = new EvaluationDAO().getListEvalForProduct(Model.ID_PRODUCT);
 
 
 }
@@ -72,14 +73,14 @@
             e.preventDefault();
             var content = $('#input-binh-luan').val();
             var nameofcm = $('#input-name-binh-luan').val();
-            console.log(content);
-            console.log(nameofcm);
+
               $.ajax({
                 type: 'POST',
-                  url: '/Product/addComment',
+                  url: '/Product/AddComment',
                   data: { content: content, nameofcm:nameofcm, idproduct: '@Model.ID_PRODUCT' },
                   success: function (data) {
                       var rs = data.result;
+
                       if (rs === "fail") {
                           alert("Bạn không được bỏ trống nội dung hoặc tên")
                       } else {
@@ -87,9 +88,32 @@
                       }
                 }
             });
-
         });
-      
+    </script>
+    <script>
+        $("#form-eval").submit(function (e) {
+            e.preventDefault();
+            var data2 = $('#form-eval').serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/Product/AddEvaluation',
+                data: data2,
+                datatype: 'json',
+                success: function (data) {
+
+                    var rs = data.result;
+                    if (rs.includes("fail")) {
+                        alert("Bạn không được bỏ trống nội dung,tiêu đề, đánh giá");
+                    } else if (rs === "user") {
+                        alert("bạn phải đăng nhập để sử dụng chức năng này");
+                        $('#myModal').modal('show');
+                    } else {
+                        $('#contain-eval').html(rs);
+                    }
+
+                }
+            });
+        });
     </script>
 }
 <!-- Single Product -->
@@ -487,10 +511,11 @@
             <div class="col-md-1"></div>
             <div class="col-md-10 collapse" id="bieu-mau-danh-gia">
                 <div class="bieu-mau-danh-gia">
-                    <form class="form-group" action="">
+                    <form id="form-eval" class="form-group" method="post">
                         <div class="row form-danh-gia-phan-1">
                             <div class="rating">
-                                <input type="hidden" name="value-rating" id="value-rating" value="0">
+                                <input type="hidden" name="valuerating" id="value-rating" value="0">
+                                <input type="hidden" name="idproduct" value="@Model.ID_PRODUCT">
                                 <span>Chọn đánh giá sao của bạn :</span>
                                 <ul>
                                     <li>
@@ -519,11 +544,11 @@
                         <div class="row form-danh-gia-phan-2">
                             <div class="col-sm-7">
                                 <textarea class="form-control" rows="6" id="input-danh-gia"
-                                          placeholder="Nhập nội dung đánh giá của bạn."></textarea>
+                                          name="contenteval" placeholder="Nhập nội dung đánh giá của bạn."></textarea>
                             </div>
                             <div class="col-sm-4">
                                 <div class="row form-danh-gia-phan-2-right-1">
-                                    <input type="text" class="form-control" name="tieu-de"
+                                    <input type="text" class="form-control" name="titleofeval"
                                            id="input-tieu-de-danh-gia" placeholder="Nhập Tiêu Đề Của Bạn.">
                                 </div>
                                 <div class="row form-danh-gia-phan-2-right-2">
@@ -531,106 +556,48 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
+
             </div>
         </div>
         <div class="col-md-1"></div>
     </div>
+
     <div class="row bg-cmt-danh-gia">
         <div class="col-md-1"></div>
-        <div class="col-md-10 cmt-danh-gia">
-            <ul class="danh-gia">
-                <span class="title-danh-gia">Đánh Giá</span>
-                <li>
-                    <span class="ten-danh-gia">
-                        <i class="fas fa-user coloruser"></i> Sang Nguyễn <i class="fas fa-check-circle green"></i>
-                    </span>
-                    <br>
-                    <span class="tieu-de-danh-gia">Sản phẩm tốt</span>
-                    <span class="value-rating-star">
-                        <ul>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="far fa-star star"></i></li>
-                        </ul>
-                    </span>
-                    <span class="noi-dung-danh-gia">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-danh-gia">
-                        <i class="fas fa-user coloruser"></i> Sang Nguyễn <i class="fas fa-check-circle green"></i>
-                    </span>
-                    <br>
-                    <span class="tieu-de-danh-gia">Sản phẩm tốt</span>
-                    <span class="value-rating-star">
-                        <ul>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="far fa-star star"></i></li>
-                        </ul>
-                    </span>
-                    <span class="noi-dung-danh-gia">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-danh-gia">
-                        <i class="fas fa-user coloruser"></i> Sang Nguyễn <i class="fas fa-check-circle green"></i>
-                    </span>
-                    <br>
-                    <span class="tieu-de-danh-gia">Sản phẩm tốt</span>
-                    <span class="value-rating-star">
-                        <ul>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="far fa-star star"></i></li>
-                        </ul>
-                    </span>
-                    <span class="noi-dung-danh-gia">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-danh-gia">
-                        <i class="fas fa-user coloruser"></i> Sang Nguyễn <i class="fas fa-check-circle green"></i>
-                    </span>
-                    <br>
-                    <span class="tieu-de-danh-gia">Sản phẩm tốt</span>
-                    <span class="value-rating-star">
-                        <ul>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="far fa-star star"></i></li>
-                        </ul>
-                    </span>
-                    <span class="noi-dung-danh-gia">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-                <li>
-                    <span class="ten-danh-gia">
-                        <i class="fas fa-user coloruser"></i> Sang Nguyễn <i class="fas fa-check-circle green"></i>
-                    </span>
-                    <br>
-                    <span class="tieu-de-danh-gia">Sản phẩm tốt</span>
-                    <span class="value-rating-star">
-                        <ul>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="fas fa-star star"></i></li>
-                            <li><i class="far fa-star star"></i></li>
-                        </ul>
-                    </span>
-                    <span class="noi-dung-danh-gia">Sản phẩm đẹp, cấu hình mạnh, nhưng pin hơi yếu.</span>
-                </li>
-            </ul>
+        <div id="contain-eval" class="col-md-10 cmt-danh-gia">
+            @if (listEV.Count != 0)
+            {
+                <ul class="danh-gia">
+                    <span class="title-danh-gia">Đánh Giá</span>
+                    @foreach (danhgia item in listEV)
+                    {
+                        int count = Convert.ToInt32(item.SAO);
+                        <li>
+                            <span class="ten-danh-gia">
+                                <i class="fas fa-user coloruser"></i> @item.TEN_USER <i class="fas fa-check-circle green"></i>
+                            </span>
+                            <br>
+                            <span class="tieu-de-danh-gia">@item.TIEUDE</span>
+                            <span class="value-rating-star">
+                                <ul>
+                                    @for (int i = 0; i < count; i++)
+                                    {
+                                        <li><i class="fas fa-star star"></i></li>
+                                    }
+                                </ul>
+                            </span>
+                            <span class="noi-dung-danh-gia">@item.NOIDUNG</span>
+                        </li>
+                    }
+                </ul>
+            }
         </div>
+
         <div class="col-md-1"></div>
     </div>
+
     <form method="post" id="binhluan">
         <div class="row bg-binh-luan">
             <div class="col-md-1"></div>
@@ -647,7 +614,7 @@
                                    placeholder="Nhập họ tên của bạn.">
                         </div>
                         <div class="row form-binh-luan-phan-2-right-2">
-                            <button id="test" type="submit" class="btn btn-primary btn-block">Gửi</button>
+                            <button type="submit" class="btn btn-primary btn-block">Gửi</button>
                         </div>
                     </div>
 

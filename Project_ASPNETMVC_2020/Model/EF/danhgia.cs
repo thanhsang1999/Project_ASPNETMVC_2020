@@ -10,8 +10,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
     public partial class danhgia
     {
         [Key]
-        [StringLength(255)]
-        public string ID_DANHGIA { get; set; }
+        public int ID_DANHGIA { get; set; }
 
         [StringLength(255)]
         public string ID_SANPHAM { get; set; }

@@ -1,13 +1,16 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
 using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
+using Project_ASPNETMVC_2020.Model.Evaluation;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Controllers
@@ -118,7 +121,8 @@ namespace Project_ASPNETMVC_2020.Controllers
             ViewBag.ID = id == null ? "" : id;
             return View(listProduct);
         }
-        public ActionResult addComment(string content,string nameofcm, string idproduct)
+      
+        public ActionResult AddComment(string content, string nameofcm, string idproduct)
         {
             string rs = null;
             string name = nameofcm;
@@ -138,11 +142,54 @@ namespace Project_ASPNETMVC_2020.Controllers
 
             return Json(new { result = rs });
         }
-        public ActionResult loadComment(string idsp)
+      
+        public ActionResult AddEvaluation(FormEval formeval)
         {
-            var model = idsp;
-            return PartialView("ContainComment", model);
+            
+            string rs = null;
+            User user = Session["User"] as User;
+            string idproduct = formeval.idproduct;
+            string title = formeval.titleofeval;
+            string value=formeval.valuerating;
+            string content = formeval.contenteval;
+            List<string> listcheckNull =new  List<string>();
+            listcheckNull.Add(idproduct);
+            listcheckNull.Add(title);
+            listcheckNull.Add(value);
+            listcheckNull.Add(content);
+            var check = Tools.checkNullList(listcheckNull);
+            var checkNum = Tools.checkNum(value);
+            EvaluationDAO dao = new EvaluationDAO();
+            if (user == null)
+            {
+                rs = "user";
+            } else if (check == false  )
+            {
+
+                rs = "fail1" +idproduct+title+value+content;
+            } else if (checkNum == false)
+            {
+                rs = "fail2" + idproduct + title + value + content;
+            }
+            else
+            {
+                int realvalue = Convert.ToInt32(value);
+                if (dao.checkValue(realvalue) == false)
+                {
+                    rs = "fail3" + idproduct + title + value + content;
+                }
+                else
+                {
+                    dao.addReviewDAO(user.ID_ACCOUNT, idproduct, title, realvalue, content);
+                    var model = dao.getListEvalForProduct(idproduct);
+                    string html = PartialView("ContainEvaluation", model).RenderToString();
+                    rs = html;
+                }
+            }   
+            return Json(new { result = rs });
         }
+
+
 
 
     }

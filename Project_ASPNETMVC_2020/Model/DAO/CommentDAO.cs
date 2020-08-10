@@ -14,7 +14,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         {
             DBModel dBModel = new DBModel();
             binhluan bl = new binhluan();
-            bl.ID_BINHLUAN =getIdForNextRecord().ToString();
+          
             bl.ID_SANPHAM = idsp;
             bl.NOIDUNG = content;
             bl.TEN = name;
@@ -22,13 +22,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             dBModel.SaveChanges();
 
         }
-        public int getIdForNextRecord()
-        {
-            DBModel dBModel = new DBModel();
-            var rs = dBModel.binhluans.Count();           
-            return rs + 1;
-
-        }
+      
         public bool checkNullContent(string content)
         {
             if (String.IsNullOrEmpty(content) || String.IsNullOrWhiteSpace(content) || String.Empty.Equals(content) || content.Equals(""))
@@ -44,7 +38,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public List<binhluan> getListBLForProduct(string idsp)
         {
             DBModel dBModel = new DBModel();
-            var listBl = dBModel.binhluans.Where(x => x.ID_SANPHAM == idsp).ToList();
+            var listBl = dBModel.binhluans.Where(x => x.ID_SANPHAM == idsp).OrderByDescending(x=>x.ID_BINHLUAN).ToList();
             if (listBl == null)
             {
                 listBl = new List<binhluan>();

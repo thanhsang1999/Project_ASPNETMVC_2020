@@ -12,7 +12,7 @@
  Target Server Version : 15002000
  File Encoding         : 65001
 
- Date: 07/08/2020 17:33:55
+ Date: 10/08/2020 17:07:16
 */
 
 
@@ -107,10 +107,10 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[project_
 GO
 
 CREATE TABLE [project_2019].[binhluan] (
-  [ID_BINHLUAN] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
-  [ID_SANPHAM] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [TEN] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [NOIDUNG] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL
+  [ID_BINHLUAN] int  IDENTITY(1,1) NOT NULL,
+  [ID_SANPHAM] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TEN] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOIDUNG] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
 )
 GO
 
@@ -121,28 +121,19 @@ GO
 -- ----------------------------
 -- Records of binhluan
 -- ----------------------------
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL1', N'DT18', N'Sang', N'ok')
+SET IDENTITY_INSERT [project_2019].[binhluan] ON
 GO
 
-INSERT INTO [project_2019].[binhluan] VALUES (N'Bl2', N'DT17', N'Sang', N'ok2')
+INSERT INTO [project_2019].[binhluan] ([ID_BINHLUAN], [ID_SANPHAM], [TEN], [NOIDUNG]) VALUES (N'1', N'DT7', N'ádsad', N'ádad')
 GO
 
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL3', N'DT11', N'dsadsada123', N'dsadsa')
+INSERT INTO [project_2019].[binhluan] ([ID_BINHLUAN], [ID_SANPHAM], [TEN], [NOIDUNG]) VALUES (N'2', N'DT7', N'a', N'a')
 GO
 
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL4', N'DT11', N'dxvdsfds', N'dsadsad213213')
+INSERT INTO [project_2019].[binhluan] ([ID_BINHLUAN], [ID_SANPHAM], [TEN], [NOIDUNG]) VALUES (N'3', N'DT83', N'ádsad', N'ád')
 GO
 
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL5', N'DT29', N'sa21321', N'dsadsad')
-GO
-
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL6', N'DT1', N'sadsad', N'dsadas')
-GO
-
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL7', N'DT1', N'Nguyễn Thị B', N'Sản Phẩm Tuyệt')
-GO
-
-INSERT INTO [project_2019].[binhluan] VALUES (N'BL8', N'DT153', N'Nguyễn Văn A', N'Sản Phẩm Rất Tuyệt')
+SET IDENTITY_INSERT [project_2019].[binhluan] OFF
 GO
 
 
@@ -529,13 +520,13 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[project_
 GO
 
 CREATE TABLE [project_2019].[danhgia] (
-  [ID_DANHGIA] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
-  [ID_SANPHAM] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [ID_USER] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [SAO] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [TIEUDE] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [NOIDUNG] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL,
-  [TEN_USER] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT NULL NULL
+  [ID_DANHGIA] int  IDENTITY(1,1) NOT NULL,
+  [ID_SANPHAM] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ID_USER] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SAO] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TIEUDE] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOIDUNG] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TEN_USER] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
 )
 GO
 
@@ -546,22 +537,16 @@ GO
 -- ----------------------------
 -- Records of danhgia
 -- ----------------------------
-INSERT INTO [project_2019].[danhgia] VALUES (N'DG1', N'DT18', N'TK10', N'4', N'123asq', N'123321', N'Nguyễn Hữu Toàn')
+SET IDENTITY_INSERT [project_2019].[danhgia] ON
 GO
 
-INSERT INTO [project_2019].[danhgia] VALUES (N'DG2', N'DT11', N'TK15', N'4', N'dsadsadsa12321', N'dsadsa', N'Hoàng Thị Hà Giang')
+INSERT INTO [project_2019].[danhgia] ([ID_DANHGIA], [ID_SANPHAM], [ID_USER], [SAO], [TIEUDE], [NOIDUNG], [TEN_USER]) VALUES (N'1', N'DT83', N'TK3', N'5', N'ádsad', N'ádsad', N'hieudeptrai')
 GO
 
-INSERT INTO [project_2019].[danhgia] VALUES (N'DG3', N'DT29', N'TK10', N'5', N'Đánh Giá', N'Hàng Tuyệt', N'Nguyễn Hữu Toàn')
+INSERT INTO [project_2019].[danhgia] ([ID_DANHGIA], [ID_SANPHAM], [ID_USER], [SAO], [TIEUDE], [NOIDUNG], [TEN_USER]) VALUES (N'2', N'DT83', N'TK3', N'5', N'ádsadsádsad', N'ádsadsadasda', N'hieudeptrai')
 GO
 
-INSERT INTO [project_2019].[danhgia] VALUES (N'DG4', N'DT29', N'TK10', N'5', N'Tiêu Đề', N'Hàng Sài Được', N'Nguyễn Hữu Toàn')
-GO
-
-INSERT INTO [project_2019].[danhgia] VALUES (N'DG5', N'DT54', N'TK10', N'5', N'Đánh Giá Sản Phẩm', N'Hàng Rất Tuyệt', N'Nguyễn Hữu Toàn')
-GO
-
-INSERT INTO [project_2019].[danhgia] VALUES (N'DG6', N'DT1', N'TK10', N'0', N'23423', N'234', N'Nguyễn Hữu Toàn')
+SET IDENTITY_INSERT [project_2019].[danhgia] OFF
 GO
 
 
@@ -17690,6 +17675,1896 @@ GO
 INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'125', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-06 21:41:58.497', N'OnActionExecuted:  OK')
 GO
 
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'126', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 17:44:05.440', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'127', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 17:44:06.053', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'128', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 18:08:59.213', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'129', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 18:09:03.603', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'130', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 18:45:58.840', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'131', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 18:45:58.880', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'132', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 18:46:24.653', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'133', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 18:46:24.997', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'134', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:46:25.083', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'135', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:46:25.087', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'136', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:48:17.950', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'137', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:48:18.240', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'138', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:51:01.700', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'139', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:51:01.707', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'140', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 18:53:35.560', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'141', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 18:53:37.090', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'142', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 18:54:08.043', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'143', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 18:54:08.167', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'144', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:54:08.237', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'145', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:54:08.240', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'146', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:59:07.153', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'147', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 18:59:07.160', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'148', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:06:34.690', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'149', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:06:37.990', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'150', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 19:07:08.323', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'151', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 19:07:08.623', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'152', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:07:08.673', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'153', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:07:08.680', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'154', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:09:42.420', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'155', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:09:43.173', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'156', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:15:41.690', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'157', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:15:41.700', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'158', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 19:18:00.500', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'159', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 19:18:00.613', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'160', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:18:00.687', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'161', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:18:00.690', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'162', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:19:35.147', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'163', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 19:19:40.977', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'164', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 19:21:18.990', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'165', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 19:21:19.257', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'166', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:21:19.340', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'167', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:21:19.343', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'168', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:24:56.033', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'169', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:24:56.047', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'170', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:41:49.167', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'171', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:41:49.180', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'172', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:55:41.040', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'173', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:55:41.063', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'174', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:58:41.787', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'175', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:58:41.793', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'176', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:59:16.793', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'177', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 19:59:16.803', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'178', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 20:00:20.160', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'179', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 20:00:20.170', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'180', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 20:40:49.380', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'181', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 20:40:49.430', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'182', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 20:40:49.487', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'183', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 20:40:49.490', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'184', N'Home', N'LogOut', N'TK3', N'::1', N'INFO', N'2020-08-07 20:41:53.960', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'185', N'Home', N'LogOut', NULL, N'::1', N'INFO', N'2020-08-07 20:41:53.977', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'186', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:41:55.813', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'187', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:41:55.817', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'188', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:44:12.067', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'189', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:44:12.080', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'190', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-07 20:44:38.593', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'191', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-07 20:44:38.617', N'OnActionExecuted:  Login succcess')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'192', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 20:44:38.667', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'193', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-07 20:44:38.670', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'194', N'Home', N'LogOut', N'TK3', N'::1', N'INFO', N'2020-08-07 20:45:05.983', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'195', N'Home', N'LogOut', NULL, N'::1', N'INFO', N'2020-08-07 20:45:05.993', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'196', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:45:07.333', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'197', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:45:07.357', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'198', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:51:57.577', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'199', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 20:51:58.387', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'200', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 21:02:50.047', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'201', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 21:02:56.650', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'202', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 21:03:38.597', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'203', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 21:03:38.600', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'204', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 21:07:02.957', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'205', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-07 21:07:02.973', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'206', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:04.560', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'207', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:04.667', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'208', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:06.887', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'209', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:06.890', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'210', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:09.160', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'211', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:09.177', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'212', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:09.397', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'213', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:09.400', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'214', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:09.543', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'215', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:09.547', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'216', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:13.680', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'217', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:13.683', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'218', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:13.853', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'219', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:13.870', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'220', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:14.013', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'221', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:14.017', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'222', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:14.180', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'223', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:36:14.183', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'224', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:37:55.293', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'225', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:37:55.320', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'226', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:01.667', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'227', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:01.690', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'228', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.000', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'229', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.023', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'230', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.343', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'231', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.350', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'232', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.577', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'233', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.597', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'234', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.823', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'235', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:02.843', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'236', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.007', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'237', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.030', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'238', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.193', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'239', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.197', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'240', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.350', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'241', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.370', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'242', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.533', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'243', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.540', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'244', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.687', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'245', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.710', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'246', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.880', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'247', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:03.900', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'248', N'Cart', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-08 17:38:20.277', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'249', N'Cart', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-08 17:38:20.317', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'250', N'Cart', N'DeleteProductInCart', N'TK3', N'::1', N'INFO', N'2020-08-08 17:38:25.690', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'251', N'Cart', N'DeleteProductInCart', N'TK3', N'::1', N'INFO', N'2020-08-08 17:38:25.727', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'252', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:50.027', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'253', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:38:50.050', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'254', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:41:12.053', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'255', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:41:12.467', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'256', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:41:22.680', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'257', N'Cart', N'AddProductToCart', NULL, N'::1', N'INFO', N'2020-08-08 17:41:22.783', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'258', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:20:56.740', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'259', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:20:57.513', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'260', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:41:35.223', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'261', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:41:35.733', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'262', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:51:45.450', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'263', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:51:45.473', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'264', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:52:36.427', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'265', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:52:36.437', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'266', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:55:02.503', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'267', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:55:02.510', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'268', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:56:12.323', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'269', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:56:12.333', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'270', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:57:35.860', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'271', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:57:35.903', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'272', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:58:24.843', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'273', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 19:58:24.850', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'274', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 20:05:55.977', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'275', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 20:05:58.353', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'276', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 20:06:48.217', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'277', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 20:06:48.220', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'278', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:07.410', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'279', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:07.417', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'280', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 20:07:14.943', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'281', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 20:07:14.947', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'282', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:18.893', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'283', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:18.897', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'284', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:23.713', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'285', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:23.717', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'286', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:27.267', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'287', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:27.273', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'288', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:27.823', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'289', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:27.827', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'290', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:28.207', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'291', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:28.213', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'292', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:28.380', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'293', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:28.387', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'294', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:28.553', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'295', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:28.560', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'296', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.417', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'297', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.427', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'298', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.580', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'299', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.587', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'300', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.743', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'301', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.753', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'302', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.897', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'303', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:41.903', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'304', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:42.050', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'305', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:42.057', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'306', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:42.203', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'307', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:42.213', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'308', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:42.343', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'309', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 20:07:42.353', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'310', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-08 20:07:59.817', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'311', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-08 20:07:59.967', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'312', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-08 20:07:59.997', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'313', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-08 20:08:00.000', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'314', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:14:53.637', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'315', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:14:54.757', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'316', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:14.337', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'317', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:16.190', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'318', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:17.050', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'319', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:17.183', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'320', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:17.337', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'321', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:19.243', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'322', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:19.257', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'323', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:15:19.367', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'324', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:16:04.597', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'325', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:16:04.613', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'326', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:16:16.920', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'327', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:16:16.927', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'328', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:16:27.170', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'329', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:16:29.647', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'330', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:18:24.363', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'331', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:18:27.743', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'332', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:18:45.757', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'333', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:18:45.997', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'334', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:28:23.870', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'335', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:28:24.800', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'336', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:28:47.017', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'337', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:28:50.337', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'338', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:29:27.977', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'339', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:29:33.157', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'340', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:29:52.590', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'341', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:29:55.677', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'342', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:01.350', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'343', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:03.730', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'344', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:14.837', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'345', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:17.640', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'346', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:25.903', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'347', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:28.510', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'348', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:30.263', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'349', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:33.013', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'350', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:44.837', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'351', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:30:47.453', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'352', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:31:43.730', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'353', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:31:49.223', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'354', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:32:08.517', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'355', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:32:11.853', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'356', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:41:28.063', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'357', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:41:29.093', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'358', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:41:50.103', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'359', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:41:52.893', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'360', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:44:22.460', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'361', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:44:24.813', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'362', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:44:30.240', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'363', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:44:32.703', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'364', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:46:58.313', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'365', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:47:01.810', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'366', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:47:31.650', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'367', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:47:34.197', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'368', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:48:47.683', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'369', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:48:52.137', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'370', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:50:05.993', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'371', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:50:10.580', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'372', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:59:14.847', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'373', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 21:59:14.870', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'374', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:59:22.883', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'375', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 21:59:30.137', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'376', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:00:56.260', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'377', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:00:56.260', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'378', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:00:57.163', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'379', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:00:57.163', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'380', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:01:13.680', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'381', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:01:17.030', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'382', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:02:58.003', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'383', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:02:58.963', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'384', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:03:21.103', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'385', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:03:24.090', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'386', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:08:41.350', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'387', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:08:46.630', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'388', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:09:14.493', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'389', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:09:22.443', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'390', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:15:05.537', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'391', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:15:06.320', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'392', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:15:23.707', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'393', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:15:26.843', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'394', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:16:40.113', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'395', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:16:46.133', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'396', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:17:18.917', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'397', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:17:22.300', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'398', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:25:34.530', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'399', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:25:35.503', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'400', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:25:52.377', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'401', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:25:52.403', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'402', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:25:54.763', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'403', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:25:57.733', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'404', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:47:49.147', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'405', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:47:51.847', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'406', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:50:15.627', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'407', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:50:19.900', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'408', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:57:12.850', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'409', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 22:57:13.517', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'410', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:57:40.450', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'411', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 22:57:42.540', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'412', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:09:49.280', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'413', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:09:54.090', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'414', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:10:23.430', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'415', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:10:23.497', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'416', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:10:26.117', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'417', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:10:26.137', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'418', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:10:30.507', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'419', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:10:33.307', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'420', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:14:45.283', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'421', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:14:47.707', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'422', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:25:20.850', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'423', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:25:20.870', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'424', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:25:46.550', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'425', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:25:47.427', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'426', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:27:31.527', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'427', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:27:34.420', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'428', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:30:07.017', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'429', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:30:12.907', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'430', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:30:30.817', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'431', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:30:35.557', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'432', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:48:01.833', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'433', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:48:01.853', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'434', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:48:24.407', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'435', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:48:25.127', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'436', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:51:07.890', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'437', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:51:13.357', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'438', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:58:05.263', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'439', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:58:09.283', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'440', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:59:24.287', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'441', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:59:24.307', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'442', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:59:38.270', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'443', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-08 23:59:43.813', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'444', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:59:44.057', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'445', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-08 23:59:44.070', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'446', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:00:38.087', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'447', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:00:38.510', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'448', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:00:38.647', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'449', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:00:38.663', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'450', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:00:52.813', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'451', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:00:52.823', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'452', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:00:52.893', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'453', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:00:52.897', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'454', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:01:01.423', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'455', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:01:01.563', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'456', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:01:01.650', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'457', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:01:01.653', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'458', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:01:05.113', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'459', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:01:05.130', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'460', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:01:05.210', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'461', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:01:05.213', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'462', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:01:20.863', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'463', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:01:20.870', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'464', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:01:22.000', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'465', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:01:22.003', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'466', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:04.750', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'467', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:09.473', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'468', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:09.603', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'469', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:09.613', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'470', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:04:28.710', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'471', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:04:33.700', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'472', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:04:44.580', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'473', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:04:44.587', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'474', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:44.657', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'475', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:44.660', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'476', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:04:56.983', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'477', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:04:56.987', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'478', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:57.047', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'479', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:04:57.050', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'480', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:05:19.993', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'481', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:05:20.010', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'482', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:05:20.070', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'483', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:05:20.073', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'484', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:05:55.823', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'485', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:05:55.830', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'486', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:05:55.930', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'487', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:05:55.943', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'488', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:06:12.403', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'489', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:06:12.417', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'490', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:06:12.503', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'491', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:06:12.513', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'492', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:06:19.097', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'493', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:06:23.790', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'494', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:07:05.647', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'495', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:07:05.697', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'496', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:07:05.777', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'497', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:07:05.783', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'498', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:15:17.030', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'499', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:15:21.470', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'500', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:15:24.820', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'501', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:15:24.827', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'502', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:15:24.927', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'503', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:15:24.933', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'504', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:15:29.340', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'505', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:15:29.347', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'506', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:15:29.433', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'507', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:15:29.453', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'508', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:16:46.657', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'509', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:16:51.847', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'510', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:17:07.047', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'511', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:17:11.337', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'512', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:17:26.843', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'513', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:17:26.880', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'514', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:17:26.967', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'515', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:17:26.973', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'516', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:17:51.177', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'517', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:17:51.180', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'518', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:17:51.243', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'519', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:17:51.247', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'520', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:19:38.093', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'521', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:19:38.110', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'522', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:19:38.213', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'523', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:19:38.240', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'524', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:19:44.387', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'525', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:19:49.067', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'526', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:20:10.320', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'527', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:20:10.330', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'528', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:20:10.427', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'529', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:20:10.427', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'530', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:20:32.673', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'531', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:20:32.687', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'532', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:20:32.773', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'533', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:20:32.780', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'534', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:20:58.730', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'535', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:20:58.737', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'536', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:20:58.807', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'537', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:20:58.810', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'538', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:21:04.230', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'539', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:21:04.233', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'540', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:21:04.300', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'541', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:21:04.310', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'542', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:21:07.437', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'543', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:21:07.440', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'544', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:21:07.497', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'545', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:21:07.500', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'546', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:21:25.090', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'547', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:21:25.097', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'548', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:21:25.227', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'549', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:21:25.233', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'550', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:22:02.657', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'551', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:22:02.670', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'552', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:22:02.730', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'553', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:22:02.737', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'554', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:23:03.603', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'555', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 00:23:08.157', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'556', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:23:22.697', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'557', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:23:26.767', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'558', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:23:36.130', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'559', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:23:36.133', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'560', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:22.567', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'561', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:22.583', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'562', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:23.507', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'563', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:23.523', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'564', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:24.127', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'565', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:24.147', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'566', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:24.867', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'567', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:24.870', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'568', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:41.917', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'569', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:41.917', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'570', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:47.287', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'571', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:47.440', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'572', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:47.437', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'573', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-09 00:24:47.440', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'574', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-09 00:25:06.683', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'575', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-09 00:25:07.063', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'576', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-09 00:25:07.147', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'577', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-09 00:25:07.150', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'578', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 20:25:49.887', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'579', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 20:25:52.267', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'580', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 21:36:04.670', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'581', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 21:36:07.217', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'582', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:00:31.593', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'583', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:00:33.783', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'584', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:01:55.777', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'585', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:01:55.783', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'586', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:02:37.610', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'587', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:02:37.613', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'588', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:03:31.850', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'589', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:03:31.857', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'590', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:08:02.843', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'591', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:08:03.260', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'592', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:11:35.297', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'593', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:11:37.897', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'594', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:12:39.810', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'595', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:12:39.813', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'596', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:21:32.867', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'597', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:21:33.297', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'598', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:22:43.243', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'599', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:22:43.257', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'600', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:23:50.157', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'601', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:23:50.163', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'602', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:25:04.510', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'603', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:25:04.520', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'604', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:26:54.040', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'605', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:26:54.057', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'606', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:27:53.743', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'607', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:27:53.753', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'608', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:28:58.543', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'609', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:28:58.593', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'610', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:30:40.147', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'611', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:30:40.177', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'612', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:32:41.160', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'613', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:32:41.167', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'614', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:33:15.690', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'615', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:33:15.720', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'616', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:34:59.233', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'617', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:35:01.150', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'618', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:36:38.967', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'619', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:36:39.407', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'620', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:38:01.150', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'621', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:38:03.613', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'622', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:38:25.940', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'623', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:38:25.977', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'624', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:52:50.840', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'625', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:52:52.757', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'626', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 22:54:28.597', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'627', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-09 22:54:29.033', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'628', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:54:33.373', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'629', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:54:33.387', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'630', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:58:29.367', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'631', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 22:58:29.370', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'632', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 23:01:50.330', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'633', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-09 23:01:50.417', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'634', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 11:46:42.633', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'635', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 11:46:44.127', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'636', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 11:50:15.843', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'637', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 11:50:21.043', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'638', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 11:52:17.997', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'639', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 11:52:18.007', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'640', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 13:30:11.877', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'641', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 13:30:13.833', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'642', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 13:58:22.317', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'643', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 13:58:23.020', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'644', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:01:02.280', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'645', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:01:02.290', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'646', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:02:28.600', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'647', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:02:28.603', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'648', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:05:03.007', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'649', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:05:03.010', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'650', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:10:08.813', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'651', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:10:11.253', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'652', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:47:24.220', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'653', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:47:26.377', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'654', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:49:38.040', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'655', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 14:49:39.287', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'656', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-10 14:51:56.287', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'657', N'Home', N'ForgotPassword', NULL, N'::1', N'INFO', N'2020-08-10 14:52:01.073', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'658', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-10 14:54:00.223', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'659', N'Home', N'ShowPassword', NULL, N'::1', N'INFO', N'2020-08-10 14:54:00.250', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'660', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 14:54:12.660', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'661', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 14:54:12.847', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'662', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 14:54:12.950', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'663', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 14:54:12.960', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'664', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:03:56.590', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'665', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:04:00.300', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'666', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 15:05:01.273', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'667', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 15:05:01.570', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'668', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:05:01.657', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'669', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:05:01.660', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'670', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:06:20.907', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'671', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:06:21.587', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'672', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 15:06:45.207', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'673', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 15:06:45.283', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'674', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:06:45.337', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'675', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:06:45.337', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'676', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:15:06.833', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'677', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:15:11.470', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'678', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:16:02.983', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'679', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 15:16:02.997', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'680', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 15:16:15.177', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'681', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 15:16:15.560', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'682', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:16:15.690', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'683', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:16:15.710', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'684', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:18:46.330', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'685', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:18:46.337', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'686', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:19:06.560', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'687', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:19:06.577', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'688', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:21:34.913', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'689', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 15:21:35.010', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'690', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:02:51.287', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'691', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:02:51.400', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'692', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 16:03:04.523', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'693', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 16:03:04.590', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'694', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:03:04.647', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'695', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:03:04.650', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'696', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:04:42.833', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'697', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:04:42.843', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'698', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:06:35.627', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'699', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:06:35.637', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'700', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:08:53.533', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'701', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:08:53.540', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'702', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:10:41.460', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'703', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:10:41.470', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'704', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:13:36.597', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'705', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:13:36.603', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'706', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:17:43.510', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'707', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:17:45.190', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'708', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:18:48.187', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'709', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:18:54.003', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'710', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:22:55.693', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'711', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:22:56.893', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'712', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:23:30.110', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'713', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:23:30.113', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'714', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:24:39.420', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'715', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:24:42.930', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'716', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:27:06.133', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'717', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:27:09.330', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'718', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:28:58.190', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'719', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:28:58.210', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'720', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:30:40.803', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'721', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:30:40.810', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'722', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:31:51.360', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'723', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:31:51.367', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'724', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 16:32:19.533', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'725', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 16:32:19.880', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'726', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:32:19.960', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'727', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:32:19.963', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'728', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:34:14.033', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'729', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:34:14.043', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'730', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:34:54.083', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'731', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:34:54.103', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'732', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:38:20.087', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'733', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:38:20.097', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'734', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:39:34.440', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'735', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:39:34.457', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'736', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:39:43.113', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'737', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:39:43.113', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'738', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:41:00.270', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'739', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 16:41:00.320', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'740', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 16:41:20.673', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'741', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 16:41:20.707', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'742', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:41:20.753', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'743', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:41:20.763', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'744', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:45:14.823', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'745', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:45:14.840', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'746', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:50:51.873', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'747', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:50:51.920', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'748', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:52:55.790', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'749', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 16:52:55.837', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'750', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 17:04:58.433', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'751', N'Home', N'Index', NULL, N'::1', N'INFO', N'2020-08-10 17:04:59.190', N'OnActionExecuted:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'752', N'Home', N'Login', NULL, N'::1', N'INFO', N'2020-08-10 17:06:21.710', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'753', N'Home', N'Login', N'TK3', N'::1', N'INFO', N'2020-08-10 17:06:21.857', N'OnActionExecuted:  Login OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'754', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 17:06:21.903', N'OnActionExecuting:  OK')
+GO
+
+INSERT INTO [project_2019].[log] ([IDLOG], [CONTROLLER], [ACTION], [IDACCOUNT], [IPADDRESS], [LEVEL], [CREATEAT], [MESSAGE]) VALUES (N'755', N'Home', N'Index', N'TK3', N'::1', N'INFO', N'2020-08-10 17:06:21.910', N'OnActionExecuted:  OK')
+GO
+
 SET IDENTITY_INSERT [project_2019].[log] OFF
 GO
 
@@ -17708,6 +19583,13 @@ CREATE TABLE [project_2019].[mailpassword] (
 GO
 
 ALTER TABLE [project_2019].[mailpassword] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of mailpassword
+-- ----------------------------
+INSERT INTO [project_2019].[mailpassword] VALUES (N'gdfxu3232JWATSaxykbNVPDW2932', N'TK3')
 GO
 
 
@@ -18705,142 +20587,34 @@ GO
 -- ----------------------------
 -- Records of recently_viewed
 -- ----------------------------
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT1', N'2019-12-14 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT1', N'2020-08-08 17:07:57')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT11', N'2019-12-14 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT102', N'2020-08-07 20:40:59')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT118', N'2019-12-14 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT35', N'2020-08-08 17:07:31')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT119', N'2019-12-14 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT49', N'2020-08-10 16:32:25')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT154', N'2019-12-13 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT53', N'2020-08-08 17:07:26')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT157', N'2019-12-13 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT65', N'2020-08-08 17:08:27')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT161', N'2019-12-13 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT68', N'2020-08-07 20:41:38')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT187', N'2019-12-13 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT7', N'2020-08-08 17:07:08')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT196', N'2019-12-13 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT83', N'2020-08-08 17:14:21')
 GO
 
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK1', N'DT211', N'2019-12-13 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT1', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT102', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT11', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT12', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT13', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT15', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT29', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK10', N'DT54', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK11', N'DT15', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK12', N'DT173', N'2019-12-18 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK12', N'DT58', N'2019-12-18 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK12', N'DT64', N'2019-12-18 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK15', N'DT29', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK2', N'DT1', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK2', N'DT9', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK21', N'DT203', N'2019-12-19 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK21', N'DT245', N'2019-12-19 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK22', N'DT11', N'2019-12-19 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK25', N'DT1', N'2020-01-02 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK26', N'DT13', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT10', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT102', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT105', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT110', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT12', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT160', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT262', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT263', N'2020-01-12 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT3', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT5', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK4', N'DT1', N'2019-12-14 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK8', N'DT12', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK8', N'DT58', N'2020-01-09 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK9', N'DT102', N'2019-12-18 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK9', N'DT182', N'2019-12-18 00:00:00')
-GO
-
-INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK9', N'DT218', N'2019-12-18 00:00:00')
+INSERT INTO [project_2019].[recently_viewed] VALUES (N'TK3', N'DT84', N'2020-08-08 17:08:53')
 GO
 
 
@@ -18910,9 +20684,16 @@ GO
 
 
 -- ----------------------------
+-- Auto increment value for binhluan
+-- ----------------------------
+DBCC CHECKIDENT ('[project_2019].[binhluan]', RESEED, 3)
+GO
+
+
+-- ----------------------------
 -- Primary Key structure for table binhluan
 -- ----------------------------
-ALTER TABLE [project_2019].[binhluan] ADD CONSTRAINT [PK_binhluan_ID_BINHLUAN] PRIMARY KEY CLUSTERED ([ID_BINHLUAN])
+ALTER TABLE [project_2019].[binhluan] ADD CONSTRAINT [PK__binhluan__9F8D5E554AE9EE02] PRIMARY KEY CLUSTERED ([ID_BINHLUAN])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
 GO
@@ -18955,9 +20736,16 @@ GO
 
 
 -- ----------------------------
+-- Auto increment value for danhgia
+-- ----------------------------
+DBCC CHECKIDENT ('[project_2019].[danhgia]', RESEED, 2)
+GO
+
+
+-- ----------------------------
 -- Primary Key structure for table danhgia
 -- ----------------------------
-ALTER TABLE [project_2019].[danhgia] ADD CONSTRAINT [PK_danhgia_ID_DANHGIA] PRIMARY KEY CLUSTERED ([ID_DANHGIA])
+ALTER TABLE [project_2019].[danhgia] ADD CONSTRAINT [PK__danhgia__D7D8AB78E9F379CD] PRIMARY KEY CLUSTERED ([ID_DANHGIA])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
 GO
@@ -18993,7 +20781,7 @@ GO
 -- ----------------------------
 -- Auto increment value for log
 -- ----------------------------
-DBCC CHECKIDENT ('[project_2019].[log]', RESEED, 125)
+DBCC CHECKIDENT ('[project_2019].[log]', RESEED, 755)
 GO
 
 
