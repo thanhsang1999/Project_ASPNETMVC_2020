@@ -137,6 +137,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filter\AuthFilter.cs" />
@@ -145,9 +146,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\Cart\CartProduct.cs" />
-    <Compile Include="Model\Code\Mail.cs" />
+    <Compile Include="Model\Cart\CartProductUser.cs" />
+    <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\PayDAO.cs" />
+    <Compile Include="Model\Code\Mail.cs" />
     <Compile Include="Model\DAO\EvaluationDAO.cs" />
     <Compile Include="Model\DAO\CommentDAO.cs" />
     <Compile Include="Model\DAO\LikeDAO.cs" />
@@ -178,12 +182,13 @@
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
-    <Compile Include="Model\Evaluation\FormEval.cs" />
-    <Compile Include="Model\User\FormPass.cs" />
-    <Compile Include="Model\ModelOfSession\User.cs" />
     <Compile Include="Model\ModelOfSession\FormSignup.cs" />
+    <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
+    <Compile Include="Model\ModelOfSession\User.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
     <Compile Include="Model\User\FormDataUser.cs" />
+    <Compile Include="Model\User\FormPass.cs" />
+    <Compile Include="Model\Evaluation\FormEval.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1458,6 +1463,7 @@
     <Content Include="Assets\web\styles\blog_single_styles.css" />
     <Content Include="Assets\web\styles\blog_styles.css" />
     <Content Include="Assets\web\styles\blue-cart.css" />
+    <Content Include="Assets\web\styles\blue-thanhtoan.css" />
     <Content Include="Assets\web\styles\blue_dangnhap.css" />
     <Content Include="Assets\web\styles\bootstrap4\bootstrap.min.css" />
     <Content Include="Assets\web\styles\bootstrap4\bootstrap.min.js" />
@@ -1548,20 +1554,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Views\Shared\ContentCart.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\DoiMK.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Header\Header.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\MenuLeftUser.cshtml" />
+    <Content Include="Views\User\DoiMK.cshtml" />
+    <Content Include="Views\Shared\ContentCart.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Pay\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\ShowPassword.cshtml" />
     <Content Include="Views\Product\ShowListProduct.cshtml" />
-    <Content Include="Views\User\MenuLeftUser.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
     <Content Include="Views\Shared\ContainComment.cshtml" />
     <Content Include="Views\Shared\ContainEvaluation.cshtml" />
+    <Content Include="Views\Header\Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

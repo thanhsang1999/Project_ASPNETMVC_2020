@@ -47,20 +47,17 @@ namespace Project_ASPNETMVC_2020.Model.Code
             if (day < 1)
             {
                 day = 1;
-            }
-            else if (day > 31)
+            }else if (day > 31)
             {
                 day = 30;
-            }
-            else if (month < 1)
+            }else if (month <1)
             {
                 month = 1;
             }
             else if (month > 12)
             {
                 month = 12;
-            }
-            else if (year < 0)
+            }else if (year<0)
             {
                 year = 1900;
             }

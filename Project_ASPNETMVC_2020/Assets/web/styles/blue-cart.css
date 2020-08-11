@@ -180,3 +180,7 @@
 #ten:disabled,#dia-chi:disabled,#sdt:disabled {
     background-color: #e9ecef !important;
 }
+.form-control {
+    text-align: center;
+    border-color: #7f8c8d;
+}

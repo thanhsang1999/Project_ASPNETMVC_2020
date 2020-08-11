@@ -28,7 +28,7 @@
                             <div class="col-md-10 bg-form-right-content">
                                 <div class="input-group mb-3 gian-cach">
                                     <span class="tieu-de-input">Tên :</span>
-                                    <input name="dkName" type="text" class="form-control" id="input-name" required>
+                                    <input  name="dkName"type="text" class="form-control" id="input-name" required>
                                 </div>
                             </div>
                             <div class="col-md-1"></div>
@@ -108,8 +108,8 @@
                      $('#input-mk-2').addClass('has-error');
                      return false;
                  }
-                 var data = $("#dk-form").serialize();
-
+                 
+             var data = $("#dk-form").serialize();
             $.ajax({
                 type: 'POST',
                 url: '/Home/Signup',
@@ -119,13 +119,16 @@
                     status = data.status
                     if (status == "success") {
                         window.location.href = '@Url.Action("Index","Home")';
-                        console.log("success");
                     } else if (status == "empty") {
-                        $("#dk-error-mess").hide().html("Không Để Trống").fadeIn("slow").css("color","red");
-                    } else if (status == "user") {
-                        $("#dk-error-mess").hide().html("Tài Khoản Tồn Tại").fadeIn("slow").css("color", "red");
+                        $("#dk-error-mess").hide().html("Không Để Trống").fadeIn("slow");
+                    } else if (status == "userlength") {
+                        $("#dk-error-mess").hide().html("Tài Khoản Phải Dài Hơn 6 Kí Tự").fadeIn("slow");
+                    }else if (status == "user") {
+                        $("#dk-error-mess").hide().html("Tài Khoản Tồn Tại").fadeIn("slow");
                     } else if (status == "email") {
-                        $("#dk-error-mess").hide().html("Email Không Đúng").fadeIn("slow").css("color", "red");
+                        $("#dk-error-mess").hide().html("Email Không Đúng").fadeIn("slow");
+                    } else if (status == "passlength") {
+                        $("#dk-error-mess").hide().html("Password Phải Dài Hơn 8 Kí Tự").fadeIn("slow");
                     } else if (status == "pass") {
                         $("#dk-error-mess").hide().html("Password Không Trùng Nhau").fadeIn("slow").css("color", "red");
                     }
@@ -133,28 +136,3 @@
             });
         });
 </script>
-@*<script>
-        $("#dk-btn").click(function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '/Home/SignupVer2',
-                data: data,
-                dataType: 'JSON',
-                success: function (response) {
-                    var status = response.status;
-                    var errName = response.errusername;
-                    var erremail = response.erremail;
-                    var errfullname = response.errfullname;
-                    var errpass1 = response.errpass1;
-                    var errpass2 = response.errpass2;
-                    if (status === "success") {
-                        window.location.href = '@Url.Action("Index","Home")';
-                        console.log("success");
-                    } else {
-
-                    }
-                }
-            });
-        });
-    </script>*@

@@ -22,7 +22,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return View();
+            return View();
             }
         }
         [HttpPost]
@@ -35,12 +35,12 @@ namespace Project_ASPNETMVC_2020.Controllers
             string DiaChi = data.UDiaChi;
             string GioiTinh = data.Ugioitinh;
             string NgaySinh = data.date;
-            if (Name == null || Email == null || SDT == null || DiaChi == null || GioiTinh == null || NgaySinh == null)
+            if (Name == null|| Email == null || SDT == null || DiaChi == null || GioiTinh == null || NgaySinh == null)
             {
                 status = "empty";
                 return new JsonResult { Data = new { status = status } };
             }
-            else if (Tools.IsValidEmail(Email) == false)
+            else if (Tools.IsValidEmail(Email)==false)
             {
                 status = "email";
                 return new JsonResult { Data = new { status = status } };
@@ -54,7 +54,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 var user = Session["User"] as User;
                 DBModel db1 = new DBModel();
-                var TmpUser = db1.accounts.Where(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT)).FirstOrDefault();
+                var TmpUser = db1.accounts.Where(x=>x.ID_ACCOUNT.Equals(user.ID_ACCOUNT)).FirstOrDefault();
                 TmpUser.HO_TEN = Name;
                 db1.SaveChangesAsync();
                 DBModel db2 = new DBModel();
@@ -101,7 +101,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 status = "oldpass";
                 return new JsonResult { Data = new { status = status } };
             }
-            else if (Password1.Length < 8)
+            else if (Password1.Length<8)
             {
                 status = "length";
                 return new JsonResult { Data = new { status = status } };

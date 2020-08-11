@@ -24,18 +24,19 @@ namespace Project_ASPNETMVC_2020.Controllers
             User user = Session["User"] as User;
             if (user != null)
             {
-                ArrayList model = new ArrayList();
-                List<CartProduct> listCartProduct = CartDAO.LoadCart(user.ID_ACCOUNT);
-                string TotalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
-                model.Add(listCartProduct);
-                model.Add(TotalMoney);
-                return View(model);
+            ArrayList model = new ArrayList();
+            List<CartProduct> listCartProduct = CartDAO.LoadCart(user.ID_ACCOUNT);
+            string TotalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
+            model.Add(listCartProduct);
+            model.Add(TotalMoney);
+            return View(model);
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
             }
         }
+
         [HttpPost]
         public ActionResult AddProductToCart(string idProduct, int amount)
         {
@@ -45,12 +46,12 @@ namespace Project_ASPNETMVC_2020.Controllers
                 string status = "success";
                 CartDAO.AddProductToCart(user.ID_ACCOUNT, idProduct, amount);
                 int number = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
-                string price = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
-                return new JsonResult { Data = new { status = status, number = number, price = price } };
+                string price = CartDAO.TotalMoney(user.ID_ACCOUNT,true);
+                return new JsonResult { Data = new { status = status,number=number,price= price } };
             }
             else
             {
-                return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
+                return new JsonResult { Data = new { url = Url.Action("Index","Home") } };
             }
         }
         [HttpPost]
@@ -74,7 +75,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                     db.SaveChanges();
                 }
                 string price = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
-                return new JsonResult { Data = new { status = status, price = price } };
+                return new JsonResult { Data = new { status = status,price = price } };
             }
             else
             {
@@ -95,7 +96,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 int number = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
                 string totalMoneyHeader = CartDAO.TotalMoney(user.ID_ACCOUNT, false);
                 string totalMoneyCart = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
-                return new JsonResult { Data = new { status = status, number = number, totalMoneyHeader = totalMoneyHeader, totalMoneyCart = totalMoneyCart } };
+                return new JsonResult { Data = new { status = status, number = number, totalMoneyHeader = totalMoneyHeader, totalMoneyCart= totalMoneyCart } };
             }
             else
             {
@@ -114,9 +115,9 @@ namespace Project_ASPNETMVC_2020.Controllers
                 DBModel db = new DBModel();
 
                 var tmp = db.carts.Where(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT));
-                foreach (cart cart in tmp)
+                foreach(cart cart in tmp)
                 {
-                    cart.CHECKBOX = (short?)int.Parse(number);
+                    cart.CHECKBOX = (short?) int.Parse(number);
                 }
                 db.SaveChanges();
                 string price = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
@@ -128,7 +129,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
         }
         [HttpPost]
-        public ActionResult ChangeAmountProductInCart(string idProduct, string amount)
+        public ActionResult ChangeAmountProductInCart(string idProduct,string amount)
         {
             User user = Session["User"] as User;
             if (user != null)
@@ -136,19 +137,40 @@ namespace Project_ASPNETMVC_2020.Controllers
                 string status = "success";
                 DBModel db = new DBModel();
                 var cart = db.carts.Where(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT) && x.ID_PRODUCT.Equals(idProduct)).FirstOrDefault();
-                cart.AMOUNT = (decimal?)int.Parse(amount);
+                cart.AMOUNT = (decimal?) int.Parse(amount);
                 db.SaveChanges();
                 int number = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
                 string totalMoneyHeader = CartDAO.TotalMoney(user.ID_ACCOUNT, false);
                 string totalMoneyCart = CartDAO.TotalMoney(user.ID_ACCOUNT, true);
                 string moneyProduct = Tools.StringToVND(CartDAO.TotalMoneyOfProduct(user.ID_ACCOUNT, idProduct).ToString());
-                return new JsonResult { Data = new { status = status, number = number, totalMoneyHeader = totalMoneyHeader, totalMoneyCart = totalMoneyCart, moneyProduct = moneyProduct } };
+                return new JsonResult { Data = new { status = status, number = number, totalMoneyHeader = totalMoneyHeader, totalMoneyCart = totalMoneyCart,moneyProduct=moneyProduct } };
             }
             else
             {
                 return new JsonResult { Data = new { url = Url.Action("Index", "Home") } };
             }
-
+        }
+        public ActionResult Pay()
+        {
+            User user = Session["User"] as User;
+            if (user != null)
+            {
+                DBModel db = new DBModel();
+                var tmp = db.carts.Count(x => x.ID_ACCOUNT.Equals(user.ID_ACCOUNT) && x.CHECKBOX == 1);
+                if (tmp>=1)
+                {
+                HttpContext.Session.Add("btndh","true");
+                return RedirectToAction("Index","Pay");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Cart");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

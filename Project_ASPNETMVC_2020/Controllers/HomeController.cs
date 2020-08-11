@@ -71,12 +71,12 @@ namespace Project_ASPNETMVC_2020.Controllers
             string Password2 = signup.dkPass2;
             UserDAO userDAO = new UserDAO();
 
-            if (UserName == "" || Email == "" || Name == "" || Password1 == "" || Password2 == "")
+            if(UserName==""|| Email == "" || Name == "" || Password1 == "" || Password2 == "")
             {
                 status = "empty";
                 return new JsonResult { Data = new { status = status } };
             }
-            else if (UserName.Length < 6)
+            else if (UserName.Length<6)
             {
                 status = "userlength";
                 return new JsonResult { Data = new { status = status } };
@@ -85,13 +85,12 @@ namespace Project_ASPNETMVC_2020.Controllers
             {
                 status = "user";
                 return new JsonResult { Data = new { status = status } };
-            }
-            else if (!Tools.IsValidEmail(Email))
+            }else if (!Tools.IsValidEmail(Email))
             {
                 status = "email";
                 return new JsonResult { Data = new { status = status } };
             }
-            else if (Password1.Length < 8)
+            else if (Password1.Length<8)
             {
                 status = "passlength";
                 return new JsonResult { Data = new { status = status } };
