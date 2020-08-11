@@ -130,7 +130,7 @@
                     } else if (status == "passlength") {
                         $("#dk-error-mess").hide().html("Password Phải Dài Hơn 8 Kí Tự").fadeIn("slow");
                     } else if (status == "pass") {
-                        $("#dk-error-mess").hide().html("Password Không Trùng Nhau").fadeIn("slow");
+                        $("#dk-error-mess").hide().html("Password Không Trùng Nhau").fadeIn("slow").css("color", "red");
                     }
                 }
             });

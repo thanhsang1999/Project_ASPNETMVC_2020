@@ -7,9 +7,13 @@ using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System.Web.UI.WebControls;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.Code;
+using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.ClassToConfig;
+using Microsoft.Ajax.Utilities;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter]
     public class HomeController : Controller
     {
         DBModel dbmodel = new DBModel();
@@ -25,22 +29,36 @@ namespace Project_ASPNETMVC_2020.Controllers
             string Password = user.PASS;
             UserDAO userDAO = new UserDAO();
 
-                if (UserName == "" || Password == "")
-                {
-                    status = "emtpy";
-                    return new JsonResult { Data = new { status = status } };
-                } else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
-                {
-                    status = "fail";
-                    return new JsonResult { Data = new { status = status } };
-                }
-                else
-                {
-                    User userVM = userDAO.getUser(userDAO.getID(UserName));
-                    HttpContext.Session.Add("User", userVM);
-                    status = "success";
-                    return new JsonResult { Data = new { status = status } };
-                }
+            if (UserName == "" || Password == "")
+            {
+                status = "emtpy";
+                // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // nếu ko có viewbag messagelog thì sẽ lưu xuống database là OK
+                ViewBag.MessageLog = "Login empty";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
+            {
+                status = "fail";
+                // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
+
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // nếu ko có viewbag messagelog thì sẽ lưu xuống database là OK
+
+                ViewBag.MessageLog = "Login fail";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else
+            {
+                User userVM = userDAO.getUser(userDAO.getID(UserName));
+                HttpContext.Session.Add("User", userVM);
+                status = "success";
+                // thành công thì có thể ko cần phải ghi LevelLog và MessageLog
+                ViewBag.LevelLog = LevelLog.INFO;
+                ViewBag.MessageLog = "Login OK";
+                return new JsonResult { Data = new { status = status } };
+            }
         }
         [HttpPost]
         public ActionResult Signup(FormSignup signup)
@@ -116,6 +134,57 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Clear();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult ForgotPassWord(string username)
+        {
+            string rs = "";
+            string email;
+            if (new UserDAO().checkUsered(username) == false)
+            {
+                rs = "Tên tài khoản không tồn tại";
+            }
+            else if ((email = new UserDAO().getEmailOfUser(username)) != null)
+            {
+                string iduser = new UserDAO().getIdByUserName(username);
+                Mail mail = new Mail();
+                var key = mail.RandomPassword();
+               
+                MailPasswordDAO mpd = new MailPasswordDAO();
+                var check = mpd.addKey(iduser, key);
+                while (check == false)
+                {
+                    key = mail.RandomPassword();
+                    check = mpd.addKey(iduser, key);
+                }
+                new UserDAO().ChangePasswordById(iduser, key);
+                bool check2 = mail.sendMail(email, key);
+                if (check2==false)
+                {
+                    rs = "Gửi mail thất bại";
+                }
+                else
+                {
+                    rs = "gửi mail thành công";
+                }
+            }
+            else
+            {
+                rs = "Gửi mail thất bại";
+            }
+            return Json(new { result = rs });
+        }
+        public ActionResult ShowPassWord(string key)
+        {
+            if(new MailPasswordDAO().isExistsKey(key) == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+
+            {
+                ViewBag.Key = key;
+                return View();
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
         }
 
         public virtual DbSet<account> accounts { get; set; }
+        public virtual DbSet<authentication> authentications { get; set; }
         public virtual DbSet<bill> bills { get; set; }
         public virtual DbSet<binhluan> binhluans { get; set; }
         public virtual DbSet<brand> brands { get; set; }
@@ -23,6 +24,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
         public virtual DbSet<detail_order> detail_order { get; set; }
         public virtual DbSet<group_product> group_product { get; set; }
         public virtual DbSet<hedieuhanh> hedieuhanhs { get; set; }
+        public virtual DbSet<log> logs { get; set; }
         public virtual DbSet<mailpassword> mailpasswords { get; set; }
         public virtual DbSet<memory> memories { get; set; }
         public virtual DbSet<order> orders { get; set; }

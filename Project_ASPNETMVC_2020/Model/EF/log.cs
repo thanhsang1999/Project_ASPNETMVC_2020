@@ -6,28 +6,30 @@ namespace Project_ASPNETMVC_2020.Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.danhgia")]
-    public partial class danhgia
+    [Table("project_2019.log")]
+    public partial class log
     {
         [Key]
-        public int ID_DANHGIA { get; set; }
+        public int IDLOG { get; set; }
 
         [StringLength(255)]
-        public string ID_SANPHAM { get; set; }
+        public string CONTROLLER { get; set; }
 
         [StringLength(255)]
-        public string ID_USER { get; set; }
+        public string ACTION { get; set; }
 
         [StringLength(255)]
-        public string SAO { get; set; }
+        public string IDACCOUNT { get; set; }
 
         [StringLength(255)]
-        public string TIEUDE { get; set; }
+        public string IPADDRESS { get; set; }
 
         [StringLength(255)]
-        public string NOIDUNG { get; set; }
+        public string LEVEL { get; set; }
+
+        public DateTime? CREATEAT { get; set; }
 
         [StringLength(255)]
-        public string TEN_USER { get; set; }
+        public string MESSAGE { get; set; }
     }
 }

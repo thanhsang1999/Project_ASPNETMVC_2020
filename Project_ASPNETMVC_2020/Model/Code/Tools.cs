@@ -62,21 +62,48 @@ namespace Project_ASPNETMVC_2020.Model.Code
             }
             return new DateTime(year, month, day, 12, 12, 12);
         }
-        public static String StringToVND (string money)
+        public static String StringToVND(string money)
         {
             CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
-            if (money == "0"||money==null||money=="")
-            {
-            return "0 VNĐ";
-            }
-            else
-            {
-            return double.Parse(money.ToString()).ToString("#,###", cul.NumberFormat)+ " VNĐ";
-            }
+            return double.Parse(money.ToString()).ToString("#,###", cul.NumberFormat) + " VNĐ";
         }
         public static double PricesDecreased(double price, double discount)
         {
             return (price - (price * (discount / 100)));
+        }
+        public static bool checkNull(string tocheck)
+        {
+            if (String.IsNullOrEmpty(tocheck) || String.IsNullOrWhiteSpace(tocheck) || String.Empty.Equals(tocheck) || tocheck.Equals(""))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public static bool checkNum(string tocheck)
+        {
+            try
+            {
+                int check = Convert.ToInt32(tocheck);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public static bool checkNullList(List<string> tocheck)
+        {
+            foreach(string word in tocheck)
+            {
+                if (checkNull(word) == false)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

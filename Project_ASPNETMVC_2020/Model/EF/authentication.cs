@@ -6,19 +6,19 @@ namespace Project_ASPNETMVC_2020.Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.binhluan")]
-    public partial class binhluan
+    [Table("project_2019.authentication")]
+    public partial class authentication
     {
         [Key]
-        public int ID_BINHLUAN { get; set; }
+        public int ID_AUTH { get; set; }
 
         [StringLength(255)]
-        public string ID_SANPHAM { get; set; }
+        public string ROLE { get; set; }
 
         [StringLength(255)]
-        public string TEN { get; set; }
+        public string CONTROLLER { get; set; }
 
         [StringLength(255)]
-        public string NOIDUNG { get; set; }
+        public string ACTION { get; set; }
     }
 }

@@ -1,10 +1,13 @@
-﻿using Project_ASPNETMVC_2020.Model.EF;
+﻿using Project_ASPNETMVC_2020.Model.Code;
+using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Management;
+using System.Web.UI.WebControls;
 
 namespace Project_ASPNETMVC_2020.Model.DAO
 {
@@ -83,6 +86,41 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                     
             }
             return "TK"+(tmpInt+1);
+        }
+        public string getEmailOfUser(string username)
+        {
+            var pro = new DBModel().accounts.Where(u => u.USERNAME == username).SingleOrDefault();
+            if (pro == null)
+            {
+                return null;
+            }
+            else
+            {
+                var pro2 = new DBModel().ct_account.Where(u => u.ID_ACCOUNT == pro.ID_ACCOUNT).SingleOrDefault();
+                string email = pro2.EMAIL;
+                return email;
+            }
+           
+        }
+        public void ChangePasswordById(string iduser,string pass)
+        {
+            DBModel dBModel = new DBModel();
+            var user = dBModel.accounts.Where(x => x.ID_ACCOUNT == iduser).SingleOrDefault();
+            user.PASSWORD = Tools.MD5(pass);
+            dBModel.accounts.AddOrUpdate(user);
+            dBModel.SaveChanges();
+        }
+        public string getIdByUserName(string username)
+        {
+            DBModel dBModel = new DBModel();
+            var user = dBModel.accounts.Where(x => x.USERNAME == username).SingleOrDefault();
+            return user.ID_ACCOUNT;
+        }
+        public account getUserById(string iduser)
+        {
+            DBModel dBModel = new DBModel();
+            var user = dBModel.accounts.Where(x => x.ID_ACCOUNT == iduser).SingleOrDefault();
+            return user;
         }
     }
 }
