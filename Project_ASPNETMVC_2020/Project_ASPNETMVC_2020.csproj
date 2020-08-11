@@ -149,7 +149,6 @@
     <Compile Include="Model\Cart\CartProductUser.cs" />
     <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
-    <Compile Include="Model\DAO\BrandDAO.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
     <Compile Include="Model\DAO\PayDAO.cs" />
     <Compile Include="Model\Code\Mail.cs" />
@@ -1560,17 +1559,15 @@
     <Content Include="Views\User\DoiMK.cshtml" />
     <Content Include="Views\Shared\ContentCart.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Header\Header.cshtml" />
     <Content Include="Views\Pay\Index.cshtml" />
-    <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Header\Header.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\ShowPassword.cshtml" />
     <Content Include="Views\Product\ShowListProduct.cshtml" />
     <Content Include="Views\Header\MainNavigation.cshtml" />
     <Content Include="Views\Shared\ContainComment.cshtml" />
     <Content Include="Views\Shared\ContainEvaluation.cshtml" />
+    <Content Include="Views\Header\Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

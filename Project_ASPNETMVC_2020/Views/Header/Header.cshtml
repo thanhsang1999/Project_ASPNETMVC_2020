@@ -9,7 +9,7 @@
     {
         var cart = Model[0] as CartProduct;
         numberOfProductsInTheCart = (int)Model[1];
-        totalMoney = (string) Model[2];
+        totalMoney = (string)Model[2];
     }
 
 }
@@ -39,7 +39,7 @@
                             <a href="#">Đơn Hàng</a>
 
                             <a href="@Url.Action("LogOut","Home")">Logout</a>
-                            @Ajax.ActionLink("Đăng Xuất", "Header","Header", new { ok = "ok" }, new AjaxOptions()
+                            @Ajax.ActionLink("Đăng Xuất", "Header", "Header", new { ok = "ok" }, new AjaxOptions()
                        {
                            HttpMethod = "POST",
                            UpdateTargetId = "header_real",
@@ -134,8 +134,4 @@
 <nav class="main_nav">
     @Html.Action("MainNavigation", "Header")
 </nav>
-<<<<<<< HEAD
 <!-- Menu -->
-=======
-<!-- Menu -->
->>>>>>> origin/Hieu
