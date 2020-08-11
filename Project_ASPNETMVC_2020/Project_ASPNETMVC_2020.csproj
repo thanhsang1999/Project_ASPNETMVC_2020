@@ -150,6 +150,7 @@
     <Compile Include="Model\DAO\CartDAO.cs" />
     <Compile Include="Model\DAO\EvaluationDAO.cs" />
     <Compile Include="Model\DAO\CommentDAO.cs" />
+    <Compile Include="Model\DAO\LikeDAO.cs" />
     <Compile Include="Model\DAO\LogDAO.cs" />
     <Compile Include="Model\DAO\MailPasswordDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
