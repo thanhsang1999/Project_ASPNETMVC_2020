@@ -76,7 +76,7 @@
                             <form action="#" class="header_search_form clearfix">
                                 <div class="row">
                                     <div class="col-lg-10 col-sm-10">
-                                        <input type="search" required="required"
+                                        <input id="search-input" type="search" required="required"
                                                class="header_search_input input-search"
                                                placeholder="Tìm Sản Phẩm...">
                                         <div class="custom_dropdown">
@@ -133,6 +133,33 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        var names = ["Jörn Zaefferer", "Scott González", "John Resig"];
+
+        var accentMap = {
+            "á": "a",
+            "ö": "o"
+        };
+        var normalize = function (term) {
+            var ret = "";
+            for (var i = 0; i < term.length; i++) {
+                ret += accentMap[term.charAt(i)] || term.charAt(i);
+            }
+            return ret;
+        };
+
+        $("#search-input").autocomplete({
+            source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response($.grep(names, function (value) {
+                    value = value.label || value.value || value;
+                    return matcher.test(value) || matcher.test(normalize(value));
+                }));
+            }
+        });
+    });
+</script>
 <nav class="main_nav">
     @Html.Action("MainNavigation", "Header")
 </nav>
