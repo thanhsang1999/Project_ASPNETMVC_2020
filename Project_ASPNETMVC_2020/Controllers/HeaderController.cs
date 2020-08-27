@@ -24,10 +24,12 @@ namespace Project_ASPNETMVC_2020.Controllers
                 var cart = CartDAO.LoadCart(user.ID_ACCOUNT);
                 var numberOfProductsInTheCart = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
                 var totalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, false);
+                var nameProduct = SearchDAO.loadNameProduct();
                 ArrayList model = new ArrayList();
                 model.Add(cart);
                 model.Add(numberOfProductsInTheCart);
                 model.Add(totalMoney);
+                model.Add(nameProduct);
                 return PartialView(model);
             }
             else
@@ -42,6 +44,11 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Clear();
             Session.Abandon();
             return PartialView();
+        }
+        [HttpPost]
+        public JsonResult Search()
+        {
+            return new JsonResult();
         }
     }
 }
