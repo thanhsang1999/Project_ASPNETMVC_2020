@@ -8,6 +8,7 @@
     ViewBag.Title = "ShowListProduct";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
     String urlAssetsImg = "/Assets/web/images/sanpham/";
+    LikeDAO likeDAO = new LikeDAO();
     DBModel dBModel = new DBModel();
     List<brand> brands = dBModel.brands.ToList();
     int records = ViewBag.totalRecord;
@@ -16,6 +17,7 @@
     User user = Session["User"] as User;
     List<product> listRV = new List<product>();
     if (user != null)
+
     {
         listRV = new ProductDAO().listProductRecentlyView(user.ID_ACCOUNT);
     }
@@ -41,14 +43,46 @@
     <script src="@Url.ContentAssetWeb("js/shop_custom.js",true)"></script>
     <script>
         $(".product_fav").click(function (e) {
+            var idproduct = $(this).data('product');
             if ($(this).hasClass('active') == true) {
-                alert('alo2')
-            } else {
-                alert('alo');
+                var idproduct = $(this).data('product');
+                $.ajax({
+                    type: 'POST',
+                    url: '/Product/DeleteLike',
+                    data: { idproduct: idproduct },
+                    success: function (data) {
+                        var rs = data.result;
+                        if (rs.includes("fail")) {
+                            alert(" ");
+                        } else if (rs === "user") {
+                            alert("Bạn phải đăng nhập để sử dụng chức năng này");
+                            $('#myModal').modal('show');
+                        } else {
+                            $('#header-real').html(rs);
+                        }
+                    }
+                });
+            } else {               
+                $.ajax({
+                    type: 'POST',
+                    url: '/Product/AddLike',
+                    data: { idproduct: idproduct },
+                    success: function (data) {
+                        var rs = data.result;
+                        if (rs.includes("fail")) {
+                            alert("Bạn không được bỏ trống nội dung,tiêu đề, đánh giá");
+                        } else if (rs === "user") {
+                            alert("bạn phải đăng nhập để sử dụng chức năng này");
+                            $('#myModal').modal('show');
+                        } else {
+                            $('#header_real').html(rs);
+                        }
+                    }
+                });
             }
 
         });
-       
+
 
     </script>
 }
@@ -126,37 +160,46 @@
                             {
                                 realprice = (float)(item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
                             }
-                            <div class="product_item is_new" style="float:left">
-                                <div class="product_border"></div>
-                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="@Url.Content(@urlAssetsImg+item.IMG.ToString())" alt="" height="100%" width="50%"></div>
-                                <div class="product_content">
-                                    @if (realprice == 0)
-                                    {
-                                        <div class="product_price">
-                                            @item.PRICE.Value.ToString("N0")₫
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="product_price">
-                                            @realprice.ToString("N0")₫
-                                        </div>
-                                    }
-
-                                    <div class="product_name">
-                                        <div><a href="@Url.Action("ProductDetail","Product",new { id=item.ID_PRODUCT})" tabindex="0">@item.NAME.ToString()</a></div>
-                                    </div>
+                    <div class="product_item is_new" style="float:left">
+                        <div class="product_border"></div>
+                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="@Url.Content(@urlAssetsImg+item.IMG.ToString())" alt="" height="100%" width="50%"></div>
+                        <div class="product_content">
+                            @if (realprice == 0)
+                            {
+                                <div class="product_price">
+                                    @item.PRICE.Value.ToString("N0")₫
                                 </div>
-                                <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                <ul class="product_marks">
-                                    @if (item.SALE_RATE != 0)
-                                    {
-                                        <li class="product_mark product_discount">@item.SALE_RATE%</li>
-                                    }
+                            }
+                            else
+                            {
+                                <div class="product_price">
+                                    @realprice.ToString("N0")₫
+                                </div>
+                            }
 
-                                    <li class="product_mark product_new">new</li>
-                                </ul>
+                            <div class="product_name">
+                                <div><a href="@Url.Action("ProductDetail","Product",new { id=item.ID_PRODUCT})" tabindex="0">@item.NAME.ToString()</a></div>
                             </div>
+                        </div>
+                        @if (user == null || likeDAO.isUserHasLike(item.ID_PRODUCT, user.ID_ACCOUNT) == false)
+                        {
+                            <div data-product="@item.ID_PRODUCT" class="product_fav"><i class="fas fa-heart"></i></div>
+
+                        }
+                        else
+                        {
+                            <div data-product="@item.ID_PRODUCT" class="product_fav active"><i class="fas fa-heart"></i></div>
+
+                        }
+                        <ul class="product_marks">
+                            @if (item.SALE_RATE != 0)
+                            {
+                                <li class="product_mark product_discount">@item.SALE_RATE%</li>
+                            }
+
+                            <li class="product_mark product_new">new</li>
+                        </ul>
+                    </div>
                         }
                         <!-- Product Item -->
 

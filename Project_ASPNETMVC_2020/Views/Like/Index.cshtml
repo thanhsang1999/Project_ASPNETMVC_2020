@@ -1,0 +1,80 @@
+﻿
+@section styles{
+
+}
+@section scripts{
+    }
+<!-- start-content -->
+<div class="container sang content">
+    <div class="row phan-1">
+        <table class="table">
+            <thead class="mauXanh">
+                <tr>
+                    <th>Ảnh Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá Tiền</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td class="img-tb">
+                        <img src=<%=request.getContextPath() + "/web/images/sanpham/" + rs.getString("IMG")%> />
+                    </td>
+                    <td class="ten-sp-tb">
+                        <a href="<%=request.getContextPath() + " /admin/search?search =" + rs.getString(" ID_PRODUCT")%>"><%=rs.getString("NAME")%></a>
+                    </td>
+                    <td class="gia-tb"><%=Tools.getPrice((int) (rs.getInt("PRICE")))%></td>
+                    <td class="thung-rac-tb">
+                        <a href="#" id="<%=rs.getString(" ID_PRODUCT") %>
+                            " class="deleteProductCart"><i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- end-content -->
+
+<script>
+    var functionRemoveProduct = function (e) {
+        // disabled the submit button
+        e.preventDefault();
+        $(this).prop("disabled", true);
+        var tmp = $(this);
+        var tmp2 = tmp.parent().parent().find('td:eq(0)').find('input:checkbox').attr('id');
+        console.log(tmp.attr('id'));
+        console.log(tmp.parent().parent());
+        $.ajax({
+            type: "POST",
+            url: "<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+                    + request.getContextPath() + "/web/changeAmountProductYeuThich" %> ",
+            data: { ID_PRODUCT: tmp.attr('id') },
+            success: function (data) {
+
+                tmp.parent().parent().remove();
+
+                functionUpdateYeuThich();
+
+            },
+            error: function (e) {
+
+                tmp.prop("disabled", false);
+
+            }
+        });
+    tmp.prop("disabled", false);
+    }
+    $('document').ready(function () {
+
+        $('.deleteProductCart').click(functionRemoveProduct);
+
+
+    });
+
+</script>

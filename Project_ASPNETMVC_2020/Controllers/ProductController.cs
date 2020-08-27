@@ -121,7 +121,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             ViewBag.ID = id == null ? "" : id;
             return View(listProduct);
         }
-      
+
         public ActionResult AddComment(string content, string nameofcm, string idproduct)
         {
             string rs = null;
@@ -142,17 +142,17 @@ namespace Project_ASPNETMVC_2020.Controllers
 
             return Json(new { result = rs });
         }
-      
+
         public ActionResult AddEvaluation(FormEval formeval)
         {
-            
+
             string rs = null;
             User user = Session["User"] as User;
             string idproduct = formeval.idproduct;
             string title = formeval.titleofeval;
-            string value=formeval.valuerating;
+            string value = formeval.valuerating;
             string content = formeval.contenteval;
-            List<string> listcheckNull =new  List<string>();
+            List<string> listcheckNull = new List<string>();
             listcheckNull.Add(idproduct);
             listcheckNull.Add(title);
             listcheckNull.Add(value);
@@ -163,11 +163,13 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (user == null)
             {
                 rs = "user";
-            } else if (check == false  )
+            }
+            else if (check == false)
             {
 
-                rs = "fail1" +idproduct+title+value+content;
-            } else if (checkNum == false)
+                rs = "fail1" + idproduct + title + value + content;
+            }
+            else if (checkNum == false)
             {
                 rs = "fail2" + idproduct + title + value + content;
             }
@@ -185,7 +187,48 @@ namespace Project_ASPNETMVC_2020.Controllers
                     string html = PartialView("ContainEvaluation", model).RenderToString();
                     rs = html;
                 }
-            }   
+            }
+            return Json(new { result = rs });
+        }
+        public ActionResult AddLike(string idproduct)
+        {
+            string rs = null;
+            LikeDAO dao = new LikeDAO();
+            User user = Session["User"] as User;
+            if (user == null)
+            {
+                rs = "user";
+            }
+            else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == true)
+            {
+                rs = "fail";
+            }
+            else
+            {
+                dao.addLike(user.ID_ACCOUNT, idproduct);
+                string html = PartialView("~/View/Header/Header").RenderToString();
+                rs = html;
+            }
+            return Json(new { result = rs });
+        }
+        public ActionResult DeleteLike(string idproduct)
+        {
+            string rs = null;
+            LikeDAO dao = new LikeDAO();
+            User user = Session["User"] as User;
+            if (user == null)
+            {
+                rs = "user";
+            }else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct,user.ID_ACCOUNT)==false)
+            {
+                rs = "fail";
+            }
+            else
+            {
+                dao.deleteLike(user.ID_ACCOUNT, idproduct);
+                string html = PartialView("~/View/Header/Header").RenderToString();
+                rs = html;
+            }
             return Json(new { result = rs });
         }
 
