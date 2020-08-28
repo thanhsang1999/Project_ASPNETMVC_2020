@@ -22,6 +22,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult ProductDetail(string id)
         {
 
+            
             product model = new product();
             if ((model = new ProductDAO().productDetail(id)) != null || id != null)
             {
