@@ -186,6 +186,7 @@
     <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
     <Compile Include="Model\ModelOfSession\User.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
+    <Compile Include="Model\Other\InputSearch.cs" />
     <Compile Include="Model\User\FormDataUser.cs" />
     <Compile Include="Model\User\FormPass.cs" />
     <Compile Include="Model\Evaluation\FormEval.cs" />

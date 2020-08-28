@@ -13,9 +13,13 @@
     string id = (string)ViewBag.ID;
 
 }
-@section styles{
+@section stylestemplate{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/main_styles.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/shop_styles.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/shop_responsive.css",true)">
+}
+@section styles{
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css")">
 }
 
 <div class="shop">
@@ -89,7 +93,7 @@
                             float realprice = 0;
                             if (item.SALE_RATE != 0)
                             {
-                                realprice= (float)(item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
+                                realprice = (float)(item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
                             }
                             <div class="product_item is_new" style="float:left">
                                 <div class="product_border"></div>
@@ -104,7 +108,7 @@
                                     else
                                     {
                                         <div class="product_price">
-                                           @realprice.ToString("N0")
+                                            @realprice.ToString("N0")
                                         </div>
                                     }
 

@@ -1,6 +1,7 @@
 ﻿using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
+using Project_ASPNETMVC_2020.Model.Other;
 using System.Collections;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -47,10 +48,10 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Abandon();
             return PartialView();
         }
-        [HttpPost]
-        public JsonResult Search()
+        public ActionResult Search(InputSearch input)
         {
-            return new JsonResult();
+            string id = SearchDAO.SearchNameToId(input.NameProduct);
+            return RedirectToAction("ProductDetail", "ProductController",id);
         }
     }
 }
