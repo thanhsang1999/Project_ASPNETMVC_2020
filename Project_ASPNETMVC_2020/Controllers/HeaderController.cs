@@ -5,6 +5,7 @@ using Project_ASPNETMVC_2020.Model.Other;
 using System.Collections;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.Routing;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
@@ -51,7 +52,9 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult Search(InputSearch input)
         {
             string id = SearchDAO.SearchNameToId(input.NameProduct);
-            return RedirectToAction("ProductDetail", "ProductController",id);
+            return RedirectToAction("ProductDetail", "Product",new RouteValueDictionary(new { controller = "Product", action = "ProductDetail", Id = id } ));
+          /*  return RedirectToAction("Main", new RouteValueDictionary(
+    new { controller = controllerName, action = "Main", Id = Id }));*/
         }
     }
 }
