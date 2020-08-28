@@ -117,6 +117,50 @@
             });
         });
     </script>
+    <script>
+        $(".product_fav").click(function (e) {
+            var idproduct = $(this).data('product');
+            if ($(this).hasClass('active') == true) {
+                var idproduct = $(this).data('product');
+                $.ajax({
+                    type: 'GET',
+                    url: '/Product/DeleteLike',
+                    data: { idproduct: idproduct },
+                    success: function (data) {
+                        var rs = data.result;
+                        if (rs.includes("fail")) {
+                            alert("Hệ thống có lỗi xảy ra");
+                        } else if (rs === "user") {
+                            alert("Bạn phải đăng nhập để sử dụng chức năng này");
+                            $('#myModal').modal('show');
+                        } else {
+                            $('.wishlist_count').html(rs);
+
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Product/AddLike',
+                    data: { idproduct: idproduct },
+                    success: function (data) {
+                        var rs = data.result;
+                        if (rs.includes("fail")) {
+                            alert("Hệ thống có lỗi xảy ra");
+                        } else if (rs === "user") {
+                            alert("bạn phải đăng nhập để sử dụng chức năng này");
+                            $('#myModal').modal('show');
+                        } else {
+                            $('.wishlist_count').html(rs);
+
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
 }
 <!-- Single Product -->
 
@@ -179,7 +223,15 @@
 
                             <div class="col-md-6">
                                 <label for="yeu-thich"><strong>Yêu Thích :</strong></label>
-                                <div class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                                @if (user == null || new LikeDAO().isUserHasLike(Model.ID_PRODUCT, user.ID_ACCOUNT) == false)
+                                {
+                                    <div data-product="@Model.ID_PRODUCT" class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                                }
+                                else
+                                {
+                                    <div data-product="@Model.ID_PRODUCT" class="product_fav active"><i id="yeu-thich" class="fas fa-heart"></i></div>
+
+                                }
                             </div>
                         </div>
                     </div>
@@ -718,52 +770,48 @@
         <div class="row">
             <div class="col">
                 <div class="brands_slider_container">
-
                     <!-- Brands Slider -->
-
                     <div class="owl-carousel owl-theme brands_slider">
-
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_1.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_1.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_2.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_2.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_3.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_3.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_4.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_4.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_5.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_5.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_6.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_6.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_7.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_7.jpg" alt="">
                             </div>
                         </div>
                         <div class="owl-item">
                             <div class="brands_item d-flex flex-column justify-content-center">
-                                <img src="images/brands_8.jpg" alt="">
+                                <img src="~/Assets/web/images/brands_8.jpg" alt="">
                             </div>
                         </div>
-
                     </div>
                     <!-- Brands Slider Navigation -->
                     <div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>

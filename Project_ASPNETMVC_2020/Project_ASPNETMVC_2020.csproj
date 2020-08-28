@@ -137,6 +137,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Model\Code\Mail.cs" />
     <Compile Include="Model\DAO\EvaluationDAO.cs" />
     <Compile Include="Model\DAO\CommentDAO.cs" />
+    <Compile Include="Model\DAO\LikeDAO.cs" />
     <Compile Include="Model\DAO\LogDAO.cs" />
     <Compile Include="Model\DAO\MailPasswordDAO.cs" />
     <Compile Include="Model\DAO\ProductDAO.cs" />
@@ -172,6 +174,7 @@
     <Compile Include="Model\EF\detail_order.cs" />
     <Compile Include="Model\EF\group_product.cs" />
     <Compile Include="Model\EF\hedieuhanh.cs" />
+    <Compile Include="Model\EF\informationproduct.cs" />
     <Compile Include="Model\EF\log.cs" />
     <Compile Include="Model\EF\mailpassword.cs" />
     <Compile Include="Model\EF\memory.cs" />
@@ -1570,6 +1573,7 @@
     <Content Include="Views\Shared\ContainComment.cshtml" />
     <Content Include="Views\Shared\ContainEvaluation.cshtml" />
     <Content Include="Views\Header\Header.cshtml" />
+    <Content Include="Views\Like\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

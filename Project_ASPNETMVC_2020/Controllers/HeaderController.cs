@@ -27,10 +27,12 @@ namespace Project_ASPNETMVC_2020.Controllers
                 var cart = CartDAO.LoadCart(user.ID_ACCOUNT);
                 var numberOfProductsInTheCart = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
                 var totalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, false);
+                var numberUserLike = new LikeDAO().getNumberUserLike(user.ID_ACCOUNT);
                 ArrayList model = new ArrayList();
                 model.Add(cart);
                 model.Add(numberOfProductsInTheCart);
                 model.Add(totalMoney);
+                model.Add(numberUserLike);   
                 model.Add(nameProduct);
                 return PartialView(model);
             }

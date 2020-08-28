@@ -12,6 +12,10 @@ namespace Project_ASPNETMVC_2020.Model.EF
         {
         }
 
+        public virtual DbSet<informationproduct> informationproducts { get; set; }
+        public virtual DbSet<ram> rams { get; set; }
+        public virtual DbSet<recently_viewed> recently_viewed { get; set; }
+        public virtual DbSet<yeuthich> yeuthiches { get; set; }
         public virtual DbSet<account> accounts { get; set; }
         public virtual DbSet<authentication> authentications { get; set; }
         public virtual DbSet<bill> bills { get; set; }
@@ -30,12 +34,13 @@ namespace Project_ASPNETMVC_2020.Model.EF
         public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<o> os { get; set; }
         public virtual DbSet<product> products { get; set; }
-        public virtual DbSet<ram> rams { get; set; }
-        public virtual DbSet<recently_viewed> recently_viewed { get; set; }
-        public virtual DbSet<yeuthich> yeuthiches { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<recently_viewed>()
+                .Property(e => e.DATE_VIEW)
+                .HasPrecision(0);
+
             modelBuilder.Entity<bill>()
                 .Property(e => e.AMOUNT)
                 .HasPrecision(5, 0);
@@ -66,10 +71,6 @@ namespace Project_ASPNETMVC_2020.Model.EF
 
             modelBuilder.Entity<product>()
                 .Property(e => e.DATE_SUBMITTED)
-                .HasPrecision(0);
-
-            modelBuilder.Entity<recently_viewed>()
-                .Property(e => e.DATE_VIEW)
                 .HasPrecision(0);
         }
     }

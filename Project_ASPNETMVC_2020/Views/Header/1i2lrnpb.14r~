@@ -1,0 +1,139 @@
+﻿@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.Cart
+@model System.Collections.ArrayList
+@{
+    var user = Session["User"] as User;
+    var numberOfProductsInTheCart = 0;
+    var totalMoney = "0 VNĐ";
+    var numberUserLike = 0;
+    if (user != null)
+    {
+        var cart = Model[0] as CartProduct;
+        numberOfProductsInTheCart = (int)Model[1];
+        totalMoney = (string)Model[2];
+        numberUserLike = (int)Model[3];
+    }
+
+}
+<!-- Top Bar -->
+<div class="top_bar">
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex flex-row">
+                <div class="top_bar_contact_item">
+                    <div class="top_bar_icon"><img src="~/Assets/web/images/phone.png" alt=""></div>+84 37509 4399
+                </div>
+                <div class="top_bar_contact_item">
+                    <div class="top_bar_icon"><img src="~/Assets/web/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">17130190@st.hcmuaf.edu.vn</a>
+                </div>
+                <div class="top_bar_content ml-auto">
+                    <div class="top_bar_menu"></div>
+                </div>
+                <div class="top_bar_user">
+                    <div class="user_icon"><img src="~/Assets/web/images/user.svg" alt=""></div>
+                    @if (Session["User"] != null)
+                    {
+
+                        <div><a>@user.HO_TEN</a></div>
+                        <div class="bang-thong-tin-tai-khoan">
+                            <a href="@Url.Action("Index","User")">Thông Tin Tài Khoản</a>
+                            <a href="#">Yêu Thích</a>
+                            <a href="#">Đơn Hàng</a>
+
+                            <a href="@Url.Action("LogOut","Home")">Logout</a>
+                            @Ajax.ActionLink("Đăng Xuất", "Header", "Header", new { ok = "ok" }, new AjaxOptions()
+                       {
+                           HttpMethod = "POST",
+                           UpdateTargetId = "header_real",
+                           InsertionMode = InsertionMode.Replace
+                       }
+                                                 )
+                        </div> }
+                    else
+                    {
+                        <div><a href="#" data-toggle="modal" data-target="#myModalDK">Đăng Kí</a></div>
+                        <div><a href="#" data-toggle="modal" data-target="#myModal">Đăng Nhập</a></div>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header Main -->
+<div class="header_main">
+    <div class="container">
+        <div class="row">
+            <!-- Logo -->
+            <div class="col-lg-2 col-sm-3 col-3 order-1">
+                <div class="logo_container">
+                    <div class="logo"><a href="@Url.Action("Index","Home")">B l u e</a></div>
+                </div>
+            </div>
+            <!-- Search -->
+            <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                <div class="header_search">
+                    <div class="header_search_content">
+                        <div class="header_search_form_container">
+                            <form action="#" class="header_search_form clearfix">
+                                <div class="row">
+                                    <div class="col-lg-10 col-sm-10">
+                                        <input type="search" required="required"
+                                               class="header_search_input input-search"
+                                               placeholder="Tìm Sản Phẩm...">
+                                        <div class="custom_dropdown">
+                                            <div class="custom_dropdown_list">
+                                                <span class="custom_dropdown_placeholder clc">
+                                                    All
+                                                    Categories
+                                                </span>
+                                                <i class="fas fa-chevron-down"></i>
+                                                <ul class="custom_list clc">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-2">
+                                        <button type="button"
+                                                class="btn btn-primary btn-search">
+                                            <span>
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Wishlist -->
+            <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                    <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                        <div class="wishlist_icon"><img src="~/Assets/web/images/heart.png" alt=""></div>
+                        <div class="wishlist_content">
+                            <div class="wishlist_text"><a href="@Url.Action("Index","Like")">Yêu Thích</a></div>
+                            <div class="wishlist_count">@numberUserLike</div>
+                        </div>
+                    </div>
+                    <!-- Cart -->
+                    <div class="cart">
+                        <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                            <div class="cart_icon">
+                                <img src="~/Assets/web/images/cart.png" alt="">
+                                <div class="cart_count"><span id="numberOfProductsInTheCart">@numberOfProductsInTheCart</span></div>
+                            </div>
+                            <div class="cart_content">
+                                <div class="cart_text"><a href="@Url.Action("Index","Cart")">Giỏ Hàng</a></div>
+                                <div class="cart_price">@totalMoney</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="main_nav">
+    @Html.Action("MainNavigation", "Header")
+</nav>
+<!-- Menu -->

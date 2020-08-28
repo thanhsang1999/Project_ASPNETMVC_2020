@@ -10,10 +10,12 @@ namespace Project_ASPNETMVC_2020.Model.EF
     public partial class order
     {
         [Key]
+        [Column(Order = 0)]
         [StringLength(10)]
         public string ID_ORDER { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 1)]
         [StringLength(10)]
         public string ID_USER { get; set; }
 
