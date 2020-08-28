@@ -80,7 +80,7 @@
                 <div class="header_search">
                     <div class="header_search_content">
                         <div class="header_search_form_container">
-                            <form action="HeaderController/Search" class="header_search_form clearfix">
+                            <form action="/Header/Search" method="get" class="header_search_form clearfix">
                                 <div class="row">
                                     <div class="col-lg-10 col-sm-10">
                                         <input id="search-input" type="search" required="required"
@@ -99,12 +99,12 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-sm-2">
-                                        <submit type="button"
+                                        <button type="submit"
                                                 class="btn btn-primary btn-search">
                                             <span>
                                                 <i class="fas fa-search"></i>
                                             </span>
-                                        </submit>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
