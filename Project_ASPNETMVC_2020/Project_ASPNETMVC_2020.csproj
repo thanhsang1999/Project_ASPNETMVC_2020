@@ -138,6 +138,7 @@
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\OrderUserController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
     <Compile Include="Model\ModelOfSession\User.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
+    <Compile Include="Model\DAO\OrderDAO.cs" />
+    <Compile Include="Model\Other\DetailOrderProduct.cs" />
     <Compile Include="Model\Other\InputSearch.cs" />
     <Compile Include="Model\User\FormDataUser.cs" />
     <Compile Include="Model\User\FormPass.cs" />
@@ -1574,6 +1577,7 @@
     <Content Include="Views\Shared\ContainEvaluation.cshtml" />
     <Content Include="Views\Header\Header.cshtml" />
     <Content Include="Views\Like\Index.cshtml" />
+    <Content Include="Views\OrderUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
