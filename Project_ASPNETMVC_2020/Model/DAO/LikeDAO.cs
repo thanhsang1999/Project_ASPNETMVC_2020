@@ -1,4 +1,4 @@
-﻿using Microsoft.Ajax.Utilities;
+﻿    using Microsoft.Ajax.Utilities;
 using Project_ASPNETMVC_2020.Model.EF;
 using System;
 using System.Collections.Generic;
@@ -91,11 +91,11 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             var check = db.yeuthiches.Where(x => x.ID_PRODUCT == idproduct && x.ID_ACCOUNT == iduser).FirstOrDefault();
             if (check == null)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
     }

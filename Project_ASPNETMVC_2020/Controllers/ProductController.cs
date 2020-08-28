@@ -206,11 +206,12 @@ namespace Project_ASPNETMVC_2020.Controllers
             else
             {
                 dao.addLike(user.ID_ACCOUNT, idproduct);
-                string html = PartialView("~/View/Header/Header").RenderToString();
+                string html = new LikeDAO().getNumberUserLike(user.ID_ACCOUNT).ToString();
                 rs = html;
             }
-            return Json(new { result = rs });
+            return Json(new { result = rs }, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult DeleteLike(string idproduct)
         {
             string rs = null;
@@ -219,21 +220,18 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (user == null)
             {
                 rs = "user";
-            }else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct,user.ID_ACCOUNT)==false)
+            }
+            else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == false)
             {
                 rs = "fail";
             }
             else
             {
                 dao.deleteLike(user.ID_ACCOUNT, idproduct);
-                string html = PartialView("~/View/Header/Header").RenderToString();
+                string html = new LikeDAO().getNumberUserLike(user.ID_ACCOUNT).ToString();
                 rs = html;
             }
-            return Json(new { result = rs });
+            return Json(new { result = rs }, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
     }
 }

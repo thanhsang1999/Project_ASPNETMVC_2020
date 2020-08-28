@@ -1,11 +1,57 @@
-﻿
-@section styles{
+﻿@using Project_ASPNETMVC_2020.ClassToConfig;
+@using Project_ASPNETMVC_2020.Model.Cart
+@using Project_ASPNETMVC_2020.Model.Code
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.EF
+@model System.Collections.ArrayList
+@{
+    Layout = "~/Views/Shared/LayoutForUser.cshtml";
+    var ListLikeOfUser = (List<product>)Model[0];
 
 }
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_styles.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css",true)">
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-cart.css",true)">
+}
 @section scripts{
-    }
+    <script src="@Url.ContentAssetWeb("js/cart_custom.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
+    <script>
+        $('.deleteProductLike').click(function (e) {
+            e.preventDefault();
+            var idproduct = $(this).data('product');
+            $.ajax({
+                type: 'GET',
+                url: '/Like/DeleteLike',
+                data: { idproduct: idproduct },
+                success: function (data) {
+                    var rs = data.result;
+                    var htmlreplace = '#deleteLike-' + idproduct;
+                    if (rs === "user") {
+                         window.location.href = '@Url.Action("Index","Home")';
+                    } else if (rs === 'fail') {
+                        alert('Hệ thống xảy ra lỗi');
+                    } else {
+                        $('.wishlist_count').html(rs);
+                        console.log(htmlreplace);
+                        $(htmlreplace).html("");
+                    }
+                }
+            });          
+        })
+    </script>
+
+}
 <!-- start-content -->
-<div class="container sang content">
+<div id="content-like" class="container sang content">
     <div class="row phan-1">
         <table class="table">
             <thead class="mauXanh">
@@ -17,64 +63,39 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (product item in ListLikeOfUser)
+                {
+                    float realprice = 0;
+                    if (item.SALE_RATE != 0)
+                    {
+                        realprice = (float)(item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
+                    }
+                    <tr id="deleteLike-@item.ID_PRODUCT">
+                        <td class="img-tb"> 
+                            <img src="@Url.ContentAssetWeb("images/sanpham/"+item.IMG,true)" />
+                        </td>
+                        <td class="ten-sp-tb">
+                            <a href="@Url.Action("ProductDetail","Product",new { id=item.ID_PRODUCT})">@item.NAME</a>
+                        </td>
+                        @if (realprice == 0)
+                        {
+                            <td class="gia-tb">@item.PRICE.Value.ToString("N0") VNĐ</td>
+                        }
+                        else
+                        {
+                    <td class="gia-tb">@realprice.ToString("N0") VNĐ</td>
+                        }
 
-                <tr>
-                    <td class="img-tb">
-                        <img src=<%=request.getContextPath() + "/web/images/sanpham/" + rs.getString("IMG")%> />
-                    </td>
-                    <td class="ten-sp-tb">
-                        <a href="<%=request.getContextPath() + " /admin/search?search =" + rs.getString(" ID_PRODUCT")%>"><%=rs.getString("NAME")%></a>
-                    </td>
-                    <td class="gia-tb"><%=Tools.getPrice((int) (rs.getInt("PRICE")))%></td>
-                    <td class="thung-rac-tb">
-                        <a href="#" id="<%=rs.getString(" ID_PRODUCT") %>
-                            " class="deleteProductCart"><i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                </tr>
-
-
+                        <td class="thung-rac-tb">
+                            <a href="" data-product="@item.ID_PRODUCT" id="@item.ID_PRODUCT" class="deleteProductLike">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
 </div>
 
 <!-- end-content -->
-
-<script>
-    var functionRemoveProduct = function (e) {
-        // disabled the submit button
-        e.preventDefault();
-        $(this).prop("disabled", true);
-        var tmp = $(this);
-        var tmp2 = tmp.parent().parent().find('td:eq(0)').find('input:checkbox').attr('id');
-        console.log(tmp.attr('id'));
-        console.log(tmp.parent().parent());
-        $.ajax({
-            type: "POST",
-            url: "<%=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-                    + request.getContextPath() + "/web/changeAmountProductYeuThich" %> ",
-            data: { ID_PRODUCT: tmp.attr('id') },
-            success: function (data) {
-
-                tmp.parent().parent().remove();
-
-                functionUpdateYeuThich();
-
-            },
-            error: function (e) {
-
-                tmp.prop("disabled", false);
-
-            }
-        });
-    tmp.prop("disabled", false);
-    }
-    $('document').ready(function () {
-
-        $('.deleteProductCart').click(functionRemoveProduct);
-
-
-    });
-
-</script>
