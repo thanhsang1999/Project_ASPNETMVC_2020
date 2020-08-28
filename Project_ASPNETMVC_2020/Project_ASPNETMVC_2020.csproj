@@ -151,6 +151,7 @@
     <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\SearchDAO.cs" />
     <Compile Include="Model\DAO\PayDAO.cs" />
     <Compile Include="Model\Code\Mail.cs" />
     <Compile Include="Model\DAO\EvaluationDAO.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Model\EF\detail_order.cs" />
     <Compile Include="Model\EF\group_product.cs" />
     <Compile Include="Model\EF\hedieuhanh.cs" />
+    <Compile Include="Model\EF\informationproduct.cs" />
     <Compile Include="Model\EF\log.cs" />
     <Compile Include="Model\EF\mailpassword.cs" />
     <Compile Include="Model\EF\memory.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
     <Compile Include="Model\ModelOfSession\User.cs" />
     <Compile Include="Model\ModelOfSession\UserLogin.cs" />
+    <Compile Include="Model\Other\InputSearch.cs" />
     <Compile Include="Model\User\FormDataUser.cs" />
     <Compile Include="Model\User\FormPass.cs" />
     <Compile Include="Model\Evaluation\FormEval.cs" />

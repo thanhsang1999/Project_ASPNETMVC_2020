@@ -6,17 +6,14 @@ namespace Project_ASPNETMVC_2020.Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("project_2019.mailpassword")]
-    public partial class mailpassword
+    [Table("project_2019.informationproduct")]
+    public partial class informationproduct
     {
         [Key]
-        [Column(Order = 0)]
         [StringLength(255)]
-        public string key { get; set; }
+        public string ID_PRODUCT { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
         [StringLength(255)]
-        public string ID_ACCOUNT { get; set; }
+        public string MANHINH { get; set; }
     }
 }

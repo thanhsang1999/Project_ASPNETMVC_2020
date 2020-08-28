@@ -1,6 +1,7 @@
 ﻿using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
+using Project_ASPNETMVC_2020.Model.Other;
 using System.Collections;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -19,6 +20,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult Header()
         {
             User user = Session["User"] as User;
+            var nameProduct = SearchDAO.loadNameProduct();
             if (user != null)
             {
                 var cart = CartDAO.LoadCart(user.ID_ACCOUNT);
@@ -29,13 +31,15 @@ namespace Project_ASPNETMVC_2020.Controllers
                 model.Add(cart);
                 model.Add(numberOfProductsInTheCart);
                 model.Add(totalMoney);
-                model.Add(numberUserLike);
-                
+                model.Add(numberUserLike);   
+                model.Add(nameProduct);
                 return PartialView(model);
             }
             else
             {
-                return PartialView();
+                ArrayList model = new ArrayList();
+                model.Add(nameProduct);
+                return PartialView(model);
             }
         }
         [HttpPost]
@@ -45,6 +49,11 @@ namespace Project_ASPNETMVC_2020.Controllers
             Session.Clear();
             Session.Abandon();
             return PartialView();
+        }
+        public ActionResult Search(InputSearch input)
+        {
+            string id = SearchDAO.SearchNameToId(input.NameProduct);
+            return RedirectToAction("ProductDetail", "ProductController",id);
         }
     }
 }

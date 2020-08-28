@@ -23,7 +23,8 @@
     }
 
 }
-@section styles{
+@section stylestemplate{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/main_styles.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/shop_styles.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/shop_responsive.css",true)">
 }
@@ -73,9 +74,13 @@
             }
 
         });
+        
 
-
+ 
     </script>
+    }
+@section styles{
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css")">
 }
 
 <div class="shop">

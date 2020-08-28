@@ -12,7 +12,7 @@
     var userOder = ListCPU[0];
     var totalMoney = (double)Model[1];
 }
-@section styles{
+@section stylestemplate{
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -22,6 +22,8 @@
     <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css")">
     <link rel="shortcut icon" href="@Url.ContentAssetWeb("images/logo-blue.png")">
     <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css")">
+}
+@section styles{
     <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-thanhtoan.css")">
 }
 <div class="container sang content">
@@ -148,7 +150,7 @@
     </div>
 </div>
 @section scripts{
-    <script src="@Url.ContentAssetWeb("web/js/cart_custom.js",true)"></script>
+    <script src="@Url.ContentAssetWeb("js/cart_custom.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
     <script>
@@ -180,7 +182,7 @@
                     }
                 });
             });
-            
+
         });
     </script>
 }
