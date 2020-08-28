@@ -19,12 +19,12 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult Header()
         {
             User user = Session["User"] as User;
+            var nameProduct = SearchDAO.loadNameProduct();
             if (user != null)
             {
                 var cart = CartDAO.LoadCart(user.ID_ACCOUNT);
                 var numberOfProductsInTheCart = CartDAO.NumberOfProduct(user.ID_ACCOUNT);
                 var totalMoney = CartDAO.TotalMoney(user.ID_ACCOUNT, false);
-                var nameProduct = SearchDAO.loadNameProduct();
                 ArrayList model = new ArrayList();
                 model.Add(cart);
                 model.Add(numberOfProductsInTheCart);
@@ -34,7 +34,9 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return PartialView();
+                ArrayList model = new ArrayList();
+                model.Add(nameProduct);
+                return PartialView(model);
             }
         }
         [HttpPost]
