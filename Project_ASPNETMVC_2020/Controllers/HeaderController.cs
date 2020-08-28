@@ -43,14 +43,6 @@ namespace Project_ASPNETMVC_2020.Controllers
                 return PartialView(model);
             }
         }
-        [HttpPost]
-        public ActionResult Header(string logout)
-        {
-            FormsAuthentication.SignOut();
-            Session.Clear();
-            Session.Abandon();
-            return PartialView();
-        }
         public ActionResult Search(InputSearch input)
         {
             string id = SearchDAO.SearchNameToId(input.NameProduct);
