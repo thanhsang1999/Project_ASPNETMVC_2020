@@ -20,7 +20,14 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         {
             DBModel db = new DBModel();
             var result = db.products.Where(x => x.NAME.Equals(name)).FirstOrDefault();
-            return result.ID_PRODUCT;
+            if (result!=null)
+            {
+                return result.ID_PRODUCT;
+            }
+            else
+            {
+                return name;
+            }
         }
     }
 }

@@ -52,9 +52,16 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult Search(InputSearch input)
         {
             string id = SearchDAO.SearchNameToId(input.NameProduct);
+            if (input.NameProduct != id)
+            {
             return RedirectToAction("ProductDetail", "Product",new RouteValueDictionary(new { controller = "Product", action = "ProductDetail", Id = id } ));
-          /*  return RedirectToAction("Main", new RouteValueDictionary(
-    new { controller = controllerName, action = "Main", Id = Id }));*/
+            }
+            else
+            {
+                // TODO
+                // chức năng tìm kiếm nâng cao
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }
