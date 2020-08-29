@@ -249,6 +249,11 @@
     <Content Include="Assets\web\images\featured_7.png" />
     <Content Include="Assets\web\images\featured_8.png" />
     <Content Include="Assets\web\images\heart.png" />
+    <Content Include="Assets\web\images\home\iphone.png" />
+    <Content Include="Assets\web\images\home\oppo.png" />
+    <Content Include="Assets\web\images\home\samsung.jpg" />
+    <Content Include="Assets\web\images\home\vivo.png" />
+    <Content Include="Assets\web\images\home\xiaomi.png" />
     <Content Include="Assets\web\images\icon\commentmobile.png" />
     <Content Include="Assets\web\images\icon\darkstar.png" />
     <Content Include="Assets\web\images\icon\star.png" />
@@ -1581,6 +1586,9 @@
     <Content Include="Views\OrderUser\Index.cshtml" />
     <Content Include="Views\Home\DealsOfTheWeek.cshtml" />
     <Content Include="Views\Home\Featured.cshtml" />
+    <Content Include="Views\Home\Banner.cshtml" />
+    <Content Include="Views\Home\HotNewArrivals.cshtml" />
+    <Content Include="Views\Home\BestSellers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

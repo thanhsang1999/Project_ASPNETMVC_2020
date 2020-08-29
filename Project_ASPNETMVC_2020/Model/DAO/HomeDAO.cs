@@ -45,5 +45,26 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             var result = db.products.OrderByDescending(x => x.AMOUNT_SOLD).Take(8);
             return result.ToList();
         }
+
+        public static List<product> LoadProductsToBaner()
+        {
+            DBModel db = new DBModel();
+            var result = db.products.OrderByDescending(x => x.PRICE).Take(3);
+            return result.ToList();
+        }
+
+        public static List<product> LoadHotNewArrivals()
+        {
+            DBModel db = new DBModel();
+            var result = db.products.OrderByDescending(x => x.DATE_SUBMITTED).Take(20);
+            return result.ToList();
+        }
+
+        public static List<product> LoadBestSellers()
+        {
+            DBModel db = new DBModel();
+            var result = db.products.OrderByDescending(x => x.AMOUNT_SOLD).Take(24);
+            return result.ToList();
+        }
     }
 }

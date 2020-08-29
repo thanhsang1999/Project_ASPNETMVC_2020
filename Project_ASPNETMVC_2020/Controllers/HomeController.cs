@@ -206,5 +206,34 @@ namespace Project_ASPNETMVC_2020.Controllers
             model.Add(bestSell);
             return PartialView(model);
         }
+
+        public ActionResult Banner()
+        {
+            ArrayList model = new ArrayList();
+            var product = HomeDAO.LoadProductsToBaner();
+            model.Add(product);
+            return PartialView(model);
+        }
+        public ActionResult HotNewArrivals()
+        {
+            ArrayList model = new ArrayList();
+            var listProducts = HomeDAO.LoadHotNewArrivals();
+            model.Add(listProducts);
+            return PartialView(model);
+        }
+        public ActionResult BestSellers()
+        {
+            ArrayList model = new ArrayList();
+            var listProducts = HomeDAO.LoadBestSellers();
+            model.Add(listProducts);
+            return PartialView(model);
+        }
+        public ActionResult Trends()
+        {
+            ArrayList model = new ArrayList();
+            var listProducts = HomeDAO.LoadBestSellers();
+            model.Add(listProducts);
+            return PartialView(model);
+        }
     }
 }
