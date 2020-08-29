@@ -46,6 +46,23 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             }
             return listEval;
         }
-            
+        public List<danhgia> getListRecentEval()
+        {
+            DBModel dBModel = new DBModel();
+            var listEval = dBModel.danhgias.Take(6).OrderByDescending(x => x.ID_DANHGIA).ToList();
+            return listEval;
+        }
+        public List<product> getListProductForRecentEval(List<danhgia> re )
+        {
+           
+            List<product> rs = new List<product>();
+            foreach(danhgia item in re)
+            {
+                var p = new ProductDAO().productDetail(item.ID_SANPHAM);
+                rs.Add(p);
+            }
+            return rs;
+        }
+        
     }
 }
