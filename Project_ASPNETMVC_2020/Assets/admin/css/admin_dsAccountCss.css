@@ -1,0 +1,47 @@
+.giua {
+    text-align: center;
+}
+.table_account i{
+	font-size: 16px;
+}
+.cach_nho{
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+}
+.admin-red{
+	color: #e74c3c;
+}
+.admin-red-hover{
+	color: #e74c3c;
+}
+.admin-red-hover:hover{
+	color: #c0392b;
+}
+.admin-green{
+	color: #2ecc71;
+}
+.admin-blue{
+	color: #3498db;
+}
+.admin-blue-hover{
+	color: #3498db;
+}
+.admin-blue-hover:hover{
+	color: #2980b9;
+}
+.admin-yellow-hover{
+	color: #f1c40f;
+}
+.admin-yellow-hover:hover{
+	color: #f39c12;
+}
+.jconfirm .jconfirm-box div.jconfirm-title-c .jconfirm-title {
+	color: #e74c3c;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+	
+}
+
+.jconfirm-buttons, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+margin-top: 30px
+	}
