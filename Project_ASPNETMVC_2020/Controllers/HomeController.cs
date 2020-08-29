@@ -10,6 +10,7 @@ using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.ClassToConfig;
 using Microsoft.Ajax.Utilities;
+using System.Collections;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
@@ -185,6 +186,25 @@ namespace Project_ASPNETMVC_2020.Controllers
                 ViewBag.Key = key;
                 return View();
             }
+        }
+    
+        public ActionResult DealsOfTheWeek()
+        {
+            ArrayList model = new ArrayList();
+            var products = HomeDAO.LoadProductDealsOfTheWeek();
+            model.Add(products);
+            return PartialView(model);
+        }
+        public ActionResult Featured()
+        {
+            ArrayList model = new ArrayList();
+            var special = HomeDAO.LoadProductSpecial();
+            var discount = HomeDAO.LoadProductDiscount();
+            var bestSell = HomeDAO.LoadProductBestSell();
+            model.Add(special);
+            model.Add(discount);
+            model.Add(bestSell);
+            return PartialView(model);
         }
     }
 }

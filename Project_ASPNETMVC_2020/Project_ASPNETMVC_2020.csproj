@@ -152,6 +152,7 @@
     <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\HomeDAO.cs" />
     <Compile Include="Model\DAO\SearchDAO.cs" />
     <Compile Include="Model\DAO\PayDAO.cs" />
     <Compile Include="Model\Code\Mail.cs" />
@@ -1578,6 +1579,8 @@
     <Content Include="Views\Header\Header.cshtml" />
     <Content Include="Views\Like\Index.cshtml" />
     <Content Include="Views\OrderUser\Index.cshtml" />
+    <Content Include="Views\Home\DealsOfTheWeek.cshtml" />
+    <Content Include="Views\Home\Featured.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
