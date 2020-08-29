@@ -1,0 +1,91 @@
+﻿@using Project_ASPNETMVC_2020.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.Model.Other
+@using Project_ASPNETMVC_2020.Model.Code
+@model System.Collections.ArrayList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutForUser.cshtml";
+    User user = Session["User"] as User;
+    var listOrder = Model[0] as List<order>; 
+    var listDetailOrder = Model[1] as List<List<DetailOrderProduct>>;
+}
+
+@section stylestemplate{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_styles.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css",true)">
+}
+@section styles{
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-cart.css",true)">
+}
+
+<!-- start-content -->
+<div class="container sang content">
+    <div class="row phan-1">
+        <table class="table">
+            <thead class="mauXanh">
+                <tr>
+                    <th class="column-title head-ms">Mã Số </th>
+                    <th class="column-title giua head-tnd">Tên Người Nhận </th>
+                    <th class="column-title giua">Địa Chỉ </th>
+                    <th class="column-title giua">Số Điện Thoại </th>
+                    <th class="column-title giua">Sản Phẩm </th>
+                    <th class="column-title giua">Giá </th>
+                    <th class="column-title head-trang-thai">Trạng Thái </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (order item in listOrder)
+                {
+                <tr>
+                    <td>@item.ID_ORDER</td>
+                    <td>@item.HOTEN</td>
+                    <td class="dia-chi">@item.DIACHI</td>
+                    <td>@item.SDT</td>
+                    <td>
+                        <ul>
+                            @foreach(List<DetailOrderProduct> item2 in listDetailOrder)
+                            {
+                               foreach(DetailOrderProduct item3 in item2)
+                               {
+                                   if(item.ID_ORDER.Equals(item3.ID_ORDER))
+                                   {
+                                        <li>@item3.NAME <i class="fas fa-times"></i> @item3.AMOUNT</li>
+                                   }
+                               }
+                            }
+                        </ul>
+                    </td>
+                    <td style="font-weight: 600;color: #c0392b;">@Tools.StringToVND(item.PRICE.ToString())</td>
+                    <td style="font-weight: 600;">
+                        @switch (item.STATUS)
+                        {
+                            case "1":
+                                <span style="color: #3498db">Đang Giao Hàng</span>
+                                break;
+                            case "2":
+                                <span style="color: #2ecc71"> Hoàn Thành</span>
+                                break;
+                            case "3":
+                             <span style="color: #e74c3c">Từ Chối</span>
+                                break;
+                            default:
+                                <span style="color: #7f8c8d">Chờ Chấp Nhận</span>
+                                break;
+                        }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- end-content -->
