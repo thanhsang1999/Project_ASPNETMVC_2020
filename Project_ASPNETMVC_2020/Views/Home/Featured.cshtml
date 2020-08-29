@@ -1,0 +1,127 @@
+﻿@model System.Collections.ArrayList
+@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.Model.Code
+@using Project_ASPNETMVC_2020.ClassToConfig
+@{
+    var special = Model[0] as List<product>;
+    var discount = Model[1] as List<product>;
+    var bestSell = Model[2] as List<product>;
+}
+<!-- Featured -->
+<div class="featured">
+    <div class="tabbed_container">
+        <div class="tabs">
+            <ul class="clearfix">
+                <li class="active">Đặc Biệt</li>
+                <li>Giảm Giá</li>
+                <li>Bán Chạy Nhất</li>
+            </ul>
+            <div class="tabs_line"><span></span></div>
+        </div>
+        <!-- Product Panel -->
+        <div class="product_panel panel active">
+            <div class="featured_slider slider">
+                @foreach (product item in special)
+                {
+                    <!-- Slider Item -->
+                <div class="featured_slider_item">
+                    <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
+                        <div class="border_active"></div>
+                        <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                <img src="@Url.ContentAssetWeb("/images/sanpham/"+@item.IMG)" width="50%"
+                                     height="100%" alt="">
+                            </div>
+                            <div class="product_content">
+                                <div class="product_price discount">
+                                    @Tools.StringToVND(Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE).ToString())
+                                    <br>
+                                    <span>@Tools.StringToVND(item.PRICE.ToString())</span>
+                                </div>
+                                <div class="product_name">
+                                    <div>@item.NAME</div>
+                                </div>
+                            </div>
+                            <ul class="product_marks">
+                                <li class="product_mark product_discount">@item.SALE_RATE %</li>
+                                <li class="product_mark product_new">new</li>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+                }
+            </div>
+            <div class="featured_slider_dots_cover"></div>
+        </div>
+        <!-- Product Panel -->
+        <div class="product_panel panel">
+            <div class="featured_slider slider">
+                @foreach (product item in discount)
+                {
+                    <!-- Slider Item -->
+                <div class="featured_slider_item">
+                    <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
+                        <div class="border_active"></div>
+                        <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                <img src="@Url.ContentAssetWeb("/images/sanpham/"+@item.IMG)" width="50%"
+                                     height="100%" alt="">
+                            </div>
+                            <div class="product_content">
+                                <div class="product_price discount">
+                                    @Tools.StringToVND(Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE).ToString())
+                                    <br>
+                                    <span>@Tools.StringToVND(item.PRICE.ToString())</span>
+                                </div>
+                                <div class="product_name">
+                                    <div>@item.NAME</div>
+                                </div>
+                            </div>
+                            <ul class="product_marks">
+                                <li class="product_mark product_discount">@item.SALE_RATE %</li>
+                                <li class="product_mark product_new">new</li>
+                            </ul>
+                        </div>
+                        </a>
+                </div>
+                }
+            </div>
+            <div class="featured_slider_dots_cover"></div>
+        </div>
+        <!-- Product Panel -->
+        <div class="product_panel panel">
+            <div class="featured_slider slider">
+                @foreach (product item in bestSell)
+                {
+                    <!-- Slider Item -->
+                <div class="featured_slider_item">
+                    <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
+                        <div class="border_active"></div>
+                        <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                <img src="@Url.ContentAssetWeb("/images/sanpham/"+@item.IMG)" width="50%"
+                                     height="100%" alt="">
+                            </div>
+                            <div class="product_content">
+                                <div class="product_price discount">
+                                    @Tools.StringToVND(Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE).ToString())
+                                    <br>
+                                    <span>@Tools.StringToVND(item.PRICE.ToString())</span>
+                                </div>
+                                <div class="product_name">
+                                    <div>@item.NAME</div>
+                                </div>
+                            </div>
+                            <ul class="product_marks">
+                                <li class="product_mark product_discount">@item.SALE_RATE %</li>
+                                <li class="product_mark product_new">new</li>
+                            </ul>
+                        </div>
+                        </a>
+                </div>
+                }
+            </div>
+            <div class="featured_slider_dots_cover"></div>
+        </div>
+    </div>
+</div>

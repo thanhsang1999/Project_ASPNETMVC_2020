@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /******************************
@@ -3639,4 +3639,17 @@ select option
 .logos_list li:last-child
 {
 	margin-right: 0px;
+}
+.rateting {
+	margin-top:15px;
+	color: #f9ca24;
+}
+.size-product-image {
+	height: 130px;
+}
+.product_name, .deals_item_name {
+	color: #34495e;
+}
+.deals_item_name a{
+	color: #34495e;
 }
