@@ -231,7 +231,7 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult Trends()
         {
             ArrayList model = new ArrayList();
-            var listProducts = HomeDAO.LoadBestSellers();
+            var listProducts = HomeDAO.LoadTrends();
             model.Add(listProducts);
             return PartialView(model);
         }

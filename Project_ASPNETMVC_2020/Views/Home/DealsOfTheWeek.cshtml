@@ -16,12 +16,14 @@
                             {
                                 <!-- Deals Item -->
                                 <div class="owl-item deals_item">
+                                    <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
                                     <div class="deals_image">
                                         <img src="@Url.ContentAssetWeb("/images/sanpham/"+@item.IMG)" alt="">
+
                                     </div>
                                     <div class="deals_content">
                                         <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_category"><a href="#">@item.NAME</a></div>
+                                            <div class="deals_item_category"><a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">@item.NAME</a></div>
                                             <div class="deals_item_price_a ml-auto">@Tools.StringToVND(item.PRICE.ToString())</div>
                                         </div>
                                         <div class="deals_info_line d-flex flex-row justify-content-start">
@@ -58,6 +60,7 @@
                                             </div>
                                         </div>
                                     </div>
+                            </a>
                                 </div>
                             }
                         </div>

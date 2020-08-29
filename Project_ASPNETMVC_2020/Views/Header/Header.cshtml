@@ -108,7 +108,11 @@
             <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                 <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                     <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                        <div class="wishlist_icon"><img src="~/Assets/web/images/heart.png" alt=""></div>
+                        <div class="wishlist_icon">
+                            <a href="@Url.Action("Index","Like")">
+                                <img src="~/Assets/web/images/heart.png" alt="">
+                                </a>
+                        </div>
                         <div class="wishlist_content">
                             <div class="wishlist_text"><a href="@Url.Action("Index","Like")">Yêu Thích</a></div>
                             <div class="wishlist_count">@numberUserLike</div>
@@ -118,8 +122,10 @@
                     <div class="cart">
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                             <div class="cart_icon">
-                                <img src="~/Assets/web/images/cart.png" alt="">
-                                <div class="cart_count"><span id="numberOfProductsInTheCart">@numberOfProductsInTheCart</span></div>
+                                <a href="@Url.Action("Index","Cart")">
+                                    <img src="~/Assets/web/images/cart.png" alt="">
+                                    <div class="cart_count"><span id="numberOfProductsInTheCart">@numberOfProductsInTheCart</span></div>
+                                </a>
                             </div>
                             <div class="cart_content">
                                 <div class="cart_text"><a href="@Url.Action("Index","Cart")">Giỏ Hàng</a></div>

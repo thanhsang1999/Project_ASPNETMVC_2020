@@ -1589,12 +1589,14 @@
     <Content Include="Views\Home\Banner.cshtml" />
     <Content Include="Views\Home\HotNewArrivals.cshtml" />
     <Content Include="Views\Home\BestSellers.cshtml" />
+    <Content Include="Views\Home\Trends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Assets\admin\" />
+    <Folder Include="Model\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

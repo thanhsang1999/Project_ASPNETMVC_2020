@@ -3647,3 +3647,9 @@ select option
 .size-product-image {
 	height: 130px;
 }
+.product_name, .deals_item_name {
+	color: #34495e;
+}
+.deals_item_name a{
+	color: #34495e;
+}

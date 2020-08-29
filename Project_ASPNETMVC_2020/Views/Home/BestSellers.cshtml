@@ -24,7 +24,8 @@
                             @foreach (product item in listProducts)
                             {
                                 <!-- Best Sellers Item -->
-                                <div class="bestsellers_item discount">
+                            <div class="bestsellers_item discount">
+                                <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
                                     <div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
                                         <div class="bestsellers_image">
                                             <img src="@Url.ContentAssetWeb("/images/sanpham/"+item.IMG)"
@@ -33,9 +34,9 @@
                                         <div class="bestsellers_content">
                                             <div class="bestsellers_category"><a href="#">@item.ID_BRAND</a></div>
                                             <div class="bestsellers_name">
-                                                <a href="product.html">
+                                                <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
                                                     @item.NAME
-                                                </a>
+                                                    </a>
                                             </div>
                                             <div class="rateting">
                                                 <i class="fas fa-star"></i>
@@ -55,7 +56,8 @@
                                         <li class="bestsellers_mark bestsellers_discount">0%</li>
                                         <li class="bestsellers_mark bestsellers_new">new</li>
                                     </ul>
-                                </div>
+                                    </a>
+                            </div>
 
                             }
                         </div>
