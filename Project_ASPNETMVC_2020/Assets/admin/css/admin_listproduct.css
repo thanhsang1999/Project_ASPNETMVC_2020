@@ -1,0 +1,64 @@
+.width-tsp{
+	width: 245px;
+	text-align: center;
+}
+#bodyTable>tr>td{
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: 600;
+}
+.admin_red{
+	color: #e74c3c;
+}
+.qua-phai-nho{
+	padding-left: 35px !important;
+}
+#bodyTable>tr>td i{
+	font-size: 16px;
+}
+.admin-red{
+	color: #e74c3c;
+}
+.admin-red-hover{
+	color: #e74c3c;
+}
+.admin-red-hover:hover{
+	color: #c0392b;
+}
+.admin-green{
+	color: #2ecc71;
+}
+.admin-blue{
+	color: #3498db;
+}
+.admin-blue-hover{
+	color: #3498db;
+}
+.admin-blue-hover:hover{
+	color: #2980b9;
+}
+.admin-green{
+	color: #2ecc71;
+}
+.admin-green-hover{
+	color: #2ecc71;
+}
+.admin-green-hover:hover{
+	color: #27ae60;
+}
+.admin-yellow-hover{
+	color: #f1c40f;
+}
+.admin-yellow-hover:hover{
+	color: #f39c12;
+}
+.jconfirm .jconfirm-box div.jconfirm-title-c .jconfirm-title {
+	color: #e74c3c;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+	
+}
+
+.jconfirm-buttons, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+margin-top: 30px
+	}

@@ -11,6 +11,7 @@ using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.ClassToConfig;
 using Microsoft.Ajax.Utilities;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
@@ -20,7 +21,10 @@ namespace Project_ASPNETMVC_2020.Controllers
         DBModel dbmodel = new DBModel();
         public ActionResult Index()
         {
-            return View();
+            var model = new ArrayList();
+            List<danhgia> listRecentlyEval = new EvaluationDAO().getListRecentEval();
+            model.Add(listRecentlyEval);
+            return View(model);
         }
         [HttpPost]
         public ActionResult Login(UserLogin user)

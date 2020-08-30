@@ -1,0 +1,35 @@
+.giua {
+    text-align: center;
+}
+
+#bodyTable ul li {
+    list-style: none;
+    text-align: left;
+}
+.head-tnd {
+    width: 180px;
+}
+
+.head-ms {
+    width: 63px;
+}
+
+#bodyTable>tr>td {
+    vertical-align: middle;
+}
+
+.table thead th {
+    vertical-align: inherit;
+}
+
+.dia-chi {
+    width: 170px;
+}
+
+.head-trang-thai {
+    width: 150px;
+}
+
+.i-size {
+    font-size: 18px;
+}
