@@ -10,24 +10,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.ContentAssetWeb( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-    <link href="lib/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
     <!-- NProgress -->
-    <link href="lib/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
     <!-- iCheck -->
-    <link href="lib/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/iCheck/skins/flat/green.css",true)" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
-    <link href="lib/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",true)" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="lib/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/jqvmap/dist/jqvmap.min.css",true)" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
-    <link href="lib/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.css",true)" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="lib/build/css/custom.min.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
     @RenderSection("stylestemplate", required: false)
     @RenderSection("styles", required: false)
 
@@ -229,8 +229,6 @@
                         <div class="clearfix"></div>
                     </footer>
                     <!-- /footer content -->
-
-
                 </div>
                 @RenderSection("scripts", required: false)
     </body>
