@@ -44,6 +44,10 @@
                         <div><a>@user.HO_TEN</a></div>
                         <div class="bang-thong-tin-tai-khoan">
                             <a href="@Url.Action("Index","User")">Thông Tin Tài Khoản</a>
+                            @if (user.LEVEL == "10")
+                            {
+                                <a href="@Url.Action("Index","Admin/Home")">Quản Lý</a>
+                            }
                             <a href="@Url.Action("Index","Like")">Yêu Thích</a>
                             <a href="@Url.Action("Index","OrderUser")">Đơn Hàng</a>
                             <a href="@Url.Action("LogOut","Home")">Đăng Xuất</a>
