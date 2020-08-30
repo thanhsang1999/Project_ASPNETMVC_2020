@@ -133,7 +133,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="ClassOfAdmin\ClassToConfigAdmin\Extension.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
@@ -6841,7 +6840,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Model\" />
-    <Folder Include="ClassOfAdmin\ModelAdmin\" />
     <Folder Include="Model\Admin\" />
   </ItemGroup>
   <ItemGroup>

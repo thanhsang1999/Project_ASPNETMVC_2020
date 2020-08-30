@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Project_ASPNETMVC_2020.ClassOfAdmin.ClassToConfigAdmin;
 
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
