@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
@@ -6837,12 +6838,12 @@
     <Content Include="Views\Home\HotNewArrivals.cshtml" />
     <Content Include="Views\Home\BestSellers.cshtml" />
     <Content Include="Views\Home\Trends.cshtml" />
+    <Content Include="Views\Home\RecentlyViews.cshtml" />
+    <Content Include="Views\Home\Brands.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Model\DAO\" />
-    <Folder Include="Model\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

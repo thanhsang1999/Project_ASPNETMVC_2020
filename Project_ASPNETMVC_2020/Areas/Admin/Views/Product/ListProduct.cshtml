@@ -1,9 +1,15 @@
 ﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.ClassToConfig
+@model System.Collections.ArrayList
 @{
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    var listProduct = (List<product>)Model[0];
 }
 
+@section scripts{
+}
 @section styles{
     <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
 }
@@ -84,199 +90,53 @@
                             </thead>
 
                             <tbody>
-                                <tr class="even pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">1</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="odd pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">2</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="even pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">3</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="odd pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">4</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="even pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">5</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="odd pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">6</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="even pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">7</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="odd pointer">
-                                    <td class="a-center ">
-                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                            <input type="checkbox"
-                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                    </td>
-                                    <td class=" ">8</td>
-                                    <td class=" ">Samsung Galaxy Note 9 </td>
-                                    <td class=" ">Samsung</td>
-                                    <td class=" ">16,000,000 đ</td>
-                                    <td class=" ">
-                                        <img class="img-danh-sach-san-pham"
-                                             src="../Web/Img/samsung-galaxy-note-9-black-400x460-400x460_2.png" alt="">
-                                    </td>
-                                    <td class="a-right a-right ">39</td>
-                                    <td class=" last">
-                                        <a href="#">View </a>
-                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                        <a href=""><i class="far fa-edit"></i></a>
-                                    </td>
-                                </tr>
+                                @for (int i = 0; i < listProduct.Count; i++)
+                                {
+                                    string oddoreven = "";
+                                    if(i==0 || (i / 2) == 0)
+                                    {
+                                        oddoreven = "even";
+                                    }
+                                    else
+                                    {
+                                        oddoreven = "odd";
+                                    }
+                                    <tr class="@oddoreven pointer">
+                                        <td class="a-center ">
+                                            <div class="icheckbox_flat-green" style="position: relative;">
+                                                <input type="checkbox"
+                                                       class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                                                      style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                            </div>
+                                        </td>
+                                        <td class=" ">@listProduct[i].ID_PRODUCT</td>
+                                        <td class=" ">@listProduct[i].NAME </td>
+                                        <td class=" ">@listProduct[i].ID_BRAND</td>
+                                        <td class=" ">@listProduct[i].PRICE.Value.ToString("N0") VNĐ</td>
+                                        <td class=" ">
+                                            <img class="img-danh-sach-san-pham"
+                                                 src="@Url.ContentAssetWeb("images/sanpham/"+listProduct[i],true)" alt="">
+                                        </td>
+                                        <td class="a-right a-right ">@listProduct[i].AMOUNT</td>
+                                        <td class=" last">
+                                            <a href="">View </a>
+                                            <a href=""><i class="fas fa-trash-alt"></i></a>
+                                            <a href=""><i class="far fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                              
+
                             </tbody>
-                        </table>
+                                </table>
+                            </div>
+
+
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
-</div>
-      </div>
-<!-- /page content -->
+        </div>
+        <!-- /page content -->

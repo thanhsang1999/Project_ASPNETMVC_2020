@@ -169,7 +169,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                 }
                 else
                 {
-                    rs = "gửi mail thành công";
+                    rs = "Gửi mail thành công";
                 }
             }
             else
@@ -238,6 +238,26 @@ namespace Project_ASPNETMVC_2020.Controllers
             var listProducts = HomeDAO.LoadTrends();
             model.Add(listProducts);
             return PartialView(model);
+        }
+        public ActionResult RecentlyViews()
+        {
+            User user =Session["User"] as User;
+            if (user != null)
+            {
+                ArrayList model = new ArrayList();
+                List<product> listRV = new List<product>();
+                listRV = new ProductDAO().listProductRecentlyView(user.ID_ACCOUNT);
+                model.Add(listRV);
+                return PartialView(model);
+            }else
+            {
+                return PartialView();
+            }
+           
+        }
+        public ActionResult Brands()
+        {
+            return PartialView();
         }
     }
 }
