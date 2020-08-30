@@ -11,17 +11,6 @@
     <link rel="icon" href="@Url.ContentAssetAdmin("images/favicon.ico",true)" type="image/ico" />
 
     <title>Blue ! </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <!-- Bootstrap -->
-    <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet">
-    <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
-    @RenderSection("stylestemplate", required: false)
     @RenderSection("styles", required: false)
 
 </head>
@@ -224,16 +213,6 @@
             <!-- /footer content -->
         </div>
     </div>
-    <!-- jQuery -->
-    <script src="lib/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
-    <script src="lib/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="lib/vendors/nprogress/nprogress.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="lib/build/js/custom.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 

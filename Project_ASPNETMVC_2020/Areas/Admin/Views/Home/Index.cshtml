@@ -3,10 +3,16 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-@section stylestemplate{
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
     <!-- iCheck -->
     <link href="@Url.ContentAssetAdmin("lib/vendors/iCheck/skins/flat/green.css",true)" rel="stylesheet">
-
     <!-- bootstrap-progressbar -->
     <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",true)" rel="stylesheet">
     <!-- JQVMap -->
@@ -15,6 +21,10 @@
     <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap-daterangepicker/daterangepicker.css",true)" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="@Url.ContentAssetAdmin("lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <!-- iCheck -->
+
+
+
 }
 <!-- page content -->
 <div class="right_col" role="main">
@@ -331,6 +341,14 @@
 </div>
 <!-- /page content -->
 @section scripts{
+    <!-- jQuery -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.js",true)"></script>
     <!-- Chart.js -->
     <script src="@Url.ContentAssetAdmin("lib/vendors/Chart.js/dist/Chart.min.js",true)"></script>
     <!-- gauge.js -->

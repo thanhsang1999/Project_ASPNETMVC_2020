@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
@@ -6792,6 +6793,7 @@
     <Content Include="Assets\admin\lib\vendors\validator\README.md" />
     <Content Include="Assets\admin\lib\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Product\ListProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -6845,7 +6847,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

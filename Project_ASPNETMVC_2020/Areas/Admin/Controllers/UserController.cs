@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
+using Project_ASPNETMVC_2020.Model.ModelOfSession;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,19 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index()
         {
-            return View();
+            User user = Session["User"] as User;
+            if (user != null && user.LEVEL.Equals("10"))
+            {
+                ArrayList model = new ArrayList();
+                var listUser = UserDAO.LoadListUser();
+                model.Add(listUser);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+           
         }
     }
 }
