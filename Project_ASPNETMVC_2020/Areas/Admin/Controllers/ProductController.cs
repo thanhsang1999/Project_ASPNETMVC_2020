@@ -11,8 +11,12 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         // GET: Admin/Product
-        public ActionResult ListProduct()
+        public ActionResult ListProduct(string page)
         {
+            if (page == null)
+            {
+
+            }
             ProductDAO productdao = new ProductDAO();
             var model = new ArrayList();
             model.Add(productdao.listAllProduct());
