@@ -191,5 +191,53 @@ namespace Project_ASPNETMVC_2020.Controllers
                 return View();
             }
         }
+    
+        public ActionResult DealsOfTheWeek()
+        {
+            ArrayList model = new ArrayList();
+            var products = HomeDAO.LoadProductDealsOfTheWeek();
+            model.Add(products);
+            return PartialView(model);
+        }
+        public ActionResult Featured()
+        {
+            ArrayList model = new ArrayList();
+            var special = HomeDAO.LoadProductSpecial();
+            var discount = HomeDAO.LoadProductDiscount();
+            var bestSell = HomeDAO.LoadProductBestSell();
+            model.Add(special);
+            model.Add(discount);
+            model.Add(bestSell);
+            return PartialView(model);
+        }
+
+        public ActionResult Banner()
+        {
+            ArrayList model = new ArrayList();
+            var product = HomeDAO.LoadProductsToBaner();
+            model.Add(product);
+            return PartialView(model);
+        }
+        public ActionResult HotNewArrivals()
+        {
+            ArrayList model = new ArrayList();
+            var listProducts = HomeDAO.LoadHotNewArrivals();
+            model.Add(listProducts);
+            return PartialView(model);
+        }
+        public ActionResult BestSellers()
+        {
+            ArrayList model = new ArrayList();
+            var listProducts = HomeDAO.LoadBestSellers();
+            model.Add(listProducts);
+            return PartialView(model);
+        }
+        public ActionResult Trends()
+        {
+            ArrayList model = new ArrayList();
+            var listProducts = HomeDAO.LoadTrends();
+            model.Add(listProducts);
+            return PartialView(model);
+        }
     }
 }

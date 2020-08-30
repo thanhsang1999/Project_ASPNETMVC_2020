@@ -1,0 +1,69 @@
+﻿@model System.Collections.ArrayList
+@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.Model.Code
+@using Project_ASPNETMVC_2020.ClassToConfig
+@{
+    var listProducts = Model[0] as List<product>;
+}
+<!-- Best Sellers -->
+<div class="best_sellers">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="tabbed_container">
+                    <div class="tabs clearfix tabs-right">
+                        <div class="new_arrivals_title">Hot Best Sellers</div>
+                        <ul class="clearfix">
+                            <li class="active">Top 24</li>
+                        </ul>
+                        <div class="tabs_line"><span></span></div>
+                    </div>
+                    <div class="bestsellers_panel panel active">
+                        <!-- Best Sellers Slider -->
+                        <div class="bestsellers_slider slider">
+                            @foreach (product item in listProducts)
+                            {
+                                <!-- Best Sellers Item -->
+                            <div class="bestsellers_item discount">
+                                <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
+                                    <div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
+                                        <div class="bestsellers_image">
+                                            <img src="@Url.ContentAssetWeb("/images/sanpham/"+item.IMG)"
+                                                 alt="">
+                                        </div>
+                                        <div class="bestsellers_content">
+                                            <div class="bestsellers_category"><a href="#">@item.ID_BRAND</a></div>
+                                            <div class="bestsellers_name">
+                                                <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
+                                                    @item.NAME
+                                                    </a>
+                                            </div>
+                                            <div class="rateting">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="bestsellers_price discount">
+                                                @Tools.StringToVND(Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE).ToString())
+                                                <br>
+                                                <span>@Tools.StringToVND(item.PRICE.ToString())</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="bestsellers_marks">
+                                        <li class="bestsellers_mark bestsellers_discount">0%</li>
+                                        <li class="bestsellers_mark bestsellers_new">new</li>
+                                    </ul>
+                                    </a>
+                            </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

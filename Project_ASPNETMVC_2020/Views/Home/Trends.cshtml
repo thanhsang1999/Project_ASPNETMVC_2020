@@ -1,0 +1,62 @@
+﻿@model System.Collections.ArrayList
+@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.Model.Code
+@using Project_ASPNETMVC_2020.ClassToConfig
+@{
+    var listProducts = Model[0] as List<product>;
+}
+<!-- Trends -->
+<div class="trends">
+    <div class="trends_background" style="background-image:url(@Url.ContentAssetWeb("/images/trends_background.jpg")"></div>
+    <div class="trends_overlay"></div>
+    <div class="container">
+        <div class="row">
+            <!-- Trends Content -->
+            <div class="col-lg-3">
+                <div class="trends_container">
+                    <h2 class="trends_title">Sản Phẩm Dẫn Đầu</h2>
+                    <div class="trends_text">
+                        <p>Dẫn Đầu Xu Thế , Hãy để bạn là người dẫn đầu xu hướng</p>
+                    </div>
+                    <div class="trends_slider_nav">
+                        <div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
+                        <div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Trends Slider -->
+            <div class="col-lg-9">
+                <div class="trends_slider_container">
+                    <!-- Trends Slider -->
+                    <div class="owl-carousel owl-theme trends_slider">
+                        @foreach (product item in listProducts)
+                        {
+                            <!-- Trends Slider Item -->
+                        <div class="owl-item">
+                            <a href="@Url.Action("ProductDetail","Product",new { id = item.ID_PRODUCT})">
+                                <div class="trends_item is_new">
+                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center">
+                                        <img src="@Url.ContentAssetWeb("/images/sanpham/"+item.IMG)" alt="">
+                                    </div>
+                                    <div class="trends_content">
+                                        <div class="trends_category"><a href="#">@item.ID_BRAND</a></div>
+                                        <div class="trends_info clearfix">
+                                            <div class="trends_name"><a href="product.html">@item.NAME</a></div>
+                                            <br>
+                                            <div class="trends_price">@Tools.StringToVND(Tools.PricesDecreased((double)item.PRICE, (double)item.SALE_RATE).ToString())</div>
+                                        </div>
+                                    </div>
+                                    <ul class="trends_marks">
+                                        <li class="trends_mark trends_discount">-25%</li>
+                                        <li class="trends_mark trends_new">new</li>
+                                    </ul>
+                                </div>
+                                </a>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

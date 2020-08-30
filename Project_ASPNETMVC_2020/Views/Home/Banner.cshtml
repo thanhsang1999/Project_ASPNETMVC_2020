@@ -1,0 +1,119 @@
+﻿@model System.Collections.ArrayList
+@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.Model.Code
+@using Project_ASPNETMVC_2020.ClassToConfig
+@{
+    var products = Model[0] as List<product>;
+}
+<!-- Banner -->
+<div class="banner_2">
+    <div class="banner_2_background" style="background-image:url(@Url.ContentAssetWeb("/images/banner_2_background.jpg"))"></div>
+    <div class="banner_2_container">
+        <div class="banner_2_dots"></div>
+        <!-- Banner 2 Slider -->
+        <div class="owl-carousel owl-theme banner_2_slider">
+            <!-- Banner 2 Slider Item -->
+            <div class="owl-item">
+                <div class="banner_2_item">
+                    <div class="container fill_height">
+                        <div class="row fill_height">
+                            <div class="col-lg-4 col-md-6 fill_height">
+                                <div class="banner_2_content">
+                                    <div class="banner_2_category">@products[2].ID_BRAND</div>
+                                    <div class="banner_2_title">@products[2].NAME</div>
+                                    <div class="banner_2_text">
+                                        @products[2].DESCRIPTION
+                                    </div>
+                                    <div class="rateting">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="button banner_2_button"><a href="@Url.Action("ProductDetail","Product",new { id = products[2].ID_PRODUCT})">Xem Thêm</a></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 fill_height">
+                                <div class="banner_2_image_container">
+                                    <div class="banner_2_image">
+                                        <img style="width: 50%;margin-left: 30%;"
+                                             src="@Url.ContentAssetWeb("/images/sanpham/"+products[2].IMG)" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Banner 2 Slider Item -->
+            <div class="owl-item">
+                <div class="banner_2_item">
+                    <div class="container fill_height">
+                        <div class="row fill_height">
+                            <div class="col-lg-4 col-md-6 fill_height">
+                                <div class="banner_2_content">
+                                    <div class="banner_2_category">@products[1].ID_BRAND</div>
+                                    <div class="banner_2_title">@products[1].NAME</div>
+                                    <div class="banner_2_text">
+                                        @products[1].DESCRIPTION
+                                    </div>
+                                    <div class="rateting">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="button banner_2_button"><a href="@Url.Action("ProductDetail","Product",new { id = @products[1].ID_PRODUCT})">Xem Thêm</a></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 fill_height">
+                                <div class="banner_2_image_container">
+                                    <div class="banner_2_image">
+                                        <img style="width: 50%;margin-left: 30%;"
+                                             src="@Url.ContentAssetWeb("/images/sanpham/"+products[1].IMG)" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Banner 2 Slider Item -->
+            <div class="owl-item">
+                <div class="banner_2_item">
+                    <div class="container fill_height">
+                        <div class="row fill_height">
+                            <div class="col-lg-4 col-md-6 fill_height">
+                                <div class="banner_2_content">
+                                    <div class="banner_2_category">@products[0].ID_BRAND</div>
+                                    <div class="banner_2_title">@products[0].NAME</div>
+                                    <div class="banner_2_text">
+                                        @products[0].DESCRIPTION
+                                    </div>
+                                    <div class="rateting">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="button banner_2_button"><a href="@Url.Action("ProductDetail","Product",new { id = @products[0].ID_PRODUCT})">Xem Thêm</a></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 fill_height">
+                                <div class="banner_2_image_container">
+                                    <div class="banner_2_image">
+                                        <img style="width: 50%;margin-left: 30%;"
+                                             src="@Url.ContentAssetWeb("/images/sanpham/"+products[0].IMG)" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
