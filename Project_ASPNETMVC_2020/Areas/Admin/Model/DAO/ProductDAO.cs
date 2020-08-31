@@ -21,17 +21,24 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             return result;
 
         }
-        public List<brand> listRams()
+        public List<ram> listRams()
         {
             DBModel dBModel = new DBModel();
-            List<brand> result = dBModel.brands.ToList();
+            List<ram> result = dBModel.rams.ToList();
             return result;
 
         }
-        public List<brand> listMemory()
+        public List<memory> listMemory()
         {
             DBModel dBModel = new DBModel();
-            List<brand> result = dBModel.brands.ToList();
+            List<memory> result = dBModel.memories.ToList();
+            return result;
+
+        }
+        public List<hedieuhanh> listHDH()
+        {
+            DBModel dBModel = new DBModel();
+            List<hedieuhanh> result = dBModel.hedieuhanhs.ToList();
             return result;
 
         }

@@ -364,3 +364,6 @@ F:\Dot Net\project-master\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_202
 F:\Dot Net\project-master\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.csproj.CopyComplete
 F:\Dot Net\project-master\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.dll
 F:\Dot Net\project-master\Project_ASPNETMVC_2020\obj\Debug\Project_ASPNETMVC_2020.pdb
+F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\bin\HtmlAgilityPack.dll
+F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\bin\HtmlAgilityPack.pdb
+F:\Dot Net\ProjectOfMine\Project_ASPNETMVC_2020\bin\HtmlAgilityPack.xml

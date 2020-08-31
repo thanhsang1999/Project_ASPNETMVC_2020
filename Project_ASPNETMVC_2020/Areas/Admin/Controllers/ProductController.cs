@@ -1,5 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.Win32;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
+using Project_ASPNETMVC_2020.Areas.Admin.Model.Form;
+using Project_ASPNETMVC_2020.Areas.Admin.Tools;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections;
@@ -13,33 +16,93 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         // GET: Admin/Product
-        public ActionResult FormProduct(string idproduct)
+        public ActionResult FormProduct(string id)
         {
             ProductDAO dao = new ProductDAO();
-            ViewBag.ID = idproduct;
-            ViewBag.Brands=
-                ViewBag.Ram=
-                ViewMemory=
-            if (idproduct != null)
+            
+            ViewBag.ID = "";
+            ViewBag.Brands = dao.listBrands();
+            ViewBag.Rams = dao.listRams();
+            ViewBag.Memorys = dao.listMemory();
+            ViewBag.HeDieuHanhs = dao.listHDH();
+            ViewBag.IsChange = "Sửa Sản Phẩm";
+            if (id != null || dao.getProductById(id)!=null)
             {
-                var model = new ArrayList();
-                var product = dao.getProductById(idproduct);
-                model.Add(product);
+                ViewBag.ID = id;
+              var model =dao.getProductById(id);
                 return View(model);
             }
             else
             {
-                var model = new ArrayList();
-                return View(model);
+                ViewBag.ID = "noproduct";
+                ViewBag.IsChange = "Đăng Sản Phẩm";
+                return View();
             }
         }
         public ActionResult ChangeProduct()
         {
             return View();
         }
-        public ActionResult AddProduct()
+        [HttpPost]
+        public ActionResult AddProduct(FormAddProduct form)
         {
-            return View();
+            string rs = "";
+            string nameproduct = form.nameproduct;
+            string hedieuhanh = form.hedieuhanh;
+            string brand = form.brand;
+            string memory = form.memory;
+            string ram = form.brand;
+            string price = form.price;
+            string amount = form.amount;
+            string salerate = form.salerate;
+            string description = (Tools.Tools.DecodeUrlString(form.description));
+            description = Tools.Tools.ExtractText(description);
+            HttpPostedFileBase image1 = form.image1;
+            HttpPostedFileBase image2 = form.image2;
+            HttpPostedFileBase image3 = form.image3;
+            List<string> checkNullString = new List<string>();
+            checkNullString.Add(nameproduct);
+            checkNullString.Add(hedieuhanh);
+            checkNullString.Add(brand);
+            checkNullString.Add(memory);
+            checkNullString.Add(ram);
+            checkNullString.Add(price);
+            checkNullString.Add(amount);
+            checkNullString.Add(salerate);
+            checkNullString.Add(description);
+            List<string> checkNum = new List<string>();
+            checkNum.Add(memory);
+            checkNum.Add(ram);
+            checkNum.Add(price);
+            checkNum.Add(amount);
+            checkNum.Add(salerate);
+            List < HttpPostedFileBase > listFiles = new List<HttpPostedFileBase>();
+            listFiles.Add(image1);
+            listFiles.Add(image2);
+            listFiles.Add(image3);
+
+
+            if (Tools.Tools.checkNullList(checkNullString) == false)
+            {
+                rs = "null";
+                rs = description;
+            }
+            else if(Tools.Tools.checkNumList(checkNum) == false)
+            {
+                rs = "number";
+                rs = description;
+            }
+            else if(Tools.Tools.checkFileNull(listFiles) == false)
+            {
+                rs = "filenull";
+                rs = description;
+            }
+            else
+            {
+                rs = "success";
+                rs = description;
+            }
+            return Json(new { result = rs },JsonRequestBehavior.DenyGet);
         }
 
 

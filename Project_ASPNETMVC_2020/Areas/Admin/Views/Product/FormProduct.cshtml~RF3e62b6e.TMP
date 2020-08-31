@@ -10,11 +10,6 @@
     {
         p = Model;
     }
-    var id = (string)ViewBag.ID;
-    var listBrands = (List<brand>)ViewBag.Brands;
-    var listRams = (List<ram>)ViewBag.Rams;
-    var listMemory = (List<memory>)ViewBag.Memorys;
-    var listHDH = (List<hedieuhanh>)ViewBag.HeDieuHanhs;
 
 
 }
@@ -85,54 +80,6 @@
     <!-- Custom Theme Scripts -->
     <script src="@Url.ContentAssetAdmin( "lib/build/js/custom.min.js",true)"></script>
     <script src="@Url.ContentAssetAdmin( "js/sanpham.js",true)"></script>
-        
-    <script>
-
-                $('#demo-form2').submit(function(e) {
-                    e.preventDefault();
-                    for (instance in CKEDITOR.instances) {
-                        CKEDITOR.instances[instance].updateElement();
-                    }
-                    var formData = new FormData($('form#demo-form2')[0]);
-                  
-
-                    var description = CKEDITOR.instances['description'].getData();
-                   
-                    formData.set('description', encodeURIComponent(description));
-                    console.log(formData.get('description'));
-                $.ajax({
-                 type: 'POST',
-                    url: '@Url.Action("AddProduct","Product", new { area = "Admin" })',
-                    enctype: 'multipart/form-data',
-                    cache: false,
-                    timeout: 600000,
-                    data: formData,
-                contentType: false,
-                processData: false,
-                    success: function (data) {
-                        var rs = data.result;
-                        alert(rs);
-                    }
-
-        });
-                })
-        var entityMap = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;',
-            '/': '&#x2F;',
-            '`': '&#x60;',
-            '=': '&#x3D;'
-        };
-        function escapeHtml(string) {
-            return String(string).replace(/[&<>"'`=\/]/g, function (s) {
-                return entityMap[s];
-            });
-        }
-
-    </script>
 }
 <div class="right_col" role="main" style="min-height: 692px;">
     <div class="">
@@ -163,22 +110,14 @@
                     <div class="x_content">
                         <br />
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten-san-pham">
                                     Tên Sản Phẩm<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    @if (p != null)
-                                    {
-                                        <input type="text" id="ten-san-pham" accept="image/*" value="@p.NAME" name="nameproduct" required="required"
-                                               class="form-control ">
-                                    }
-                                    else
-                                    {
-                                        <input type="text" id="ten-san-pham" accept="image/*" name="nameproduct" required="required"
-                                               class="form-control ">
-                                    }
-
+                                    <input type="text" id="ten-san-pham" name="ten-san-pham" required="required"
+                                           class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group gian-cach">
@@ -187,25 +126,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="custom-file mb-3">
-                                        @if (p != null)
-                                        {
-                                            <input type="file" accept="image/*" value="@Url.ContentAssetWeb("images/sanpham/"+p.IMG)" class="custom-file-input" id="chon-anh" name="image1">
-                                            <label class="custom-file-label" for="customFile">@p.IMG</label>
-                                        }
-                                        else
-                                        {
-                                            <input type="file" accept="image/*" class="custom-file-input" id="chon-anh" name="image1">
-                                            <label class="custom-file-label" for="customFile">Chọn Ảnh Chính</label>
-                                        }
+                                        <input type="file" class="custom-file-input" id="chon-anh" name="filename">
+                                        <label class="custom-file-label" for="customFile">Chọn Ảnh Chính</label>
                                     </div>
-                                    @if (p != null)
-                                    {
-                                        <img id="showimage1" class="showimage" src="@Url.ContentAssetWeb("images/sanpham/"+p.IMG2)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="display:none" id="showimage1" class="showimage" src="" />
-                                    }
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -214,27 +137,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="custom-file mb-3">
-                                        @if (p != null)
-                                        {
-                                            <input type="file" accept="image/*" value="@Url.ContentAssetWeb("images/sanpham/"+p.IMG2)" class="custom-file-input" id="chon-anh-2" name="image2">
-                                            <label class="custom-file-label" for="customFile">@p.IMG2</label>
-                                        }
-                                        else
-                                        {
-                                            <input type="file" accept="image/*" class="custom-file-input" id="chon-anh-2" name="image2">
-                                            <label class="custom-file-label" for="customFile">Chọn Ảnh Phụ</label>
-                                        }
-
+                                        <input type="file" class="custom-file-input" id="chon-anh-2" name="filename">
+                                        <label class="custom-file-label" for="customFile">Chọn Ảnh Phụ</label>
                                     </div>
-                                    @if (p != null)
-                                    {
-                                        <img id="showimage2" class="showimage" src="@Url.ContentAssetWeb("images/sanpham/"+p.IMG2)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="display:none" id="showimage2" class="showimage" src="" />
-                                    }
-
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -243,28 +148,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="custom-file mb-3">
-                                        @if (p != null)
-                                        {
-                                            <input type="file" value="@Url.ContentAssetWeb("images/sanpham/"+p.IMG3)" class="custom-file-input" id="chon-anh-3" name="image3">
-                                            <label class="custom-file-label" for="customFile">@p.IMG3</label>
-
-                                        }
-                                        else
-                                        {
-                                            <input type="file" class="custom-file-input" id="chon-anh-3" name="image3">
-                                            <label class="custom-file-label" for="customFile">Chọn Ảnh Phụ</label>
-                                        }
-
+                                        <input type="file" class="custom-file-input" id="chon-anh-3" name="filename">
+                                        <label class="custom-file-label" for="customFile">Chọn Ảnh Phụ</label>
                                     </div>
-                                    @if (p != null)
-                                    {
-                                        <img id="showimage3" class="showimage" src="@Url.ContentAssetWeb("images/sanpham/"+p.IMG3)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="display:none" id="showimage3" class="showimage" src="" />
-                                    }
-
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -273,19 +159,14 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
-                                        <select class="form-control" name="hedieuhanh" id="he-dieu-hanh">
-                                            <option>Chọn Hệ Điều Hành</option>
-                                            @foreach (hedieuhanh item in listHDH)
-                                            {
-                                                if (p != null && p.OS.Equals(item.OS))
-                                                {
-                                                    <option selected value="@item.OS">@item.OS</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@item.OS">@item.OS</option>
-                                                }
-                                            }
+                                        <select class="form-control" name="he-dieu-hanh" id="he-dieu-hanh">
+                                            <option>Chọn Hệ Điều Hành</option>                                           
+                                            <option>16 GB</option>
+                                            <option>32 GB</option>
+                                            <option>64 GB</option>
+                                            <option>128 GB</option>
+                                            <option>256 GB</option>
+                                            <option>512 GB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -297,20 +178,14 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
-                                        <select class="form-control" name="brand" id="ten-thương-hieu">
+                                        <select class="form-control" name="ten-thuong-hieu" id="ten-thương-hieu">
                                             <option>Chọn Tên Thương Hiệu</option>
-                                            @foreach (brand item in listBrands)
-                                            {
-                                                if (p != null && p.ID_BRAND.Equals(item.ID_BRAND))
-                                                {
-                                                    <option selected value="@item.ID_BRAND">@item.BRAND1</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@item.ID_BRAND">@item.BRAND1</option>
-                                                }
-
-                                            }
+                                            <option>16 GB</option>
+                                            <option>32 GB</option>
+                                            <option>64 GB</option>
+                                            <option>128 GB</option>
+                                            <option>256 GB</option>
+                                            <option>512 GB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -321,20 +196,14 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
-                                        <select class="form-control" name="memory" id="input-memory">
+                                        <select class="form-control" name="input-memory" id="input-memory">
                                             <option>Chọn Dung Lượng Bộ Nhớ</option>
-                                            @foreach (memory item in listMemory)
-                                            {
-                                                if (p != null && p.MEMORY.Equals(item.MEMORY1))
-                                                {
-                                                    <option selected value="@item.MEMORY1">@item.MEMORY1 GB</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@item.MEMORY1">@item.MEMORY1 GB</option>
-                                                }
-
-                                            }
+                                            <option>16 GB</option>
+                                            <option>32 GB</option>
+                                            <option>64 GB</option>
+                                            <option>128 GB</option>
+                                            <option>256 GB</option>
+                                            <option>512 GB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -345,20 +214,16 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
-                                        <select class="form-control" name="ram" id="input-ram">
+                                        <select class="form-control" name="input-ram" id="input-ram">
                                             <option>Chọn Dung Lượng RAM</option>
-                                            @foreach (ram item in listRams)
-                                            {
-                                                if (p != null && p.RAM.Equals(item.RAM1))
-                                                {
-                                                    <option selected value="@item.RAM1">@item.RAM1 GB</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@item.RAM1">@item.RAM1 GB</option>
-                                                }
-
-                                            }
+                                            <option>1 GB</option>
+                                            <option>2 GB</option>
+                                            <option>3 GB</option>
+                                            <option>4 GB</option>
+                                            <option>6 GB</option>
+                                            <option>8 GB</option>
+                                            <option>10 GB</option>
+                                            <option>12 GB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -368,16 +233,7 @@
                                     Giá <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    @if (p == null)
-                                    {
-                                        <input type="text" id="gia" name="price" required="required" class="form-control">
-
-                                    }
-                                    else
-                                    {
-                                        <input type="text" id="gia" name="price" value="@p.PRICE.Value.ToString("N0")" required="required" class="form-control">
-
-                                    }
+                                    <input type="text" id="gia" name="gia" required="required" class="form-control">
                                 </div>
                             </div>
                             <div class="item form-group gian-cach">
@@ -385,14 +241,7 @@
                                     Số Lượng Máy <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    @if (p == null)
-                                    {
-                                        <input type="text" id="amount" name="amount" required="required" class="form-control">
-                                    }
-                                    else
-                                    {
-                                        <input type="text" value="@p.AMOUNT" id="amount" name="amount" required="required" class="form-control">
-                                    }
+                                    <input type="text" id="amount" name="amount" required="required" class="form-control">
                                 </div>
                             </div>
                             <div class="item form-group gian-cach">
@@ -401,35 +250,20 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    @if (p == null || p.SALE_RATE == 0)
-                                    {
-                                        <input type="text" id="sale-rate" name="salerate" required="required" class="form-control">
-
-                                    }
-                                    else
-                                    {
-                                        <input type="text" value="@p.SALE_RATE" id="sale-rate" name="salerate" required="required" class="form-control">
-                                    }
+                                    <input type="text" id="sale-rate" name="sale-rate" required="required" class="form-control">
                                 </div>
                             </div>
                             <div class="item form-group gian-cach">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="description">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="mo-ta">
                                     Mô tả <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
 
-                                    <textarea required="required" class="form-control" name="description" id="description" rows="10" cols="80">
+                                    <textarea required="required" class="form-control" name="mo-ta" id="mo-ta" rows="10" cols="80">
+
                             </textarea>
-                                    <script type="text/javascript" charset="utf-8">
-                                        CKEDITOR.replace('description', {
-                                            language: 'vi',
-                                            entities: false,
-                                            entities_latin: false,
-                                            entities_greek: false,
-                                            htmlEncodeOutput: false
-                                             
-                                            
-                                        });
+                                    <script>
+                                        CKEDITOR.replace('mo-ta');
                                     </script>
                                 </div>
                             </div>
