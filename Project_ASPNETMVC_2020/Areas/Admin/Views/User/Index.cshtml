@@ -22,7 +22,6 @@
     <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
     <!-- NProgress -->
     <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="@Url.ContentAssetAdmin("lib/build/css/custom.min.css",true)" rel="stylesheet">
     <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
@@ -118,7 +117,7 @@
                                                     <td>@item.EMAIL</td>
                                                     <td class="giua"><i class="fas fa-user"></i> @(item.LEVEL == "5"?"Khách":"Admin") </td>
                                                     <td class="a-right a-right "> <i class="fas fa-circle @(item.ACTIVE == "1"? "green" : "red")"></i> @(item.ACTIVE == "1"? "Hoạt Động" : "Khóa")</td>
-                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+                                                    <td class="giua"><a href="@Url.Action("Infomation","User",new {IdAccount=item.ID_ACCOUNT })"><i class="far fa-edit"></i></a></td>
                                                     <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
                                                     <td class="last">
                                                         <a href="#" id="@("Delete"+item.ID_ACCOUNT)"><i class="fas fa-trash-alt ok"></i></a>
@@ -130,7 +129,7 @@
                                                                 content: 'Bạn Có Muốn Xóa Tài Khoản!',
                                                                 buttons: {
                                                                     Có: function () {
-                                                                        window.location = "http://google.com";
+                                                                        $('#@("Delete"+item.ID_ACCOUNT)').parent().parent().remove();
                                                                     },
                                                                     Không: function () { },
                                                                 }
@@ -141,28 +140,28 @@
                                             }
 
                                             @*</tr>
-        <tr class="even pointer">
-            <td class="a-center ">
-                <div class="icheckbox_flat-green" style="position: relative;">
-                    <input type="checkbox" class="flat" name="table_records"
-                           style="position: absolute; opacity: 0;">
-                    <ins class="iCheck-helper"
-                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                </div>
-            </td>
-            <td>TK1</td>
-            <td>Nguyễn Huy Thành Sang</td>
-            <td>Sang</td>
-            <td>sang@gmail.com</td>
-            <td class="giua"><i class="fas fa-users-cog"></i> Admin </td>
-            <td class="a-right a-right "> <i class="fas fa-circle red"></i> Khóa </td>
-            <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
-            <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
-            <td class="last">
-                <a href=""><i class="fas fa-trash-alt"></i></a>
-            </td>
+                                                <tr class="even pointer">
+                                                    <td class="a-center ">
+                                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                                            <input type="checkbox" class="flat" name="table_records"
+                                                                   style="position: absolute; opacity: 0;">
+                                                            <ins class="iCheck-helper"
+                                                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                        </div>
+                                                    </td>
+                                                    <td>TK1</td>
+                                                    <td>Nguyễn Huy Thành Sang</td>
+                                                    <td>Sang</td>
+                                                    <td>sang@gmail.com</td>
+                                                    <td class="giua"><i class="fas fa-users-cog"></i> Admin </td>
+                                                    <td class="a-right a-right "> <i class="fas fa-circle red"></i> Khóa </td>
+                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+                                                    <td class="last">
+                                                        <a href=""><i class="fas fa-trash-alt"></i></a>
+                                                    </td>
 
-        </tr>*@
+                                                </tr>*@
 
 
                                         </tbody>
@@ -182,6 +181,7 @@
 </div>
 <!-- /page content -->
 @section scripts{
+    <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
     <script>
         var functionClickDelete = function (e) {
             // disabled the submit button

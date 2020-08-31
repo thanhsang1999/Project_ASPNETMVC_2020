@@ -48,13 +48,14 @@
                                 <li>
                                     <a><i class="fa fa-home"></i> Trang Chủ <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="index.html">Số Liệu</a></li>
+                                        <li><a href="@Url.Action("Index","Home")">Số Liệu</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-edit"></i>Danh Sách <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="danhsachsanpham.html">Danh Sách Sản Phẩm</a></li>
+                                        <li><a href="@Url.Action("ListProduct,Product")">Danh Sách Sản Phẩm</a></li>
+                                        <li><a href="@Url.Action("Index","User")">Danh Sách Tài Khoản</a></li>
                                     </ul>
                                 </li>
                                 <li>

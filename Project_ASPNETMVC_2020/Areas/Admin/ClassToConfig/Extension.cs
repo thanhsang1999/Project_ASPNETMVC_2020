@@ -15,5 +15,12 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
             var url = new Uri(HttpContext.Current.Request.Url, path);
             return toAbsolute ? url.AbsoluteUri : path;
         }
+        public static string ContentAssetWeb(this UrlHelper urlHelper, string contentPath, bool toAbsolute = true)
+        {
+            contentPath = "~/Assets/web/" + contentPath;
+            var path = urlHelper.Content(contentPath);
+            var url = new Uri(HttpContext.Current.Request.Url, path);
+            return toAbsolute ? url.AbsoluteUri : path;
+        }
     }
 }

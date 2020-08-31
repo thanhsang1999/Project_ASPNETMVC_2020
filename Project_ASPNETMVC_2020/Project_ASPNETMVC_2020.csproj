@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
+    <Compile Include="Areas\Admin\Model\User\FormDataAccount.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
@@ -6794,6 +6795,7 @@
     <Content Include="Assets\admin\lib\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Product\ListProduct.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Infomation.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

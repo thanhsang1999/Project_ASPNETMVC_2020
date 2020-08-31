@@ -31,5 +31,29 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                          };
             return result.ToList();
         }
+
+        public static User loadUserID(string idAccount)
+        {
+            DBModel db = new DBModel();
+            var result = from a in db.accounts
+                         join b in db.ct_account
+                         on a.ID_ACCOUNT equals b.ID_ACCOUNT
+                         where a.ID_ACCOUNT == idAccount
+                         select new User
+                         {
+                             ID_ACCOUNT = a.ID_ACCOUNT,
+                             USERNAME = a.USERNAME,
+                             PASSWORD = a.PASSWORD,
+                             HO_TEN = a.HO_TEN,
+                             LEVEL = a.LEVEL,
+                             ACTIVE = a.ACTIVE,
+                             EMAIL = b.EMAIL,
+                             SDT = b.SDT,
+                             DIA_CHI = b.DIA_CHI,
+                             GIOI_TINH = b.GIOI_TINH,
+                             NGAY_SINH = b.NGAY_SINH
+                         };
+            return result.ToList()[0];
+        }
     }
 }
