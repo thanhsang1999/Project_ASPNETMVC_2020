@@ -11,31 +11,37 @@
 
 @section scripts{
     <script>
-        $('.deleteproduct').click(function (e) {
-            e.preventDefault();
-            var idproduct = $(this).data('product');
-            var r = confirm("Bạn có chắc muốn xóa sản phẩm này không");
-            if (r == true) {
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("DeleteProduct", "Product", new { area = "Admin"    })',
-                    data: { idproduct: idproduct },
-                    success: function (data) {
-                        var rs = data.result;
-                        if (rs === "user") {
-                            window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
-                        } else if (rs === "fail") {
-                            alert("Đã có lỗi xảy ra với hệ thống hãy thử refresh lại");
-                        } else {
-                            var htmlreplace = '#product-' + idproduct;
-                            $(htmlreplace).remove();
+        ConfirmDialog('Bạn có chắc muốn xóa');
+        function ConfirmDialog(message) {
+            $('<div></div>').appendTo('body')
+                .html('<div><h6>' + message + '?</h6></div>')
+                .dialog({
+                    modal: true,
+                    title: 'Delete message',
+                    zIndex: 10000,
+                    autoOpen: true,
+                    width: 'auto',
+                    resizable: false,
+                    buttons: {
+                        Yes: function () {
+                            // $(obj).removeAttr('onclick');
+                            // $(obj).parents('.Parent').remove();
+
+                            $('body').append('<h1>Confirm Dialog Result: <i>Yes</i></h1>');
+
+                            $(this).dialog("close");
+                        },
+                        No: function () {
+                            $('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');
+
+                            $(this).dialog("close");
                         }
+                    },
+                    close: function (event, ui) {
+                        $(this).remove();
                     }
                 });
-            } else {
-                return false;
-            }
-        })
+        };
     </script>
 }
 @section styles{
@@ -124,7 +130,7 @@
                                             {
                                                 oddoreven = "odd";
                                             }
-                                            <tr id="product-@listProduct[i].ID_PRODUCT" class="@oddoreven pointer">
+                                            <tr id="deleteproduct-@listProduct[i].ID_PRODUCT" class="@oddoreven pointer">
                                                 <td class="a-center ">
                                                     <div class="icheckbox_flat-green" style="position: relative;">
                                                         <input type="checkbox"
@@ -148,8 +154,8 @@
                                                 <td class="last">
                                                     <a href=""><i class="far fa-edit"></i></a>
                                                 </td>
-                                                <td class="last ">
-                                                    <a data-product="@listProduct[i].ID_PRODUCT" class="deleteproduct" href="#"><i class="fas fa-trash-alt"></i></a>
+                                                <td class="last">
+                                                    <a onclick="ConfirmDialog('Bạn có chắc muốn xóa')" href=""><i class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
                                         }

@@ -14,26 +14,11 @@
         $('.deleteproduct').click(function (e) {
             e.preventDefault();
             var idproduct = $(this).data('product');
-            var r = confirm("Bạn có chắc muốn xóa sản phẩm này không");
+            var r = confirm("Press a button!");
             if (r == true) {
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("DeleteProduct", "Product", new { area = "Admin"    })',
-                    data: { idproduct: idproduct },
-                    success: function (data) {
-                        var rs = data.result;
-                        if (rs === "user") {
-                            window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
-                        } else if (rs === "fail") {
-                            alert("Đã có lỗi xảy ra với hệ thống hãy thử refresh lại");
-                        } else {
-                            var htmlreplace = '#product-' + idproduct;
-                            $(htmlreplace).remove();
-                        }
-                    }
-                });
+                txt = "You pressed OK!";
             } else {
-                return false;
+                txt = "You pressed Cancel!";
             }
         })
     </script>
@@ -124,7 +109,7 @@
                                             {
                                                 oddoreven = "odd";
                                             }
-                                            <tr id="product-@listProduct[i].ID_PRODUCT" class="@oddoreven pointer">
+                                            <tr id="deleteproduct-@listProduct[i].ID_PRODUCT" class="@oddoreven pointer">
                                                 <td class="a-center ">
                                                     <div class="icheckbox_flat-green" style="position: relative;">
                                                         <input type="checkbox"
