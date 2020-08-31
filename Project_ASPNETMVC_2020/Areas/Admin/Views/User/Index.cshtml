@@ -117,7 +117,7 @@
                                                     <td>@item.USERNAME</td>
                                                     <td>@item.EMAIL</td>
                                                     <td class="giua"><i class="fas fa-user"></i> @(item.LEVEL == "5"?"Khách":"Admin") </td>
-                                                    <td class="a-right a-right "> <i class="fas fa-circle green"></i>@(item.ACTIVE == "1"? "Hoạt Động" : "Khóa")</td>
+                                                    <td class="a-right a-right "> <i class="fas fa-circle @(item.ACTIVE == "1"? "green" : "red")"></i> @(item.ACTIVE == "1"? "Hoạt Động" : "Khóa")</td>
                                                     <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
                                                     <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
                                                     <td class="last">
