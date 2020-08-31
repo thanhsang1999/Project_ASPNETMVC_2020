@@ -8,8 +8,34 @@
     var listProduct = (List<product>)Model[0];
 
 }
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+
+
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_listproduct.css",true)" />
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
+
+}
 
 @section scripts{
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.js",true)"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
     <script>
         $('.deleteproduct').click(function (e) {
             e.preventDefault();
@@ -38,170 +64,168 @@
         })
     </script>
 }
-@section styles{
-    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_listproduct.css",true)" />
-    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
-}
-<div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Danh Sách Sản Phẩm</h3>
-        </div>
+<div class="right_col" role="main" style="min-height: 692px;">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Danh Sách Sản Phẩm</h3>
+            </div>
 
-        <div class="title_right">
-            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                <div class="input-group">
-                    <input type="text" class="form-control"
-                           placeholder="Search for..."> <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               placeholder="Search for..."> <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12  ">
-            <div class="x_panel">
-                <div class="x_title">
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle"
-                               data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
-                            </div>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="table-responsive">
-                        <div id="content-box">
-                            <div id="content-wrapper">
-                                <table class="table table-striped jambo_table bulk_action">
-                                    <thead>
-                                        <tr class="headings">
-                                            <th>
-                                                <div class="icheckbox_flat-green"
-                                                     style="position: relative;">
-                                                    <input type="checkbox" id="check-all" class="flat"
-                                                           style="position: absolute; opacity: 0;">
-                                                    <ins class="iCheck-helper"
-                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                </div>
-                                            </th>
-                                            <th class="column-title">Mã Số</th>
-                                            <th class="column-title width-tsp">Tên Sản Phẩm</th>
-                                            <th class="column-title">Hãng</th>
-                                            <th class="column-title">Giá Tiền</th>
-                                            <th class="column-title">Hình Ảnh</th>
-                                            <th class="column-title">Số Lượng</th>
-                                            <th class="column-title">Xem</th>
-                                            <th class="column-title">Sửa</th>
-                                            <th class="column-title no-link last">
-                                                <span class="nobr">Xóa</span>
-                                            </th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody id="bodyTable">
-                                        @for (int i = 0; i < listProduct.Count; i++)
-                                        {
-                                            string oddoreven = "";
-                                            if (i == 0 || (i / 2) == 0)
-                                            {
-                                                oddoreven = "even";
-                                            }
-                                            else
-                                            {
-                                                oddoreven = "odd";
-                                            }
-                                            <tr id="product-@listProduct[i].ID_PRODUCT" class="@oddoreven pointer">
-                                                <td class="a-center ">
-                                                    <div class="icheckbox_flat-green" style="position: relative;">
-                                                        <input type="checkbox"
-                                                               class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
-                                                                                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle"
+                                   data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <div id="content-box">
+                                <div id="content-wrapper">
+                                    <table class="table table-striped jambo_table bulk_action">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th>
+                                                    <div class="icheckbox_flat-green"
+                                                         style="position: relative;">
+                                                        <input type="checkbox" id="check-all" class="flat"
+                                                               style="position: absolute; opacity: 0;">
+                                                        <ins class="iCheck-helper"
+                                                             style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                     </div>
-                                                </td>
-                                                <td class=" ">@listProduct[i].ID_PRODUCT</td>
-                                                <td class=" ">@listProduct[i].NAME </td>
-                                                <td class=" ">@listProduct[i].ID_BRAND</td>
-                                                <td class=" ">@listProduct[i].PRICE.Value.ToString("N0") VNĐ</td>
-                                                <td class=" ">
-                                                    <img class="img-danh-sach-san-pham"
-                                                         src="@Url.ContentAssetWeb("images/sanpham/"+listProduct[i].IMG,true)" alt="">
-                                                </td>
-                                                <td class="a-right a-right ">@listProduct[i].AMOUNT</td>
+                                                </th>
+                                                <th class="column-title">Mã Số</th>
+                                                <th class="column-title width-tsp">Tên Sản Phẩm</th>
+                                                <th class="column-title">Hãng</th>
+                                                <th class="column-title">Giá Tiền</th>
+                                                <th class="column-title">Hình Ảnh</th>
+                                                <th class="column-title">Số Lượng</th>
+                                                <th class="column-title">Xem</th>
+                                                <th class="column-title">Sửa</th>
+                                                <th class="column-title no-link last">
+                                                    <span class="nobr">Xóa</span>
+                                                </th>
 
-                                                <td class="last">
-                                                    <a href="@LinkAdmin.linkForProductDetailAdmin(listProduct[i].ID_PRODUCT)">View </a>
-                                                </td>
-                                                <td class="last">
-                                                    <a href=""><i class="far fa-edit"></i></a>
-                                                </td>
-                                                <td class="last ">
-                                                    <a data-product="@listProduct[i].ID_PRODUCT" class="deleteproduct" href="#"><i class="fas fa-trash-alt"></i></a>
-                                                </td>
                                             </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+
+                                        <tbody id="bodyTable">
+                                            @for (int i = 0; i < listProduct.Count; i++)
+                                            {
+                                                string oddoreven = "";
+                                                if (i == 0 || (i / 2) == 0)
+                                                {
+                                                    oddoreven = "even";
+                                                }
+                                                else
+                                                {
+                                                    oddoreven = "odd";
+                                                }
+                                                <tr id="product-@listProduct[i].ID_PRODUCT" class="@oddoreven pointer">
+                                                    <td class="a-center ">
+                                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                                            <input type="checkbox"
+                                                                   class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                        </div>
+                                                    </td>
+                                                    <td class=" ">@listProduct[i].ID_PRODUCT</td>
+                                                    <td class=" ">@listProduct[i].NAME </td>
+                                                    <td class=" ">@listProduct[i].ID_BRAND</td>
+                                                    <td class=" ">@listProduct[i].PRICE.Value.ToString("N0") VNĐ</td>
+                                                    <td class=" ">
+                                                        <img class="img-danh-sach-san-pham"
+                                                             src="@Url.ContentAssetWeb("images/sanpham/"+listProduct[i].IMG,true)" alt="">
+                                                    </td>
+                                                    <td class="a-right a-right ">@listProduct[i].AMOUNT</td>
+
+                                                    <td class="last">
+                                                        <a href="@LinkAdmin.linkForProductDetailAdmin(listProduct[i].ID_PRODUCT)">View </a>
+                                                    </td>
+                                                    <td class="last">
+                                                        <a href=""><i class="far fa-edit"></i></a>
+                                                    </td>
+                                                    <td class="last ">
+                                                        <a data-product="@listProduct[i].ID_PRODUCT" class="deleteproduct" href="#"><i class="fas fa-trash-alt"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+                        @if (ViewBag.totalPage > 1)
+                        {
+                            int pageDisplay = (int)(ViewBag.maxPage);
+                            int totalPage = (int)(ViewBag.totalPage);
+                            int curPage = (int)(ViewBag.pageIndex);
+                            int startPageIndex = Math.Max(1, curPage - pageDisplay / 2);
+                            int endPageIndex = Math.Min(totalPage, curPage + pageDisplay / 2);
+                            <nav aria-label="Page navigation example align-self-center">
+                                <ul class="pagination">
+                                    @if (curPage != 1)
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(1)">Frist</a></li>
+                                    }
+                                    @if (ViewBag.Previous != -1)
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(curPage-1)">Previous</a></li>
+                                    }
+                                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                    {
+                                        if (i == curPage)
+                                        {
+                                            <li class="page-item active"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(i)">@i</a></li>
+
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(i)">@i</a></li>
+
+                                        }
+
+                                    }
+
+                                    @if (ViewBag.Next != -1)
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(curPage+1)">Next</a></li>
+                                    }
+                                    @if (curPage != totalPage)
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(totalPage)">Last</a></li>
+                                    }
+                                </ul>
+                            </nav>
+                        }
+
                     </div>
-                    @if (ViewBag.totalPage > 1)
-                    {
-                        int pageDisplay = (int)(ViewBag.maxPage);
-                        int totalPage = (int)(ViewBag.totalPage);
-                        int curPage = (int)(ViewBag.pageIndex);
-                        int startPageIndex = Math.Max(1, curPage - pageDisplay / 2);
-                        int endPageIndex = Math.Min(totalPage, curPage + pageDisplay / 2);
-                        <nav aria-label="Page navigation example align-self-center">
-                            <ul class="pagination">
-                                @if (curPage != 1)
-                                {
-                                    <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(1)">Frist</a></li>
-                                }
-                                @if (ViewBag.Previous != -1)
-                                {
-                                    <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(curPage-1)">Previous</a></li>
-                                }
-                                @for (int i = startPageIndex; i <= endPageIndex; i++)
-                                {
-                                    if (i == curPage)
-                                    {
-                                        <li class="page-item active"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(i)">@i</a></li>
-
-                                    }
-                                    else
-                                    {
-                                        <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(i)">@i</a></li>
-
-                                    }
-
-                                }
-
-                                @if (ViewBag.Next != -1)
-                                {
-                                    <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(curPage+1)">Next</a></li>
-                                }
-                                @if (curPage != totalPage)
-                                {
-                                    <li class="page-item"><a class="page-link" href="@LinkAdmin.linkForListProductAdmin(totalPage)">Last</a></li>
-                                }
-                            </ul>
-                        </nav>
-                    }
-
                 </div>
             </div>
         </div>
@@ -209,4 +233,4 @@
 </div>
 
 
-<!-- /page content -->
+    <!-- /page content -->

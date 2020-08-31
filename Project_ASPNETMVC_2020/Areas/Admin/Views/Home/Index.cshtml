@@ -1,8 +1,386 @@
-﻿    
+﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/iCheck/skins/flat/green.css",true)" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",true)" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/jqvmap/dist/jqvmap.min.css",true)" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/bootstrap-daterangepicker/daterangepicker.css",true)" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin("lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <!-- iCheck -->
 
-<h2>Index</h2>
 
+
+}
+<!-- page content -->
+<div class="right_col" role="main">
+    <!-- top tiles -->
+    <div class="row" style="display: inline-block;">
+        <div class="tile_count">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Tổng Người Dùng</span>
+                <div class="count green">8,567</div>
+                <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-clock-o"></i> Thời Gian</span>
+                <div class="count green">123.50</div>
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Tổng Nam</span>
+                <div class="count green">4,000</div>
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Tổng Nữ</span>
+                <div class="count">4,567</div>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Tổng Sản Phẩm</span>
+                <div class="count green">2,315</div>
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Đang Truy Cập</span>
+                <div class="count green">7,325</div>
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+        </div>
+    </div>
+    <!-- /top tiles -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+
+                <div class="x_content">
+                    <div class="tiles">
+                        <div class="col-md-4 tile">
+                            <span>Tổng Đơn Hàng</span>
+                            <h2>231</h2>
+                            <span class="sparkline11 graph" style="height: 160px;">
+                                <canvas width="198" height="40"
+                                        style="display: inline-block; width: 198px; height: 40px; vertical-align: top;"></canvas>
+                            </span>
+                        </div>
+                        <div class="col-md-4 tile">
+                            <span>Tổng Doanh Thu</span>
+                            <h2>231,809,000 đ</h2>
+                            <span class="sparkline22 graph" style="height: 160px;">
+                                <canvas width="200" height="40"
+                                        style="display: inline-block; width: 200px; height: 40px; vertical-align: top;"></canvas>
+                            </span>
+                        </div>
+                        <div class="col-md-4 tile">
+                            <span>Truy Cập</span>
+                            <h2>231,809</h2>
+                            <span class="sparkline11 graph" style="height: 160px;">
+                                <canvas width="198" height="40"
+                                        style="display: inline-block; width: 198px; height: 40px; vertical-align: top;"></canvas>
+                            </span>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+
+        <div class="col-md-4 col-sm-4 ">
+            <div class="x_panel tile fixed_height_320 overflow_hidden">
+                <div class="x_title">
+                    <h2><small>Thiết Bị Truy Cập Trang Web</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="" style="width:100%">
+                        <tr>
+                            <th style="width:37%;">
+                                <p>Top 5</p>
+                            </th>
+                            <th>
+                                <div class="col-lg-7 col-md-7 col-sm-7 ">
+                                    <p class="">Device</p>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 ">
+                                    <p class="">Progress</p>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                            </td>
+                            <td>
+                                <table class="tile_info">
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square blue"></i>IOS </p>
+                                        </td>
+                                        <td>30%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square green"></i>Android </p>
+                                        </td>
+                                        <td>10%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square purple"></i>Blackberry </p>
+                                        </td>
+                                        <td>20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square aero"></i>Symbian </p>
+                                        </td>
+                                        <td>15%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><i class="fa fa-square red"></i>Others </p>
+                                        </td>
+                                        <td>30%</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Danh Sách Công Việc</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="">
+                        <ul class="to_do">
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Schedule meeting with new client
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Create email address for new intern
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Have IT fix the network printer
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Copy backups to offsite location
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Food truck fixie locavors mcsweeney
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Food truck fixie locavors mcsweeney
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Create email address for new intern
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Have IT fix the network printer
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox"
+                                               class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper"
+                                                                                                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Copy backups to offsite location
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4  ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Doanh Thu Từng Tháng</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <iframe class="chartjs-hidden-iframe"
+                            style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                    <canvas id="mybarChart" height="212" width="425" style="width: 340px; height: 170px;"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+<!-- /page content -->
+@section scripts{
+    <!-- jQuery -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.js",true)"></script>
+    <!-- Chart.js -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/Chart.js/dist/Chart.min.js",true)"></script>
+    <!-- gauge.js -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/gauge.js/dist/gauge.min.js",true)"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",true)"></script>
+    <!-- iCheck -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/iCheck/icheck.min.js",true)"></script>
+    <!-- Skycons -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/skycons/skycons.js",true)"></script>
+    <!-- jQuery Sparklines -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jquery-sparkline/dist/jquery.sparkline.min.js",true)"></script>
+    <!-- Flot -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/Flot/jquery.flot.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/Flot/jquery.flot.pie.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/Flot/jquery.flot.time.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/Flot/jquery.flot.stack.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/Flot/jquery.flot.resize.js",true)"></script>
+    <!-- Flot plugins -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/flot.orderbars/js/jquery.flot.orderBars.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/flot-spline/js/jquery.flot.spline.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/flot.curvedlines/curvedLines.js",true)"></script>
+    <!-- DateJS -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/DateJS/build/date.js",true)"></script>
+    <!-- JQVMap -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jqvmap/dist/jquery.vmap.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jqvmap/dist/maps/jquery.vmap.world.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js",true)"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/moment/min/moment.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("lib/vendors/bootstrap-daterangepicker/daterangepicker.js",true)"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
+}
