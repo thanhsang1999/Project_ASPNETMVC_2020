@@ -15,7 +15,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
        public ActionResult Index()
         {
             User user = Session["User"] as User;
-            if (user != null&&user.LEVEL.Equals("10"))
+            if (user != null&&user.LEVEL.Equals("10")&&user.ACTIVE=="1")
             {
                 return View();
             }

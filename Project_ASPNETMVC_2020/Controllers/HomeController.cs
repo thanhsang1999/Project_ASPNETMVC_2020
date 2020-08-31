@@ -54,6 +54,17 @@ namespace Project_ASPNETMVC_2020.Controllers
                 ViewBag.MessageLog = "Login fail";
                 return new JsonResult { Data = new { status = status } };
             }
+            else if (userDAO.checkActived(UserName) == false)
+            {
+                status = "active";
+                // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
+
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // nếu ko có viewbag messagelog thì sẽ lưu xuống database là OK
+
+                ViewBag.MessageLog = "Login fail";
+                return new JsonResult { Data = new { status = status } };
+            }
             else
             {
                 User userVM = userDAO.getUser(userDAO.getID(UserName));

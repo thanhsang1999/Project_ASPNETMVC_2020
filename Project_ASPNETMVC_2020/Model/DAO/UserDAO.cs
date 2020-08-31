@@ -73,6 +73,19 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             }
 
         }
+        public bool checkActived(string username)
+        {
+            var tmp = db.accounts.Where(x => x.USERNAME.Equals(username)).FirstOrDefault();
+            if (tmp.ACTIVE == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         public string generateIDAccount() {
             var tmp = db.accounts;
             int tmpInt = 0;
