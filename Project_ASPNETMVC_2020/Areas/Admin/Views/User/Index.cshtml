@@ -117,10 +117,10 @@
                                                     <td>@item.EMAIL</td>
                                                     <td class="giua"><i class="fas fa-user"></i> @(item.LEVEL == "5"?"Khách":"Admin") </td>
                                                     <td class="a-right a-right "> <i class="fas fa-circle @(item.ACTIVE == "1"? "green" : "red")"></i> @(item.ACTIVE == "1"? "Hoạt Động" : "Khóa")</td>
-                                                    <td class="giua"><a href="@Url.Action("Infomation","User",new {IdAccount=item.ID_ACCOUNT })"><i class="far fa-edit"></i></a></td>
-                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+                                                    <td class="giua"><a href="@Url.Action("Infomation","User",new {IdAccount=item.ID_ACCOUNT })"><i class="fas fa-user-edit admin-blue-hover"></i></a></td>
+                                                    <td class="giua"><a href="@Url.Action("LevelAccount","User",new {IdAccount=item.ID_ACCOUNT })"><i class="fas fa-key admin-yellow-hover"></i></a></td>
                                                     <td class="last">
-                                                        <a href="#" id="@("Delete"+item.ID_ACCOUNT)"><i class="fas fa-trash-alt ok"></i></a>
+                                                        <a href="#" id="@("Delete"+item.ID_ACCOUNT)"><i class="fas fa-trash-alt admin-red-hover	"></i></a>
                                                     </td>
                                                     <script>
                                                         $('#@("Delete"+item.ID_ACCOUNT)').on('click', function () {
@@ -129,7 +129,17 @@
                                                                 content: 'Bạn Có Muốn Xóa Tài Khoản!',
                                                                 buttons: {
                                                                     Có: function () {
-                                                                        $('#@("Delete"+item.ID_ACCOUNT)').parent().parent().remove();
+                                                                            $.ajax({
+                                                                                type: "POST",
+                                                                                url: "@Url.Action("DeleteAccount","User")",
+                                                                                data:{idAccount:"@item.ID_ACCOUNT"},
+                                                                                success: function (data) {
+                                                                                    status = data.status
+                                                                                    if (status == "success") {
+                                                                                        $('#@("Delete"+item.ID_ACCOUNT)').parent().parent().remove();
+                                                                                    }
+                                                                                }
+                                                                            });
                                                                     },
                                                                     Không: function () { },
                                                                 }
@@ -138,31 +148,6 @@
                                                     </script>
                                                 </tr>
                                             }
-
-                                            @*</tr>
-                                                <tr class="even pointer">
-                                                    <td class="a-center ">
-                                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                                            <input type="checkbox" class="flat" name="table_records"
-                                                                   style="position: absolute; opacity: 0;">
-                                                            <ins class="iCheck-helper"
-                                                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                        </div>
-                                                    </td>
-                                                    <td>TK1</td>
-                                                    <td>Nguyễn Huy Thành Sang</td>
-                                                    <td>Sang</td>
-                                                    <td>sang@gmail.com</td>
-                                                    <td class="giua"><i class="fas fa-users-cog"></i> Admin </td>
-                                                    <td class="a-right a-right "> <i class="fas fa-circle red"></i> Khóa </td>
-                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
-                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
-                                                    <td class="last">
-                                                        <a href=""><i class="fas fa-trash-alt"></i></a>
-                                                    </td>
-
-                                                </tr>*@
-
 
                                         </tbody>
                                     </table>
@@ -206,24 +191,6 @@
                 }
             });
         }
-        $('document').ready(function () {
-
-            $.ajax({
-                type: "GET",
-                url: 'product',
-                data: {
-                    numberPage: 0
-                },
-                success: function (data) {
-
-                    $('#bodyTable').append(data);
-                    $('a.deleteProduct').click(functionClickDelete);
-
-                }
-            });
-
-
-        });
     </script>
     <style type="text/css">
         #content-box {
@@ -234,36 +201,6 @@
         a.deleteProduct {
         }
     </style>
-    <script type="text/javascript">
-        countI = 0;
-        $(document).ready(function () {
-            $contentLoadTriggered = false;
-            $("#content-box").scroll(function () {
-
-                if ($("#content-box").scrollTop() >= ($('#bodyTable').height() - $("#content-box").height()) &&
-                    $contentLoadTriggered == false) {
-                    $contentLoadTriggered = true;
-                    $.ajax({
-                        type: "GET",
-                        url: 'product',
-                        data: {
-                            numberPage: ++countI
-                        },
-                        success: function (
-                            data) {
-
-                            $('#bodyTable')
-                                .append(
-                                    data);
-                            $contentLoadTriggered = false;
-                            $('a.deleteProduct').unbind('click').click(functionClickDelete);
-                        }
-                    });
-                }
-
-            });
-        });
-    </script>
 }
 
 

@@ -24,3 +24,9 @@
     font-size: 20px;
     color: #34495e;
 }
+#u-error-mess {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 26px;
+}

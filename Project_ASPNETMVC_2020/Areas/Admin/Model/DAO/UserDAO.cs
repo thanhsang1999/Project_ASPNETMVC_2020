@@ -1,4 +1,5 @@
-﻿using Project_ASPNETMVC_2020.Model.EF;
+﻿using Microsoft.Ajax.Utilities;
+using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,36 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                              NGAY_SINH = b.NGAY_SINH
                          };
             return result.ToList()[0];
+        }
+        public static void DeleteAccountByID(string idAccount)
+        {
+            DBModel db = new DBModel();
+            var tmp1 = db.accounts.Where(x => x.ID_ACCOUNT.Equals(idAccount)).FirstOrDefault();
+            db.accounts.Attach(tmp1);
+            db.accounts.Remove(tmp1);
+            db.SaveChangesAsync();
+            DBModel db2 = new DBModel();
+            var tmp2 = db2.ct_account.Where(x => x.ID_ACCOUNT.Equals(idAccount)).FirstOrDefault();
+            db2.ct_account.Attach(tmp2);
+            db2.ct_account.Remove(tmp2);
+            db2.SaveChangesAsync();
+        }
+        public static bool checkAccount(string idAccount)
+        {
+            DBModel db = new DBModel();
+            var tmp1 = db.accounts.Where(x => x.ID_ACCOUNT.Equals(idAccount)).FirstOrDefault();
+            DBModel db2 = new DBModel();
+            var tmp2 = db2.ct_account.Where(x => x.ID_ACCOUNT.Equals(idAccount)).FirstOrDefault();
+            if (tmp1.ID_ACCOUNT==null)
+            {
+                return false;
+            }else if (tmp1.ID_ACCOUNT == null)
+            {
+                return false;
+            }else
+            {
+                return true;
+            }
         }
     }
 }
