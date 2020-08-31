@@ -1,0 +1,269 @@
+﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@model System.Collections.ArrayList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    User user = Session["User"] as User;
+    List<User> listUser = null;
+    if (user != null)
+    {
+        listUser = Model[0] as List<User>;
+    }
+}
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin("lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_dsAccountCss.css",true)">
+}
+<!-- page content -->
+<div class="right_col" role="main" style="min-height: 692px;">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Danh Sách Tài Khoản</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..."> <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">
+                                        Settings
+                                        2
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <div id="content-box">
+                                <div id="content-wrapper">
+                                    <table class="table table-striped jambo_table bulk_action">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th>
+                                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                                        <input type="checkbox" id="check-all" class="flat"
+                                                               style="position: absolute; opacity: 0;">
+                                                        <ins class="iCheck-helper"
+                                                             style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                    </div>
+                                                </th>
+                                                <th class="column-title">Mã Số </th>
+                                                <th class="column-title giua">Tên Người Dùng </th>
+                                                <th class="column-title">Tài Khoản </th>
+                                                <th class="column-title giua">Email </th>
+                                                <th class="column-title">Quyền Truy Cập </th>
+                                                <th class="column-title">Trạng Thái </th>
+                                                <th class="column-title">Thông Tin </th>
+                                                <th class="column-title">Truy Cập </th>
+                                                <th class="column-title no-link last"><span class="nobr">Xóa </span></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="bodyTable">
+
+                                            @foreach (User item in listUser)
+                                            {
+                                                <tr class="even pointer">
+                                                    <td class="a-center ">
+                                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                                            <input type="checkbox" class="flat" name="table_records"
+                                                                   style="position: absolute; opacity: 0;">
+                                                            <ins class="iCheck-helper"
+                                                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                        </div>
+                                                    </td>
+                                                    <td>@item.ID_ACCOUNT</td>
+                                                    <td>@item.HO_TEN</td>
+                                                    <td>@item.USERNAME</td>
+                                                    <td>@item.EMAIL</td>
+                                                    <td class="giua"><i class="fas fa-user"></i> @(item.LEVEL == "5"?"Khách":"Admin") </td>
+                                                    <td class="a-right a-right "> <i class="fas fa-circle green"></i>@(item.ACTIVE == "1"? "Hoạt Động" : "Khóa")</td>
+                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+                                                    <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+                                                    <td class="last">
+                                                        <a href="#" id="@("Delete"+item.ID_ACCOUNT)"><i class="fas fa-trash-alt ok"></i></a>
+                                                    </td>
+                                                    <script>
+                                                        $('#@("Delete"+item.ID_ACCOUNT)').on('click', function () {
+                                                            $.confirm({
+                                                                title: 'Xóa Tài Khoản ...!',
+                                                                content: 'Bạn Có Muốn Xóa Tài Khoản!',
+                                                                buttons: {
+                                                                    Có: function () {
+                                                                        window.location = "http://google.com";
+                                                                    },
+                                                                    Không: function () { },
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                </tr>
+                                            }
+
+                                            @*</tr>
+        <tr class="even pointer">
+            <td class="a-center ">
+                <div class="icheckbox_flat-green" style="position: relative;">
+                    <input type="checkbox" class="flat" name="table_records"
+                           style="position: absolute; opacity: 0;">
+                    <ins class="iCheck-helper"
+                         style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                </div>
+            </td>
+            <td>TK1</td>
+            <td>Nguyễn Huy Thành Sang</td>
+            <td>Sang</td>
+            <td>sang@gmail.com</td>
+            <td class="giua"><i class="fas fa-users-cog"></i> Admin </td>
+            <td class="a-right a-right "> <i class="fas fa-circle red"></i> Khóa </td>
+            <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+            <td class="giua"><a href=""><i class="far fa-edit"></i></a></td>
+            <td class="last">
+                <a href=""><i class="fas fa-trash-alt"></i></a>
+            </td>
+
+        </tr>*@
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+@section scripts{
+    <script>
+        var functionClickDelete = function (e) {
+            // disabled the submit button
+            $(this).prop("disabled", true);
+            var tmp = $(this);
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080deleteProduct",
+                data: {
+                    ID_PRODUCT: $(this).parent().parent().find('td:eq(1)').html()
+                },
+                success: function (data) {
+                    if (data == "Success: true")
+                        tmp.parent().parent().remove();
+
+
+                },
+                error: function (e) {
+
+                    $(this).prop("disabled", false);
+
+                }
+            });
+        }
+        $('document').ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: 'product',
+                data: {
+                    numberPage: 0
+                },
+                success: function (data) {
+
+                    $('#bodyTable').append(data);
+                    $('a.deleteProduct').click(functionClickDelete);
+
+                }
+            });
+
+
+        });
+    </script>
+    <style type="text/css">
+        #content-box {
+            height: 500px;
+            overflow: scroll;
+        }
+
+        a.deleteProduct {
+        }
+    </style>
+    <script type="text/javascript">
+        countI = 0;
+        $(document).ready(function () {
+            $contentLoadTriggered = false;
+            $("#content-box").scroll(function () {
+
+                if ($("#content-box").scrollTop() >= ($('#bodyTable').height() - $("#content-box").height()) &&
+                    $contentLoadTriggered == false) {
+                    $contentLoadTriggered = true;
+                    $.ajax({
+                        type: "GET",
+                        url: 'product',
+                        data: {
+                            numberPage: ++countI
+                        },
+                        success: function (
+                            data) {
+
+                            $('#bodyTable')
+                                .append(
+                                    data);
+                            $contentLoadTriggered = false;
+                            $('a.deleteProduct').unbind('click').click(functionClickDelete);
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+}
+
+
