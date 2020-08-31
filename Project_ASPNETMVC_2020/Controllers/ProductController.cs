@@ -61,12 +61,8 @@ namespace Project_ASPNETMVC_2020.Controllers
             List<product> listProduct = null;
             try
             {
-                if (id == null || catogery == null)
-                {
-                    totalRecord = dbmodel.products.Count();
-                    listProduct = new ProductDAO().productAll(pageIndex, itemInOnePage);
-                }
-                else if (catogery.Equals("brand"))
+              
+                 if (catogery.Equals("brand"))
                 {
                     totalRecord = new ProductDAO().totalRecordByBrand(id);
                     listProduct = new ProductDAO().productByBrand(id, pageIndex, itemInOnePage);
@@ -88,7 +84,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                     totalRecord = new ProductDAO().totalRecoreByRam(setid);
                     listProduct = new ProductDAO().productByRam(setid, pageIndex, itemInOnePage);
                 }
-                else if (catogery.Equals("price"))
+                else if  (catogery.Equals("price"))
                 {
                     int setid = Convert.ToInt32(id);
                     totalRecord = new ProductDAO().totalRecoreByPrice(setid);
@@ -96,15 +92,16 @@ namespace Project_ASPNETMVC_2020.Controllers
                 }
                 else
                 {
-                    totalRecord = dbmodel.products.Count();
-                    listProduct = new ProductDAO().productAll(pageIndex, itemInOnePage);
+                    totalRecord = 0;
+                    listProduct = null;
                 }
+               
             }
             catch (Exception e)
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (listProduct == null)
+            if (listProduct == null || totalRecord==0)
             {
                 return RedirectToAction("Index", "Home");
             }

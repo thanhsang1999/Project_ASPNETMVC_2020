@@ -6,12 +6,78 @@
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
     var p = new product();
-    if (Model != null)
-    {
-        p = (product)Model[0];
-    }
+   
 
 }
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/iCheck/skins/flat/green.css",true)" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/google-code-prettify/bin/prettify.min.css",true)" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/select2/dist/css/select2.min.css",true)" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/switchery/dist/switchery.min.css",true)" rel="stylesheet">
+    <!-- starrr -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/starrr/dist/starrr.css",true)" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.css",true)" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <!-- CKEDITOR -->
+    <script src="@Url.ContentAssetAdmin( "lib/ckeditor/ckeditor.js",true)"></script>
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin( "css/sanpham.css",true)">
+}
+@section scripts{
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.js",true)"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",true)"></script>
+    <!-- iCheck -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/iCheck/icheck.min.js",true)"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/moment/min/moment.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.js",true)"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery.hotkeys/jquery.hotkeys.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/google-code-prettify/src/prettify.js",true)"></script>
+    <!-- jQuery Tags Input -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery.tagsinput/src/jquery.tagsinput.js",true)"></script>
+    <!-- Switchery -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/switchery/dist/switchery.min.js",true)"></script>
+    <!-- Select2 -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/select2/dist/js/select2.full.min.js",true)"></script>
+    <!-- Parsley -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/parsleyjs/dist/parsley.min.js",true)"></script>
+    <!-- Autosize -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/autosize/dist/autosize.min.js",true)"></script>
+    <!-- jQuery autocomplete -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js",true)"></script>
+    <!-- starrr -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/starrr/dist/starrr.js",true)"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="@Url.ContentAssetAdmin( "lib/build/js/custom.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "js/sanpham.js",true)"></script>
+}
+<div class="right_col" role="main" style="min-height: 692px;">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -84,13 +150,40 @@
                                 </div>
                             </div>
                             <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="he-dieu-hanh">
+                                    Hệ Điều Hành<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="form-group">
+                                        <select class="form-control" name="he-dieu-hanh" id="he-dieu-hanh">
+                                            <option>Chọn Hệ Điều Hành</option>                                           
+                                            <option>16 GB</option>
+                                            <option>32 GB</option>
+                                            <option>64 GB</option>
+                                            <option>128 GB</option>
+                                            <option>256 GB</option>
+                                            <option>512 GB</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten-thương-hieu">
                                     Tên Thương
                                     Hiệu<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" onchange="uppercase()" id="ten-thuong-hieu" name="ten-thương-hieu"
-                                           required="required" class="form-control ">
+                                    <div class="form-group">
+                                        <select class="form-control" name="ten-thuong-hieu" id="ten-thương-hieu">
+                                            <option>Chọn Tên Thương Hiệu</option>
+                                            <option>16 GB</option>
+                                            <option>32 GB</option>
+                                            <option>64 GB</option>
+                                            <option>128 GB</option>
+                                            <option>256 GB</option>
+                                            <option>512 GB</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="item form-group gian-cach ">
@@ -168,7 +261,6 @@
                                     <script>
                                         CKEDITOR.replace('mo-ta');
                                     </script>
-
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -186,3 +278,4 @@
             </div>
         </div>
     </div>
+</div>

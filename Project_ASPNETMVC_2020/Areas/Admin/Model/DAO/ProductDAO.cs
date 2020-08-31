@@ -14,6 +14,27 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             List<product> result = dBModel.products.OrderByDescending(x => x.ID_PRODUCT).ToList();
             return result;
         }
+        public List<brand> listBrands()
+        {
+            DBModel dBModel = new DBModel();
+            List<brand> result = dBModel.brands.ToList();
+            return result;
+
+        }
+        public List<brand> listRams()
+        {
+            DBModel dBModel = new DBModel();
+            List<brand> result = dBModel.brands.ToList();
+            return result;
+
+        }
+        public List<brand> listMemory()
+        {
+            DBModel dBModel = new DBModel();
+            List<brand> result = dBModel.brands.ToList();
+            return result;
+
+        }
         public int totalRecordAll()
         {
             DBModel dBModel = new DBModel();

@@ -13,9 +13,13 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         // GET: Admin/Product
-        public ActionResult ViewProduct(string idproduct)
+        public ActionResult FormProduct(string idproduct)
         {
             ProductDAO dao = new ProductDAO();
+            ViewBag.ID = idproduct;
+            ViewBag.Brands=
+                ViewBag.Ram=
+                ViewMemory=
             if (idproduct != null)
             {
                 var model = new ArrayList();
@@ -25,7 +29,8 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
             else
             {
-                return View();
+                var model = new ArrayList();
+                return View(model);
             }
         }
         public ActionResult ChangeProduct()
