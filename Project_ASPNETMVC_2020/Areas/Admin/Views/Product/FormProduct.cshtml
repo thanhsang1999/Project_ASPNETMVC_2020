@@ -85,7 +85,7 @@
     <!-- Custom Theme Scripts -->
     <script src="@Url.ContentAssetAdmin( "lib/build/js/custom.min.js",true)"></script>
     <script src="@Url.ContentAssetAdmin( "js/sanpham.js",true)"></script>
-        
+
     <script>
 
                 $('#demo-form2').submit(function(e) {
@@ -94,10 +94,10 @@
                         CKEDITOR.instances[instance].updateElement();
                     }
                     var formData = new FormData($('form#demo-form2')[0]);
-                  
+
 
                     var description = CKEDITOR.instances['description'].getData();
-                   
+
                     formData.set('description', encodeURIComponent(description));
                     console.log(formData.get('description'));
                 $.ajax({
@@ -274,7 +274,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
                                         <select class="form-control" name="hedieuhanh" id="he-dieu-hanh">
-                                            <option>Chọn Hệ Điều Hành</option>
+                                            <option value="">Chọn Hệ Điều Hành</option>
                                             @foreach (hedieuhanh item in listHDH)
                                             {
                                                 if (p != null && p.OS.Equals(item.OS))
@@ -298,7 +298,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
                                         <select class="form-control" name="brand" id="ten-thương-hieu">
-                                            <option>Chọn Tên Thương Hiệu</option>
+                                            <option value="">Chọn Tên Thương Hiệu</option>
                                             @foreach (brand item in listBrands)
                                             {
                                                 if (p != null && p.ID_BRAND.Equals(item.ID_BRAND))
@@ -322,7 +322,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
                                         <select class="form-control" name="memory" id="input-memory">
-                                            <option>Chọn Dung Lượng Bộ Nhớ</option>
+                                            <option value="">Chọn Dung Lượng Bộ Nhớ</option>
                                             @foreach (memory item in listMemory)
                                             {
                                                 if (p != null && p.MEMORY.Equals(item.MEMORY1))
@@ -346,7 +346,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="form-group">
                                         <select class="form-control" name="ram" id="input-ram">
-                                            <option>Chọn Dung Lượng RAM</option>
+                                            <option value="">Chọn Dung Lượng RAM</option>
                                             @foreach (ram item in listRams)
                                             {
                                                 if (p != null && p.RAM.Equals(item.RAM1))
@@ -427,8 +427,8 @@
                                             entities_latin: false,
                                             entities_greek: false,
                                             htmlEncodeOutput: false
-                                             
-                                            
+
+
                                         });
                                     </script>
                                 </div>

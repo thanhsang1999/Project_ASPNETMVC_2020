@@ -7,6 +7,7 @@ using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,7 +52,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             string hedieuhanh = form.hedieuhanh;
             string brand = form.brand;
             string memory = form.memory;
-            string ram = form.brand;
+            string ram = form.ram;
             string price = form.price;
             string amount = form.amount;
             string salerate = form.salerate;
@@ -84,23 +85,27 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
             if (Tools.Tools.checkNullList(checkNullString) == false)
             {
+
                 rs = "null";
-                rs = description;
+               
             }
             else if(Tools.Tools.checkNumList(checkNum) == false)
             {
-                rs = "number";
-                rs = description;
+                rs = "number "+ram+" "+memory+" "+price+" "+amount+" "+salerate;             
             }
             else if(Tools.Tools.checkFileNull(listFiles) == false)
             {
                 rs = "filenull";
-                rs = description;
+               
+            }else if (Tools.Tools.checkFileImage(listFiles) == false)
+            {
+                rs = "notimage";
             }
             else
             {
-                rs = "success";
-                rs = description;
+                ProductDAO dao = new ProductDAO();
+                dao.addProduct(form, listFiles, description);
+                rs = "success";     
             }
             return Json(new { result = rs },JsonRequestBehavior.DenyGet);
         }

@@ -136,6 +136,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\LinkAdmin.cs" />
+    <Compile Include="Areas\Admin\ClassToConfig\UploadFile.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />

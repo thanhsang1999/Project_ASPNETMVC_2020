@@ -22,22 +22,27 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult ProductDetail(string id)
         {
 
-            
+
             product model = new product();
-            if ((model = new ProductDAO().productDetail(id)) != null || id != null)
+            ProductDAO dao = new ProductDAO();
+
+            try
             {
-                model = new ProductDAO().productDetail(id);
-                ViewBag.Title = model.NAME;
-                User user = Session["User"] as User;
-                if (user != null)
+                if (dao.findProductById(id) == null || id == null)
                 {
-                    new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);
+                    return RedirectToAction("Index", "Home");
                 }
-                return View(model);
+                else 
+                {
+                    model = dao.productDetail(id);
+                    ViewBag.Title = model.NAME;
+                    return View(model);
+                }
             }
-            else
+            catch (Exception e)
             {
                 return RedirectToAction("Index", "Home");
+
             }
 
 
@@ -61,8 +66,8 @@ namespace Project_ASPNETMVC_2020.Controllers
             List<product> listProduct = null;
             try
             {
-              
-                 if (catogery.Equals("brand"))
+
+                if (catogery.Equals("brand"))
                 {
                     totalRecord = new ProductDAO().totalRecordByBrand(id);
                     listProduct = new ProductDAO().productByBrand(id, pageIndex, itemInOnePage);
@@ -84,7 +89,7 @@ namespace Project_ASPNETMVC_2020.Controllers
                     totalRecord = new ProductDAO().totalRecoreByRam(setid);
                     listProduct = new ProductDAO().productByRam(setid, pageIndex, itemInOnePage);
                 }
-                else if  (catogery.Equals("price"))
+                else if (catogery.Equals("price"))
                 {
                     int setid = Convert.ToInt32(id);
                     totalRecord = new ProductDAO().totalRecoreByPrice(setid);
@@ -95,13 +100,13 @@ namespace Project_ASPNETMVC_2020.Controllers
                     totalRecord = 0;
                     listProduct = null;
                 }
-               
+
             }
             catch (Exception e)
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (listProduct == null || totalRecord==0)
+            if (listProduct == null || totalRecord == 0)
             {
                 return RedirectToAction("Index", "Home");
             }
