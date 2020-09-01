@@ -1,0 +1,152 @@
+﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.EF
+@model System.Collections.ArrayList
+@{
+    ViewBag.Title = "EditSlider";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    var item = Model[0] as slider;
+}
+
+@section styles{
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin("lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin("css/sanpham.css",true)" rel="stylesheet">
+
+}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Trang Đăng Slider</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Đăng Slider</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="form-edit-slider" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <input type="hidden" value="@item.ID_SLIDER" name="idSlider" />
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten">
+                                    Tên Slider <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="ten" name="SLname" required="required"
+                                           class="form-control" value="@item.NAME">
+                                </div>
+                            </div>
+                            <div class="item form-group gian-cach">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="SLfile">
+                                    Ảnh <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" id="SLfile" name="SLfile">
+                                        <label class="custom-file-label" for="SLfile">@item.IMAGE</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="so">
+                                    Số Slider <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="so" name="SLnumber" required="required"
+                                           class="form-control" value="@item.NUMBER">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="id-active">
+                                    Kích Hoạt <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control" name="SLactive" id="id-active">
+                                        <option value="1">Có</option>
+                                        <option value="0">Không</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div style="color: #e74c3c" id="error-mess"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-4">
+                                    <a href="@Url.Action("Index","Slider")"><button class="btn btn-primary" type="button">Back</button></a>
+                                    <button  class="btn btn-primary" type="reset">Reset</button>
+                                    <button id="btn-submit" type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+@section scripts{
+    <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin("js/sanpham.js",true)"></script>
+    <script>
+        $('#id-active').val(@(item.ACTIVE==1?"1":"0"));
+        var status = null;
+        $(document).ready(function (e) {
+            $('#form-edit-slider').on('submit', (function (e) {
+                $('#loading').css('display', 'inline-block');
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                var tmp = $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("FormDataEditSlider", "Slider")",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        status = data.status
+                        if (status == "success") {
+                            $("#error-mess").css("color", "#2ecc71");
+                            $("#error-mess").hide().html("Lưu Thành Công").fadeIn("slow");
+                        } else if (status == "empty") {
+                            $("#error-mess").hide().html("Không Để Trống").fadeIn("slow");
+                        } else if (status == "number") {
+                            $("#error-mess").hide().html("Số Thứ Tự Bị Trùng").fadeIn("slow");
+                        }
+                    }
+                });
+            }));
+
+        });
+
+    </script>
+}

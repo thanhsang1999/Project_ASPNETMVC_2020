@@ -23,7 +23,9 @@ namespace Project_ASPNETMVC_2020.Controllers
         {
             var model = new ArrayList();
             List<danhgia> listRecentlyEval = new EvaluationDAO().getListRecentEval();
+            List<slider> listSlider = SliderDAO.LoadListSlider();
             model.Add(listRecentlyEval);
+            model.Add(listSlider);
             return View(model);
         }
         [HttpPost]
