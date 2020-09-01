@@ -113,7 +113,7 @@
                                                     <td class="giua">@item.NAME</td>
                                                     <td class="giua"><img style=" width: 120px;" src="@Url.ContentAssetWeb("/images/slider/"+item.IMAGE)" /></td>
                                                     <td class="giua">@item.NUMBER</td>
-                                                    <td class="giua"><a href="@Url.Action("LevelAccount","User",new {IdAccount=item.ID_SLIDER })"><i class="fas fa-edit admin-green-hover"></i></a></td>
+                                                    <td class="giua"><a href="@Url.Action("EditSlider","Slider",new {idSlider=item.ID_SLIDER })"><i class="fas fa-edit admin-green-hover"></i></a></td>
                                                     <td class="last">
                                                         <a href="#" id="@("Delete"+item.ID_SLIDER)"><i class="fas fa-trash-alt admin-red-hover	"></i></a>
                                                     </td>

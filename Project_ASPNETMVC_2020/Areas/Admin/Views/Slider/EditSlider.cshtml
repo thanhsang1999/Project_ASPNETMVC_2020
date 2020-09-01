@@ -1,9 +1,11 @@
 ﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
 @using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.Model.EF
 @model System.Collections.ArrayList
 @{
-    ViewBag.Title = "CreateSlider";
+    ViewBag.Title = "EditSlider";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    var item = Model[0] as slider;
 }
 
 @section styles{
@@ -59,7 +61,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input type="text" id="ten" name="SLname" required="required"
-                                           class="form-control ">
+                                           class="form-control" value="@item.NAME">
                                 </div>
                             </div>
                             <div class="item form-group gian-cach">
@@ -69,8 +71,26 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="SLfile" name="SLfile">
-                                        <label class="custom-file-label" for="SLfile">Chọn Ảnh Slider</label>
+                                        <label class="custom-file-label" for="SLfile">@item.IMAGE</label>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="so">
+                                    Số Slider <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="so" name="SLnumber" required="required"
+                                           class="form-control" value="@item.NUMBER">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten">
+                                    Kích Hoạt <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="ten" name="SLactive" required="required"
+                                           class="form-control" value="@item.ACTIVE">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
