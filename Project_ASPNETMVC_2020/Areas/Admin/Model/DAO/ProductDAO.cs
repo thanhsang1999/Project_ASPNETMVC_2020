@@ -29,7 +29,9 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
      
         public string generateNameProduct(string nameproduct,string brand)
         {
-            return brand + " " + nameproduct;
+            DBModel dBModel = new DBModel();
+            string viewbrannd=dBModel.brands.Where(x => x.ID_BRAND == brand).FirstOrDefault().BRAND1;
+            return viewbrannd + " " + nameproduct;
         }
         public List<product> listAllProduct()
         {

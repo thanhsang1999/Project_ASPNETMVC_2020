@@ -88,52 +88,62 @@
 
     <script>
 
-                $('#demo-form2').submit(function(e) {
-                    e.preventDefault();
-                    for (instance in CKEDITOR.instances) {
-                        CKEDITOR.instances[instance].updateElement();
-                    }
-                    var formData = new FormData($('form#demo-form2')[0]);
+        $('#demo-form2').submit(function(e) {
+     e.preventDefault();
+     for (instance in CKEDITOR.instances) {
+         CKEDITOR.instances[instance].updateElement();
+     }
+     var formData = new FormData($('form#demo-form2')[0]);
 
+     var description = CKEDITOR.instances['description'].getData();
+     formData.set('description', encodeURIComponent(description));
+     $.ajax({
+         type: 'POST',
+         url: '@Url.Action("AddProduct","Product", new { area = "Admin" })',
+         enctype: 'multipart/form-data',
+         cache: false,
+         timeout: 600000,
+         data: formData,
+         contentType: false,
+         processData: false,
+         success: function (data) {
+             var rs = data.result;
+             var error = data.error;
+             var showerror = $('#show-error');
+             if (rs === "null") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Bạn không được để trống các ô dữ liệu');
+             } else if (rs === "number") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Dữ liệu ở ô ram,bộ nhớ máy,giá,số lượng,giảm giá phải là số');
+             } else if (rs === "filenull") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Dữ liệu File không được để trống');
+             } else if (rs === "notimage") {
+                 showerror.addClass('text-danger');
+                 showerror.text('File cho sản phẩm phải là hình ảnh');
+             } else if (rs === "success") {
+                 if (showerror.hasClass('text-danger')) {
+                     showerror.removeClass('text-danger');
+                     showerror.addClass('text-success');
+                     showerror.text('Đăng sản phẩm thành công');
+                 } else {
+                     showerror.addClass('text-success');
+                     showerror.text('Đăng sản phẩm thành công');
+                 }    
+             } else {
+                 showerror.addClass('text-danger');
+                 showerror.text('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
+             }
+         }
 
-                    var description = CKEDITOR.instances['description'].getData();
+     });
+ })
 
-                    formData.set('description', encodeURIComponent(description));
-                    console.log(formData.get('description'));
-                $.ajax({
-                 type: 'POST',
-                    url: '@Url.Action("AddProduct","Product", new { area = "Admin" })',
-                    enctype: 'multipart/form-data',
-                    cache: false,
-                    timeout: 600000,
-                    data: formData,
-                contentType: false,
-                processData: false,
-                    success: function (data) {
-                        var rs = data.result;
-                        alert(rs);
-                    }
-
-        });
-                })
-        var entityMap = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;',
-            '/': '&#x2F;',
-            '`': '&#x60;',
-            '=': '&#x3D;'
-        };
-        function escapeHtml(string) {
-            return String(string).replace(/[&<>"'`=\/]/g, function (s) {
-                return entityMap[s];
-            });
-        }
 
     </script>
 }
+
 <div class="right_col" role="main" style="min-height: 692px;">
     <div class="">
         <div class="page-title">
@@ -427,13 +437,17 @@
                                             entities_latin: false,
                                             entities_greek: false,
                                             htmlEncodeOutput: false
-
-
                                         });
                                     </script>
                                 </div>
                             </div>
-                            <div class="ln_solid"></div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3"></div>
+                                <div id="show-error" class="col-md-6 col-sm-6 error" style="font-size:20px"></div>
+                            </div>
+                            <div class="ln_solid">
+
+                            </div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button">Cancel</button>

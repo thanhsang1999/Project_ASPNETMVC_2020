@@ -32,6 +32,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Tools
                 return false;
             }
         }
+
         public static bool checkNumList(List<string> tocheck)
         {
             foreach (string word in tocheck)

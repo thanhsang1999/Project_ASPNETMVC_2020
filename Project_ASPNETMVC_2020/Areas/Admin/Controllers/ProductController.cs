@@ -20,17 +20,17 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
         public ActionResult FormProduct(string id)
         {
             ProductDAO dao = new ProductDAO();
-            
+
             ViewBag.ID = "";
             ViewBag.Brands = dao.listBrands();
             ViewBag.Rams = dao.listRams();
             ViewBag.Memorys = dao.listMemory();
             ViewBag.HeDieuHanhs = dao.listHDH();
             ViewBag.IsChange = "Sửa Sản Phẩm";
-            if (id != null || dao.getProductById(id)!=null)
+            if (id != null || dao.getProductById(id) != null)
             {
                 ViewBag.ID = id;
-              var model =dao.getProductById(id);
+                var model = dao.getProductById(id);
                 return View(model);
             }
             else
@@ -48,6 +48,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
         public ActionResult AddProduct(FormAddProduct form)
         {
             string rs = "";
+            string error = "";
             string nameproduct = form.nameproduct;
             string hedieuhanh = form.hedieuhanh;
             string brand = form.brand;
@@ -56,8 +57,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             string price = form.price;
             string amount = form.amount;
             string salerate = form.salerate;
-            string description = (Tools.Tools.DecodeUrlString(form.description));
-            description = Tools.Tools.ExtractText(description);
+            string description = form.description;          
             HttpPostedFileBase image1 = form.image1;
             HttpPostedFileBase image2 = form.image2;
             HttpPostedFileBase image3 = form.image3;
@@ -77,7 +77,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             checkNum.Add(price);
             checkNum.Add(amount);
             checkNum.Add(salerate);
-            List < HttpPostedFileBase > listFiles = new List<HttpPostedFileBase>();
+            List<HttpPostedFileBase> listFiles = new List<HttpPostedFileBase>();
             listFiles.Add(image1);
             listFiles.Add(image2);
             listFiles.Add(image3);
@@ -85,29 +85,35 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
             if (Tools.Tools.checkNullList(checkNullString) == false)
             {
-
                 rs = "null";
-               
+                error = "";
             }
-            else if(Tools.Tools.checkNumList(checkNum) == false)
+            else if (Tools.Tools.checkNumList(checkNum) == false)
             {
-                rs = "number "+ram+" "+memory+" "+price+" "+amount+" "+salerate;             
+                rs = "number";
             }
-            else if(Tools.Tools.checkFileNull(listFiles) == false)
+            else if (image1 == null || image2 == null || image3 == null)
             {
                 rs = "filenull";
-               
-            }else if (Tools.Tools.checkFileImage(listFiles) == false)
+
+            }
+            else if (Tools.Tools.checkFileNull(listFiles) == false)
+            {
+                rs = "filenull";
+            }
+            else if (Tools.Tools.checkFileImage(listFiles) == false)
             {
                 rs = "notimage";
             }
             else
             {
+                description = (Tools.Tools.DecodeUrlString(form.description));
+                description = Tools.Tools.ExtractText(description);
                 ProductDAO dao = new ProductDAO();
                 dao.addProduct(form, listFiles, description);
-                rs = "success";     
+                rs = "success";
             }
-            return Json(new { result = rs },JsonRequestBehavior.DenyGet);
+            return Json(new { result = rs, error = error }, JsonRequestBehavior.DenyGet);
         }
 
 
