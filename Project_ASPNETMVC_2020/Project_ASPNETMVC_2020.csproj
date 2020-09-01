@@ -182,6 +182,7 @@
     <Compile Include="Model\EF\ct_account.cs" />
     <Compile Include="Model\EF\ct_group_product.cs" />
     <Compile Include="Model\EF\danhgia.cs" />
+    <Compile Include="Model\EF\DBModel.cs" />
     <Compile Include="Model\EF\detail_order.cs" />
     <Compile Include="Model\EF\group_product.cs" />
     <Compile Include="Model\EF\hedieuhanh.cs" />
@@ -189,12 +190,12 @@
     <Compile Include="Model\EF\log.cs" />
     <Compile Include="Model\EF\mailpassword.cs" />
     <Compile Include="Model\EF\memory.cs" />
-    <Compile Include="Model\EF\DBModel.cs" />
     <Compile Include="Model\EF\o.cs" />
     <Compile Include="Model\EF\order.cs" />
     <Compile Include="Model\EF\product.cs" />
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
+    <Compile Include="Model\EF\slider.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
     <Compile Include="Model\ModelOfSession\FormSignup.cs" />
     <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
