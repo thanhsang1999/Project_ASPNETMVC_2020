@@ -91,6 +91,7 @@
                                                 <th class="column-title giua">Tên </th>
                                                 <th class="column-title giua">Hình </th>
                                                 <th class="column-title giua">Số </th>
+                                                <th class="column-title giua">Kích Hoạt </th>
                                                 <th class="column-title giua">Chỉnh Sủa </th>
                                                 <th class="column-title no-link last"><span class="nobr">Xóa </span></th>
                                             </tr>
@@ -100,34 +101,35 @@
 
                                             @foreach (slider item in listSlider)
                                             {
-                                                <tr class="even pointer">
-                                                    <td class="a-center ">
-                                                        <div class="icheckbox_flat-green" style="position: relative;">
-                                                            <input type="checkbox" class="flat" name="table_records"
-                                                                   style="position: absolute; opacity: 0;">
-                                                            <ins class="iCheck-helper"
-                                                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                        </div>
-                                                    </td>
-                                                    <td>@item.ID_SLIDER</td>
-                                                    <td class="giua">@item.NAME</td>
-                                                    <td class="giua"><img style=" width: 120px;" src="@Url.ContentAssetWeb("/images/slider/"+item.IMAGE)" /></td>
-                                                    <td class="giua">@item.NUMBER</td>
-                                                    <td class="giua"><a href="@Url.Action("EditSlider","Slider",new {idSlider=item.ID_SLIDER })"><i class="fas fa-edit admin-green-hover"></i></a></td>
-                                                    <td class="last">
-                                                        <a href="#" id="@("Delete"+item.ID_SLIDER)"><i class="fas fa-trash-alt admin-red-hover	"></i></a>
-                                                    </td>
-                                                    <script>
+                                            <tr class="even pointer">
+                                                <td class="a-center ">
+                                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                                        <input type="checkbox" class="flat" name="table_records"
+                                                               style="position: absolute; opacity: 0;">
+                                                        <ins class="iCheck-helper"
+                                                             style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                    </div>
+                                                </td>
+                                                <td>@item.ID_SLIDER</td>
+                                                <td class="giua">@item.NAME</td>
+                                                <td class="giua"><img style=" width: 120px;" src="@Url.ContentAssetWeb("/images/slider/"+item.IMAGE)" /></td>
+                                                <td class="giua">@item.NUMBER</td>
+                                                <td class="giua"><i class="fas fa-circle @(@item.ACTIVE==1?"green":"red")"></i> @(@item.ACTIVE==1?"Có":"Không")</td>
+                                                <td class="giua"><a href="@Url.Action("EditSlider","Slider",new {idSlider=item.ID_SLIDER })"><i class="fas fa-edit admin-green-hover"></i></a></td>
+                                                <td class="last">
+                                                    <a href="#" id="@("Delete"+item.ID_SLIDER)"><i class="fas fa-trash-alt admin-red-hover	"></i></a>
+                                                </td>
+                                                <script>
                                                         $('#@("Delete"+item.ID_SLIDER)').on('click', function () {
                                                             $.confirm({
-                                                                title: 'Xóa Tài Khoản ...!',
-                                                                content: 'Bạn Có Muốn Xóa Tài Khoản!',
+                                                                title: 'Xóa Slider ...!',
+                                                                content: 'Bạn Có Muốn Slider!',
                                                                 buttons: {
                                                                     Có: function () {
                                                                             $.ajax({
                                                                                 type: "POST",
-                                                                                url: "@Url.Action("DeleteAccount","User")",
-                                                                                data:{idAccount:"@item.ID_SLIDER"},
+                                                                                url: "@Url.Action("DeleteSlider", "Slider")",
+                                                                                data: { idSlider:"@item.ID_SLIDER"},
                                                                                 success: function (data) {
                                                                                     status = data.status
                                                                                     if (status == "success") {
@@ -140,8 +142,8 @@
                                                                 }
                                                             });
                                                         });
-                                                    </script>
-                                                </tr>
+                                                </script>
+                                            </tr>
 
                                             }
 

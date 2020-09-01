@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
+namespace Project_ASPNETMVC_2020.Model.DAO
 {
-    public static class SliderDAO
+    public class SliderDAO
     {
         public static List<slider> LoadListSlider()
         {
             DBModel db = new DBModel();
-            var result = db.sliders;
+            var result = db.sliders.OrderBy(x=>x.NUMBER);
             return result.ToList();
         }
         public static string GenerateIDSlider()
@@ -37,7 +37,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             int tmpInt = 0;
             foreach (slider item in tmp)
             {
-                int intCurrent = (int) item.NUMBER;
+                int intCurrent = (int)item.NUMBER;
                 if (tmpInt <= intCurrent)
                 {
                     tmpInt = intCurrent;
@@ -49,7 +49,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
         public static slider LoadSlider(string idSlider)
         {
             DBModel db = new DBModel();
-            var result = db.sliders.Where(x=>x.ID_SLIDER.Equals(idSlider)).FirstOrDefault();
+            var result = db.sliders.Where(x => x.ID_SLIDER.Equals(idSlider)).FirstOrDefault();
             return result;
         }
 
@@ -58,7 +58,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             DBModel db = new DBModel();
             var tmpSliders = db.sliders;
             var tmpListSlider = tmpSliders.ToList();
-            foreach(slider item in tmpListSlider)
+            foreach (slider item in tmpListSlider)
             {
                 if (item.ID_SLIDER.Equals(idSlider))
                 {

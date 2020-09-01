@@ -164,6 +164,7 @@
     <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\SliderDAO.cs" />
     <Compile Include="Model\DAO\HomeDAO.cs" />
     <Compile Include="Model\DAO\SearchDAO.cs" />
     <Compile Include="Model\DAO\PayDAO.cs" />

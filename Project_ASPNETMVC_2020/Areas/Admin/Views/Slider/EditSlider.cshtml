@@ -53,8 +53,8 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="form-create-slider" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
-
+                        <form id="form-edit-slider" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <input type="hidden" value="@item.ID_SLIDER" name="idSlider" />
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten">
                                     Tên Slider <span class="required">*</span>
@@ -85,12 +85,14 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="id-active">
                                     Kích Hoạt <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="ten" name="SLactive" required="required"
-                                           class="form-control" value="@item.ACTIVE">
+                                    <select class="form-control" name="SLactive" id="id-active">
+                                        <option value="1">Có</option>
+                                        <option value="0">Không</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -98,7 +100,7 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-4">
                                     <a href="@Url.Action("Index","Slider")"><button class="btn btn-primary" type="button">Back</button></a>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button  class="btn btn-primary" type="reset">Reset</button>
                                     <button id="btn-submit" type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
@@ -115,16 +117,17 @@
     <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
     <script src="@Url.ContentAssetAdmin("js/sanpham.js",true)"></script>
     <script>
+        $('#id-active').val(@(item.ACTIVE==1?"1":"0"));
         var status = null;
         $(document).ready(function (e) {
-            $('#form-create-slider').on('submit', (function (e) {
+            $('#form-edit-slider').on('submit', (function (e) {
                 $('#loading').css('display', 'inline-block');
                 e.preventDefault();
                 var formData = new FormData(this);
 
                 var tmp = $.ajax({
                     type: 'POST',
-                    url: "@Url.Action("FormDataCreateSlider", "Slider")",
+                    url: "@Url.Action("FormDataEditSlider", "Slider")",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -136,6 +139,8 @@
                             $("#error-mess").hide().html("Lưu Thành Công").fadeIn("slow");
                         } else if (status == "empty") {
                             $("#error-mess").hide().html("Không Để Trống").fadeIn("slow");
+                        } else if (status == "number") {
+                            $("#error-mess").hide().html("Số Thứ Tự Bị Trùng").fadeIn("slow");
                         }
                     }
                 });
