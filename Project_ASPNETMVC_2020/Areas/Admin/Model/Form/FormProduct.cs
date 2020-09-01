@@ -5,8 +5,9 @@ using System.Web;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Model.Form
 {
-    public class FormAddProduct
+    public class FormProduct
     {
+        
         public string nameproduct { get; set; }
         public string hedieuhanh { get; set; }
         public string brand { get; set; }

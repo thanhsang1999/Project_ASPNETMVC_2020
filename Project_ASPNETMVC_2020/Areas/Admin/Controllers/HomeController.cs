@@ -1,4 +1,6 @@
-﻿using Project_ASPNETMVC_2020.Model.EF;
+﻿using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections.Generic;
@@ -11,18 +13,12 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-         
-       public ActionResult Index()
+        [AuthFilter(roleIsRequired =LevelAuth.Admin,Order =0)]
+        public ActionResult Index()
         {
-            User user = Session["User"] as User;
-            if (user != null&&user.LEVEL.Equals("10"))
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home", new { area = "" });
-            }
+
+            return View();
+
         }
         public ActionResult LogOut()
         {

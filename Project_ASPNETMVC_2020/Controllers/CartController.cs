@@ -1,4 +1,5 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.Cart;
 using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Model.DAO;
@@ -19,6 +20,7 @@ namespace Project_ASPNETMVC_2020.Controllers
 
 
         // GET: Cart
+        [AuthFilter(roleIsRequired =LevelAuth.User)]
         public ActionResult Index()
         {
             User user = Session["User"] as User;

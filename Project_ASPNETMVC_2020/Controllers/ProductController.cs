@@ -35,6 +35,11 @@ namespace Project_ASPNETMVC_2020.Controllers
                 else 
                 {
                     model = dao.productDetail(id);
+                    User user = Session["User"] as User;
+                    if (user != null)
+                    {
+                        new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);
+                    }
                     ViewBag.Title = model.NAME;
                     return View(model);
                 }

@@ -3,14 +3,13 @@
 @using Project_ASPNETMVC_2020.ClassToConfig
 @model product
 @{
-    ViewBag.Title = "Danh sách sản phẩm";
+    ViewBag.Title = "Đăng Sản Phẩm";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
     product p = null;
     if (Model != null)
     {
         p = Model;
     }
-    var id = (string)ViewBag.ID;
     var listBrands = (List<brand>)ViewBag.Brands;
     var listRams = (List<ram>)ViewBag.Rams;
     var listMemory = (List<memory>)ViewBag.Memorys;
@@ -95,8 +94,10 @@
      }
      var formData = new FormData($('form#demo-form2')[0]);
 
-     var description = CKEDITOR.instances['description'].getData();
-     formData.set('description', encodeURIComponent(description));
+            var description = CKEDITOR.instances.description.getData();
+            
+            formData.set('description', `${encodeURIComponent(description)}`);
+            console.log('description', description);
      $.ajax({
          type: 'POST',
          url: '@Url.Action("AddProduct","Product", new { area = "Admin" })',
@@ -110,7 +111,10 @@
              var rs = data.result;
              var error = data.error;
              var showerror = $('#show-error');
-             if (rs === "null") {
+             if (rs === 'user') {
+                  window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
+             }
+             else  if (rs === "null") {
                  showerror.addClass('text-danger');
                  showerror.text('Bạn không được để trống các ô dữ liệu');
              } else if (rs === "number") {
@@ -130,7 +134,7 @@
                  } else {
                      showerror.addClass('text-success');
                      showerror.text('Đăng sản phẩm thành công');
-                 }    
+                 }
              } else {
                  showerror.addClass('text-danger');
                  showerror.text('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
@@ -208,14 +212,7 @@
                                             <label class="custom-file-label" for="customFile">Chọn Ảnh Chính</label>
                                         }
                                     </div>
-                                    @if (p != null)
-                                    {
-                                        <img id="showimage1" class="showimage" src="@Url.ContentAssetWeb("images/sanpham/"+p.IMG2)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="display:none" id="showimage1" class="showimage" src="" />
-                                    }
+                                  
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -236,14 +233,7 @@
                                         }
 
                                     </div>
-                                    @if (p != null)
-                                    {
-                                        <img id="showimage2" class="showimage" src="@Url.ContentAssetWeb("images/sanpham/"+p.IMG2)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="display:none" id="showimage2" class="showimage" src="" />
-                                    }
+                                  
 
                                 </div>
                             </div>
@@ -266,14 +256,7 @@
                                         }
 
                                     </div>
-                                    @if (p != null)
-                                    {
-                                        <img id="showimage3" class="showimage" src="@Url.ContentAssetWeb("images/sanpham/"+p.IMG3)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="display:none" id="showimage3" class="showimage" src="" />
-                                    }
+                                   
 
                                 </div>
                             </div>
@@ -431,8 +414,7 @@
                                     <textarea required="required" class="form-control" name="description" id="description" rows="10" cols="80">
                             </textarea>
                                     <script type="text/javascript" charset="utf-8">
-                                        CKEDITOR.replace('description', {
-                                            language: 'vi',
+                                        CKEDITOR.replace('description', {                                           
                                             entities: false,
                                             entities_latin: false,
                                             entities_greek: false,

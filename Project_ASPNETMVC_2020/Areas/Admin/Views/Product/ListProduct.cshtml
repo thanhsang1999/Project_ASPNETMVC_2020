@@ -169,7 +169,7 @@
                                                         <a href="@LinkAdmin.linkForProductDetailAdmin(listProduct[i].ID_PRODUCT)">View </a>
                                                     </td>
                                                     <td class="last">
-                                                        <a href=""><i class="far fa-edit"></i></a>
+                                                        <a href="@Url.Action("FormChangeProduct","Product",new { area="Admin",id=listProduct[i].ID_PRODUCT})"><i class="far fa-edit"></i></a>
                                                     </td>
                                                     <td class="last ">
                                                         <a data-product="@listProduct[i].ID_PRODUCT" class="deleteproduct" href="#"><i class="fas fa-trash-alt"></i></a>

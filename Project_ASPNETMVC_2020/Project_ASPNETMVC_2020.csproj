@@ -136,13 +136,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\LinkAdmin.cs" />
-    <Compile Include="Areas\Admin\ClassToConfig\UploadFile.cs" />
+    <Compile Include="Areas\Admin\ClassToConfig\HandleFile.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
-    <Compile Include="Areas\Admin\Model\Form\FormAddProduct.cs" />
+    <Compile Include="Areas\Admin\Model\Form\FormProduct.cs" />
+    <Compile Include="Areas\Admin\Model\Form\FormUpdateProduct.cs" />
     <Compile Include="Areas\Admin\Tools\Tools.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
@@ -6801,7 +6802,8 @@
     <Content Include="Assets\admin\lib\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Product\ListProduct.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\FormProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\FormAddProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\FormChangeProduct.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

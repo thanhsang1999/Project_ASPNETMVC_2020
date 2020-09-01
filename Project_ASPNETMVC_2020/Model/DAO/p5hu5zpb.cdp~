@@ -23,11 +23,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             foreach (recently_viewed item in rv)
             {
                 product p = findProductById(item.ID_PRODUCT);
-                if (p == null)
-                {
-                    
-                }
-                else
+                if (p != null)
                 {
                     listProduct.Add(p);
                 }              

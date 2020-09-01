@@ -1,8 +1,12 @@
-﻿using Microsoft.Ajax.Utilities;
+﻿using Antlr.Runtime;
+using Microsoft.Ajax.Utilities;
 using Microsoft.Win32;
+using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.Form;
 using Project_ASPNETMVC_2020.Areas.Admin.Tools;
+using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections;
@@ -17,38 +21,65 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         // GET: Admin/Product
-        public ActionResult FormProduct(string id)
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
+        public ActionResult FormAddProduct()
         {
             ProductDAO dao = new ProductDAO();
-
-            ViewBag.ID = "";
-            ViewBag.Brands = dao.listBrands();
-            ViewBag.Rams = dao.listRams();
-            ViewBag.Memorys = dao.listMemory();
-            ViewBag.HeDieuHanhs = dao.listHDH();
-            ViewBag.IsChange = "Sửa Sản Phẩm";
-            if (id != null || dao.getProductById(id) != null)
+            User user = Session["User"] as User;
+            if (user == null || user.LEVEL.Equals("10") == false)
             {
-                ViewBag.ID = id;
-                var model = dao.getProductById(id);
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+            else
+            {
+                ViewBag.ID = "";
+                ViewBag.Brands = dao.listBrands();
+                ViewBag.Rams = dao.listRams();
+                ViewBag.Memorys = dao.listMemory();
+                ViewBag.HeDieuHanhs = dao.listHDH();
+                ViewBag.IsChange = "Sửa Sản Phẩm";
+                ViewBag.ID = "noproduct";
+                ViewBag.IsChange = "Đăng Sản Phẩm";
+                return View();
+
+            }
+
+
+        }
+        public ActionResult FormChangeProduct(string id)
+        {
+
+            ProductDAO dao = new ProductDAO();
+            var model = dao.getProductById(id);
+            if (model != null)
+            {
+                ViewBag.Brands = dao.listBrands();
+                ViewBag.Rams = dao.listRams();
+                ViewBag.Memorys = dao.listMemory();
+                ViewBag.HeDieuHanhs = dao.listHDH();
+                var modelhasBrand = dao.hasBrand(model);
+                var modelhasMemory = dao.hasMemory(model);
+                var modelhasHDH = dao.hasHDH(model);
+                var modelhasRam = dao.hasRam(model);
+                ViewBag.hasBrand = modelhasBrand;
+                ViewBag.hasRam = modelhasRam;
+                ViewBag.hasMemory = modelhasMemory;
+                ViewBag.hasHDH = modelhasHDH;
                 return View(model);
             }
             else
             {
-                ViewBag.ID = "noproduct";
-                ViewBag.IsChange = "Đăng Sản Phẩm";
-                return View();
+                return RedirectToAction("Index", "Home", new { area = "" });
+
             }
-        }
-        public ActionResult ChangeProduct()
-        {
-            return View();
+
         }
         [HttpPost]
-        public ActionResult AddProduct(FormAddProduct form)
+        public ActionResult AddProduct(FormProduct form)
         {
             string rs = "";
-            string error = "";
+            User user = Session["User"] as User;
+            string idproduct = "";
             string nameproduct = form.nameproduct;
             string hedieuhanh = form.hedieuhanh;
             string brand = form.brand;
@@ -57,7 +88,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             string price = form.price;
             string amount = form.amount;
             string salerate = form.salerate;
-            string description = form.description;          
+            string description = form.description;
             HttpPostedFileBase image1 = form.image1;
             HttpPostedFileBase image2 = form.image2;
             HttpPostedFileBase image3 = form.image3;
@@ -82,11 +113,14 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             listFiles.Add(image2);
             listFiles.Add(image3);
 
-
-            if (Tools.Tools.checkNullList(checkNullString) == false)
+            if (user == null || user.LEVEL.Equals("10") == false)
+            {
+                rs = "user";
+            }
+            else if (Tools.Tools.checkNullList(checkNullString) == false)
             {
                 rs = "null";
-                error = "";
+
             }
             else if (Tools.Tools.checkNumList(checkNum) == false)
             {
@@ -107,13 +141,106 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
             else
             {
-                description = (Tools.Tools.DecodeUrlString(form.description));
+                description = Tools.Tools.DecodeUrlString(form.description);
                 description = Tools.Tools.ExtractText(description);
                 ProductDAO dao = new ProductDAO();
-                dao.addProduct(form, listFiles, description);
+                idproduct = dao.addProduct(form, listFiles, description);
+                if (idproduct == "fail")
+                {
+                    rs = "fail";
+                }
+                else
+                {
+                    rs = "success";
+                }
+
+            }
+            return Json(new { result = rs, idproduct = idproduct }, JsonRequestBehavior.DenyGet);
+        }
+        [HttpPost]
+        public ActionResult ChangeProduct(FormUpdateProduct form)
+        {
+            string rs = "";
+            User user = Session["User"] as User;
+            string idproduct = form.idproduct;
+            string nameproduct = form.nameproduct;
+            string hedieuhanh = form.hedieuhanh;
+            string brand = form.brand;
+            string memory = form.memory;
+            string ram = form.ram;
+            string price = form.price;
+            string amount = form.amount;
+            string salerate = form.salerate;
+            string description = form.description;
+            HttpPostedFileBase image1 = form.image1;
+            HttpPostedFileBase image2 = form.image2;
+            HttpPostedFileBase image3 = form.image3;
+            List<string> checkNullString = new List<string>();
+            checkNullString.Add(nameproduct);
+            checkNullString.Add(hedieuhanh);
+            checkNullString.Add(brand);
+            checkNullString.Add(memory);
+            checkNullString.Add(ram);
+            checkNullString.Add(price);
+            checkNullString.Add(amount);
+            checkNullString.Add(salerate);
+            checkNullString.Add(description);
+            List<string> checkNum = new List<string>();
+            checkNum.Add(memory);
+            checkNum.Add(ram);
+            checkNum.Add(price);
+            checkNum.Add(amount);
+            checkNum.Add(salerate);
+            Dictionary<int, HttpPostedFileBase> listFiles = new Dictionary<int, HttpPostedFileBase>();
+            if (image1 != null)
+            {
+                listFiles.Add(1, image1);
+            }
+            if (image2 != null)
+            {
+                listFiles.Add(2, image2);
+            }
+            if (image3 != null)
+            {
+                listFiles.Add(3, image3);
+            }
+
+            if (user == null || user.LEVEL.Equals("10") == false)
+            {
+                rs = "user";
+            }
+            else if (Tools.Tools.checkNullList(checkNullString) == false)
+            {
+                rs = "null";
+
+            }
+            else if (Tools.Tools.checkNumList(checkNum) == false)
+            {
+                rs = "number";
+            }
+            else if (image1 != null && Tools.Tools.IsImage(image1)==false)
+            {
+                rs = "notimage";
+            }
+            else if (image2 != null && Tools.Tools.IsImage(image2)==false)
+            {
+                rs = "notimage";
+            }
+            else if (image3 != null && Tools.Tools.IsImage(image3)==false)
+            {
+                rs = "notimage";
+            }
+            else
+            {
+
+                description = Tools.Tools.DecodeUrlString(form.description);
+                description = Tools.Tools.ExtractText(description);
+                ProductDAO dao = new ProductDAO();
+                idproduct = dao.updateProduct(form, listFiles, description);
                 rs = "success";
             }
-            return Json(new { result = rs, error = error }, JsonRequestBehavior.DenyGet);
+            return Json(new { result = rs, idproduct = idproduct }, JsonRequestBehavior.DenyGet);
+
         }
 
 
@@ -168,13 +295,16 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
             else
             {
-                var check = dao.deleteProduct(idproduct);
-                if (check == false)
+                var check = dao.getProductById(idproduct);
+                if (check == null)
                 {
                     rs = "fail";
                 }
                 else
                 {
+                    HandleFile delete = new HandleFile();
+                    delete.deleteImage(dao.getProductById(idproduct));
+                    dao.deleteProduct(idproduct);
                     rs = "success";
                 }
             }

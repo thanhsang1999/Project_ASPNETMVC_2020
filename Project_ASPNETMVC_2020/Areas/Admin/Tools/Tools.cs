@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -87,10 +88,27 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Tools
         }
         public static string ExtractText(string html)
         {
-            Regex reg = new Regex("<[^>]+>", RegexOptions.IgnoreCase);
-            string s = reg.Replace(html, " ");
-            s = HttpUtility.HtmlDecode(s);
-            return s;
+            if (html == null)
+            {
+                throw new ArgumentNullException("html");
+            }
+
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var chunks = new List<string>();
+
+            foreach (var item in doc.DocumentNode.DescendantNodesAndSelf())
+            {
+                if (item.NodeType == HtmlNodeType.Text)
+                {
+                    if (item.InnerText.Trim() != "")
+                    {
+                        chunks.Add(item.InnerText.Trim());
+                    }
+                }
+            }
+            return String.Join(" ", chunks);
         }
         public const int ImageMinimumBytes = 512;
 

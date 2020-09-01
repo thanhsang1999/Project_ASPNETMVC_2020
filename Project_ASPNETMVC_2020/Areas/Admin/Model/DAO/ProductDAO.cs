@@ -3,6 +3,8 @@ using Project_ASPNETMVC_2020.Areas.Admin.Model.Form;
 using Project_ASPNETMVC_2020.Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -26,11 +28,11 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             }
             return "DT" + (tmpInt + 1);
         }
-     
-        public string generateNameProduct(string nameproduct,string brand)
+
+        public string generateNameProduct(string nameproduct, string brand)
         {
             DBModel dBModel = new DBModel();
-            string viewbrannd=dBModel.brands.Where(x => x.ID_BRAND == brand).FirstOrDefault().BRAND1;
+            string viewbrannd = dBModel.brands.Where(x => x.ID_BRAND == brand).FirstOrDefault().BRAND1;
             return viewbrannd + " " + nameproduct;
         }
         public List<product> listAllProduct()
@@ -68,6 +70,54 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             return result;
 
         }
+        public bool hasBrand(product p)
+        {
+            var check = false;
+            foreach(brand b in listBrands())
+            {
+                if (b.ID_BRAND.Equals(p.ID_BRAND))
+                {
+                    check = true;
+                }
+            }
+            return check;   
+        }
+        public bool hasMemory(product p)
+        {
+            var check = false;
+            foreach (memory b in listMemory())
+            {
+                if (b.MEMORY1==(p.MEMORY))
+                {
+                    check = true;
+                }
+            }
+            return check;
+        }
+        public bool hasRam(product p)
+        {
+            var check = false;
+            foreach (ram b in listRams())
+            {
+                if (b.RAM1==(p.RAM))
+                {
+                    check = true;
+                }
+            }
+            return check;
+        }
+        public bool hasHDH(product p)
+        {
+            var check = false;
+            foreach (hedieuhanh b in listHDH())
+            {
+                if (b.OS.Equals(p.OS))
+                {
+                    check = true;
+                }
+            }
+            return check;
+        }
         public int totalRecordAll()
         {
             DBModel dBModel = new DBModel();
@@ -87,7 +137,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             DBModel dBModel = new DBModel();
             return dBModel.products.Where(x => x.ID_PRODUCT == idproduct).FirstOrDefault();
         }
-        public bool deleteProduct(string idproduct)
+        public void deleteProduct(string idproduct)
         {
             DBModel dBModel = new DBModel();
             product p = getProductById(idproduct);
@@ -96,37 +146,91 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                 dBModel.products.Attach(p);
                 dBModel.products.Remove(p);
                 dBModel.SaveChanges();
-                return true;
+                
             }
-            else
-            {
-                return false;
-            }
+            
         }
-        
-        public void addProduct(FormAddProduct form, List<HttpPostedFileBase> files,string des)
+
+        public string addProduct(FormProduct form, List<HttpPostedFileBase> files, string des)
         {
             DBModel dBModel = new DBModel();
             product p = new product();
-            p.ID_PRODUCT = generateIDProduct();
-            p.NAME = generateNameProduct(form.nameproduct,form.brand);
-            p.OS = form.hedieuhanh;
-            p.ID_BRAND = form.brand;
-            p.MEMORY = Convert.ToInt32(form.memory);
-            p.RAM = Convert.ToInt32(form.ram);
-            p.PRICE = Convert.ToInt32(form.price);
-            p.AMOUNT = Convert.ToInt32(form.amount);
-            p.SALE_RATE = Convert.ToInt32(form.salerate);
-            p.AMOUNT_SOLD = 0;
-            p.DATE_SUBMITTED = DateTime.Now;
-            p.DESCRIPTION = des;
-            UploadFile upload = new UploadFile();
-            List<string> imgs=upload.uploadImageProduct(files, p.NAME);
-            p.IMG = imgs[0];
-            p.IMG2 = imgs[1];
-            p.IMG3 = imgs[2];
-            dBModel.products.Add(p);
-            dBModel.SaveChanges();
+          
+            try
+            {
+
+                p.ID_PRODUCT = generateIDProduct();
+                p.NAME = generateNameProduct(form.nameproduct, form.brand);
+                p.OS = form.hedieuhanh;
+                p.ID_BRAND = form.brand;
+                p.MEMORY = Convert.ToInt32(form.memory);
+                p.RAM = Convert.ToInt32(form.ram);
+                p.PRICE = Convert.ToInt32(form.price);
+                p.AMOUNT = Convert.ToInt32(form.amount);
+                p.SALE_RATE = Convert.ToInt32(form.salerate);
+                p.AMOUNT_SOLD = 0;
+                p.DATE_SUBMITTED = DateTime.Now;
+                p.DESCRIPTION = des;
+                HandleFile upload = new HandleFile();
+                List<string> imgs = upload.uploadImageProduct(files, p.NAME);
+                p.IMG = imgs[0];
+                p.IMG2 = imgs[1];
+                p.IMG3 = imgs[2];
+                dBModel.products.Add(p);
+                dBModel.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return "fail";
+            }
+            return p.ID_PRODUCT;
+        }
+        public string updateProduct(FormUpdateProduct form, Dictionary<int, HttpPostedFileBase> files , string des)
+        {
+            DBModel dBModel = new DBModel();
+            product p = getProductById(form.idproduct);
+
+            try
+            {
+
+                p.NAME = generateNameProduct(form.nameproduct, form.brand);
+                p.OS = form.hedieuhanh;
+                p.ID_BRAND = form.brand;
+                p.MEMORY = Convert.ToInt32(form.memory);
+                p.RAM = Convert.ToInt32(form.ram);
+                p.PRICE = Convert.ToInt32(form.price);
+                p.AMOUNT = Convert.ToInt32(form.amount);
+                p.SALE_RATE = Convert.ToInt32(form.salerate);              
+                p.DATE_SUBMITTED = DateTime.Now;
+                p.DESCRIPTION = des;
+                HandleFile upload = new HandleFile();
+                Dictionary<int, string> imgs = upload.uploadImageProduct(files, p.NAME);
+                if (imgs.Count() > 0)
+                {
+                    var keys = files.Keys;
+                    foreach (var k in keys)
+                    {
+                        if (k == 1)
+                        {
+                            p.IMG = imgs[k];
+                        } if (k == 2)
+                        {
+                            p.IMG2 = imgs[k];
+                        } if (k == 3)
+                        {
+                            p.IMG3 = imgs[k];
+                        }
+                            
+                    }
+                }
+                dBModel.products.AddOrUpdate(p);
+                dBModel.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return "fail";
+            }
+            return p.ID_PRODUCT;
         }
     }
 }
