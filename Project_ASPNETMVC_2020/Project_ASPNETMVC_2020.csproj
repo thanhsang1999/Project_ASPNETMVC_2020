@@ -134,9 +134,12 @@
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\SliderDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
+    <Compile Include="Areas\Admin\Model\Slider\DataFormSlider.cs" />
     <Compile Include="Areas\Admin\Model\User\FormDataLevelAccount.cs" />
     <Compile Include="Areas\Admin\Model\User\FormDataAccount.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
@@ -6799,6 +6802,8 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Infomation.cshtml" />
     <Content Include="Areas\Admin\Views\User\LevelAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\CreateSlider.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

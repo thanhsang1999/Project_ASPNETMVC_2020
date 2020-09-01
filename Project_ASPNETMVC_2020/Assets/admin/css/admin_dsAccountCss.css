@@ -35,6 +35,13 @@
 .admin-yellow-hover:hover{
 	color: #f39c12;
 }
+.admin-green-hover {
+	color: #2ecc71;
+}
+
+.admin-green-hover:hover {
+	color: #27ae60;
+}
 .jconfirm .jconfirm-box div.jconfirm-title-c .jconfirm-title {
 	color: #e74c3c;
 }
@@ -45,3 +52,6 @@
 .jconfirm-buttons, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
 margin-top: 30px
 	}
+.gian-cach{
+	margin-top:20px;
+}
