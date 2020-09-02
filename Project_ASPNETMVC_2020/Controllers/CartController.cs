@@ -33,7 +33,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-            return RedirectToAction("Index", "Home");
+                 return RedirectToAction("Index", "Home");
             }
         }
 
@@ -51,7 +51,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             }
             else
             {
-                return new JsonResult { Data = new { url = Url.Action("Index","Home") } };
+                return new JsonResult { Data = new { Modal = "myModal" } };
             }
         }
         [HttpPost]
