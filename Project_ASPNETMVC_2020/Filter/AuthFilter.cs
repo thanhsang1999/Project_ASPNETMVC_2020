@@ -19,17 +19,19 @@ namespace Project_ASPNETMVC_2020.Filter
         {
             User user = Context.HttpContext.Session["User"] as User;
             string roleOfUser = null;
+            var active = 0;
+
             if (user != null)
             {
+                 active = Convert.ToInt32(user.ACTIVE);
                 roleOfUser = user.LEVEL;
             }
             if (roleIsRequired != null)
             {
-                var active = user.ACTIVE;
-                var realactive = Convert.ToInt32(user.ACTIVE);
+               
                 var realrolerequire = Convert.ToInt32(roleIsRequired);
                 var roleuser = Convert.ToInt32(roleOfUser);
-                if (realrolerequire > roleuser && realactive != 1)
+                if (realrolerequire > roleuser && active != 1)
                 {
 
                     string iduser = null;
