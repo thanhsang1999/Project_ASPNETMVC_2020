@@ -159,7 +159,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             string email;
             if (new UserDAO().checkUsered(username) == false)
             {
-                rs = "Tên tài khoản không tồn tại";
+                rs = "user";
             }
             else if ((email = new UserDAO().getEmailOfUser(username)) != null)
             {
@@ -178,11 +178,11 @@ namespace Project_ASPNETMVC_2020.Controllers
                 bool check2 = mail.sendMail(email, key);
                 if (check2==false)
                 {
-                    rs = "Gửi mail thất bại";
+                    rs = "fail";
                 }
                 else
                 {
-                    rs = "Gửi mail thành công";
+                    rs = "success";
                 }
             }
             else

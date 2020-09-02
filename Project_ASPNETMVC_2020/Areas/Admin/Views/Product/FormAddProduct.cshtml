@@ -119,32 +119,32 @@
              }
              else  if (rs === "null") {
                  showerror.addClass('text-danger');
-                 showerror.text('Bạn không được để trống các ô dữ liệu');
+                 showerror.hide().text('Bạn không được để trống các ô dữ liệu').fadeIn("slow");
              } else if (rs === "number") {
                  showerror.addClass('text-danger');
-                 showerror.text('Dữ liệu ở ô ram,bộ nhớ máy,giá,số lượng,giảm giá phải là số');
+                 showerror.hide().text('Dữ liệu ở ô ram,bộ nhớ máy,giá,số lượng,giảm giá phải là số').fadeIn("slow");
              } else if (rs === "filenull") {
                  showerror.addClass('text-danger');
-                 showerror.text('Dữ liệu File không được để trống');
+                 showerror.hide().text('Dữ liệu File không được để trống').fadeIn("slow");
              } else if (rs === "notimage") {
                  showerror.addClass('text-danger');
-                 showerror.text('File cho sản phẩm phải là hình ảnh');
+                 showerror.hide().text('File cho sản phẩm phải là hình ảnh').fadeIn("slow");
              } else if (rs === "name") {
                  showerror.addClass('text-danger');
-                 showerror.text('Tên sản phẩm đã tồn tại');
+                 showerror.hide().text('Tên sản phẩm đã tồn tại').fadeIn("slow");
              }
              else if (rs === "success") {
                  if (showerror.hasClass('text-danger')) {
                      showerror.removeClass('text-danger');
                      showerror.addClass('text-success');
-                     showerror.text('Đăng sản phẩm thành công');
+                     showerror.hide().text('Đăng sản phẩm thành công').fadeIn("slow");
                  } else {
                      showerror.addClass('text-success');
-                     showerror.text('Đăng sản phẩm thành công');
+                     showerror.hide().text('Đăng sản phẩm thành công').fadeIn("slow");
                  }
              } else {
                  showerror.addClass('text-danger');
-                 showerror.text('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
+                 showerror.hide().text('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5').fadeIn("slow");
              }
          }, error: function (data) {
              alert('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');

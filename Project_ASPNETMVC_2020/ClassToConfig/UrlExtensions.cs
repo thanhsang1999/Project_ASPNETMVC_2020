@@ -26,6 +26,7 @@ namespace Project_ASPNETMVC_2020.ClassToConfig
             var url = new Uri(HttpContext.Current.Request.Url, path);
             return toAbsolute ? url.AbsoluteUri : path;
         }
+        
         public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string linkText, string actionName, string controllerName, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
         {
             var repID = Guid.NewGuid().ToString();

@@ -46,6 +46,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
 
         }
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult FormChangeProduct(string id)
         {
 
@@ -192,6 +193,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             checkNullString.Add(amount);
             checkNullString.Add(salerate);
             checkNullString.Add(description);
+            checkNullString.Add(idproduct);
             List<string> checkNum = new List<string>();
             checkNum.Add(memory);
             checkNum.Add(ram);
@@ -224,10 +226,16 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             else if (ToolsOfAdmin.checkNumList(checkNum) == false)
             {
                 rs = "number";
-            }else if(dao.checkExitNameProductForUp(dao.generateNameProduct(form.nameproduct, form.brand),idproduct) == false)
+            }
+            else if (dao.getProductById(idproduct) == null)
+            {
+                rs = "exit";
+            }
+            else if(dao.checkExitNameProductForUp(dao.generateNameProduct(form.nameproduct, form.brand),idproduct) == false)
             {
                 rs = "name";
             }
+           
             else if (image1 != null && ToolsOfAdmin.IsImage(image1)==false)
             {
                 rs = "notimage";
@@ -253,7 +261,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
         }
 
-
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult ListProduct(string page)
         {
             var model = new ArrayList();

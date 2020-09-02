@@ -165,7 +165,7 @@
                                                     <td class="a-right a-right ">@listProduct[i].AMOUNT</td>
 
                                                     <td class="last">
-                                                        <a href="@LinkAdmin.linkForProductDetailAdmin(listProduct[i].ID_PRODUCT)">View </a>
+                                                        <a href="@Url.Action("ProductDetail","Product",new {area="",id=listProduct[i].ID_PRODUCT})">View </a>
                                                     </td>
                                                     <td class="last">
                                                         <a href="@Url.Action("FormChangeProduct","Product",new { area="Admin",id=listProduct[i].ID_PRODUCT})"><i class="far fa-edit"></i></a>

@@ -43,7 +43,7 @@
                             <ul>
                                 @foreach (Project_ASPNETMVC_2020.Model.EF.hedieuhanh hedieuhanh in listHeDieuHanh)
                                 {
-                                    <li><a href="@Link.linkForListProduct("hedieuhanh",hedieuhanh.OS)">@hedieuhanh.OS.ToString()<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="@Link.linkForListProduct("hedieuhanh", HttpUtility.UrlEncode(hedieuhanh.OS))">@hedieuhanh.OS.ToString()<i class="fas fa-chevron-right"></i></a></li>
 
                                 }
 
