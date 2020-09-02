@@ -93,6 +93,10 @@
         CKEDITOR.on('instanceReady', function (evt) {
             CKEDITOR.instances['description'].setData('@p.DESCRIPTION');
         });
+        $('#cancel').click(function (e) {
+            e.preventDefault();
+            window.location.href = '@Url.Action("ListProduct","Product", new { area="Admin"})';
+        })
          $('#demo-form2').submit(function(e) {
      e.preventDefault();
      for (instance in CKEDITOR.instances) {
@@ -132,7 +136,11 @@
              } else if (rs === "notimage") {
                  showerror.addClass('text-danger');
                  showerror.text('File cho sản phẩm phải là hình ảnh');
-             } else if (rs === "success") {
+             } else if (rs === "name") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Tên sản phẩm đã tồn tại');
+             }
+             else if (rs === "success") {
                  if (showerror.hasClass('text-danger')) {
                      showerror.removeClass('text-danger');
                      showerror.addClass('text-success');
@@ -145,6 +153,8 @@
                  showerror.addClass('text-danger');
                  showerror.text('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
              }
+         },error: function (data) {
+             alert('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
          }
 
      });
@@ -458,8 +468,8 @@
                             </div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button id="cancel" class="btn btn-primary" type="button">Cancel</button>
+                                    <button style="display:none" class="btn btn-primary" type="reset">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

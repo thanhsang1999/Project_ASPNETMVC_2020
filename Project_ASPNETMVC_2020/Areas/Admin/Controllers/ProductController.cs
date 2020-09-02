@@ -78,6 +78,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
         public ActionResult AddProduct(FormProduct form)
         {
             string rs = "";
+            ProductDAO dao = new ProductDAO();
             User user = Session["User"] as User;
             string idproduct = "";
             string nameproduct = form.nameproduct;
@@ -117,6 +118,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             {
                 rs = "user";
             }
+          
             else if (Tools.Tools.checkNullList(checkNullString) == false)
             {
                 rs = "null";
@@ -139,11 +141,15 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             {
                 rs = "notimage";
             }
+            else if (dao.checkExitNameProductForAdd(dao.generateNameProduct(form.nameproduct,form.brand))==false)
+            {
+                rs = "name";
+            }
             else
             {
                 description = Tools.Tools.DecodeUrlString(form.description);
                 description = Tools.Tools.ExtractText(description);
-                ProductDAO dao = new ProductDAO();
+               
                 idproduct = dao.addProduct(form, listFiles, description);
                 if (idproduct == "fail")
                 {
@@ -160,6 +166,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ChangeProduct(FormUpdateProduct form)
         {
+            ProductDAO dao = new ProductDAO();
             string rs = "";
             User user = Session["User"] as User;
             string idproduct = form.idproduct;
@@ -217,6 +224,9 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             else if (Tools.Tools.checkNumList(checkNum) == false)
             {
                 rs = "number";
+            }else if(dao.checkExitNameProductForUp(dao.generateNameProduct(form.nameproduct, form.brand),idproduct) == false)
+            {
+                rs = "name";
             }
             else if (image1 != null && Tools.Tools.IsImage(image1)==false)
             {
@@ -235,7 +245,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
                 description = Tools.Tools.DecodeUrlString(form.description);
                 description = Tools.Tools.ExtractText(description);
-                ProductDAO dao = new ProductDAO();
+                
                 idproduct = dao.updateProduct(form, listFiles, description);
                 rs = "success";
             }

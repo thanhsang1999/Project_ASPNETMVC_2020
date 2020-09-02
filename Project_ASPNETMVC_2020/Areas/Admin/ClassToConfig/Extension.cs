@@ -24,7 +24,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
             var words = name.Split(' ');
             for (int i = 0; i < words.Count(); i++)
             {
-                if (words[i].ToUpper().Equals(p.ID_BRAND.ToUpper()))
+                if (words[i].ToUpper().Trim().Equals(p.ID_BRAND.ToUpper().Trim()))
                 {
                     todel = i;
                 }

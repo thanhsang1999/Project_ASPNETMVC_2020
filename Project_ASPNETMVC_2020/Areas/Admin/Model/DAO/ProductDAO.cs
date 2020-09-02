@@ -73,21 +73,21 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
         public bool hasBrand(product p)
         {
             var check = false;
-            foreach(brand b in listBrands())
+            foreach (brand b in listBrands())
             {
                 if (b.ID_BRAND.Equals(p.ID_BRAND))
                 {
                     check = true;
                 }
             }
-            return check;   
+            return check;
         }
         public bool hasMemory(product p)
         {
             var check = false;
             foreach (memory b in listMemory())
             {
-                if (b.MEMORY1==(p.MEMORY))
+                if (b.MEMORY1 == (p.MEMORY))
                 {
                     check = true;
                 }
@@ -99,7 +99,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             var check = false;
             foreach (ram b in listRams())
             {
-                if (b.RAM1==(p.RAM))
+                if (b.RAM1 == (p.RAM))
                 {
                     check = true;
                 }
@@ -117,6 +117,48 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                 }
             }
             return check;
+        }
+        public bool checkExitNameProductForAdd(string nameproduct)
+        {
+            DBModel dBModel = new DBModel();
+            var check = dBModel.products.Where(x => x.NAME.ToLower() == nameproduct.ToLower()).Count();
+            if (check > 0)
+            {
+                return false;
+
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+        public bool checkExitNameProductForUp(string nameproduct, string idproduct)
+        {
+            DBModel dBModel = new DBModel();
+            var check = dBModel.products.Where(x => x.NAME.ToLower() == nameproduct.ToLower()).Count();
+            if (nameproduct.Equals(getProductById(idproduct).NAME)==false){
+                if (check > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (check > 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
         }
         public int totalRecordAll()
         {
@@ -146,16 +188,16 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                 dBModel.products.Attach(p);
                 dBModel.products.Remove(p);
                 dBModel.SaveChanges();
-                
+
             }
-            
+
         }
 
         public string addProduct(FormProduct form, List<HttpPostedFileBase> files, string des)
         {
             DBModel dBModel = new DBModel();
             product p = new product();
-          
+
             try
             {
 
@@ -185,7 +227,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             }
             return p.ID_PRODUCT;
         }
-        public string updateProduct(FormUpdateProduct form, Dictionary<int, HttpPostedFileBase> files , string des)
+        public string updateProduct(FormUpdateProduct form, Dictionary<int, HttpPostedFileBase> files, string des)
         {
             DBModel dBModel = new DBModel();
             product p = getProductById(form.idproduct);
@@ -200,7 +242,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                 p.RAM = Convert.ToInt32(form.ram);
                 p.PRICE = Convert.ToInt32(form.price);
                 p.AMOUNT = Convert.ToInt32(form.amount);
-                p.SALE_RATE = Convert.ToInt32(form.salerate);              
+                p.SALE_RATE = Convert.ToInt32(form.salerate);
                 p.DATE_SUBMITTED = DateTime.Now;
                 p.DESCRIPTION = des;
                 HandleFile upload = new HandleFile();
@@ -213,14 +255,16 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
                         if (k == 1)
                         {
                             p.IMG = imgs[k];
-                        } if (k == 2)
+                        }
+                        if (k == 2)
                         {
                             p.IMG2 = imgs[k];
-                        } if (k == 3)
+                        }
+                        if (k == 3)
                         {
                             p.IMG3 = imgs[k];
                         }
-                            
+
                     }
                 }
                 dBModel.products.AddOrUpdate(p);
