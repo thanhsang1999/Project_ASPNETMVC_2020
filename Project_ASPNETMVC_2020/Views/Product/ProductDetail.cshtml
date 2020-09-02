@@ -59,8 +59,7 @@
                         $('#numberOfProductsInTheCart').text(number);
                         $('.cart_price').text(price);
                     } else {
-                        url = data.url;
-                        window.location.href = url;
+                        $('#myModal').modal('show');
                     }
                 }
             });
@@ -103,7 +102,6 @@
                     if (rs.includes("fail")) {
                         alert("Bạn không được bỏ trống nội dung,tiêu đề, đánh giá");
                     } else if (rs === "user") {
-                        alert("bạn phải đăng nhập để sử dụng chức năng này");
                         $('#myModal').modal('show');
                     } else {
                         $('#contain-eval').html(rs);
@@ -127,7 +125,10 @@
                         if (rs.includes("fail")) {
                             alert("Hệ thống có lỗi xảy ra hãy thử refresh lại");
                         } else if (rs === "user") {
-                            alert("Bạn phải đăng nhập để sử dụng chức năng này");
+                            $(".product_fav").removeClass("product_fav active").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart active").addClass("fas fa-heart");
+                            $(".product_fav").removeClass("product_fav").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart").addClass("fas fa-heart");
                             $('#myModal').modal('show');
                         } else {
                             $('.wishlist_count').html(rs);
@@ -145,7 +146,10 @@
                         if (rs.includes("fail")) {
                             alert("Hệ thống có lỗi xảy ra hãy thử refresh lại");
                         } else if (rs === "user") {
-                            alert("bạn phải đăng nhập để sử dụng chức năng này");
+                            $(".product_fav").removeClass("product_fav active").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart active").addClass("fas fa-heart");
+                            $(".product_fav").removeClass("product_fav").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart").addClass("fas fa-heart");
                             $('#myModal').modal('show');
                         } else {
                             $('.wishlist_count').html(rs);

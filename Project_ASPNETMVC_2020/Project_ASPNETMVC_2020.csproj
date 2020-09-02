@@ -5191,6 +5191,7 @@
     <Content Include="Assets\web\js\custom_web.js" />
     <Content Include="Assets\web\js\date.js" />
     <Content Include="Assets\web\js\input_number.js" />
+    <Content Include="Assets\web\js\customweb.js" />
     <Content Include="Assets\web\js\jquery-3.3.1.min.js" />
     <Content Include="Assets\web\js\product_comment.js" />
     <Content Include="Assets\web\js\product_custom.js" />
