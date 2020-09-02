@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Project_ASPNETMVC_2020.Areas.Admin.Tools
+namespace Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin
 {
-    public static class Tools
+    public static class ToolsOfAdmin
     {
         public static bool checkNull(string tocheck)
         {

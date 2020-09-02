@@ -15,6 +15,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
         public virtual DbSet<informationproduct> informationproducts { get; set; }
         public virtual DbSet<ram> rams { get; set; }
         public virtual DbSet<recently_viewed> recently_viewed { get; set; }
+        public virtual DbSet<slider> sliders { get; set; }
         public virtual DbSet<yeuthich> yeuthiches { get; set; }
         public virtual DbSet<account> accounts { get; set; }
         public virtual DbSet<authentication> authentications { get; set; }
@@ -40,6 +41,18 @@ namespace Project_ASPNETMVC_2020.Model.EF
             modelBuilder.Entity<recently_viewed>()
                 .Property(e => e.DATE_VIEW)
                 .HasPrecision(0);
+
+            modelBuilder.Entity<slider>()
+                .Property(e => e.ID_SLIDER)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<slider>()
+                .Property(e => e.NAME)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<slider>()
+                .Property(e => e.IMAGE)
+                .IsUnicode(false);
 
             modelBuilder.Entity<bill>()
                 .Property(e => e.AMOUNT)

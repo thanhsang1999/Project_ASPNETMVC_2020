@@ -25,9 +25,11 @@ namespace Project_ASPNETMVC_2020.Filter
             }
             if (roleIsRequired != null)
             {
+                var active = user.ACTIVE;
+                var realactive = Convert.ToInt32(user.ACTIVE);
                 var realrolerequire = Convert.ToInt32(roleIsRequired);
                 var roleuser = Convert.ToInt32(roleOfUser);
-                if (realrolerequire > roleuser)
+                if (realrolerequire > roleuser && realactive != 1)
                 {
 
                     string iduser = null;

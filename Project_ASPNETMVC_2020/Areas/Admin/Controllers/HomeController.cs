@@ -16,9 +16,15 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
         [AuthFilter(roleIsRequired =LevelAuth.Admin,Order =0)]
         public ActionResult Index()
         {
-
-            return View();
-
+            User user = Session["User"] as User;
+            if (user != null&&user.LEVEL.Equals("10")&&user.ACTIVE=="1")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
         public ActionResult LogOut()
         {

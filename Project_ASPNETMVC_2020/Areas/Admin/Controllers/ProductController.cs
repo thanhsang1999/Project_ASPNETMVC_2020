@@ -4,7 +4,7 @@ using Microsoft.Win32;
 using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.Form;
-using Project_ASPNETMVC_2020.Areas.Admin.Tools;
+using Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin;
 using Project_ASPNETMVC_2020.ClassToConfig;
 using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
@@ -119,12 +119,12 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
                 rs = "user";
             }
           
-            else if (Tools.Tools.checkNullList(checkNullString) == false)
+            else if (ToolsOfAdmin.checkNullList(checkNullString) == false)
             {
                 rs = "null";
 
             }
-            else if (Tools.Tools.checkNumList(checkNum) == false)
+            else if (ToolsOfAdmin.checkNumList(checkNum) == false)
             {
                 rs = "number";
             }
@@ -133,11 +133,11 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
                 rs = "filenull";
 
             }
-            else if (Tools.Tools.checkFileNull(listFiles) == false)
+            else if (ToolsOfAdmin.checkFileNull(listFiles) == false)
             {
                 rs = "filenull";
             }
-            else if (Tools.Tools.checkFileImage(listFiles) == false)
+            else if (ToolsOfAdmin.checkFileImage(listFiles) == false)
             {
                 rs = "notimage";
             }
@@ -147,8 +147,8 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
             else
             {
-                description = Tools.Tools.DecodeUrlString(form.description);
-                description = Tools.Tools.ExtractText(description);
+                description = ToolsOfAdmin.DecodeUrlString(form.description);
+                description = ToolsOfAdmin.ExtractText(description);
                
                 idproduct = dao.addProduct(form, listFiles, description);
                 if (idproduct == "fail")
@@ -216,35 +216,35 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             {
                 rs = "user";
             }
-            else if (Tools.Tools.checkNullList(checkNullString) == false)
+            else if (ToolsOfAdmin.checkNullList(checkNullString) == false)
             {
                 rs = "null";
 
             }
-            else if (Tools.Tools.checkNumList(checkNum) == false)
+            else if (ToolsOfAdmin.checkNumList(checkNum) == false)
             {
                 rs = "number";
             }else if(dao.checkExitNameProductForUp(dao.generateNameProduct(form.nameproduct, form.brand),idproduct) == false)
             {
                 rs = "name";
             }
-            else if (image1 != null && Tools.Tools.IsImage(image1)==false)
+            else if (image1 != null && ToolsOfAdmin.IsImage(image1)==false)
             {
                 rs = "notimage";
             }
-            else if (image2 != null && Tools.Tools.IsImage(image2)==false)
+            else if (image2 != null && ToolsOfAdmin.IsImage(image2)==false)
             {
                 rs = "notimage";
             }
-            else if (image3 != null && Tools.Tools.IsImage(image3)==false)
+            else if (image3 != null && ToolsOfAdmin.IsImage(image3)==false)
             {
                 rs = "notimage";
             }
             else
             {
 
-                description = Tools.Tools.DecodeUrlString(form.description);
-                description = Tools.Tools.ExtractText(description);
+                description = ToolsOfAdmin.DecodeUrlString(form.description);
+                description = ToolsOfAdmin.ExtractText(description);
                 
                 idproduct = dao.updateProduct(form, listFiles, description);
                 rs = "success";

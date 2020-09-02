@@ -82,6 +82,8 @@
                         $("#error-mess").hide().html("Không Để Trống").fadeIn("slow");
                     } else if (status == "fail") {
                         $("#error-mess").hide().html("Tài Khoản Hoặc Mật Khẩu Không Đúng").fadeIn("slow");
+                    } else if (status == "active") {
+                        $("#error-mess").hide().html("Tài Khoản Đã Bị Khóa").fadeIn("slow");
                     }
                 }
             });

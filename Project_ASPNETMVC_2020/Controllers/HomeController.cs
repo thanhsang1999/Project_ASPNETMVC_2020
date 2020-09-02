@@ -23,7 +23,9 @@ namespace Project_ASPNETMVC_2020.Controllers
         {
             var model = new ArrayList();
             List<danhgia> listRecentlyEval = new EvaluationDAO().getListRecentEval();
+            List<slider> listSlider = SliderDAO.LoadListSlider();
             model.Add(listRecentlyEval);
+            model.Add(listSlider);
             return View(model);
         }
         [HttpPost]
@@ -46,6 +48,17 @@ namespace Project_ASPNETMVC_2020.Controllers
             else if (userDAO.checkAccount(UserName, Tools.MD5(Password)) == false)
             {
                 status = "fail";
+                // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
+
+                ViewBag.LevelLog = LevelLog.ALERT;
+                // nếu ko có viewbag messagelog thì sẽ lưu xuống database là OK
+
+                ViewBag.MessageLog = "Login fail";
+                return new JsonResult { Data = new { status = status } };
+            }
+            else if (userDAO.checkActived(UserName) == false)
+            {
+                status = "active";
                 // nếu ko có viewbag levellog thì sẽ lưu xuống database là info
 
                 ViewBag.LevelLog = LevelLog.ALERT;
