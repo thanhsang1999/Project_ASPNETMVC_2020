@@ -1,6 +1,7 @@
 ﻿using Project_ASPNETMVC_2020.Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -20,9 +21,23 @@ namespace Project_ASPNETMVC_2020.Model.DAO
                 dBModel.recently_viewed.Add(rv);
                 dBModel.SaveChanges();
             }
+            else
+            {
+                
+                var check = dBModel.recently_viewed.Where(x => x.ID_ACCOUNT == iduser && x.ID_PRODUCT == idproduct).SingleOrDefault();
+                check.DATE_VIEW = DateTime.Now;
+                dBModel.recently_viewed.AddOrUpdate(check);
+                dBModel.SaveChanges();
+            }
             limitRecentlyView(iduser);
 
 
+        }
+        public void changeDateView(string iduser, string idproduct)
+        {
+            DBModel dBModel = new DBModel();
+            var check = dBModel.recently_viewed.Where(x => x.ID_ACCOUNT == iduser && x.ID_PRODUCT == idproduct).SingleOrDefault();
+            check.DATE_VIEW= DateTime.Now;
         }
         public bool checkRecentlyView(string iduser, string idproduct)
         {

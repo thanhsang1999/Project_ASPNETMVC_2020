@@ -53,6 +53,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.24.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.24\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -132,6 +135,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
+    <Compile Include="Areas\Admin\ClassToConfig\LinkAdmin.cs" />
+    <Compile Include="Areas\Admin\ClassToConfig\HandleFile.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
@@ -139,6 +144,9 @@
     <Compile Include="Areas\Admin\Model\DAO\SliderDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
+    <Compile Include="Areas\Admin\Model\Form\FormProduct.cs" />
+    <Compile Include="Areas\Admin\Model\Form\FormUpdateProduct.cs" />
+    <Compile Include="Areas\Admin\ToolsAdmin\ToolsOfAdmin.cs" />
     <Compile Include="Areas\Admin\Model\Slider\DataFormSlider.cs" />
     <Compile Include="Areas\Admin\Model\User\FormDataLevelAccount.cs" />
     <Compile Include="Areas\Admin\Model\User\FormDataAccount.cs" />
@@ -6801,6 +6809,8 @@
     <Content Include="Assets\admin\lib\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Product\ListProduct.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\FormAddProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\FormChangeProduct.cshtml" />
     <Content Include="Areas\Admin\Views\User\Infomation.cshtml" />
     <Content Include="Areas\Admin\Views\User\LevelAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
@@ -6858,7 +6868,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

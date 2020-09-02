@@ -1,0 +1,483 @@
+﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.EF
+@model product
+@{
+    ViewBag.Title = "FormChangeProduct";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    product p = null;
+    if (Model != null)
+    {
+        p = Model;
+    }
+    var listBrands = (List<brand>)ViewBag.Brands;
+    var listRams = (List<ram>)ViewBag.Rams;
+    var listMemory = (List<memory>)ViewBag.Memorys;
+    var listHDH = (List<hedieuhanh>)ViewBag.HeDieuHanhs;
+    bool exitsHDH = (bool)ViewBag.hasHDH;
+    bool exitsBrand = (bool)ViewBag.hasBrand;
+    bool exitsMemory = (bool)ViewBag.hasMemory;
+    bool exitsRam = (bool)ViewBag.hasRam;
+}
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/iCheck/skins/flat/green.css",true)" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/google-code-prettify/bin/prettify.min.css",true)" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/select2/dist/css/select2.min.css",true)" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/switchery/dist/switchery.min.css",true)" rel="stylesheet">
+    <!-- starrr -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/starrr/dist/starrr.css",true)" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.css",true)" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <!-- CKEDITOR -->
+    <script src="@Url.ContentAssetAdmin( "lib/ckeditor/ckeditor.js",true)"></script>
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin( "css/sanpham.css",true)">
+}
+@section scripts{
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.js",true)"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",true)"></script>
+    <!-- iCheck -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/iCheck/icheck.min.js",true)"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/moment/min/moment.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.js",true)"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery.hotkeys/jquery.hotkeys.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/google-code-prettify/src/prettify.js",true)"></script>
+    <!-- jQuery Tags Input -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery.tagsinput/src/jquery.tagsinput.js",true)"></script>
+    <!-- Switchery -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/switchery/dist/switchery.min.js",true)"></script>
+    <!-- Select2 -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/select2/dist/js/select2.full.min.js",true)"></script>
+    <!-- Parsley -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/parsleyjs/dist/parsley.min.js",true)"></script>
+    <!-- Autosize -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/autosize/dist/autosize.min.js",true)"></script>
+    <!-- jQuery autocomplete -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js",true)"></script>
+    <!-- starrr -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/starrr/dist/starrr.js",true)"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="@Url.ContentAssetAdmin( "lib/build/js/custom.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "js/sanpham.js",true)"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.instances['description'].setData('@p.DESCRIPTION');
+        })
+        CKEDITOR.on('instanceReady', function (evt) {
+            CKEDITOR.instances['description'].setData('@p.DESCRIPTION');
+        });
+        $('#cancel').click(function (e) {
+            e.preventDefault();
+            window.location.href = '@Url.Action("ListProduct","Product", new { area="Admin"})';
+        })
+         $('#demo-form2').submit(function(e) {
+     e.preventDefault();
+     for (instance in CKEDITOR.instances) {
+         CKEDITOR.instances[instance].updateElement();
+     }
+     var formData = new FormData($('form#demo-form2')[0]);
+
+             var description = CKEDITOR.instances.description.getData();
+
+             formData.set('description', `${encodeURIComponent(description)}`);
+             console.log('description', description);
+     $.ajax({
+         type: 'POST',
+         url: '@Url.Action("ChangeProduct","Product", new { area = "Admin" })',
+         enctype: 'multipart/form-data',
+         cache: false,
+         timeout: 600000,
+         data: formData,
+         contentType: false,
+         processData: false,
+         success: function (data) {
+             var rs = data.result;
+             var error = data.error;
+             var showerror = $('#show-error');
+             if (rs === 'user') {
+                  window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
+             }
+             else  if (rs === "null") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Bạn không được để trống các ô dữ liệu');
+             } else if (rs === "number") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Dữ liệu ở ô ram,bộ nhớ máy,giá,số lượng,giảm giá phải là số');
+             } else if (rs === "filenull") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Dữ liệu File không được để trống');
+             } else if (rs === "notimage") {
+                 showerror.addClass('text-danger');
+                 showerror.text('File cho sản phẩm phải là hình ảnh');
+             } else if (rs === "name") {
+                 showerror.addClass('text-danger');
+                 showerror.text('Tên sản phẩm đã tồn tại');
+             }
+             else if (rs === "success") {
+                 if (showerror.hasClass('text-danger')) {
+                     showerror.removeClass('text-danger');
+                     showerror.addClass('text-success');
+                     showerror.text('Sửa sản phẩm thành công');
+                 } else {
+                     showerror.addClass('text-success');
+                     showerror.text('Sửa sản phẩm thành công');
+                 }
+             } else {
+                 showerror.addClass('text-danger');
+                 showerror.text('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
+             }
+         },error: function (data) {
+             alert('Hệ thống đã có lỗi xảy ra hãy thử nhấn F5');
+         }
+
+     });
+ })
+    </script>
+}
+
+<div class="right_col" role="main" style="min-height: 692px;">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Trang Sửa Sản Phẩm</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Sửa Sản Phẩm</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <input type="hidden" name="idproduct" value="@p.ID_PRODUCT" />
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten-san-pham">
+                                    Tên Sản Phẩm<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    @if (p != null)
+                                    {
+                                        <input type="text" id="ten-san-pham" accept="image/*" value="@Extension.deleteNameBrand(p)" name="nameproduct" required="required"
+                                               class="form-control ">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" id="ten-san-pham" accept="image/*" name="nameproduct" required="required"
+                                               class="form-control ">
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="item form-group gian-cach">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="chon-anh">
+                                    Ảnh <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="custom-file mb-3">
+                                        @if (p != null)
+                                        {
+                                            <input type="file" accept="image/*" class="custom-file-input" id="chon-anh" name="image1">
+                                            <label class="custom-file-label" for="customFile">@p.IMG</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="file" accept="image/*" class="custom-file-input" id="chon-anh" name="image1">
+                                            <label class="custom-file-label" for="customFile">Chọn Ảnh Chính</label>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="chon-anh-2">
+                                    Ảnh 2 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="custom-file mb-3">
+                                        @if (p != null)
+                                        {
+                                            <input type="file" accept="image/*" class="custom-file-input" id="chon-anh-2" name="image2">
+                                            <label class="custom-file-label" for="customFile">@p.IMG2</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="file" accept="image/*" class="custom-file-input" id="chon-anh-2" name="image2">
+                                            <label class="custom-file-label" for="customFile">Chọn Ảnh Phụ</label>
+                                        }
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="chon-anh-3">
+                                    Ảnh 3 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="custom-file mb-3">
+                                        @if (p != null)
+                                        {
+                                            <input type="file" class="custom-file-input" id="chon-anh-3" name="image3">
+                                            <label class="custom-file-label" for="customFile">@p.IMG3</label>
+
+                                        }
+                                        else
+                                        {
+                                            <input type="file" class="custom-file-input" id="chon-anh-3" name="image3">
+                                            <label class="custom-file-label" for="customFile">Chọn Ảnh Phụ</label>
+                                        }
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="he-dieu-hanh">
+                                    Hệ Điều Hành<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="form-group">
+                                        <select class="form-control" name="hedieuhanh" id="he-dieu-hanh">
+                                            <option value="">Chọn Hệ Điều Hành</option>
+
+                                            @foreach (hedieuhanh item in listHDH)
+                                            {
+                                                if (p != null && p.OS.Equals(item.OS))
+                                                {
+
+                                                    <option selected value="@item.OS">@item.OS</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.OS">@item.OS</option>
+                                                }
+                                            }
+                                            @if (exitsHDH == false)
+                                            {
+                                                <option selected value="@p.OS">@p.OS</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="ten-thương-hieu">
+                                    Tên Thương
+                                    Hiệu<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="form-group">
+                                        <select class="form-control" name="brand" id="ten-thương-hieu">
+                                            <option value="">Chọn Tên Thương Hiệu</option>
+                                            @foreach (brand item in listBrands)
+                                            {
+                                                if (p != null && p.ID_BRAND.Equals(item.ID_BRAND))
+                                                {
+                                                    <option selected value="@item.ID_BRAND">@item.BRAND1</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.ID_BRAND">@item.BRAND1</option>
+                                                }
+
+                                            }
+                                            @if (exitsBrand == false)
+                                            {
+                                                <option selected value="@p.ID_BRAND">@p.ID_BRAND</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group gian-cach ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="input-memory">
+                                    Bộ Nhớ Máy <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="form-group">
+                                        <select class="form-control" name="memory" id="input-memory">
+                                            <option value="">Chọn Dung Lượng Bộ Nhớ</option>
+                                            @foreach (memory item in listMemory)
+                                            {
+                                                if (p != null && p.MEMORY == item.MEMORY1)
+                                                {
+                                                    <option selected value="@item.MEMORY1">@item.MEMORY1 GB</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.MEMORY1">@item.MEMORY1 GB</option>
+                                                }
+
+                                            }
+                                            @if (exitsMemory == false)
+                                            {
+                                                <option selected value="@p.MEMORY">@p.MEMORY GB</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="input-ram">
+                                    Ram <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="form-group">
+                                        <select class="form-control" name="ram" id="input-ram">
+                                            <option value="">Chọn Dung Lượng RAM</option>
+                                            @foreach (ram item in listRams)
+                                            {
+                                                if (p != null && p.RAM == item.RAM1)
+                                                {
+                                                    <option selected value="@item.RAM1">@item.RAM1 GB</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.RAM1">@item.RAM1 GB</option>
+                                                }
+
+                                            }
+                                            @if (exitsRam == false)
+                                            {
+                                                <option selected value="@p.RAM">@p.RAM GB</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="gia">
+                                    Giá <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    @if (p == null)
+                                    {
+                                        <input type="text" id="gia" name="price" required="required" class="form-control">
+
+                                    }
+                                    else
+                                    {
+                                        <input type="text" id="gia" name="price" value="@p.PRICE.Value.ToString()" required="required" class="form-control">
+
+                                    }
+                                </div>
+                            </div>
+                            <div class="item form-group gian-cach">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="amount">
+                                    Số Lượng Máy <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    @if (p == null)
+                                    {
+                                        <input type="text" id="amount" name="amount" required="required" class="form-control">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" value="@p.AMOUNT" id="amount" name="amount" required="required" class="form-control">
+                                    }
+                                </div>
+                            </div>
+                            <div class="item form-group gian-cach">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="sale-rate">
+                                    Giảm Giá 0% -> 99%
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    @if (p == null || p.SALE_RATE == 0)
+                                    {
+                                        <input type="text" id="sale-rate" name="salerate" required="required" class="form-control">
+
+                                    }
+                                    else
+                                    {
+                                        <input type="text" value="@p.SALE_RATE" id="sale-rate" name="salerate" required="required" class="form-control">
+                                    }
+                                </div>
+                            </div>
+                            <div class="item form-group gian-cach">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="description">
+                                    Mô tả <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+
+                                    <textarea required="required" class="form-control" name="description" id="description" rows="10" cols="80">
+                            </textarea>
+                                    <script type="text/javascript" charset="utf-8">
+                                        CKEDITOR.replace('description', {
+                                            language: 'vi',
+                                            entities: false,
+                                            entities_latin: false,
+                                            entities_greek: false,
+                                            htmlEncodeOutput: false
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3"></div>
+                                <div id="show-error" class="col-md-6 col-sm-6 error" style="font-size:20px"></div>
+                            </div>
+                            <div class="ln_solid">
+
+                            </div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button id="cancel" class="btn btn-primary" type="button">Cancel</button>
+                                    <button style="display:none" class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

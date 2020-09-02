@@ -22,22 +22,32 @@ namespace Project_ASPNETMVC_2020.Controllers
         public ActionResult ProductDetail(string id)
         {
 
-            
+
             product model = new product();
-            if ((model = new ProductDAO().productDetail(id)) != null || id != null)
+            ProductDAO dao = new ProductDAO();
+
+            try
             {
-                model = new ProductDAO().productDetail(id);
-                ViewBag.Title = model.NAME;
-                User user = Session["User"] as User;
-                if (user != null)
+                if (dao.findProductById(id) == null || id == null)
                 {
-                    new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);
+                    return RedirectToAction("Index", "Home");
                 }
-                return View(model);
+                else 
+                {
+                    model = dao.productDetail(id);
+                    User user = Session["User"] as User;
+                    if (user != null)
+                    {
+                        new RecentlyViewDAO().addRecentlyView(user.ID_ACCOUNT, id);
+                    }
+                    ViewBag.Title = model.NAME;
+                    return View(model);
+                }
             }
-            else
+            catch (Exception e)
             {
                 return RedirectToAction("Index", "Home");
+
             }
 
 
@@ -61,12 +71,8 @@ namespace Project_ASPNETMVC_2020.Controllers
             List<product> listProduct = null;
             try
             {
-                if (id == null || catogery == null)
-                {
-                    totalRecord = dbmodel.products.Count();
-                    listProduct = new ProductDAO().productAll(pageIndex, itemInOnePage);
-                }
-                else if (catogery.Equals("brand"))
+
+                if (catogery.Equals("brand"))
                 {
                     totalRecord = new ProductDAO().totalRecordByBrand(id);
                     listProduct = new ProductDAO().productByBrand(id, pageIndex, itemInOnePage);
@@ -96,15 +102,16 @@ namespace Project_ASPNETMVC_2020.Controllers
                 }
                 else
                 {
-                    totalRecord = dbmodel.products.Count();
-                    listProduct = new ProductDAO().productAll(pageIndex, itemInOnePage);
+                    totalRecord = 0;
+                    listProduct = null;
                 }
+
             }
             catch (Exception e)
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (listProduct == null)
+            if (listProduct == null || totalRecord == 0)
             {
                 return RedirectToAction("Index", "Home");
             }

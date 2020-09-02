@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.UI.WebControls;
+using System.Security.Cryptography;
 
 namespace Project_ASPNETMVC_2020.Model.DAO
 {
@@ -22,93 +23,225 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             foreach (recently_viewed item in rv)
             {
                 product p = findProductById(item.ID_PRODUCT);
-                listProduct.Add(p);
+                if (p == null)
+                {
+                    
+                }
+                else
+                {
+                    listProduct.Add(p);
+                }              
             }
             return listProduct;
         }
         public product findProductById(string id)
         {
-            return dBModel.products.Where(x => x.ID_PRODUCT == id && x.AMOUNT > 0).SingleOrDefault();
-        }
-
-        public List<product> productAll(int pageIndex, int pageSize)
-        {
-            return dBModel.products.OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-        }
-
-        public int totalRecordByBrand(string id)
-        {
-            return dBModel.products.Where(x => x.ID_BRAND == id && x.AMOUNT > 0).Count();
-        }
-        public int totalRecordByMemory(int id)
-        {
-            return dBModel.products.Where(x => x.MEMORY == id && x.AMOUNT > 0).Count();
-        }
-        public int totalRecordByHeDieuHanh(string id)
-        {
-            return dBModel.products.Where(x => x.ID_BRAND == id).Count();
-        }
-        public int totalRecoreByRam(int id)
-        {
-            return dBModel.products.Where(x => x.RAM == id).Count();
-        }
-        public int totalRecoreByPrice(int id)
-        {
-            return productByPriceQuery(id).Count();
-        }
-        public product productDetail(string id)
-        {
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.ID_PRODUCT == id
+                          select product).FirstOrDefault();
             if (id == null)
             {
+
                 return null;
             }
             else
             {
-                if (dBModel.products.Find(id) == null)
+
+                if (result == null)
                 {
                     return null;
                 }
             }
-            return dBModel.products.Find(id);
+            return result;
+        }
+
+    
+
+        public int totalRecordByBrand(string id)
+        {
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.ID_BRAND == id && product.AMOUNT > 0
+                          select product).Count();
+            return result;
+        }
+        public int totalRecordByMemory(int id)
+        {
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.MEMORY == id && product.AMOUNT > 0
+                          select product).Count();
+            return result;
+        }
+        public int totalRecordByHeDieuHanh(string id)
+        {
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.OS == id && product.AMOUNT > 0
+                          select product).Count();
+            return result;
+        }
+        public int totalRecoreByRam(int id)
+        {
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.RAM == id && product.AMOUNT > 0
+                          select product).Count();
+            return result;
+        }
+        public int totalRecoreByPrice(int id)
+        {
+            if (  productByPriceQuery(id)==null)
+            {
+                return 0;
+            }else if(id <0 && id > 5)
+            {
+                return 0;
+            }
+            return productByPriceQuery(id).Count();
+        }
+        public product productDetail(string id)
+        {
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.ID_PRODUCT==id
+                          select product).SingleOrDefault();
+            if (id == null)
+            {
+               
+                return null;
+            }
+            else
+            {
+               
+                if (result == null )
+                {
+                    return null;
+                }
+            }
+            return result;
         }
         public List<product> productByBrand(string id, int pageIndex, int pageSize)
         {
-            return dBModel.products.Where(x => x.ID_BRAND == id && x.AMOUNT > 0).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.ID_BRAND == id && product.AMOUNT>0
+                          select product).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return result;
         }
         public List<product> productByMemory(int id, int pageIndex, int pageSize)
         {
-            return dBModel.products.Where(x => x.MEMORY == id && x.AMOUNT > 0).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.MEMORY == id && product.AMOUNT > 0
+                          select product).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return result;
         }
         public List<product> productByHeDieuHanh(string id, int pageIndex, int pageSize)
         {
-            return dBModel.products.Where(x => x.OS == id && x.AMOUNT > 0).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.OS == id && product.AMOUNT > 0
+                          select product).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return result;
         }
         public List<product> productByRam(int id, int pageIndex, int pageSize)
         {
-            return dBModel.products.Where(x => x.RAM == id && x.AMOUNT > 0).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            var result = (from product in dBModel.products
+                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                          where product.RAM == id && product.AMOUNT > 0
+                          select product).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return result;
         }
         public IQueryable<product> productByPriceQuery(int id)
         {
             if (id == 1)
             {
-                return dBModel.products.Where(x => x.PRICE.Value < 5000000 && x.AMOUNT > 0);
+                var result = (from product in dBModel.products
+                              join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                              join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                              join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                              join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                              where product.PRICE.Value < 5000000 && product.AMOUNT > 0
+                              select product);
+                return result;
             }
             else if (id == 2)
             {
-                return dBModel.products.Where(x => x.PRICE.Value > 5000000 && x.PRICE.Value < 10000000 && x.AMOUNT > 0);
+                var result = (from product in dBModel.products
+                              join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                              join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                              join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                              join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                              where product.PRICE.Value > 5000000 && product.PRICE.Value < 10000000 && product.AMOUNT > 0
+                              select product);
+                return result;
             }
             else if (id == 3)
             {
-                return dBModel.products.Where(x => x.PRICE.Value < 15000000 && x.PRICE.Value > 10000000 && x.AMOUNT > 0);
+                var result = (from product in dBModel.products
+                              join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                              join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                              join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                              join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                              where product.PRICE.Value > 10000000 && product.PRICE.Value < 15000000 && product.AMOUNT > 0
+                              select product);
+                return result;
             }
             else if (id == 4)
             {
-                return dBModel.products.Where(x => x.PRICE.Value > 15000000 && x.PRICE.Value < 20000000 && x.AMOUNT > 0);
+                var result = (from product in dBModel.products
+                              join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                              join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                              join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                              join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                              where product.PRICE.Value > 15000000 && product.PRICE.Value < 20000000 && product.AMOUNT > 0
+                              select product);
+                return result;
 
             }
             else if (id == 5)
             {
-                return dBModel.products.Where(x => x.PRICE.Value > 20000000 && x.AMOUNT > 0);
+                var result = (from product in dBModel.products
+                              join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
+                              join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
+                              join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
+                              join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
+                              where product.PRICE.Value > 20000000  && product.AMOUNT > 0
+                              select product);
+                return result;
             }
             else
             {
@@ -118,13 +251,14 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public List<product> productByPrice(int id, int pageIndex, int pageSize)
         {
 
-            List<product> rs = productByPriceQuery(id).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            if (rs == null)
+            if (productByPriceQuery(id) == null )
             {
                 return null;
             }
             else
             {
+                List<product> rs = productByPriceQuery(id).OrderByDescending(x => x.ID_PRODUCT).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
                 return rs;
 
             }

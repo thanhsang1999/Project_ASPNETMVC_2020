@@ -1,4 +1,5 @@
 ﻿using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
@@ -14,6 +15,7 @@ namespace Project_ASPNETMVC_2020.Controllers
     public class LikeController : Controller
     {
         // GET: Like
+        [AuthFilter(roleIsRequired = LevelAuth.User, Order = 0)]
         public ActionResult Index()
         {
             var user = Session["User"] as User;
