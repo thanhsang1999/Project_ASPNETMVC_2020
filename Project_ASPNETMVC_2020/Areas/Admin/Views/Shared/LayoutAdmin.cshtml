@@ -48,13 +48,15 @@
                                 <li>
                                     <a><i class="fa fa-home"></i> Trang Chủ <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="index.html">Số Liệu</a></li>
+                                        <li><a href="@Url.Action("Index","Home")">Số Liệu</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-edit"></i>Danh Sách <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="danhsachsanpham.html">Danh Sách Sản Phẩm</a></li>
+                                        <li><a href="@Url.Action("ListProduct,Product")">Danh Sách Sản Phẩm</a></li>
+                                        <li><a href="@Url.Action("Index","User")">Danh Sách Tài Khoản</a></li>
+                                        <li><a href="@Url.Action("Index","Slider")">Danh Sách Slider</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -62,6 +64,7 @@
                                     <ul class="nav child_menu">
                                         <li><a href="sanpham.html">Form Sản Phẩm</a></li>
                                         <li><a href="dangki.html">Form Đăng Kí</a></li>
+                                        <li><a href="@Url.Action("CreateSlider","Slider")">Form Slider</a></li>
                                     </ul>
                                 </li>
 
@@ -132,7 +135,7 @@
                                 </div>
                             </li>
 
-                            <li role="presentation" class="nav-item dropdown open">
+                           @* <li role="presentation" class="nav-item dropdown open">
                                 <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown"
                                    aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
@@ -196,7 +199,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>*@
                         </ul>
                     </nav>
                 </div>

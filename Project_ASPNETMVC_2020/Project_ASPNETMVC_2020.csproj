@@ -134,9 +134,14 @@
     <Compile Include="Areas\Admin\ClassToConfig\Extension.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\SliderDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
+    <Compile Include="Areas\Admin\Model\Slider\DataFormSlider.cs" />
+    <Compile Include="Areas\Admin\Model\User\FormDataLevelAccount.cs" />
+    <Compile Include="Areas\Admin\Model\User\FormDataAccount.cs" />
     <Compile Include="ClassToConfig\LevelAuth.cs" />
     <Compile Include="ClassToConfig\LevelLog.cs" />
     <Compile Include="ClassToConfig\Link.cs" />
@@ -159,6 +164,7 @@
     <Compile Include="Model\Cart\FormPay.cs" />
     <Compile Include="Model\Code\Tools.cs" />
     <Compile Include="Model\DAO\CartDAO.cs" />
+    <Compile Include="Model\DAO\SliderDAO.cs" />
     <Compile Include="Model\DAO\HomeDAO.cs" />
     <Compile Include="Model\DAO\SearchDAO.cs" />
     <Compile Include="Model\DAO\PayDAO.cs" />
@@ -180,6 +186,7 @@
     <Compile Include="Model\EF\ct_account.cs" />
     <Compile Include="Model\EF\ct_group_product.cs" />
     <Compile Include="Model\EF\danhgia.cs" />
+    <Compile Include="Model\EF\DBModel.cs" />
     <Compile Include="Model\EF\detail_order.cs" />
     <Compile Include="Model\EF\group_product.cs" />
     <Compile Include="Model\EF\hedieuhanh.cs" />
@@ -187,12 +194,12 @@
     <Compile Include="Model\EF\log.cs" />
     <Compile Include="Model\EF\mailpassword.cs" />
     <Compile Include="Model\EF\memory.cs" />
-    <Compile Include="Model\EF\DBModel.cs" />
     <Compile Include="Model\EF\o.cs" />
     <Compile Include="Model\EF\order.cs" />
     <Compile Include="Model\EF\product.cs" />
     <Compile Include="Model\EF\ram.cs" />
     <Compile Include="Model\EF\recently_viewed.cs" />
+    <Compile Include="Model\EF\slider.cs" />
     <Compile Include="Model\EF\yeuthich.cs" />
     <Compile Include="Model\ModelOfSession\FormSignup.cs" />
     <Compile Include="Model\ModelOfSession\ProductInCart.cs" />
@@ -6794,6 +6801,11 @@
     <Content Include="Assets\admin\lib\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Product\ListProduct.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Infomation.cshtml" />
+    <Content Include="Areas\Admin\Views\User\LevelAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\CreateSlider.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\EditSlider.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

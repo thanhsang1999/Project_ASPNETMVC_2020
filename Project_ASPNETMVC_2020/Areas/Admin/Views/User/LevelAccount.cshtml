@@ -1,0 +1,161 @@
+﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@model System.Collections.ArrayList
+@{
+    ViewBag.Title = "LevelAccount";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    var Account = Model[0] as User;
+}
+@section styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <link href="@Url.ContentAssetAdmin("lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin("lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_suaAccountCss.css",true)">
+}
+<!-- /top navigation -->
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Sửa Quyển Truy Cập Tài Khoản</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="form-level">
+                            <input type="hidden" value="@Account.ID_ACCOUNT" name="Lidaccount" />
+                            <div class="row right-content-phan-2">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 bg-form-right-content">
+                                    <div class="row khoang-cach">
+                                        <div class="col-sm-3">
+                                            <span class="title-span">Tên Tài Khoản: </span>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <span class="ten-tai-khoan">
+                                                <input type="text"
+                                                       class="form-control" id="" value="@Account.USERNAME"
+                                                       disabled>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row khoang-cach">
+                                        <div class="col-sm-3">
+                                            <span class="title-span">Quyền Truy Cập: </span>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-group khoang-cach-noidung">
+                                                <select class="form-control" name="Llevel" id="quyen">
+                                                    <option value="5">Khách</option>
+                                                    <option value="10">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row khoang-cach">
+                                        <div class="col-sm-3">
+                                            <span class="title-span">Trạng Thái: </span>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-group khoang-cach-noidung">
+                                                <select class="form-control" name="Lactive" id="trangthai">
+                                                    <option value="1">Hoạt Động</option>
+                                                    <option value="0">Khóa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="u-error-mess" style="color:#e74c3c"></div>
+                                    <div class="row khoang-cach-xa">
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-sm-2">
+                                            <a href="@Url.Action("Index","User")"><button class="btn btn-primary btn-block" type="button">Quay lại</button></a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button id="btn-submit" class="btn btn-primary btn-block" type="button">Lưu</button>
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+@section scripts{
+    <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
+    <script>
+        $('#quyen').val(@(Account.LEVEL=="10"?"10":"5"));
+        $('#trangthai').val(@(Account.ACTIVE=="1"?"1":"0"));
+        var status = null;
+        $("#btn-submit").click(function (e) {
+            e.preventDefault();
+            var data = $("#form-level").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("FormLevelAccount", "User")',
+                data: data,
+                dataType: 'JSON',
+                success: function (data) {
+                    status = data.status
+                    if (status == "success") {
+                        $("#u-error-mess").css("color", "#2ecc71");
+                         $("#u-error-mess").hide().html("Lưu Thành Công").fadeIn("slow");
+                    } else if (status == "empty") {
+                        $("#u-error-mess").hide().html("Không Để Trống").fadeIn("slow");
+                    }
+                }
+            });
+        });
+    </script>
+}

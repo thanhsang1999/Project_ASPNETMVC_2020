@@ -1,3 +1,11 @@
 .gian-cach {
     margin-top: 20px;
 }
+#error-mess {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 26px;
+    margin-bottom: 20px;
+    padding-right: 150px;
+}
