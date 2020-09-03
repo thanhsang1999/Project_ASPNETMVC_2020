@@ -80,7 +80,6 @@
                   data: { content: content, nameofcm:nameofcm, idproduct: '@Model.ID_PRODUCT' },
                   success: function (data) {
                       var rs = data.result;
-
                       if (rs === "fail") {
                           alert("Bạn không được bỏ trống nội dung hoặc tên")
                       } else {
@@ -125,8 +124,12 @@
                     data: { idproduct: idproduct },
                     success: function (data) {
                         var rs = data.result;
-                        if (rs.includes("fail")) {
-                            alert("Hệ thống có lỗi xảy ra hãy thử refresh lại");
+                        if (rs.includes("null")) {
+                            alert("Sản phẩm không tồn tại");
+                        } else if (rs.includes("like")) {
+                            alert("Bạn chưa thích sản phẩm này");
+                            var show = rs.split(' ');
+                            $('.wishlist_count').html(show[1]);
                         } else if (rs === "user") {
                             $(".product_fav").removeClass("product_fav active").addClass("product_fav");
                             $("#yeu-thich").removeClass("fas fa-heart active").addClass("fas fa-heart");
@@ -146,9 +149,13 @@
                     data: { idproduct: idproduct },
                     success: function (data) {
                         var rs = data.result;
-                        if (rs.includes("fail")) {
-                            alert("Hệ thống có lỗi xảy ra hãy thử refresh lại");
-                        } else if (rs === "user") {
+                        if (rs.includes("null")) {
+                            alert("Sản phẩm không tồn tại");
+                        } else if (rs.includes("like")) {
+                            alert("Bạn đã thích sản phẩm này");
+                            var show = rs.split(' ');
+                            $('.wishlist_count').html(show[1]);
+                        }  else if (rs === "user") {
                             $(".product_fav").removeClass("product_fav active").addClass("product_fav");
                             $("#yeu-thich").removeClass("fas fa-heart active").addClass("fas fa-heart");
                             $(".product_fav").removeClass("product_fav").addClass("product_fav");
@@ -232,7 +239,7 @@
                                 }
                                 else
                                 {
-                                    <div data-product="@Model.ID_PRODUCT" class="product_fav active"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                                    <div data-product="@Model.ID_PRODUCT" class="product_fav active"><i id="yeu-thich" class="fas fa-heart active"></i></div>
 
                                 }
                             </div>

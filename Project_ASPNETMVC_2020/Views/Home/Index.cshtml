@@ -17,25 +17,7 @@
 }
 @section scripts{
     <script src="@Url.Content("~/Assets/web/js/custom.js",true)"></script>
-    <script>
-        @*$(document).ready(function () {
-
-            $(".review_image").each(function (index) {
-                var id = $(index).attr('id');
-
-               @foreach(product p in listProductForRecentEval)
-               {
-                   @: if (id === '@p.ID_PRODUCT') {
-                   @:$('#'+id).attr('src') = p.IMG;
-               }
-               }
-            });
-        });*@
-        @*@foreach(product p in listProductForRecentEval)
-        {
-            @: console.log('@p.ID_PRODUCT');
-        }*@
-    </script>
+    
 }
 <!-- Banner -->
 <div class="banner">

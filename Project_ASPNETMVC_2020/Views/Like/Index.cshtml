@@ -37,13 +37,17 @@
                     var rs = data.result;
                     var htmlreplace = '#deleteLike-' + idproduct;
                     if (rs === "user") {
-                         window.location.href = '@Url.Action("Index","Home")';
-                    } else if (rs === 'fail') {
-                        alert('Hệ thống xảy ra lỗi');
+                        window.location.href = '@Url.Action("Index","Home")';
+                    } else if (rs.includes("null")) {
+                        alert("Sản phẩm không tồn tại");
+                    } else if (rs.includes("like")) {
+                        alert("Bạn chưa thích sản phẩm này");
+                        var show = rs.split(' ');
+                        $('.wishlist_count').html(show[1]);
+                        $(htmlreplace).remove();
                     } else {
                         $('.wishlist_count').html(rs);
-
-                        $(htmlreplace).html("");
+                        $(htmlreplace).remove();
                     }
                 }
             });
