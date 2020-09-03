@@ -276,5 +276,43 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
             }
             return p.ID_PRODUCT;
         }
+        public product findProductById(string id)
+        {
+            DBModel dBModel = new DBModel();
+            var result = dBModel.products.Where(x => x.ID_PRODUCT.Equals(id)).FirstOrDefault();
+            if (id == null)
+            {
+
+                return null;
+            }
+            else
+            {
+
+                if (result == null)
+                {
+                    return null;
+                }
+            }
+            return result;
+        }
+        public product productDetail(string id)
+        {
+            DBModel dBModel = new DBModel();
+            var result = dBModel.products.Where(x => x.ID_PRODUCT.Equals(id)).FirstOrDefault();
+            if (id == null)
+            {
+
+                return null;
+            }
+            else
+            {
+
+                if (result == null)
+                {
+                    return null;
+                }
+            }
+            return result;
+        }
     }
 }

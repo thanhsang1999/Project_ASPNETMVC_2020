@@ -165,13 +165,13 @@
                                                     <td class="a-right a-right ">@listProduct[i].AMOUNT</td>
 
                                                     <td class="last">
-                                                        <a href="@Url.Action("ProductDetail","Product",new {area="",id=listProduct[i].ID_PRODUCT})">View </a>
+                                                        <a href="@Url.Action("ViewProduct","Product",new { actionn="ListProduct",controllerr="Product",idproduct=listProduct[i].ID_PRODUCT })"><i class="fas fa-eye admin-blue-hover"></i></a>
                                                     </td>
                                                     <td class="last">
-                                                        <a href="@Url.Action("FormChangeProduct","Product",new { area="Admin",id=listProduct[i].ID_PRODUCT})"><i class="far fa-edit"></i></a>
+                                                        <a href="@Url.Action("FormChangeProduct","Product",new { area="Admin",id=listProduct[i].ID_PRODUCT})"><i class="far fa-edit admin-green-hover"></i></a>
                                                     </td>
                                                     <td class="last ">
-                                                        <a data-product="@listProduct[i].ID_PRODUCT" class="deleteproduct" href="#"><i class="fas fa-trash-alt"></i></a>
+                                                        <a data-product="@listProduct[i].ID_PRODUCT" class="deleteproduct" href="#"><i class="fas fa-trash-alt admin-red-hover"></i></a>
                                                     </td>
                                                 </tr>
                                             }

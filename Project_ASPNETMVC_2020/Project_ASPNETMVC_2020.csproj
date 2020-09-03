@@ -6838,6 +6838,8 @@
     <Content Include="Areas\Admin\Views\HDH\FormAddHDH.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Rate\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\LayoutWebProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\ViewProduct.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -119,7 +119,7 @@
                                                 <td class="giua">@item.SAO</td>
                                                 <td>@item.TIEUDE</td>
                                                 <td class="giua">@item.NOIDUNG</td>
-                                                <td class="giua"><a href="@Url.Action("ProductDetail","Product",new {id=item.ID_SANPHAM,area = ""})"><i class="fas fa-eye admin-green-hover"></i></a></td>
+                                                <td class="giua"><a href="@Url.Action("ViewProduct","Product",new { actionn="Index",controllerr="Rate",idproduct=item.ID_SANPHAM })"><i class="fas fa-eye admin-blue-hover"></i></a></td>
                                                 <td class="last giua">
                                                     <a href="#" id="@("Delete"+item.ID_DANHGIA)"><i class="fas fa-trash-alt admin-red-hover	"></i></a>
                                                 </td>
