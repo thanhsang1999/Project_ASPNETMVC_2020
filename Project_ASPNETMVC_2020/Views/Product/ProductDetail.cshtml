@@ -99,7 +99,6 @@
                 data: data2,
                 datatype: 'json',
                 success: function (data) {
-
                     var rs = data.result;
                     if (rs.includes("fail")) {
                         alert("Bạn không được bỏ trống nội dung,tiêu đề, đánh giá");
@@ -138,7 +137,6 @@
                             $('#myModal').modal('show');
                         } else {
                             $('.wishlist_count').html(rs);
-
                         }
                     }
                 });
@@ -163,7 +161,6 @@
                             $('#myModal').modal('show');
                         } else {
                             $('.wishlist_count').html(rs);
-
                         }
                     }
                 });
