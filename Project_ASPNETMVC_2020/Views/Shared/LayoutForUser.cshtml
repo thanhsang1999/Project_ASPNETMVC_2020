@@ -38,7 +38,7 @@
     <div class="super_container">
         <!-- Header -->
         <header id="header_real" class="header">
-        @Html.Action("Header", "Header")
+            @Html.Action("Header", "Header")
         </header>
         @RenderBody()
         <!-- Newsletter -->
@@ -169,7 +169,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     @Scripts.Render("~/Assets/web/styles/bootstrap4/popper.js")
     <script src="@Url.Content("~/Assets/web/styles/bootstrap4/bootstrap.min.js",true)"></script>
@@ -181,7 +180,8 @@
     <script src="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.js",true)"></script>
     <script src="@Url.Content("~/Assets/web/plugins/slick-1.8.0/slick.js",true)"></script>
     <script src="@Url.Content("~/Assets/web/plugins/easing/easing.js",true)"></script>
-    <script src="@Url.Content("~/Assets/web/js/custom.js",true)"></script>
+    
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

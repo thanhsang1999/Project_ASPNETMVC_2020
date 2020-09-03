@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-cart.css",true)">
 }
 @section scripts{
+    <script src="@Url.Content("~/Assets/web/js/custom.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/cart_custom.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/input_number.js",true)"></script>
     <script src="@Url.ContentAssetWeb("js/blue_cart.js",true)"></script>
@@ -41,11 +42,11 @@
                         alert('Hệ thống xảy ra lỗi');
                     } else {
                         $('.wishlist_count').html(rs);
-                       
+
                         $(htmlreplace).html("");
                     }
                 }
-            });          
+            });
         })
     </script>
 
@@ -71,7 +72,7 @@
                         realprice = (float)(item.PRICE.Value - (item.PRICE.Value * ((float)item.SALE_RATE.Value / 100)));
                     }
                     <tr id="deleteLike-@item.ID_PRODUCT">
-                        <td class="img-tb"> 
+                        <td class="img-tb">
                             <img src="@Url.ContentAssetWeb("images/sanpham/"+item.IMG,true)" />
                         </td>
                         <td class="ten-sp-tb">
@@ -83,7 +84,7 @@
                         }
                         else
                         {
-                    <td class="gia-tb">@realprice.ToString("N0") VNĐ</td>
+                            <td class="gia-tb">@realprice.ToString("N0") VNĐ</td>
                         }
 
                         <td class="thung-rac-tb">

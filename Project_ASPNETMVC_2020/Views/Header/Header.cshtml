@@ -1,5 +1,6 @@
 ﻿@using Project_ASPNETMVC_2020.Model.ModelOfSession
 @using Project_ASPNETMVC_2020.Model.Cart
+@using Project_ASPNETMVC_2020.ClassToConfig
 @using System.Text
 @model System.Collections.ArrayList
 @{
@@ -14,13 +15,17 @@
         numberOfProductsInTheCart = (int)Model[1];
         totalMoney = (string)Model[2];
         numberUserLike = (int)Model[3];
-        nameProduct =  Model[4] as List<string>;
+        nameProduct = Model[4] as List<string>;
     }
     else
     {
         nameProduct = Model[0] as List<string>;
     }
 
+}
+@if (user == null)
+{
+    <script src="@Url.ContentAssetWeb("/js/customweb.js",true)"></script>
 }
 <!-- Top Bar -->
 <div class="top_bar">
@@ -113,12 +118,12 @@
                 <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                     <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                         <div class="wishlist_icon">
-                            <a href="@Url.Action("Index","Like")">
+                            <a id="id-a-like1" href="@Url.Action("Index","Like")">
                                 <img src="~/Assets/web/images/heart.png" alt="">
-                                </a>
+                            </a>
                         </div>
                         <div class="wishlist_content">
-                            <div class="wishlist_text"><a href="@Url.Action("Index","Like")">Yêu Thích</a></div>
+                            <div class="wishlist_text"><a id="id-a-like2" href="@Url.Action("Index","Like")">Yêu Thích</a></div>
                             <div class="wishlist_count">@numberUserLike</div>
                         </div>
                     </div>
@@ -126,13 +131,13 @@
                     <div class="cart">
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                             <div class="cart_icon">
-                                <a href="@Url.Action("Index","Cart")">
+                                <a id="id-a-cart2" href="@Url.Action("Index","Cart")">
                                     <img src="~/Assets/web/images/cart.png" alt="">
                                     <div class="cart_count"><span id="numberOfProductsInTheCart">@numberOfProductsInTheCart</span></div>
                                 </a>
                             </div>
                             <div class="cart_content">
-                                <div class="cart_text"><a href="@Url.Action("Index","Cart")">Giỏ Hàng</a></div>
+                                <div class="cart_text"><a id="id-a-cart" href="@Url.Action("Index","Cart")">Giỏ Hàng</a></div>
                                 <div class="cart_price">@totalMoney</div>
                             </div>
                         </div>

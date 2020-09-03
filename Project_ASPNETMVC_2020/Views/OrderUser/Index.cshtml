@@ -8,7 +8,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutForUser.cshtml";
     User user = Session["User"] as User;
-    var listOrder = Model[0] as List<order>; 
+    var listOrder = Model[0] as List<order>;
     var listDetailOrder = Model[1] as List<List<DetailOrderProduct>>;
 }
 
@@ -21,11 +21,15 @@
     <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_styles.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/cart_responsive.css",true)">
     <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css",true)">
+
 }
 @section styles{
     <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/blue-cart.css",true)">
 }
+@section scripts{
+    <script src="@Url.Content("~/Assets/web/js/custom.js",true)"></script>
 
+}
 <!-- start-content -->
 <div class="container sang content">
     <div class="row phan-1">
@@ -44,42 +48,42 @@
             <tbody>
                 @foreach (order item in listOrder)
                 {
-                <tr>
-                    <td>@item.ID_ORDER</td>
-                    <td>@item.HOTEN</td>
-                    <td class="dia-chi">@item.DIACHI</td>
-                    <td>@item.SDT</td>
-                    <td>
-                        <ul>
-                            @foreach(List<DetailOrderProduct> item2 in listDetailOrder)
+                    <tr>
+                        <td>@item.ID_ORDER</td>
+                        <td>@item.HOTEN</td>
+                        <td class="dia-chi">@item.DIACHI</td>
+                        <td>@item.SDT</td>
+                        <td>
+                            <ul>
+                                @foreach (List<DetailOrderProduct> item2 in listDetailOrder)
+                                {
+                                    foreach (DetailOrderProduct item3 in item2)
+                                    {
+                                        if (item.ID_ORDER.Equals(item3.ID_ORDER))
+                                        {
+                                            <li>@item3.NAME <i class="fas fa-times"></i> @item3.AMOUNT</li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </td>
+                        <td style="font-weight: 600;color: #c0392b;">@Tools.StringToVND(item.PRICE.ToString())</td>
+                        <td style="font-weight: 600;">
+                            @switch (item.STATUS)
                             {
-                               foreach(DetailOrderProduct item3 in item2)
-                               {
-                                   if(item.ID_ORDER.Equals(item3.ID_ORDER))
-                                   {
-                                        <li>@item3.NAME <i class="fas fa-times"></i> @item3.AMOUNT</li>
-                                   }
-                               }
+                                case "1":
+                                    <span style="color: #3498db">Đang Giao Hàng</span>
+                                    break;
+                                case "2":
+                                    <span style="color: #2ecc71"> Hoàn Thành</span>
+                                    break;
+                                case "3":
+                                    <span style="color: #e74c3c">Từ Chối</span>
+                                    break;
+                                default:
+                                    <span style="color: #7f8c8d">Chờ Chấp Nhận</span>
+                                    break;
                             }
-                        </ul>
-                    </td>
-                    <td style="font-weight: 600;color: #c0392b;">@Tools.StringToVND(item.PRICE.ToString())</td>
-                    <td style="font-weight: 600;">
-                        @switch (item.STATUS)
-                        {
-                            case "1":
-                                <span style="color: #3498db">Đang Giao Hàng</span>
-                                break;
-                            case "2":
-                                <span style="color: #2ecc71"> Hoàn Thành</span>
-                                break;
-                            case "3":
-                             <span style="color: #e74c3c">Từ Chối</span>
-                                break;
-                            default:
-                                <span style="color: #7f8c8d">Chờ Chấp Nhận</span>
-                                break;
-                        }
                         </td>
                     </tr>
                 }

@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/style.css",true)">
 }
 @section scripts{
+    <script src="@Url.Content("~/Assets/web/js/custom.js",true)"></script>
     <script>
         @*$(document).ready(function () {
 
@@ -65,7 +66,7 @@
 
                     </ol>
                     <div class="carousel-inner" role="listbox">
-                        
+
                         @foreach (slider item in listSlider)
                         {
                             <div class="carousel-item @(index2 == 0?"active":"")">

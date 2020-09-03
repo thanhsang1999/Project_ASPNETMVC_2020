@@ -36,13 +36,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         }
         public product findProductById(string id)
         {
-            var result = (from product in dBModel.products
-                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
-                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
-                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
-                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
-                          where product.ID_PRODUCT == id
-                          select product).FirstOrDefault();
+            var result = dBModel.products.Where(x=>x.ID_PRODUCT.Equals(id)).FirstOrDefault();
             if (id == null)
             {
 
@@ -118,13 +112,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         }
         public product productDetail(string id)
         {
-            var result = (from product in dBModel.products
-                          join catogery in dBModel.brands on product.ID_BRAND equals catogery.ID_BRAND
-                          join catogery1 in dBModel.memories on product.MEMORY equals catogery1.MEMORY1
-                          join catogery2 in dBModel.rams on product.RAM equals catogery2.RAM1
-                          join catogery3 in dBModel.hedieuhanhs on product.OS equals catogery3.OS
-                          where product.ID_PRODUCT==id
-                          select product).SingleOrDefault();
+            var result = dBModel.products.Where(x => x.ID_PRODUCT.Equals(id)).FirstOrDefault();
             if (id == null)
             {
                

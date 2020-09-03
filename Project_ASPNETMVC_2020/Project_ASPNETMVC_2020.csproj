@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\ClassToConfig\LinkAdmin.cs" />
     <Compile Include="Areas\Admin\ClassToConfig\HandleFile.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
@@ -148,6 +149,9 @@
     <Compile Include="Areas\Admin\Model\DAO\HDHDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\MemoryDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\RamDAO.cs" />
+    <Compile Include="Areas\Admin\Controllers\RateController.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\RateDAO.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\CommentDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\SliderDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\UserDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\ProductDAO.cs" />
@@ -5199,6 +5203,7 @@
     <Content Include="Assets\web\js\custom_web.js" />
     <Content Include="Assets\web\js\date.js" />
     <Content Include="Assets\web\js\input_number.js" />
+    <Content Include="Assets\web\js\customweb.js" />
     <Content Include="Assets\web\js\jquery-3.3.1.min.js" />
     <Content Include="Assets\web\js\product_comment.js" />
     <Content Include="Assets\web\js\product_custom.js" />
@@ -6831,6 +6836,8 @@
     <Content Include="Areas\Admin\Views\Brand\FormAddBrand.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\FormDeleteBrand.cshtml" />
     <Content Include="Areas\Admin\Views\HDH\FormAddHDH.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Rate\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
