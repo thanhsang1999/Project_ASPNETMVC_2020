@@ -1,0 +1,890 @@
+﻿@using Project_ASPNETMVC_2020.Model.EF
+@using Project_ASPNETMVC_2020.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.ModelOfSession
+@using Project_ASPNETMVC_2020.ClassToConfig;
+@using Project_ASPNETMVC_2020.Model.DAO;
+@model System.Collections.ArrayList
+@{
+    ViewBag.Title = "ViewProduct";
+    Layout = "";
+    var product = Model[0] as product;
+    string controllerr = Model[1] as string;
+    string actionn = Model[2] as string;
+    float price;
+    if (product.SALE_RATE == 0)
+    {
+        price = product.PRICE.Value;
+    }
+    else
+    {
+        price = (float)(product.PRICE.Value - (product.PRICE.Value * ((float)product.SALE_RATE.Value / 100)));
+
+    }
+    User user = Session["User"] as User;
+
+    List<binhluan> listBL = new CommentDAO().getListBLForProduct(product.ID_PRODUCT);
+    List<danhgia> listEV = new EvaluationDAO().getListEvalForProduct(product.ID_PRODUCT);
+
+
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Blue</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="OneTech shop project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/styles/bootstrap4/bootstrap.min.css",true)">
+    <link href="@Url.Content("~/Assets/web/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" ,true)" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.theme.default.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/animate.css",true)">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("plugins/OwlCarousel2-2.2.1/owl.carousel.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("plugins/OwlCarousel2-2.2.1/owl.theme.default.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("plugins/OwlCarousel2-2.2.1/animate.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/product_styles.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/product_responsive.css")">
+    <link rel="shortcut icon" href="@Url.ContentAssetWeb("images/logo-blue.png")">
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/thong_tin.css")">
+    <link rel="stylesheet" href="@Url.ContentAssetWeb("styles/thong_tin-chi_tiet.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/product_comment_style.css")">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <link rel="shortcut icon" href="@Url.Content("~/Assets/web/images/logo-blue.png",true)">
+    <link href="@Url.Content("~/Assets/web/styles/blue_dangnhap.css",true)" rel="stylesheet">
+    <link href="@Url.Content("~/Assets/web/styles/css_dk.css",true)" rel="stylesheet">
+    <link href="@Url.Content("~/Assets/web/styles/search.css",true)" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="@Url.ContentAssetWeb("styles/style.css")">
+</head>
+
+<body>
+
+    <!-- The Modal -->
+    @RenderPage("~/Views/Home/Login.cshtml")
+    @RenderPage("~/Views/Home/Signup.cshtml")
+    @RenderPage("~/Views/Home/ForgotPassword.cshtml")
+    <div class="super_container">
+        <!-- Header -->
+        <header id="header_real" class="header">
+            <div class="container">
+                <div class="row" style="height: 50px;">
+                    <a href="@Url.Action(actionn,controllerr)"><span class="quaylai" style="line-height: 50px;font-size: 18px;font-family: sans-serif;"><i class="fas fa-chevron-left"></i> Quay Lại</span></a>
+                </div>
+            </div>
+            @Html.Action("Header", "Header", new { area = "" })
+        </header>
+        <!-- Single Product -->
+
+        <div class="single_product">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Images -->
+                    <div class="col-lg-2 order-lg-1 order-2">
+                        <ul class="image_list">
+                            <li data-image="@Url.ContentAssetWeb("images/sanpham/"+product.IMG,true)">
+                                <img src="@Url.ContentAssetWeb("images/sanpham/"+product.IMG,true)" alt="">
+                            </li>
+                            <li data-image="@Url.ContentAssetWeb("images/sanpham/"+product.IMG2,true)">
+                                <img src="@Url.ContentAssetWeb("images/sanpham/"+product.IMG2,true)" alt="">
+                            </li>
+                            <li data-image="@Url.ContentAssetWeb("images/sanpham/"+product.IMG2,true)">
+                                <img src="@Url.ContentAssetWeb("images/sanpham/"+product.IMG3,true)" alt="">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Selected Image -->
+                    <div class="col-lg-5 order-lg-2 order-1">
+                        <div class="image_selected"><img src="@Url.ContentAssetWeb("images/sanpham/"+product.IMG,true)" alt=""></div>
+                    </div>
+                    <!-- Left Information -->
+                    <div class="col-lg-5 order-lg-2 order-1">
+
+                        <div class="tableparameter">
+
+                            <h2 class="ten-san-pham">@product.NAME</h2>
+
+                            <span class="gia-san-pham">@price.ToString("N0") vnđ</span>
+                            <br>
+                            <del class="gia-goc-san-pham">@product.PRICE.Value.ToString("N0") vnđ       </del>
+                            <span class="giam-gia" style="color:red">    @product.SALE_RATE.Value.ToString()%</span>
+                            <br>
+                            <br>
+                            <span class="mo-ta-san-pham">
+                                @product.DESCRIPTION.ToString()
+                            </span>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <div class="row mua-hang-1">
+                                    <div class="col-md-6">
+                                        <label for=""><strong>Số Lượng :</strong></label>
+                                        <input value="1" type="number" min="1" step="1" max="@product.AMOUNT" class="form-control" name="quantity" id="idAmount">
+                                        <input type="hidden" class="form-control" name="idproduct" value="@product.ID_PRODUCT" />
+                                    </div>
+                                </div>
+
+                                <div class="row mua-hang-2">
+                                    <div class="col-md-6">
+                                        <button id="btn-dathang" type="button" class="btn btn-primary form-control btn-dat-hang">
+                                            <i class="fas fa-shopping-cart"></i> Đặt Hàng
+                                        </button>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="yeu-thich"><strong>Yêu Thích :</strong></label>
+                                        @if (user == null || new LikeDAO().isUserHasLike(product.ID_PRODUCT, user.ID_ACCOUNT) == false)
+                                        {
+                                            <div data-product="@product.ID_PRODUCT" class="product_fav"><i id="yeu-thich" class="fas fa-heart"></i></div>
+                                        }
+                                        else
+                                        {
+                                            <div data-product="@product.ID_PRODUCT" class="product_fav active"><i id="yeu-thich" class="fas fa-heart"></i></div>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="viewparameterfull" data-toggle="modal"
+                                    data-target="#myModal2">
+                                Xem thêm cấu hình chi
+                                tiết
+                            </button>
+
+
+                            <div class=" closebtn none">
+                                <i class="icondetail-closepara"></i>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal2" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="fullparameter" style="display: block;">
+                                            <div class="scroll">
+                                                <table id="chi-tiet" cellspacing="0"
+                                                       class="table table-bordered table-detail table-striped">
+                                                    <colgroup>
+                                                        <col style="width: 25%;">
+                                                        <col>
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td> Thương hiệu </td>
+                                                            <td> @product.ID_BRAND </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Phụ kiện đi kèm </td>
+                                                            <td>
+                                                                Adapter sạc, tai nghe, cáp Micro USB, sách hướng dẫn,
+                                                                cây lấy sim
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Loại / Công nghệ màn hình </td>
+                                                            <td> Dynamic AMOLED </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Camera trước </td>
+                                                            <td> 10.0 MP </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Camera sau </td>
+                                                            <td> 12.0 MP + 16.0 MP + 12.0 MP + VGA </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Tính năng camera </td>
+                                                            <td>
+                                                                Zoom quang học, Chụp ảnh xóa phông, Chế độ Slow Motion,
+                                                                A.I Camera, Điều chỉnh khẩu độ, Super Slow Motion (quay
+                                                                siêu chậm), Tự động lấy nét, Chạm lấy nét, Nhận diện
+                                                                khuôn mặt, HDR, Panorama, Chống rung quang học (OIS),
+                                                                Làm đẹp (Beautify), Chế độ chụp chuyên nghiệp (Pro),
+                                                                Camera góc rộng, Tự động lấy nét, Quay video Full HD,
+                                                                Nhận diện khuôn mặt, Chế độ làm đẹp
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Đèn Flash </td>
+                                                            <td> Có </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Video call </td>
+                                                            <td> Hỗ trợ VideoCall thông qua ứng dụng </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Quay phim </td>
+                                                            <td> Có </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Bộ nhớ RAM </td>
+                                                            <td> @product.RAM GB </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Bộ nhớ trong (ROM) </td>
+                                                            <td> @product.MEMORY GB </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Bộ nhớ còn lại (khả dụng) </td>
+                                                            <td> 224.2GB </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Hỗ trợ thẻ nhớ ngoài </td>
+                                                            <td> MicroSD </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Hỗ trợ thẻ tối đa </td>
+                                                            <td> Up to 1TB </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Trọng lượng </td>
+                                                            <td> 196g </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Kích thước </td>
+                                                            <td> 162.3 x 77.2 x 7.9 mm </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Tên chip </td>
+                                                            <td> Exynos 9825 8 nhân 64-bit </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Tốc độ chip (GHz) </td>
+                                                            <td> 2 nhân 2.73 GHz, 2 nhân 2.4 GHz & 4 nhân 1.9 GHz </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Chip đồ họa (GPU) </td>
+                                                            <td> Mali-G76 MP12 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Dung lượng pin (mAh) </td>
+                                                            <td> 4300 mAh </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Loại pin </td>
+                                                            <td> Pin chuẩn Li-Ion </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Pin có thể tháo rời </td>
+                                                            <td> Pin liền </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Kết nối dữ liệu </td>
+                                                            <td> Bluetooth, Wifi, 3G, 2G, 4G, NFC </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Loại Sim </td>
+                                                            <td> SIM Nano </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Số khe sim </td>
+                                                            <td> 2 SIM Nano (SIM 2 chung khe thẻ nhớ) </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Wifi </td>
+                                                            <td>
+                                                                Wi-Fi 802.11 a/b/g/n/ac, Dual-band, Wi-Fi Direct, Wi-Fi
+                                                                hotspot
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> GPS </td>
+                                                            <td> BDS, A-GPS, GLONASS </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Bluetooth </td>
+                                                            <td> apt-X, LE, A2DP, v5.0 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> NFC </td>
+                                                            <td> Có </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Kết nối khác </td>
+                                                            <td> OTG </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Cổng sạc </td>
+                                                            <td> USB Type-C </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Jack tai nghe </td>
+                                                            <td> Type-C </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Xem phim </td>
+                                                            <td> Có </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Nghe nhạc </td>
+                                                            <td> Có </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Ghi âm </td>
+                                                            <td> Có </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> FM radio </td>
+                                                            <td> Không </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Chức năng khác </td>
+                                                            <td>
+                                                                Chuẩn Kháng nước, Chuẩn kháng bụi Đèn pin Sạc pin
+                                                                nhanh Mặt kính 2.5D Chặn tin nhắn Tản nhiệt nước carbon
+                                                                Samsung Pay Trợ lý ảo Samsung Bixby Màn hình luôn hiển
+                                                                thị AOD Chặn cuộc gọi, Mở khóa bằng khuôn mặt, Quét mống
+                                                                mắt, Mở khoá vân tay dưới màn hình
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> SKU </td>
+                                                            <td> 4.24343E+12 </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+        <!-- Comment -->
+        <div class="container danh-gia-binh-luan">
+            <div class="danh-gia">
+                <div class="row danh-gian-phan-1">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 bg-form-danh-gia">
+                        <div class="row form-danh-gia">
+                            <div class="col-md-2 show-view-star-left">
+                                <span class="total-star">4.3</span>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <div class="col-md-7 show-view-star-right">
+                                <div class="row">
+                                    <div class="side">
+                                        <div>
+                                            <span class="span-diem-star">5 </span><i class="fas fa-star star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div><span class="sl-danh-gia">150 đánh giá</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="side">
+                                        <div>
+                                            <span class="span-diem-star">4 </span><i class="fas fa-star star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-4"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div><span class="sl-danh-gia">60 dánh giá</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="side">
+                                        <div>
+                                            <span class="span-diem-star">3 </span><i class="fas fa-star star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div><span class="sl-danh-gia">15 đánh giá</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="side">
+                                        <div>
+                                            <span class="span-diem-star">2 </span><i class="fas fa-star star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div><span class="sl-danh-gia">5 đánh giá</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="side">
+                                        <div>
+                                            <span class="span-diem-star">1 </span><i class="fas fa-star star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-1"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div><span class="sl-danh-gia">20 đánh giá</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 show-view-star-btn">
+                                <button type="button" class="btn btn-primary btn-danh-gia" id="show-bieu-mau-danh-gia"
+                                        onmousedown="doiNutBam()" data-toggle="collapse"
+                                        data-target="#bieu-mau-danh-gia">
+                                    Đánh
+                                    Giá
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row danh-gian-phan-2">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 collapse" id="bieu-mau-danh-gia">
+                        <div class="bieu-mau-danh-gia">
+                            <form id="form-eval" class="form-group" method="post">
+                                <div class="row form-danh-gia-phan-1">
+                                    <div class="rating">
+                                        <input type="hidden" name="valuerating" id="value-rating" value="0">
+                                        <input type="hidden" name="idproduct" value="@product.ID_PRODUCT">
+                                        <span>Chọn đánh giá sao của bạn :</span>
+                                        <ul>
+                                            <li>
+                                                <i id="s1" onmousemove="danhGiaSao(1)" onmousedown="trotDanhGiaSao(1)"
+                                                   onmouseout="huyDanhGiaSao()" class="far fa-star star"></i>
+                                            </li>
+                                            <li>
+                                                <i id="s2" onmousemove="danhGiaSao(2)" onmousedown="trotDanhGiaSao(2)"
+                                                   onmouseout="huyDanhGiaSao()" class="far fa-star star"></i>
+                                            </li>
+                                            <li>
+                                                <i id="s3" onmousemove="danhGiaSao(3)" onmousedown="trotDanhGiaSao(3)"
+                                                   onmouseout="huyDanhGiaSao()" class="far fa-star star"></i>
+                                            </li>
+                                            <li>
+                                                <i id="s4" onmousemove="danhGiaSao(4)" onmousedown="trotDanhGiaSao(4)"
+                                                   onmouseout="huyDanhGiaSao()" class="far fa-star star"></i>
+                                            </li>
+                                            <li>
+                                                <i id="s5" onmousemove="danhGiaSao(5)" onmousedown="trotDanhGiaSao(5)"
+                                                   onmouseout="huyDanhGiaSao()" class="far fa-star star"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row form-danh-gia-phan-2">
+                                    <div class="col-sm-7">
+                                        <textarea class="form-control" rows="6" id="input-danh-gia"
+                                                  name="contenteval" placeholder="Nhập nội dung đánh giá của bạn."></textarea>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="row form-danh-gia-phan-2-right-1">
+                                            <input type="text" class="form-control" name="titleofeval"
+                                                   id="input-tieu-de-danh-gia" placeholder="Nhập Tiêu Đề Của Bạn.">
+                                        </div>
+                                        <div class="row form-danh-gia-phan-2-right-2">
+                                            <button type="submit" class="btn btn-primary btn-block">Gửi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+            <div class="row bg-cmt-danh-gia">
+                <div class="col-md-1"></div>
+                <div id="contain-eval" class="col-md-10 cmt-danh-gia">
+                    @if (listEV.Count != 0)
+                    {
+                        <ul class="danh-gia">
+                            <span class="title-danh-gia">Đánh Giá</span>
+                            @foreach (danhgia item in listEV)
+                            {
+                                int count = Convert.ToInt32(item.SAO);
+                                <li>
+                                    <span class="ten-danh-gia">
+                                        <i class="fas fa-user coloruser"></i> @item.TEN_USER <i class="fas fa-check-circle green"></i>
+                                    </span>
+                                    <br>
+                                    <span class="tieu-de-danh-gia">@item.TIEUDE</span>
+                                    <span class="value-rating-star">
+                                        <ul>
+                                            @for (int i = 0; i < count; i++)
+                                            {
+                                                <li><i class="fas fa-star star"></i></li>
+                                            }
+                                        </ul>
+                                    </span>
+                                    <span class="noi-dung-danh-gia">@item.NOIDUNG</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+
+                <div class="col-md-1"></div>
+            </div>
+
+            <form method="post" id="binhluan">
+                <div class="row bg-binh-luan">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 form-binh-luan">
+                        <div class="row form-binh-luan-phan-2">
+
+                            <div class="col-sm-7">
+                                <textarea name="content-comment" class="form-control" rows="6" id="input-binh-luan"
+                                          placeholder="Nhập nội dung bình luận của bạn."></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-binh-luan-phan-2-right-1">
+                                    <input type="text" class="form-control" name="name" id="input-name-binh-luan"
+                                           placeholder="Nhập họ tên của bạn.">
+                                </div>
+                                <div class="row form-binh-luan-phan-2-right-2">
+                                    <button type="submit" class="btn btn-primary btn-block">Gửi</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </form>
+            <div class="row bg-cmt-binh-luan">
+                <div class="col-md-1"></div>
+                <div id="load-binhluan" class="col-md-10 cmt-binh-luan">
+                    <ul class="binh-luan">
+                        <span class="title-binh-luan">Bình Luận</span>
+                        @if (listBL.Count != 0)
+                        {
+                            foreach (binhluan bl in listBL)
+                            {
+                                <li>
+                                    <span class="ten-binh-luan"><i class="fas fa-user coloruser"></i> @bl.TEN</span>
+                                    <br>
+                                    <span class="noi-dung-binh-luan">@bl.NOIDUNG</span>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <!-- Recently Viewed -->
+        @if (user != null)
+        {
+            @Html.Action("RecentlyViews", "Home", new { area = "" })
+        }
+        <!-- Brands -->
+        @Html.Action("Brands", "Home", new { area = "" })
+
+        <!-- Newsletter -->
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                            <div class="newsletter_title_container">
+                                <div class="newsletter_icon"><img src="~/Assets/web/images/send.png" alt=""></div>
+                                <div class="newsletter_title">Đăng Nhập Ngay</div>
+                                <div class="newsletter_text">
+                                    <p>...hoàn lại 20% giá trị đơn hàng đầu tiên.</p>
+                                </div>
+                            </div>
+                            <div class="newsletter_content clearfix">
+                                <form action="#" class="newsletter_form">
+                                    <input type="email" class="newsletter_input" required="required"
+                                           placeholder="Nhập Địa Chỉ Email">
+                                    <button class="newsletter_button">Xác Nhận</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 footer_col">
+                        <div class="footer_column footer_contact">
+                            <div class="logo_container">
+                                <div class="logo"><a href="#">B L U E</a></div>
+                            </div>
+                            <div class="footer_title">Hỗ Trợ 24/7</div>
+                            <div class="footer_phone">+84 37504 4399</div>
+                            <div class="footer_contact_text">
+                                <p>Cư Xá F, Đại Học Nông Lâm</p>
+                                <p>Thành Phố Hồ Chí Minh</p>
+                            </div>
+                            <div class="footer_social">
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 offset-lg-2">
+                        <div class="footer_column">
+                            <div class="footer_title">Tìm Nhanh</div>
+                            <ul class="footer_list">
+                                <li><a href="#">Iphone</a></li>
+                                <li><a href="#">Samsung</a></li>
+                                <li><a href="#">Xiaomi</a></li>
+                                <li><a href="#">Vivo</a></li>
+                                <li><a href="#">Oppo</a></li>
+                                <li><a href="#">Sony</a></li>
+                                <li><a href="#">Nokia</a></li>
+                                <li><a href="#">Huawei</a></li>
+                            </ul>
+                            <div class="footer_subtitle">Hệ điều hành</div>
+                            <ul class="footer_list">
+                                <li><a href="#">Android </a></li>
+                                <li><a href="#">IOS </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer_column">
+                            <div class="footer_title">Tìm Nhanh</div>
+                            <ul class="footer_list footer_list_2">
+                                <li><a href="#">Samsung Note 10</a></li>
+                                <li><a href="#">Iphone 11</a></li>
+                                <li><a href="#">Iphone 11 Pro</a></li>
+                                <li><a href="#">Iphone 11 Pro Max</a></li>
+                                <li><a href="#">Samsung S9</a></li>
+                                <li><a href="#">Samsung S9 Plus</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer_column">
+                            <div class="footer_title">Chăm Sóc Khách Hàng</div>
+                            <ul class="footer_list">
+                                <li><a href="#">Tài Khoảng</a></li>
+                                <li><a href="#">Giỏ Hàng</a></li>
+                                <li><a href="#">Yêu Thích</a></li>
+                                <li><a href="#">Chăm Sóc Khách Hàng</a></li>
+                                <li><a href="#">Đổi Trả</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="#">Hỗ Trợ Sản Phẩm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+                            <div class="copyright_content">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | Made by Blue
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </div>
+                            <div class="logos ml-sm-auto">
+                                <ul class="logos_list">
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_1.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_2.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_3.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/Assets/web/images/logos_4.png" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Assets/web/styles/bootstrap4/popper.js")
+    <script src="@Url.Content("~/Assets/web/styles/bootstrap4/bootstrap.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/greensock/TweenMax.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/greensock/TimelineMax.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/scrollmagic/ScrollMagic.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/greensock/animation.gsap.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/greensock/ScrollToPlugin.min.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/OwlCarousel2-2.2.1/owl.carousel.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/slick-1.8.0/slick.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/plugins/easing/easing.js",true)"></script>
+    <script src="@Url.Content("~/Assets/web/js/custom.js",true)"></script>
+
+
+    <script src="@Url.ContentAssetWeb("js/product_custom.js")"></script>
+    <script src="@Url.ContentAssetWeb("js/product_comment.js")"></script>
+    <script>
+        var status = null;
+        $("#btn-dathang").click(function (e) {
+            e.preventDefault();
+            var amount = $('#idAmount').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Cart/AddProductToCart',
+                data: {idProduct:'@product.ID_PRODUCT',amount:amount},
+                dataType: 'JSON',
+                success: function (data) {
+                    status = data.status;
+                    number = data.number;
+                    price = data.price;
+                    if (status == "success") {
+                        $('#numberOfProductsInTheCart').text(number);
+                        $('.cart_price').text(price);
+                    } else {
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $("#binhluan").submit(function (e) {
+            e.preventDefault();
+            var content = $('#input-binh-luan').val();
+            var nameofcm = $('#input-name-binh-luan').val();
+
+              $.ajax({
+                type: 'POST',
+                  url: '/Product/AddComment',
+                  data: { content: content, nameofcm:nameofcm, idproduct: '@product.ID_PRODUCT' },
+                  success: function (data) {
+                      var rs = data.result;
+
+                      if (rs === "fail") {
+                          alert("Bạn không được bỏ trống nội dung hoặc tên")
+                      } else {
+                          $('#load-binhluan').html(rs);
+                      }
+                }
+            });
+        });
+    </script>
+    <script>
+        $("#form-eval").submit(function (e) {
+            e.preventDefault();
+            var data2 = $('#form-eval').serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/Product/AddEvaluation',
+                data: data2,
+                datatype: 'json',
+                success: function (data) {
+
+                    var rs = data.result;
+                    if (rs.includes("fail")) {
+                        alert("Bạn không được bỏ trống nội dung,tiêu đề, đánh giá");
+                    } else if (rs === "user") {
+                        $('#myModal').modal('show');
+                    } else {
+                        $('#contain-eval').html(rs);
+                    }
+
+                }
+            });
+        });
+    </script>
+    <script>
+        $(".product_fav").click(function (e) {
+            var idproduct = $(this).data('product');
+            if ($(this).hasClass('active') == true) {
+                var idproduct = $(this).data('product');
+                $.ajax({
+                    type: 'GET',
+                    url: '/Product/DeleteLike',
+                    data: { idproduct: idproduct },
+                    success: function (data) {
+                        var rs = data.result;
+                        if (rs.includes("fail")) {
+                            alert("Hệ thống có lỗi xảy ra hãy thử refresh lại");
+                        } else if (rs === "user") {
+                            $(".product_fav").removeClass("product_fav active").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart active").addClass("fas fa-heart");
+                            $(".product_fav").removeClass("product_fav").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart").addClass("fas fa-heart");
+                            $('#myModal').modal('show');
+                        } else {
+                            $('.wishlist_count').html(rs);
+
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Product/AddLike',
+                    data: { idproduct: idproduct },
+                    success: function (data) {
+                        var rs = data.result;
+                        if (rs.includes("fail")) {
+                            alert("Hệ thống có lỗi xảy ra hãy thử refresh lại");
+                        } else if (rs === "user") {
+                            $(".product_fav").removeClass("product_fav active").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart active").addClass("fas fa-heart");
+                            $(".product_fav").removeClass("product_fav").addClass("product_fav");
+                            $("#yeu-thich").removeClass("fas fa-heart").addClass("fas fa-heart");
+                            $('#myModal').modal('show');
+                        } else {
+                            $('.wishlist_count').html(rs);
+
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>

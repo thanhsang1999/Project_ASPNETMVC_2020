@@ -7,6 +7,7 @@ using Project_ASPNETMVC_2020.Areas.Admin.Model.Form;
 using Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin;
 using Project_ASPNETMVC_2020.ClassToConfig;
 using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections;
@@ -43,8 +44,6 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
                 return View();
 
             }
-
-
         }
         public ActionResult FormChangeProduct(string id)
         {
@@ -320,6 +319,35 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
 
             return Json(new { result = rs }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ViewProduct(string idproduct,string controllerr,string actionn)
+        {
+            ArrayList model = new ArrayList();
+            product tmpProduct = new product();
+            ProductDAO dao = new ProductDAO();
+
+            try
+            {
+                if (dao.findProductById(idproduct) == null || idproduct == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    tmpProduct = dao.productDetail(idproduct);
+                    User user = Session["User"] as User;
+                    ViewBag.Title = tmpProduct.NAME;
+                    model.Add(tmpProduct);
+                    model.Add(controllerr);
+                    model.Add(actionn);
+                    return View(model);
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
         }
     }
 }
