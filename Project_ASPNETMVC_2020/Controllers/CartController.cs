@@ -15,6 +15,7 @@ using WebGrease.Css.Ast;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter(Order = 1)]
     public class CartController : Controller
     {
 

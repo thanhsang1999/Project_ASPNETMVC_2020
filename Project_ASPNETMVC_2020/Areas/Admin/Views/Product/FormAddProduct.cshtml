@@ -129,7 +129,11 @@
              } else if (rs === "notimage") {
                  showerror.addClass('text-danger');
                  showerror.hide().text('File cho sản phẩm phải là hình ảnh').fadeIn("slow");
-             } else if (rs === "name") {
+             } else if (rs === "sale") {
+                 showerror.addClass('text-danger');
+                 showerror.hide().text('Giảm giá phải lớn hơn 0 và nhỏ hơn 100').fadeIn("slow");
+             } 
+             else if (rs === "name") {
                  showerror.addClass('text-danger');
                  showerror.hide().text('Tên sản phẩm đã tồn tại').fadeIn("slow");
              }

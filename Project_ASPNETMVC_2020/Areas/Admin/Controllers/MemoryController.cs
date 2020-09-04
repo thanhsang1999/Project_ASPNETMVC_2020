@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class MemoryController : Controller
     {
         // GET: Admin/Memory

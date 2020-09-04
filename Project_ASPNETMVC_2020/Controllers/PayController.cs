@@ -1,4 +1,5 @@
-﻿using Project_ASPNETMVC_2020.Model.Cart;
+﻿using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.Model.Cart;
 using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Model.DAO;
 using Project_ASPNETMVC_2020.Model.EF;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter(Order = 1)]
     public class PayController : Controller
     {
         // GET: Pay

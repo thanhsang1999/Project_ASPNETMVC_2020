@@ -1,5 +1,7 @@
 ﻿using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.Slider;
+using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
@@ -12,9 +14,11 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class SliderController : Controller
     {
         // GET: Admin/Slider
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult Index()
         {
             User user = Session["User"] as User;
@@ -30,6 +34,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
         }
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult CreateSlider()
         {
             User user = Session["User"] as User;
@@ -88,6 +93,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
 
         }
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult EditSlider(string idSlider)
         {
             User user = Session["User"] as User;

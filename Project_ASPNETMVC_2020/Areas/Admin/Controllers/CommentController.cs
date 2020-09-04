@@ -6,12 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.ClassToConfig;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
+
     public class CommentController : Controller
     {
         // GET: Admin/Comment
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult Index()
         {
             User user = Session["User"] as User;

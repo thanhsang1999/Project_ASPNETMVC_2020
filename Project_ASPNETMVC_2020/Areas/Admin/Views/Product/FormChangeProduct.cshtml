@@ -135,7 +135,11 @@
              }else if (rs === "filenull") {
                  showerror.addClass('text-danger');
                  showerror.hide().text('Dữ liệu File không được để trống').fadeIn("slow");
-             } else if (rs === "notimage") {
+             } else if (rs === "sale") {
+                 showerror.addClass('text-danger');
+                 showerror.hide().text('Giảm giá phải lớn hơn 0 và nhỏ hơn 100').fadeIn("slow");
+             } 
+             else if (rs === "notimage") {
                  showerror.addClass('text-danger');
                  showerror.hide().text('File cho sản phẩm phải là hình ảnh').fadeIn("slow");
              } else if (rs === "name") {

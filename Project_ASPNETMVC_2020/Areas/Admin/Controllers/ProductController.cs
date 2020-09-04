@@ -19,6 +19,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class ProductController : Controller
     {
         // GET: Admin/Product
@@ -141,6 +142,11 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             {
                 rs = "notimage";
             }
+            else if(Convert.ToInt32(salerate)>100 || Convert.ToInt32(salerate) < 0)
+            {
+                rs = "sale";
+            }
+                
             else if (dao.checkExitNameProductForAdd(dao.generateNameProduct(form.nameproduct,form.brand))==false)
             {
                 rs = "name";
@@ -246,6 +252,10 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             else if (image3 != null && ToolsOfAdmin.IsImage(image3)==false)
             {
                 rs = "notimage";
+            }
+            else if (Convert.ToInt32(salerate) > 100 || Convert.ToInt32(salerate) < 0)
+            {
+                rs = "sale";
             }
             else
             {

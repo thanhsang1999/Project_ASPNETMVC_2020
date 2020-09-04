@@ -11,6 +11,7 @@ using Project_ASPNETMVC_2020.Model.ModelOfSession;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class RamController : Controller
     {
         // GET: Admin/Ram

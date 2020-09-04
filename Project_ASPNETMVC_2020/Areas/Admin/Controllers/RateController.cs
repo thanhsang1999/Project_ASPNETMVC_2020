@@ -1,4 +1,6 @@
 ﻿using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
+using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using System;
 using System.Collections;
@@ -9,9 +11,11 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class RateController : Controller
     {
         // GET: Admin/Rate
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult Index()
         {
             User user = Session["User"] as User;

@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
-    [LogFilter]
+    [LogFilter(Order = 1)]
     public class ProductController : Controller
     {
         // GET: Product
