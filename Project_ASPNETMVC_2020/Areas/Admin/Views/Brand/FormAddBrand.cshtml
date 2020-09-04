@@ -1,0 +1,200 @@
+﻿@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.EF
+@{
+    ViewBag.Title = "FormAddMemory";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/iCheck/skins/flat/green.css",true)" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/google-code-prettify/bin/prettify.min.css",true)" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/select2/dist/css/select2.min.css",true)" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/switchery/dist/switchery.min.css",true)" rel="stylesheet">
+    <!-- starrr -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/starrr/dist/starrr.css",true)" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.css",true)" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <!-- CKEDITOR -->
+    <script src="@Url.ContentAssetAdmin( "lib/ckeditor/ckeditor.js",true)"></script>
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin( "css/sanpham.css",true)">
+
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_addram.css",true)">
+}
+@section scripts{
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.js",true)"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",true)"></script>
+    <!-- iCheck -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/iCheck/icheck.min.js",true)"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/moment/min/moment.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-daterangepicker/daterangepicker.js",true)"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery.hotkeys/jquery.hotkeys.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/google-code-prettify/src/prettify.js",true)"></script>
+    <!-- jQuery Tags Input -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/jquery.tagsinput/src/jquery.tagsinput.js",true)"></script>
+    <!-- Switchery -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/switchery/dist/switchery.min.js",true)"></script>
+    <!-- Select2 -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/select2/dist/js/select2.full.min.js",true)"></script>
+    <!-- Parsley -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/parsleyjs/dist/parsley.min.js",true)"></script>
+    <!-- Autosize -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/autosize/dist/autosize.min.js",true)"></script>
+    <!-- jQuery autocomplete -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js",true)"></script>
+    <!-- starrr -->
+    <script src="@Url.ContentAssetAdmin( "lib/vendors/starrr/dist/starrr.js",true)"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="@Url.ContentAssetAdmin( "lib/build/js/custom.min.js",true)"></script>
+    <script src="@Url.ContentAssetAdmin( "js/sanpham.js",true)"></script>
+    <script>
+        $('#submit').click(function (e) {
+            var showresult = $('#showresult');
+
+            var brand = $('#brand').val();
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("AddBrand","Brand",new { area ="Admin"})',
+                data: { brand: brand },
+                success: function (data) {
+                    var rs = data.result;
+                    if (rs === "user") {
+                        window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
+                    } else if (rs === 'null') {
+                        showresult.addClass('text-danger');
+                        showresult.hide().text('Không được để trống dữ liệu').fadeIn('slow');
+                    } else if (rs === 'word') {
+                        showresult.addClass('text-danger');
+                        showresult.hide().text('Dữ liệu phải là chữ và là 1 từ').fadeIn('slow');
+                    } else if (rs === 'exit') {
+                        showresult.addClass('text-danger');
+                        showresult.hide().text('Thương Hiệu bạn muốn thêm vào đã tồn tại').fadeIn('slow');
+                    }  else if (rs === 'success') {
+                        if (showresult.hasClass('text-danger')) {
+                            showresult.removeClass('text-danger');
+                        }
+                        showresult.addClass('text-success');
+                        showresult.hide().text('Thêm Thương Hiệu thành công').fadeIn('slow');
+                    } else {
+                        showresult.addClass('text-danger');
+                        showresult.hide().text('Đã có lỗi xảy ra hãy thử refresh lại trang').fadeIn('slow');
+                    }
+                }
+            })
+        })
+    </script>
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Thêm Thương Hiệu</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row right-content-phan-2">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8 bg-form-right-content">
+                                <div class="row khoang-cach">
+                                    <div class="col-sm-3">
+                                        <span class="title-span">Thương Hiệu : </span>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <span class="ten-tai-khoan">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Hãy Nhập Thương Hiệu Bạn Muốn Thêm Vào" name="brand" id="brand">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row khoang-cach-xa">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div style="font-size:20px" id="showresult" class="col-sm-9 text-danger">
+                                    </div>
+                                </div>
+                                <div class="row khoang-cach-xa">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button id="submit" class="btn btn-primary btn-block" type="button">Lưu</button>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

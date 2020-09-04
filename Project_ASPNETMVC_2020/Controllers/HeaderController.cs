@@ -6,9 +6,11 @@ using System.Collections;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.Routing;
+using Project_ASPNETMVC_2020.Filter;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter(Order = 1)]
     public class HeaderController : Controller
     {
         // GET: Header

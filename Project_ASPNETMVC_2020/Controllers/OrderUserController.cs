@@ -1,4 +1,5 @@
-﻿using Project_ASPNETMVC_2020.Model.EF;
+﻿using Project_ASPNETMVC_2020.Filter;
+using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
 using Project_ASPNETMVC_2020.Model.Order;
 using System;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter(Order = 1)]
     public class OrderUserController : Controller
     {
         // GET: OrderUser

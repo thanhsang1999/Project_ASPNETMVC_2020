@@ -159,7 +159,7 @@ namespace Project_ASPNETMVC_2020.Controllers
             string email;
             if (new UserDAO().checkUsered(username) == false)
             {
-                rs = "Tên tài khoản không tồn tại";
+                rs = "user";
             }
             else if ((email = new UserDAO().getEmailOfUser(username)) != null)
             {
@@ -168,21 +168,23 @@ namespace Project_ASPNETMVC_2020.Controllers
                 var key = mail.RandomPassword();
                
                 MailPasswordDAO mpd = new MailPasswordDAO();
-                var check = mpd.addKey(iduser, key);
-                while (check == false)
+                var check = mpd.isExistsKey(key);
+                while (check == true)
                 {
                     key = mail.RandomPassword();
-                    check = mpd.addKey(iduser, key);
+                    check = mpd.isExistsKey(key);
                 }
-                new UserDAO().ChangePasswordById(iduser, key);
+
                 bool check2 = mail.sendMail(email, key);
                 if (check2==false)
                 {
-                    rs = "Gửi mail thất bại";
+                    rs = "fail";
                 }
                 else
                 {
-                    rs = "Gửi mail thành công";
+                    rs = "success";
+                    mpd.addKey(iduser, key);
+                    new UserDAO().ChangePasswordById(iduser, key);
                 }
             }
             else

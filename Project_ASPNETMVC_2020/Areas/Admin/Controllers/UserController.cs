@@ -1,4 +1,6 @@
 ﻿using Project_ASPNETMVC_2020.Areas.Admin.Model.DAO;
+using Project_ASPNETMVC_2020.ClassToConfig;
+using Project_ASPNETMVC_2020.Filter;
 using Project_ASPNETMVC_2020.Model.Code;
 using Project_ASPNETMVC_2020.Model.EF;
 using Project_ASPNETMVC_2020.Model.ModelOfSession;
@@ -9,9 +11,11 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class UserController : Controller
     {
         // GET: Admin/User
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult Index()
         {
             User user = Session["User"] as User;
@@ -28,6 +32,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
            
         }
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult Infomation(string IdAccount) {
             User user = Session["User"] as User;
             if (user != null && user.LEVEL.Equals("10"))
@@ -95,6 +100,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             }
             
         }
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult LevelAccount(string IdAccount)
         {
             User user = Session["User"] as User;

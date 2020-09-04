@@ -19,6 +19,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order = 1)]
     public class ProductController : Controller
     {
         // GET: Admin/Product
@@ -45,6 +46,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
             }
         }
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult FormChangeProduct(string id)
         {
 
@@ -140,6 +142,19 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             {
                 rs = "notimage";
             }
+            else if(Convert.ToInt32(salerate)>100 || Convert.ToInt32(salerate) < 0)
+            {
+                rs = "sale";
+            }
+            else if (ToolsOfAdmin.checkSaleRate(price, salerate) == false)
+            {
+                rs = "sale";
+            }
+            else if (Convert.ToInt32(amount)<0 || Convert.ToInt32(price) <=  0)
+            {
+                rs = "amount";
+            }
+
             else if (dao.checkExitNameProductForAdd(dao.generateNameProduct(form.nameproduct,form.brand))==false)
             {
                 rs = "name";
@@ -191,6 +206,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             checkNullString.Add(amount);
             checkNullString.Add(salerate);
             checkNullString.Add(description);
+            checkNullString.Add(idproduct);
             List<string> checkNum = new List<string>();
             checkNum.Add(memory);
             checkNum.Add(ram);
@@ -223,10 +239,16 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             else if (ToolsOfAdmin.checkNumList(checkNum) == false)
             {
                 rs = "number";
-            }else if(dao.checkExitNameProductForUp(dao.generateNameProduct(form.nameproduct, form.brand),idproduct) == false)
+            }
+            else if (dao.getProductById(idproduct) == null)
+            {
+                rs = "exit";
+            }
+            else if(dao.checkExitNameProductForUp(dao.generateNameProduct(form.nameproduct, form.brand),idproduct) == false)
             {
                 rs = "name";
             }
+           
             else if (image1 != null && ToolsOfAdmin.IsImage(image1)==false)
             {
                 rs = "notimage";
@@ -238,6 +260,18 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             else if (image3 != null && ToolsOfAdmin.IsImage(image3)==false)
             {
                 rs = "notimage";
+            }
+            else if (Convert.ToInt32(salerate) > 100 || Convert.ToInt32(salerate) < 0)
+            {
+                rs = "sale";
+            }
+            else if (ToolsOfAdmin.checkSaleRate(price, salerate) == false)
+            {
+                rs = "sale";
+            }
+            else if (Convert.ToInt32(amount) < 0 || Convert.ToInt32(price) <= 0)
+            {
+                rs = "amount";
             }
             else
             {
@@ -252,7 +286,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 
         }
 
-
+        [AuthFilter(roleIsRequired = LevelAuth.Admin, Order = 0)]
         public ActionResult ListProduct(string page)
         {
             var model = new ArrayList();

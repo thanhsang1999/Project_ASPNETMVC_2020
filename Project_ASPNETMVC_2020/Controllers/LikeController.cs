@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter(Order = 1)]
     public class LikeController : Controller
     {
         // GET: Like
@@ -42,10 +43,13 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (user == null)
             {
                 rs = "user";
-            }
-            else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == false)
+            }else if(dao.checkIsProduct(idproduct) == false)
             {
-                rs = "fail";
+                rs = "null";
+            }
+            else if ( dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == false)
+            {
+                rs = "like"+" "+dao.getNumberUserLike(user.ID_ACCOUNT).ToString();
             }
             else
             {

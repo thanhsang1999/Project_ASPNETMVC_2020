@@ -31,7 +31,7 @@ namespace Project_ASPNETMVC_2020.Filter
                
                 var realrolerequire = Convert.ToInt32(roleIsRequired);
                 var roleuser = Convert.ToInt32(roleOfUser);
-                if (realrolerequire > roleuser && active != 1)
+                if (realrolerequire > roleuser || active != 1)
                 {
 
                     string iduser = null;
@@ -39,8 +39,13 @@ namespace Project_ASPNETMVC_2020.Filter
                     {
                         iduser = user.ID_ACCOUNT;
                     }
-                    string ipaddress = HttpContext.Current.Request.UserHostAddress;
+                    var area = Context.RouteData.DataTokens["area"];
+                    string ipaddress = Context.HttpContext.Request.UserHostAddress;
                     string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
+                    if (area != null)
+                    {
+                        controller = area + "/" + controller;
+                    }
                     string action = Context.ActionDescriptor.ActionName;
                     string level = null;
                     string message = "OnActionExecuting:  ";

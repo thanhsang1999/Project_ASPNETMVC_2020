@@ -10,6 +10,50 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin
 {
     public static class ToolsOfAdmin
     {
+        public static bool checkSaleRate(string price, string salerate)
+        {
+            var realprice = Convert.ToInt32(price);
+            var realsalerate = Convert.ToInt32(salerate);
+            if (realsalerate > 0)
+            {
+                float temp = realprice - (realprice * ((float)realsalerate / 100));
+                if (temp > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+        public static bool oneWord(string tocheck)
+        {
+            Regex regex = new Regex("^[A-Za-z]+$");
+            if (!regex.IsMatch(tocheck))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+        public static string FirstCharToUpper(string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input.First().ToString().ToUpper() + input.Substring(1);
+            }
+        }
         public static bool checkNull(string tocheck)
         {
             if (String.IsNullOrEmpty(tocheck) || String.IsNullOrWhiteSpace(tocheck) || String.Empty.Equals(tocheck) || tocheck.Equals(""))
@@ -58,7 +102,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin
         }
         public static bool checkFileNull(List<HttpPostedFileBase> files)
         {
-            foreach(HttpPostedFileBase file in files)
+            foreach (HttpPostedFileBase file in files)
             {
                 if (file == null && file.ContentLength <= 0)
                 {
@@ -112,7 +156,7 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin
         }
         public const int ImageMinimumBytes = 512;
 
-        public static bool IsImage( HttpPostedFileBase postedFile)
+        public static bool IsImage(HttpPostedFileBase postedFile)
         {
             //-------------------------------------------
             //  Check the image mime types

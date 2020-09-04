@@ -21,7 +21,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Blue !</span></a>
+                        <a href="@Url.Action("Index","Home")" class="site_title"><i class="fa fa-paw"></i> <span>Blue !</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -65,6 +65,15 @@
                                     <a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="@Url.Action("FormAddProduct","Product",new { area = "Admin"    } )">Form Đăng Sản Phẩm</a></li>
+                                        <li><a href="@Url.Action("FormAddRam","Ram",new { area = "Admin"    } )">Form Thêm Ram</a></li>
+                                        <li><a href="@Url.Action("FormDeleteRam","Ram",new { area = "Admin"    } )">Form Xóa Ram</a></li>
+
+                                        <li><a href="@Url.Action("FormAddMemory","Memory",new { area = "Admin"    } )">Form Thêm Bộ Nhớ Máy</a></li>
+                                        <li><a href="@Url.Action("FormDeleteMemory","Memory",new { area = "Admin"    } )">Form Xóa Bộ Nhớ Máy</a></li>
+
+                                        <li><a href="@Url.Action("FormAddBrand","Brand",new { area = "Admin"    } )">Form Thêm Thương Hiệu</a></li>
+                                        <li><a href="@Url.Action("FormDeleteBrand","Brand",new { area = "Admin"    } )">Form Xóa Thương Hiệu</a></li>
+
                                         <li><a href="@Url.Action("CreateSlider","Slider")">Form Slider</a></li>
                                     </ul>
                                 </li>
@@ -126,12 +135,7 @@
                                     <img src="@Url.ContentAssetAdmin("images/imgadmin.png")" alt="">Admin
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="javascript:;"> Profile</a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">Help</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index","Home",new { area=""})"> Blue</a>
                                     <a class="dropdown-item" href="@Url.Action("LogOut","Home")"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                 </div>
                             </li>

@@ -23,8 +23,14 @@ namespace Project_ASPNETMVC_2020.Filter
             {
                 iduser = user.ID_ACCOUNT;
             }
-            string ipaddress = HttpContext.Current.Request.UserHostAddress;
+            var area = Context.RouteData.DataTokens["area"];
+           
+            string ipaddress = Context.HttpContext.Request.UserHostAddress;
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
+            if (area != null)
+            {
+                controller = area + "/" + controller;
+            }
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;
             string message = "OnActionExecuting:  ";
@@ -55,8 +61,13 @@ namespace Project_ASPNETMVC_2020.Filter
             {
                 iduser = user.ID_ACCOUNT;
             }
-            string ipaddress = HttpContext.Current.Request.UserHostAddress;
+            var area = Context.RouteData.DataTokens["area"];
+            string ipaddress = Context.HttpContext.Request.UserHostAddress;
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
+            if (area != null)
+            {
+                controller = area + "/" + controller;
+            }
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;
             string message = "OnActionExecuted:  ";
@@ -73,6 +84,7 @@ namespace Project_ASPNETMVC_2020.Filter
             {
                 level = Context.Controller.ViewBag.LevelLog;
             }
+            
 
             new LogDAO().addLog(controller, action, iduser, ipaddress, level, message);
         }

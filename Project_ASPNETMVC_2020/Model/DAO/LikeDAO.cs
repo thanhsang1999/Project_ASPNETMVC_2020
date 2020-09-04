@@ -1,4 +1,4 @@
-﻿    using Microsoft.Ajax.Utilities;
+﻿using Microsoft.Ajax.Utilities;
 using Project_ASPNETMVC_2020.Model.EF;
 using System;
 using System.Collections.Generic;
@@ -43,7 +43,15 @@ namespace Project_ASPNETMVC_2020.Model.DAO
             var listLike = getListLikeForUser(iduser);
             foreach (yeuthich like in listLike)
             {
-                list.Add(dao.findProductById(like.ID_PRODUCT));
+                var p = dao.findProductById(like.ID_PRODUCT);
+                if (p == null)
+                {
+
+                }
+                else
+                {
+                    list.Add(p);
+                }
             }
             return list;
 
@@ -51,7 +59,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public int getNumberUserLike(string iduser)
         {
             DBModel dBModel = new DBModel();
-            var check = dBModel.yeuthiches.Where(x => iduser == x.ID_ACCOUNT).Count();
+            var check = getListProductUserHasLike(iduser).Count();
             return check;
 
         }

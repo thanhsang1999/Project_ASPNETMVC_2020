@@ -15,6 +15,7 @@ using System.Web.Mvc;
 
 namespace Project_ASPNETMVC_2020.Controllers
 {
+    [LogFilter(Order = 1)]
     public class ProductController : Controller
     {
         // GET: Product
@@ -206,10 +207,13 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (user == null)
             {
                 rs = "user";
-            }
-            else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == true)
+            }else if(dao.checkIsProduct(idproduct) == false)
             {
-                rs = "fail";
+                rs = "null";
+            }
+            else if (  dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == true)
+            {
+                rs = "like" + " " + dao.getNumberUserLike(user.ID_ACCOUNT).ToString();
             }
             else
             {
@@ -228,10 +232,13 @@ namespace Project_ASPNETMVC_2020.Controllers
             if (user == null)
             {
                 rs = "user";
-            }
-            else if (dao.checkIsProduct(idproduct) == false || dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == false)
+            }else if(dao.checkIsProduct(idproduct) == false)
             {
-                rs = "fail";
+                rs = "null";
+            }
+            else if ( dao.isUserHasLike(idproduct, user.ID_ACCOUNT) == false)
+            {
+                rs = "like" +" "+dao.getNumberUserLike(user.ID_ACCOUNT).ToString();
             }
             else
             {

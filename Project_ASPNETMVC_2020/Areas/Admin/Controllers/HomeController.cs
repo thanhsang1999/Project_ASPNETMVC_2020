@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
 {
+    [LogFilter(Order =1)]
     public class HomeController : Controller
     {
         [AuthFilter(roleIsRequired =LevelAuth.Admin,Order =0)]

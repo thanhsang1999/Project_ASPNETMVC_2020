@@ -21,7 +21,8 @@ namespace Project_ASPNETMVC_2020
                 defaults: new { controller = "Home", action = "Index",  id = UrlParameter.Optional, },
                 new[] { "Project_ASPNETMVC_2020.Controllers" }
             );
-      
+           
+
 
         }
     }
