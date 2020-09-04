@@ -47,6 +47,7 @@
             ht = "Chấp Nhận";
         })
     </script>
+
 }
 
 <div class="right_col" role="main" style="min-height: 692px;">
@@ -112,8 +113,8 @@
                                                 <th class="column-title giua">Số Điện Thoại </th>
                                                 <th class="column-title giua">Sản Phẩm </th>
                                                 <th class="column-title giua head-trang-thai">Trạng Thái </th>
-                                                <th class="column-title">Chấp Nhận </th>
-                                                <th class="column-title no-link last"><span class="nobr">Từ Chối </span></th>
+                                                <th class="column-title giua">Chấp Nhận </th>
+                                                <th class="column-title no-link last giua"><span class="nobr">Từ Chối </span></th>
                                             </tr>
                                         </thead>
 
@@ -140,7 +141,7 @@
                                                     </td>
                                                     <td>@listOrder[i].ID_USER</td>
                                                     <td>@listOrder[i].HOTEN</td>
-                                                    <td class="dia-chi">
+                                                    <td class="dia-chi giua">
                                                         @listOrder[i].DIACHI
                                                     </td>
                                                     <td>@listOrder[i].SDT</td>
@@ -174,9 +175,9 @@
                                                                 break;
                                                         }
                                                     </td>
-                                                    <td class="giua"><a class="chapnhan" href=""><i class="fas fa-check green"></i></a></td>
-                                                    <td class="last">
-                                                        <a class="tuchoi" href="#"><i class="fas fa-times red"></i></a>
+                                                    <td class="giua"><a class="chapnhan" href="@Url.Action("ChangeStatusOrder","Order",new {idOrder=listOrder[i].ID_ORDER,stt="1",actionn="ListOrderNew"})"><i style="font-size:20px" class="fas fa-check admin-green-hover"></i></a></td>
+                                                    <td class="last giua">
+                                                        <a class="tuchoi" href="@Url.Action("ChangeStatusOrder","Order",new {idOrder=listOrder[i].ID_ORDER,stt="3",actionn="ListOrderNew"})"><i style="font-size:20px" class="fas fa-times admin-red-hover"></i></a>
                                                     </td>
 
 

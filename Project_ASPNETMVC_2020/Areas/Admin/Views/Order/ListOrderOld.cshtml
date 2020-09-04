@@ -1,6 +1,9 @@
-﻿@using Project_ASPNETMVC_2020.Model.EF
-@using Project_ASPNETMVC_2020.Model.Other
+﻿
+@using Project_ASPNETMVC_2020.Model.EF
+
 @using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.Other
+
 @model System.Collections.ArrayList
 
 @{
@@ -24,6 +27,7 @@
     <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
     <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_listoder.css",true)" />
     <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
+
 }
 
 @section scripts{
@@ -37,6 +41,13 @@
 
     <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
 
+    <script>
+        $('.chapnhan').click(function (e) {
+            e.preventDefault();
+            String ht = $('.aa').val();
+            ht = "Chấp Nhận";
+        })
+    </script>
 
 }
 
@@ -44,7 +55,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Danh Sách Đơn Hàng Đang Xử Lý</h3>
+                <h3>Danh Sách Đơn Hàng Mới</h3>
             </div>
 
             <div class="title_right">
@@ -103,14 +114,13 @@
                                                 <th class="column-title giua">Số Điện Thoại </th>
                                                 <th class="column-title giua">Sản Phẩm </th>
                                                 <th class="column-title giua head-trang-thai">Trạng Thái </th>
-                                                <th class="column-title">Hoàn Thành </th>
-                                                <th class="column-title no-link last"><span class="nobr">Xử Lý </span></th>
+                                                <th class="column-title giua">Chấp Nhận </th>
+                                                <th class="column-title no-link last giua"><span class="nobr">Từ Chối </span></th>
                                             </tr>
                                         </thead>
 
                                         <tbody id="bodyTable">
                                             @for (int i = 0; i < listOrder.Count; i++)
-
                                             {
                                                 string oddoreven = "";
                                                 if (i == 0 || (i / 2) == 0)
@@ -132,7 +142,7 @@
                                                     </td>
                                                     <td>@listOrder[i].ID_USER</td>
                                                     <td>@listOrder[i].HOTEN</td>
-                                                    <td class="dia-chi">
+                                                    <td class="dia-chi giua">
                                                         @listOrder[i].DIACHI
                                                     </td>
                                                     <td>@listOrder[i].SDT</td>
@@ -143,7 +153,7 @@
                                                             {
                                                                 if (listOrder[i].ID_ORDER.Equals(item1.ID_ORDER))
                                                                 {
-                                                                    <li> @item1.NAME <i class="fas fa-times"></i> @item1.AMOUNT</li>
+                                                                    <li>@item1.NAME <i class="fas fa-times"></i> @item1.AMOUNT</li>
                                                                 }
                                                             }
                                                         }
@@ -153,22 +163,22 @@
                                                         @switch (listOrder[i].STATUS)
                                                         {
                                                             case "1":
-                                                                <i class="fas fa-circle red" style="color: #3498db"></i> <span>Đang Giao Hàng</span>
+                                                                <i class="fas fa-circle red" style="color: #3498db"></i> <span class="aa">Đang Xử Lý</span>
                                                                 break;
                                                             case "2":
-                                                                <i class="fas fa-circle red" style="color: #2ecc71"></i> <span> Hoàn Thành</span>
+                                                                <i class="fas fa-circle red" style="color: #2ecc71"></i> <span class="aa"> Hoàn Thành</span>
                                                                 break;
                                                             case "3":
-                                                                <i class="fas fa-circle red" style="color: #e74c3c"></i> <span>Từ Chối</span>
+                                                                <i class="fas fa-circle red" style="color: #e74c3c"></i> <span class="aa">Từ Chối</span>
                                                                 break;
                                                             default:
-                                                                <i class="fas fa-circle red" style="color: #7f8c8d"></i> <span>Chờ Chấp Nhận</span>
+                                                                <i class="fas fa-circle red" style="color: #7f8c8d"></i> <span class="aa">Chờ Chấp Nhận</span>
                                                                 break;
                                                         }
                                                     </td>
-                                                    <td class="giua"><a href=""><i class="fas fa-check green"></i></a></td>
-                                                    <td class="last">
-                                                        <a href="#"><i class="fas fa-times red"></i></a>
+                                                    <td class="giua"><a class="chapnhan" href="@Url.Action("ChangeStatusOrder","Order",new {idOrder=listOrder[i].ID_ORDER,stt="2",actionn="ListOrderOld"})"><i style="font-size:20px" class="fas fa-check admin-green-hover"></i></a></td>
+                                                    <td class="last giua">
+                                                        <a class="tuchoi" href="@Url.Action("ChangeStatusOrder","Order",new {idOrder=listOrder[i].ID_ORDER,stt="1",actionn="ListOrderOld"})"><i style="font-size:20px" class="fas fa-times admin-red-hover"></i></a>
                                                     </td>
 
 
