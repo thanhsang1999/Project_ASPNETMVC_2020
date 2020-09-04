@@ -23,7 +23,8 @@ namespace Project_ASPNETMVC_2020.Filter
             {
                 iduser = user.ID_ACCOUNT;
             }
-            string ipaddress = HttpContext.Current.Request.UserHostAddress;
+            var area = Context.RouteData.DataTokens["area"];
+            string ipaddress = Context.HttpContext.Request.UserHostAddress;
             string controller = Context.ActionDescriptor.ControllerDescriptor.ControllerName;
             string action = Context.ActionDescriptor.ActionName;
             string level = LevelLog.INFO;
@@ -73,6 +74,7 @@ namespace Project_ASPNETMVC_2020.Filter
             {
                 level = Context.Controller.ViewBag.LevelLog;
             }
+            
 
             new LogDAO().addLog(controller, action, iduser, ipaddress, level, message);
         }
