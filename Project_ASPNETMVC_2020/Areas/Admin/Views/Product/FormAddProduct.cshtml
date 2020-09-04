@@ -131,7 +131,11 @@
                  showerror.hide().text('File cho sản phẩm phải là hình ảnh').fadeIn("slow");
              } else if (rs === "sale") {
                  showerror.addClass('text-danger');
-                 showerror.hide().text('Giảm giá phải lớn hơn 0 và nhỏ hơn 100').fadeIn("slow");
+                 showerror.hide().text('Giảm giá phải lớn hơn 0 và nhỏ hơn 100 và sau khi giảm giá phải lớn lớn 0').fadeIn("slow");
+             } 
+             else if (rs === "amount") {
+                 showerror.addClass('text-danger');
+                 showerror.hide().text('Số lượng máy không được nhỏ hơn 0 và giá phải lớn hơn 0').fadeIn("slow");
              } 
              else if (rs === "name") {
                  showerror.addClass('text-danger');

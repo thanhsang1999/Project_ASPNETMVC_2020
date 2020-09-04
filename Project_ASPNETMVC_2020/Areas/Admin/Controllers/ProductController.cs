@@ -146,7 +146,15 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             {
                 rs = "sale";
             }
-                
+            else if (ToolsOfAdmin.checkSaleRate(price, salerate) == false)
+            {
+                rs = "sale";
+            }
+            else if (Convert.ToInt32(amount)<0 || Convert.ToInt32(price) <=  0)
+            {
+                rs = "amount";
+            }
+
             else if (dao.checkExitNameProductForAdd(dao.generateNameProduct(form.nameproduct,form.brand))==false)
             {
                 rs = "name";
@@ -256,6 +264,14 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
             else if (Convert.ToInt32(salerate) > 100 || Convert.ToInt32(salerate) < 0)
             {
                 rs = "sale";
+            }
+            else if (ToolsOfAdmin.checkSaleRate(price, salerate) == false)
+            {
+                rs = "sale";
+            }
+            else if (Convert.ToInt32(amount) < 0 || Convert.ToInt32(price) <= 0)
+            {
+                rs = "amount";
             }
             else
             {

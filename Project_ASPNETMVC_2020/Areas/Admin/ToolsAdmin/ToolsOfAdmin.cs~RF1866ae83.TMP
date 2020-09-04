@@ -10,29 +10,22 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin
 {
     public static class ToolsOfAdmin
     {
-        public static bool checkSaleRate(string price, string salerate)
+        public static bool checkSaleRate(string price,string salerate)
         {
             var realprice = Convert.ToInt32(price);
             var realsalerate = Convert.ToInt32(salerate);
-            if (realsalerate > 0)
-            {
-                float temp = realprice - (realprice * ((float)realsalerate / 100));
-                if (temp > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
+            var temp = realprice - (realprice * ((float)realsalerate / 100));
+            if (temp > 0)
             {
                 return true;
             }
+            else
+            {
+                return false;
+            }
 
         }
-        public static bool oneWord(string tocheck)
+        public  static bool oneWord(string tocheck)
         {
             Regex regex = new Regex("^[A-Za-z]+$");
             if (!regex.IsMatch(tocheck))
