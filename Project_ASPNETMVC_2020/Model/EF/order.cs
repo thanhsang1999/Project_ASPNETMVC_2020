@@ -9,6 +9,7 @@ namespace Project_ASPNETMVC_2020.Model.EF
     [Table("project_2019.order")]
     public partial class order
     {
+        
         [Key]
         [Column(Order = 0)]
         [StringLength(10)]
