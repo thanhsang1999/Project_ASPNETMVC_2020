@@ -33,3 +33,46 @@
 .i-size {
     font-size: 18px;
 }
+.admin-red {
+    color: #e74c3c;
+}
+
+.admin-red-hover {
+    color: #e74c3c;
+}
+
+    .admin-red-hover:hover {
+        color: #c0392b;
+    }
+
+.admin-green {
+    color: #2ecc71;
+}
+
+.admin-blue {
+    color: #3498db;
+}
+
+.admin-blue-hover {
+    color: #3498db;
+}
+
+    .admin-blue-hover:hover {
+        color: #2980b9;
+    }
+
+.admin-yellow-hover {
+    color: #f1c40f;
+}
+
+    .admin-yellow-hover:hover {
+        color: #f39c12;
+    }
+
+.admin-green-hover {
+    color: #2ecc71;
+}
+
+    .admin-green-hover:hover {
+        color: #27ae60;
+    }

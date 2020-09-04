@@ -1,0 +1,203 @@
+﻿
+@using Project_ASPNETMVC_2020.Model.EF
+
+@using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig
+@using Project_ASPNETMVC_2020.Model.Other
+
+@model System.Collections.ArrayList
+
+@{
+    ViewBag.Title = "Danh sách đơn hàng đang xử lý";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    var listOrder = (List<order>)Model[0];
+    var listDetailOrder = (List<List<DetailOrderProduct>>)Model[1];
+}
+
+@section styles{
+    <!-- Bootstrap -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/bootstrap/dist/css/bootstrap.min.css",true)" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/font-awesome/css/font-awesome.min.css",true)" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.ContentAssetAdmin( "lib/vendors/nprogress/nprogress.css",true)" rel="stylesheet">
+
+
+    <!-- Custom Theme Style -->
+    <link href="@Url.ContentAssetAdmin( "lib/build/css/custom.min.css",true)" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/admin_listoder.css",true)" />
+    <link rel="stylesheet" href="@Url.ContentAssetAdmin("css/style.css",true)">
+
+}
+
+@section scripts{
+    <script src="@Url.ContentAssetAdmin("lib/vendors/jquery/dist/jquery.min.js",true)"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",true)"></script>
+    <!-- FastClick -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/fastclick/lib/fastclick.js",true)"></script>
+    <!-- NProgress -->
+    <script src="@Url.ContentAssetAdmin("lib/vendors/nprogress/nprogress.js",true)"></script>
+
+    <script src="@Url.ContentAssetAdmin("lib/build/js/custom.min.js",true)"></script>
+
+    <script>
+        $('.chapnhan').click(function (e) {
+            e.preventDefault();
+            String ht = $('.aa').val();
+            ht = "Chấp Nhận";
+        })
+    </script>
+
+}
+
+<div class="right_col" role="main" style="min-height: 692px;">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Danh Sách Đơn Hàng Mới</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..."> <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <div id="content-box">
+                                <div id="content-wrapper">
+                                    <table class="table table-striped jambo_table bulk_action">
+
+                                        <thead>
+                                            <tr class="headings">
+                                                <th>
+                                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                                        <input type="checkbox" id="check-all" class="flat"
+                                                               style="position: absolute; opacity: 0;">
+                                                        <ins class="iCheck-helper"
+                                                             style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                    </div>
+                                                </th>
+                                                <th class="column-title head-ms">Mã Số </th>
+                                                <th class="column-title giua head-tnd">Tên Người Dùng </th>
+                                                <th class="column-title giua">Địa Chỉ </th>
+                                                <th class="column-title giua">Số Điện Thoại </th>
+                                                <th class="column-title giua">Sản Phẩm </th>
+                                                <th class="column-title giua head-trang-thai">Trạng Thái </th>
+                                                <th class="column-title giua">Chấp Nhận </th>
+                                                <th class="column-title no-link last giua"><span class="nobr">Từ Chối </span></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="bodyTable">
+                                            @for (int i = 0; i < listOrder.Count; i++)
+                                            {
+                                                string oddoreven = "";
+                                                if (i == 0 || (i / 2) == 0)
+                                                {
+                                                    oddoreven = "even";
+                                                }
+                                                else
+                                                {
+                                                    oddoreven = "odd";
+                                                }
+                                                <tr class="@oddoreven pointer">
+                                                    <td class="a-center ">
+                                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                                            <input type="checkbox" class="flat" name="table_records"
+                                                                   style="position: absolute; opacity: 0;">
+                                                            <ins class="iCheck-helper"
+                                                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                        </div>
+                                                    </td>
+                                                    <td>@listOrder[i].ID_USER</td>
+                                                    <td>@listOrder[i].HOTEN</td>
+                                                    <td class="dia-chi giua">
+                                                        @listOrder[i].DIACHI
+                                                    </td>
+                                                    <td>@listOrder[i].SDT</td>
+                                                    <td class="giua">
+                                                        @foreach (List<DetailOrderProduct> item in listDetailOrder)
+                                                        {
+                                                            foreach (DetailOrderProduct item1 in item)
+                                                            {
+                                                                if (listOrder[i].ID_ORDER.Equals(item1.ID_ORDER))
+                                                                {
+                                                                    <li>@item1.NAME <i class="fas fa-times"></i> @item1.AMOUNT</li>
+                                                                }
+                                                            }
+                                                        }
+                                                    </td>
+                                                    <td class="a-right a-right">
+
+                                                        @switch (listOrder[i].STATUS)
+                                                        {
+                                                            case "1":
+                                                                <i class="fas fa-circle red" style="color: #3498db"></i> <span class="aa">Đang Xử Lý</span>
+                                                                break;
+                                                            case "2":
+                                                                <i class="fas fa-circle red" style="color: #2ecc71"></i> <span class="aa"> Hoàn Thành</span>
+                                                                break;
+                                                            case "3":
+                                                                <i class="fas fa-circle red" style="color: #e74c3c"></i> <span class="aa">Từ Chối</span>
+                                                                break;
+                                                            default:
+                                                                <i class="fas fa-circle red" style="color: #7f8c8d"></i> <span class="aa">Chờ Chấp Nhận</span>
+                                                                break;
+                                                        }
+                                                    </td>
+                                                    <td class="giua"><a class="chapnhan" href="@Url.Action("ChangeStatusOrder","Order",new {idOrder=listOrder[i].ID_ORDER,stt="2",actionn="ListOrderOld"})"><i style="font-size:20px" class="fas fa-check admin-green-hover"></i></a></td>
+                                                    <td class="last giua">
+                                                        <a class="tuchoi" href="@Url.Action("ChangeStatusOrder","Order",new {idOrder=listOrder[i].ID_ORDER,stt="1",actionn="ListOrderOld"})"><i style="font-size:20px" class="fas fa-times admin-red-hover"></i></a>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

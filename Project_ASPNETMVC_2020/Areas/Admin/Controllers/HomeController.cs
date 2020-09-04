@@ -14,18 +14,18 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Controllers
     [LogFilter(Order =1)]
     public class HomeController : Controller
     {
-        [AuthFilter(roleIsRequired =LevelAuth.Admin,Order =0)]
+       /* [AuthFilter(roleIsRequired =LevelAuth.Admin,Order =0)]*/
         public ActionResult Index()
         {
-            User user = Session["User"] as User;
+          /*  User user = Session["User"] as User;
             if (user != null&&user.LEVEL.Equals("10")&&user.ACTIVE=="1")
-            {
+            {*/
                 return View();
-            }
+           /* }
             else
             {
                 return RedirectToAction("Index", "Home", new { area = "" });
-            }
+            }*/
         }
         public ActionResult LogOut()
         {

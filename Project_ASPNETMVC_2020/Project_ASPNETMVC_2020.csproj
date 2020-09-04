@@ -141,13 +141,16 @@
     <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MemoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\RamController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\ArrayList.cs" />
     <Compile Include="Areas\Admin\Model\DAO\BrandDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\HDHDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\MemoryDAO.cs" />
+    <Compile Include="Areas\Admin\Model\DAO\OrderDAO.cs" />
     <Compile Include="Areas\Admin\Model\DAO\RamDAO.cs" />
     <Compile Include="Areas\Admin\Controllers\RateController.cs" />
     <Compile Include="Areas\Admin\Model\DAO\RateDAO.cs" />
@@ -6839,6 +6842,8 @@
     <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Rate\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ViewProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\ListOrderNew.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\ListOrderOld.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
