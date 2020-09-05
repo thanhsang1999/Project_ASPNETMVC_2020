@@ -1,5 +1,6 @@
 ﻿using Project_ASPNETMVC_2020.Areas.Admin.ClassToConfig;
 using Project_ASPNETMVC_2020.Areas.Admin.Model.Form;
+using Project_ASPNETMVC_2020.Areas.Admin.ToolsAdmin;
 using Project_ASPNETMVC_2020.Model.EF;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,8 @@ namespace Project_ASPNETMVC_2020.Areas.Admin.Model.DAO
 
         public string generateNameProduct(string nameproduct, string brand)
         {
-            DBModel dBModel = new DBModel();
-            string viewbrannd = dBModel.brands.Where(x => x.ID_BRAND == brand).FirstOrDefault().BRAND1;
-            return viewbrannd + " " + nameproduct;
+            string tembrand =ToolsOfAdmin.FirstCharToUpper(brand.ToLower());
+            return tembrand + " " + nameproduct;
         }
         public List<product> listAllProduct()
         {

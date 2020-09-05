@@ -17,7 +17,7 @@ namespace Project_ASPNETMVC_2020.Model.Code
         {
             try
             {
-                string email = "block33012@gmail.com".Trim();
+                string email = "block33013@gmail.com".Trim();
                 string password = "sing3301".Trim();
                 //string email = "ongdinh6@gmail.com".Trim();
                 //string password = "ongdinh6@.com".Trim();

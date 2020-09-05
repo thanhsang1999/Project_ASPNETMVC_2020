@@ -113,17 +113,7 @@
                             <p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
                         </div>
                     </div>
-                    <div class="sidebar_section">
-                        <div class="sidebar_subtitle color_subtitle">Color</div>
-                        <ul class="colors_list">
-                            <li class="color"><a href="#" style="background: #b19c83;"></a></li>
-                            <li class="color"><a href="#" style="background: #000000;"></a></li>
-                            <li class="color"><a href="#" style="background: #999999;"></a></li>
-                            <li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-                            <li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-                            <li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
-                        </ul>
-                    </div>
+                    
                     <div class="sidebar_section">
                         <div class="sidebar_subtitle brands_subtitle">Brands</div>
                         <ul class="brands_list">
@@ -190,16 +180,7 @@
                                         <div><a href="@Url.Action("ProductDetail","Product",new { id=item.ID_PRODUCT})" tabindex="0">@item.NAME.ToString()</a></div>
                                     </div>
                                 </div>
-                                @if (user == null || likeDAO.isUserHasLike(item.ID_PRODUCT, user.ID_ACCOUNT) == false)
-                                {
-                                    <div data-product="@item.ID_PRODUCT" class="product_fav"><i class="fas fa-heart"></i></div>
-
-                                }
-                                else
-                                {
-                                    <div data-product="@item.ID_PRODUCT" class="product_fav active"><i class="fas fa-heart active"></i></div>
-
-                                }
+                                
                                 <ul class="product_marks">
                                     @if (item.SALE_RATE != 0)
                                     {

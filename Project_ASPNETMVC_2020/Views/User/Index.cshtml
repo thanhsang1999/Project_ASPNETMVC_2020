@@ -97,11 +97,11 @@
                     <div class="col-md-1"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-5"></div>
-                    <div class="col-md-2">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
                         <div id="u-error-mess"></div>
                     </div>
-                    <div class="col-md-5"></div>
+                    <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-5"></div>
@@ -147,7 +147,8 @@
                 success: function (data) {
                     status = data.status
                     if (status == "success") {
-                        window.location.href = '@Url.Action("Index","User")';
+                        $("#u-error-mess").css("color", "#2ecc71");
+                        $("#u-error-mess").hide().html("Lưu Thành Công").fadeIn("slow");
                     } else if (status == "empty") {
                         $("#u-error-mess").hide().html("Không Để Trống").fadeIn("slow");
                     } else if (status == "email") {

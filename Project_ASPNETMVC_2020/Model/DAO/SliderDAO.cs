@@ -11,7 +11,7 @@ namespace Project_ASPNETMVC_2020.Model.DAO
         public static List<slider> LoadListSlider()
         {
             DBModel db = new DBModel();
-            var result = db.sliders.OrderBy(x=>x.NUMBER);
+            var result = db.sliders.Where(x=>x.ACTIVE==1).OrderBy(x=>x.NUMBER);
             return result.ToList();
         }
         public static string GenerateIDSlider()
